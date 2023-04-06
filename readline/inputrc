@@ -1,0 +1,49 @@
+#
+# /etc/inputrc - global inputrc for readline(3)
+#
+
+# Allow the command prompt to wrap to the next line.
+set horizontal-scroll-mode off
+
+# Enable 8bit input.
+set meta-flag on
+set input-meta on
+
+# Turns off 8th bit stripping.
+set convert-meta off
+
+# Keep the 8th bit for display.
+set output-meta on
+
+# Never ring the bell. Available values: none, visible or audible.
+set bell-style none
+
+# Enable the application keypad when it is called.
+# Some systems need this to enable arrow keys.
+set enable-keypad on
+
+# All of the following map the escape sequence of the value
+# contained in the 1st argument to the readline specific functions.
+
+"\e0d": backward-word
+"\e0c": forward-word
+
+# for linux console
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+"\e[5~": beginning-of-history
+"\e[6~": end-of-history
+"\e[3~": delete-char
+"\e[2~": quoted-insert
+
+"\ep": history-search-backward
+"\en": history-search-forward
+
+$if term=xterm
+"\e[7~": beginning-of-line
+"\e[8~": end-of-line
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+$endif
+
+# End of file.

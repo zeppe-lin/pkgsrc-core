@@ -1,0 +1,41 @@
+# Description: The /proc file system utilities
+# URL:         https://gitlab.com/procps-ng/procps
+# Depends on:  ncurses
+
+name=procps
+version=4.0.3
+release=1
+source="https://downloads.sourceforge.net/project/$name-ng/Production/$name-ng-$version.tar.xz
+	sysctl.conf"
+
+build() {
+	export LINGUAS=' '
+
+	mkdir build; cd build
+
+	# --disable-kill: /bin/kill is already provided by util-linux
+	../$name-ng-$version/configure  \
+		--prefix=/usr           \
+		--sbindir=/sbin         \
+		--libdir=/usr/lib       \
+		--sysconfdir=/etc       \
+		--disable-nls           \
+		--disable-kill          \
+		--disable-modern-top    \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	install -d $PKG/bin $PKG/lib $PKG/etc
+
+	mv $PKG/usr/bin/ps $PKG/usr/bin/pidof $PKG/bin/
+	mv $PKG/usr/lib/libproc2.so.* $PKG/lib/
+	ln -sf ../../lib/$(readlink $PKG/lib/libproc2.so.0) \
+		$PKG/usr/lib/libproc2.so
+
+	# sysctl config file
+	install -m 0644 $SRC/sysctl.conf $PKG/etc/sysctl.conf
+
+	# remove junk
+	rm -r $PKG/usr/share/doc/
+}

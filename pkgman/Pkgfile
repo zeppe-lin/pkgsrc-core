@@ -1,0 +1,24 @@
+# Description: Advanced package management tool
+# URL:         https://github.com/zeppe-lin/pkgman
+
+name=pkgman
+version=6.0.1-fba9a93
+release=1
+source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+	pkgman.conf"
+
+build() {
+	cd $name-${version#*-}*
+
+	# it's safe to optimize
+	CXXFLAGS="$(echo "$CXXFLAGS" | sed 's/-O. /-Ofast /')"
+
+	# pick up system flags
+	sed -i '/^\(CXX\|LD\)FLAGS/s/ = /+=/g' config.mk
+
+	make DESTDIR=$PKG install
+
+	install -m 0644 -Dt $PKG/etc/ $SRC/pkgman.conf
+	install -m 0644 -D bash_completion \
+		$PKG/usr/share/bash-completion/completions/$name
+}

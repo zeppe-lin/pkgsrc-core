@@ -1,0 +1,31 @@
+# Description: Portable Foreign Function Interface Library
+# URL:         https://sourceware.org/libffi/
+
+name=libffi
+version=3.4.4
+release=1
+source="https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.gz
+	pax-dlmmap.patch"
+
+build() {
+	sed -e '/^includesdir/ s/$(libdir).*$/$(includedir)/'  \
+	    -i $name-$version/include/Makefile.in
+
+	sed -e '/^includedir/ s/=.*$/=@includedir@/'           \
+	    -e 's/^Cflags: -I${includedir}/Cflags:/'           \
+	    -i $name-$version/libffi.pc.in
+
+	mkdir build; cd build
+
+	../$name-$version/configure          \
+		--prefix=/usr                \
+		--enable-pax_emutramp        \
+		--enable-portable-binary     \
+		--disable-exec-static-tramp  \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# remove junk
+	rm -r $PKG/usr/share/info
+}

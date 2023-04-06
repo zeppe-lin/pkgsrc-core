@@ -1,0 +1,77 @@
+# Description: Shadow password file utilities
+# URL:         https://github.com/shadow-maint/shadow/
+# Depends on:  acl linux-pam
+
+name=shadow
+version=4.13
+release=1
+source="https://github.com/shadow-maint/$name/releases/download/$version/$name-$version.tar.xz
+	cron.pwck login.defs
+	pam.chfn pam.chsh pam.groupadd pam.groupdel pam.groupmems
+	pam.groupmod pam.login pam.passwd pam.su pam.useradd
+	pam.userdel pam.usermod"
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+		--bindir=/usr/bin    \
+		--sbindir=/usr/sbin  \
+		--sysconfdir=/etc    \
+		--disable-shared     \
+		--disable-shadowgrp  \
+		--disable-nls        \
+		--without-selinux    \
+		--without-audit      \
+
+	make V=1
+	make DESTDIR=$PKG install
+	make -C man DESTDIR=$PKG install
+
+	install -d $PKG/bin $PKG/sbin $PKG/etc/cron/daily $PKG/var/log
+
+	mv $PKG/usr/bin/login    $PKG/bin/
+	mv $PKG/usr/sbin/nologin $PKG/sbin/
+
+	chmod -s $PKG/usr/sbin/*
+
+	# login.defs
+	#install -m 0644 -D $SRC/login.defs $PKG/etc/
+	install -m 0644 -D ../$name-$version/etc/login.defs $PKG/etc/
+
+	# cron
+	install -m 0755 -D $SRC/cron.pwck $PKG/etc/cron/daily/pwck
+
+	touch $PKG/var/log/lastlog
+	touch $PKG/var/log/faillog
+
+	# pam configs
+	for _F in pam.chfn pam.chsh pam.groupadd pam.groupdel   \
+		pam.groupmems pam.groupmod pam.login pam.passwd \
+		pam.su pam.useradd pam.userdel pam.usermod
+	do
+		install -o root -g root -m 0644 \
+			$SRC/$_F $PKG/etc/pam.d/${_F#pam.}
+	done
+
+	# remove junk & unused
+	rm -r $PKG/usr/bin/gpasswd                \
+	      $PKG/usr/share/man/man1/gpasswd.1   \
+	      $PKG/usr/sbin/chpasswd              \
+	      $PKG/usr/share/man/man8/chpasswd.8  \
+	      $PKG/usr/sbin/grpconv               \
+	      $PKG/usr/share/man/man8/grpconv.8   \
+	      $PKG/usr/sbin/grpunconv             \
+	      $PKG/usr/share/man/man8/grpunconv.8 \
+	      $PKG/usr/sbin/logoutd               \
+	      $PKG/usr/share/man/man8/logoutd.8   \
+	      $PKG/usr/sbin/newusers              \
+	      $PKG/usr/share/man/man8/newusers.8  \
+	      $PKG/usr/sbin/pwconv                \
+	      $PKG/usr/share/man/man8/pwconv.8    \
+	      $PKG/usr/sbin/pwunconv              \
+	      $PKG/usr/share/man/man8/pwunconv.8  \
+	      $PKG/usr/share/man/man5/gshadow.5   \
+	      $PKG/usr/share/man/man3
+}

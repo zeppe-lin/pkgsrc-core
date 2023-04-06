@@ -1,0 +1,11 @@
+#
+# /etc/pam.d/userdel - userdel service module configuration
+#
+
+# always allow root
+auth    sufficient  pam_rootok.so
+
+# include common account settings
+account include     common-account
+
+# End of file.

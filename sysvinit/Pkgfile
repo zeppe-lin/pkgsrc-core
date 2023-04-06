@@ -1,0 +1,34 @@
+# Description: System V Init
+# URL:         https://savannah.nongnu.org/projects/sysvinit/
+
+name=sysvinit
+version=3.06
+release=1
+source=https://github.com/slicer69/$name/releases/download/$version/$name-$version.tar.xz
+
+build() {
+	cd $name-$version
+
+	# remove localized man pages
+	find man -type d -name '??' -exec rm -rv {} +
+
+	make V=1
+	make ROOT=$PKG install
+
+	install -d $PKG/var/log
+	touch      $PKG/var/log/wtmp
+	touch      $PKG/var/log/btmp
+	chmod 0600 $PKG/var/log/btmp
+
+	# provided by util-linux
+	cd $PKG/usr/bin
+	rm last   lastb   mesg   utmpdump   wall
+	cd $PKG/usr/share/man/man1
+	rm last.1 lastb.1 mesg.1 utmpdump.1 wall.1
+
+	# provided by procps
+	rm $PKG/bin/pidof    $PKG/usr/share/man/man8/pidof.8
+
+	# provided by e2fsprogs
+	rm $PKG/sbin/logsave $PKG/usr/share/man/man8/logsave.8
+}

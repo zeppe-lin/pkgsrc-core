@@ -1,0 +1,36 @@
+# Description: Network utility for downloading content from the Web
+# URL:         http://www.gnu.org/software/wget/
+# Depends on:  libpcre libunistring openssl zlib
+
+name=wget
+version=1.21.3
+release=1
+source="http://ftp.gnu.org/gnu/$name/$name-$version.tar.lz
+        wgetrc"
+
+build() {
+	export PYTHON=python3
+
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+		--sysconfdir=/etc    \
+		--disable-debug      \
+		--disable-iri        \
+		--disable-pcre2      \
+		--disable-nls        \
+		--with-ssl=openssl   \
+		--without-cares      \
+		--without-libpsl     \
+		--without-libuuid    \
+
+	make V=1
+	make DESTDIR=$PKG install 
+
+	# config
+	install -m 0644 -Dt $PKG/etc/ $SRC/wgetrc
+
+	# remove junk
+	rm -r $PKG/usr/share/info
+}

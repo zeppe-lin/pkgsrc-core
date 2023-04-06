@@ -1,0 +1,23 @@
+# Description: Package management utility which makes a software package
+# URL:         https://github.com/zeppe-lin/pkgmk/
+
+name=pkgmk
+version=5.41.2-4fdc755
+release=1
+source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+	pkgmk.conf"
+
+build() {
+	cd $name-${version#*-}*
+
+	make DESTDIR=$PKG install
+
+	install -m 0644 -Dt $PKG/etc/ $SRC/pkgmk.conf
+	install -m 0644 -D bash_completion \
+		$PKG/usr/share/bash-completion/completions/$name
+
+	# these dirs are required by our pkgmk.conf
+	for _D in pkgmk pkgmk/sources pkgmk/packages pkgmk/work; do
+		install -o pkgmk -g pkgmk -d $PKG/var/cache/$_D
+	done
+}

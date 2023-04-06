@@ -1,0 +1,53 @@
+# Description: System V Release 4.0 curses emulation library
+# URL:         http://www.gnu.org/software/ncurses/ncurses.html
+
+name=ncurses
+version=6.4
+release=1
+source="https://invisible-mirror.net/archives/$name/$name-$version.tar.gz
+	$name-6.3-libs.patch
+	$name-6.3-pkgconfig.patch"
+
+build() {
+	# do not link against test libraries
+	patch -d $name-$version -p1 -i $SRC/$name-6.3-libs.patch
+
+	# do not leak build-time LDFLAGS into the pkgconfig files:
+	# https://bugs.archlinux.org/task/68523
+	patch -d $name-$version -p1 -i $SRC/$name-6.3-pkgconfig.patch
+
+	mkdir build; cd build
+
+	../$name-$version/configure                          \
+		--prefix=/usr                                \
+		--mandir=/usr/share/man                      \
+		--enable-pc-files                            \
+		--enable-widec                               \
+		--with-normal                                \
+		--with-pkg-config-libdir=/usr/lib/pkgconfig  \
+		--with-shared                                \
+		--without-ada                                \
+		--without-debug                              \
+		--without-tests                              \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# move library from /usr/lib to /lib and create symlinks
+	install -d $PKG/lib
+	mv $PKG/usr/lib/libncursesw.so.*  $PKG/lib/
+	ln -sf ../../lib/libncursesw.so.$version \
+		$PKG/usr/lib/libncursesw.so
+	ln -s libncursesw.so.$version \
+		$PKG/lib/libncurses.so.${version%%.*}
+
+	# linker scripts and .pc files for non-wide ncurses
+	for LIB in ncurses form panel menu; do
+		echo "INPUT(-l${LIB}w)" > $PKG/usr/lib/lib${LIB}.so
+		ln -s ${LIB}w.pc  $PKG/usr/lib/pkgconfig/${LIB}.pc
+	done
+
+	# linker script for the curses library
+	echo "INPUT(-lncursesw)" > $PKG/usr/lib/libcursesw.so
+	ln -s libncurses.so $PKG/usr/lib/libcurses.so
+}

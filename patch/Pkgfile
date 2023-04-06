@@ -1,0 +1,18 @@
+# Description: Utility to apply diffs to files
+# URL:         http://www.gnu.org/software/patch/patch.html
+# Depends on:  attr
+
+name=patch
+version=2.7.6.17-9c98
+release=1
+source=https://crux.nu/files/distfiles/patch-$version.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	../patch-$version/configure  \
+		--prefix=/usr        \
+
+	make V=1
+	make DESTDIR=$PKG install
+}

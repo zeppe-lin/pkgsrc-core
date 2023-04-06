@@ -1,0 +1,8 @@
+#
+# /etc/pam.d/passwd - passwd service module configuration
+#
+
+# include common password settings
+password    include common-password
+
+# End of file.

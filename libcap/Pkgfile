@@ -1,0 +1,31 @@
+# Description: POSIX.1e capabilities library
+# URL:         https://sites.google.com/site/fullycapable/
+# Depends on:  linux-pam
+
+name=libcap
+version=2.68
+release=1
+source=https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$name-$version.tar.xz
+
+build() {
+	cd $name-$version
+
+	# fix build flags
+	sed -i "/^CFLAGS/s/-O2/$CFLAGS/" Make.Rules 
+
+	make BUILD_COPTS=                     \
+	     DEBUG=                           \
+	     GOLANG=no                        \
+	     RAISE_SETFCAP=no                 \
+	     PKGCONFIGDIR=/usr/lib/pkgconfig  \
+	     DESTDIR=$PKG                     \
+	     install
+
+	# move libs from /usr/lib to /lib
+	install -d $PKG/usr/lib
+	mv $PKG/lib/libcap.a $PKG/lib/libpsx.* $PKG/usr/lib/
+	rm $PKG/lib/libcap.so
+	ln -s ../../lib/libcap.so.$version $PKG/usr/lib/libcap.so
+
+	sed -i '/^libdir/s|/lib|/usr/lib|' $PKG/usr/lib/pkgconfig/*.pc
+}

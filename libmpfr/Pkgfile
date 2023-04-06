@@ -1,0 +1,22 @@
+# Description: Multiple-precision floating-point computations with correct rounding
+# URL:         https://www.mpfr.org/
+# Depends on:  libgmp
+
+name=libmpfr
+version=4.2.0
+release=1
+source=https://www.mpfr.org/mpfr-${version%-*}/mpfr-${version%-*}.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	../mpfr-${version%-*}/configure  \
+		--prefix=/usr            \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# remove junk
+	rm -r $PKG/usr/share/info $PKG/usr/share/doc
+	rmdir $PKG/usr/share
+}

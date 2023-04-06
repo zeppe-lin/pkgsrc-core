@@ -1,0 +1,23 @@
+# Description: GNU Standards-compliant Makefile generator
+# URL:         http://www.gnu.org/software/automake
+# Depends on:  gawk perl autoconf
+
+name=automake
+version=1.16.5
+release=1
+source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# remove junk
+	cd $PKG/usr/share;             rm -r info doc
+	cd $PKG/usr/share/automake-*;  rm texinfo.tex COPYING INSTALL
+	cd $PKG/usr/share/aclocal;     rm README
+}

@@ -1,0 +1,84 @@
+# Description: Root filesystem package
+# URL:         https://zeppe-lin.github.io/
+
+name=filesystem
+version=0.3
+release=1
+source='fstab group issue mime.types motd passwd securetty shadow
+	shells'
+
+build() {
+	# Directory structure
+	mkdir $PKG/bin
+	mkdir $PKG/sbin
+	mkdir $PKG/boot
+	mkdir $PKG/dev
+	mkdir $PKG/dev/pts
+	mkdir $PKG/proc
+	mkdir $PKG/sys
+	mkdir $PKG/etc
+	mkdir $PKG/mnt
+	mkdir $PKG/run
+	mkdir $PKG/lib
+	mkdir $PKG/lib32
+	ln -s lib $PKG/lib64
+	mkdir $PKG/lib/modules
+	mkdir $PKG/opt
+	mkdir $PKG/usr
+	mkdir $PKG/usr/bin
+	mkdir $PKG/usr/include
+	mkdir $PKG/usr/lib
+	mkdir $PKG/usr/lib32
+	ln -s lib $PKG/usr/lib64
+	mkdir $PKG/usr/sbin
+	mkdir $PKG/usr/share
+	mkdir $PKG/usr/share/man
+	mkdir $PKG/usr/share/man/man1
+	mkdir $PKG/usr/share/man/man2
+	mkdir $PKG/usr/share/man/man3
+	mkdir $PKG/usr/share/man/man4
+	mkdir $PKG/usr/share/man/man5
+	mkdir $PKG/usr/share/man/man6
+	mkdir $PKG/usr/share/man/man7
+	mkdir $PKG/usr/share/man/man8
+	mkdir $PKG/usr/src
+	ln -s ../var $PKG/usr/var
+	mkdir $PKG/var
+	mkdir $PKG/var/cache
+	mkdir $PKG/var/lib
+	mkdir $PKG/var/lib/pkg
+	mkdir $PKG/var/log
+	mkdir $PKG/var/log/old
+	ln -s ../run $PKG/var/run
+	# can't be in the Pkgfile anymore
+	#touch $PKG/var/run/utmp
+	mkdir $PKG/var/spool
+	mkdir $PKG/var/ftp
+	mkdir $PKG/var/www
+	mkdir $PKG/var/empty
+	ln -s spool/mail $PKG/var/mail
+	mkdir $PKG/home
+
+	mkdir -m 1777 $PKG/tmp
+	mkdir -m 0750 $PKG/root
+	mkdir -m 1777 $PKG/var/lock
+	mkdir -m 1777 $PKG/var/spool/mail
+	mkdir -m 1777 $PKG/var/tmp
+	mkdir -m 1777 $PKG/dev/shm
+
+	# /dev
+	mknod $PKG/dev/console c 5 1
+	chmod 0600 $PKG/dev/console
+
+	# /etc
+	install -m 0644 $SRC/issue      $PKG/etc/
+	install -m 0644 $SRC/motd       $PKG/etc/
+	install -m 0644 $SRC/shells     $PKG/etc/
+	install -m 0644 $SRC/group      $PKG/etc/
+	install -m 0644 $SRC/passwd     $PKG/etc/
+	install -m 0640 $SRC/shadow     $PKG/etc/
+	install -m 0644 $SRC/securetty  $PKG/etc/
+	install -m 0644 $SRC/fstab      $PKG/etc/
+	install -m 0644 $SRC/mime.types $PKG/etc/
+	ln -s /proc/self/mounts $PKG/etc/mtab
+}

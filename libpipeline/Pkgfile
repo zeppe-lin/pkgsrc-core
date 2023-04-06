@@ -1,0 +1,18 @@
+# Description: Pipeline manipulation library
+# URL:         https://libpipeline.nongnu.org/
+
+name=libpipeline
+version=1.5.7
+release=1
+source=https://download.savannah.gnu.org/releases/$name/$name-$version.tar.gz
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+		--enable-static      \
+
+	make V=1
+	make DESTDIR=$PKG install
+}

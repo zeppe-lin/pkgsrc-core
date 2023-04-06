@@ -1,0 +1,17 @@
+# Description: Init scripts for sysvinit
+# URL:         https://github.com/zeppe-lin/rc
+
+name=rc
+version=2.33-fdbab08
+release=1
+source="https://github.com/zeppe-lin/rc/archive/${version#*-}/rc-$version.tar.gz
+	inittab
+	rc.conf"
+
+build() {
+	cd $name-${version#*-}*
+
+	make DESTDIR=$PKG install
+
+	install -m 0644 -Dt $PKG/etc/ $SRC/inittab $SRC/rc.conf
+}

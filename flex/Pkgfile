@@ -1,0 +1,26 @@
+# Description: Fast Lexical Analyzer Generator
+# URL:         https://github.com/westes/flex
+
+name=flex
+version=2.6.4
+release=1
+source=https://github.com/westes/flex/releases/download/v$version/flex-$version.tar.gz
+
+build() {
+	export CFLAGS="$CFLAGS -D_GNU_SOURCE"
+
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+		--disable-nls        \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	ln -sf flex       $PKG/usr/bin/lex
+	ln -sf flex.1.gz  $PKG/usr/share/man/man1/lex.1.gz
+
+	# remove junk
+	rm -r $PKG/usr/share/info $PKG/usr/share/doc
+}

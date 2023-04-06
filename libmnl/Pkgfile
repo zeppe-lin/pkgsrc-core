@@ -1,0 +1,19 @@
+# Description: Minimalistic user-space library oriented to Netlink developers
+# URL:         https://netfilter.org/projects/libmnl/
+
+name=libmnl
+version=1.0.5
+release=1
+source=https://www.netfilter.org/projects/$name/files/$name-$version.tar.bz2
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+		--enable-static      \
+		--without-doxygen    \
+
+	make V=1
+	make DESTDIR=$PKG install
+}

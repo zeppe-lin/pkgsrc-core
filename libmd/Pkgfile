@@ -1,0 +1,17 @@
+# Description: Message Digest functions from BSD systems
+# URL:         https://www.hadrons.org/software/libmd/
+
+name=libmd
+version=1.0.4
+release=1
+source=https://archive.hadrons.org/software/libmd/libmd-$version.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	../libmd-$version/configure  \
+		--prefix=/usr        \
+
+	make V=1
+	make DESTDIR=$PKG install
+}

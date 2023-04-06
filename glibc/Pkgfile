@@ -1,0 +1,93 @@
+# Description: GNU C Library
+# URL:         http://www.gnu.org/software/libc/
+
+name=glibc
+version=2.36-4
+release=1
+
+# Kernel is in the "system" packages directory that may be disabled by
+# user through pkgman.conf configuration.  If it is available, use
+# packages' already downloaded source, otherwise download the hardcoded
+# one.
+_kernver=$(pkgman printf %v --filter=linux || echo 5.4.232)
+
+source="https://ftp.gnu.org/gnu/$name/$name-${version%-*}.tar.xz
+	https://www.kernel.org/pub/linux/kernel/v5.x/linux-$_kernver.tar.xz
+	glibc-$version.patch
+	hosts resolv.conf nsswitch.conf host.conf ld.so.conf"
+
+build() {
+	# Install kernel headers.
+	# The headers require rsync for installation, which is
+	# redundant for core collection (it's placed in "system"
+	# packages directory).  The following "find" command simply
+	# does the same.
+	(cd linux-$_kernver
+	make mrproper
+	#make headers_check
+	#make INSTALL_HDR_PATH=$PKG/usr headers_install
+	#chown root:root $PKG/usr
+	make headers
+	find usr/include -name \*.h -type f | while read -r _hdr; do
+		install -g root -o root -m 644 -D $_hdr $PKG/$_hdr
+	done)
+
+	patch -p1 -d $name-${version%-*} -i $SRC/glibc-$version.patch
+
+	mkdir build; cd build
+
+	export libc_cv_slibdir=/lib
+
+	../$name-${version%-*}/configure         \
+		--prefix=/usr                    \
+		--libdir=/usr/lib                \
+		--libexecdir=/usr/lib            \
+		--with-headers=$PKG/usr/include  \
+		--disable-profile                \
+		--disable-werror                 \
+		--enable-add-ons                 \
+		--enable-bind-now                \
+		--enable-kernel=4.9              \
+		--enable-multi-arch              \
+		--enable-stack-protector=strong  \
+		--without-gd                     \
+
+	make V=1
+	#make check
+	make install_root=$PKG install
+
+	install -m 0644 -Dt $PKG/etc/                    \
+		$SRC/$name-${version%-*}/nscd/nscd.conf  \
+		$SRC/hosts                               \
+		$SRC/resolv.conf                         \
+		$SRC/nsswitch.conf                       \
+		$SRC/host.conf                           \
+		$SRC/ld.so.conf                          \
+
+	install -d $PKG/var/db/nscd
+
+	ln -sf ../usr/share/zoneinfo/UTC $PKG/etc/localtime
+
+	install -d $PKG/etc/ld.so.conf.d
+	touch $PKG/etc/ld.so.cache
+
+	# install required locales
+	install -d $PKG/usr/lib/locale
+	LC_ALL=C ./elf/ld.so --library-path . \
+		$PKG/usr/bin/localedef \
+		--force \
+		--quiet \
+		--inputfile=$SRC/$name-${version%-*}/localedata/locales/C \
+		--charmap=$SRC/$name-${version%-*}/localedata/charmaps/UTF-8 \
+		$PKG/usr/lib/locale/C.UTF-8 || true
+	#localedef -i POSIX -f UTF-8 $PKG/usr/lib/locale/C.UTF-8 \
+	#	2> /dev/null || true
+
+	# remove junk
+	rm -rf $PKG/usr/share/locale $PKG/usr/share/info
+	rm $PKG/usr/bin/tzselect $PKG/usr/bin/zdump $PKG/usr/sbin/zic
+	find $PKG -type f \(            \
+		   -name \*install.cmd  \
+		-o -name ".\install"    \
+		\) -delete
+}

@@ -1,0 +1,50 @@
+# Description: Pluggable Authentication Modules (PAM) for Linux
+# URL:         http://www.linux-pam.org/
+# Depends on:  bash
+
+name=linux-pam
+version=1.5.2
+release=1
+source="https://github.com/$name/$name/releases/download/v${version}/Linux-PAM-$version.tar.xz
+	pam.common-account
+	pam.common-auth
+	pam.common-password
+	pam.common-session
+	pam.other"
+
+build() {
+	mkdir build; cd build
+
+	CONFIG_SHELL=/bin/bash           \
+	../Linux-PAM-$version/configure  \
+		--prefix=/usr            \
+		--libdir=/lib            \
+		--disable-nis            \
+		--disable-nls            \
+		--disable-prelude        \
+		--enable-db=no           \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	mv $PKG/lib/pkgconfig $PKG/usr/lib/
+
+	# unix_chkpwd needs to be setuid root
+	chmod u+s $PKG/sbin/unix_chkpwd
+
+	# pam
+	mkdir -p $PKG/etc/pam.d
+	install -o root -g root -m 0644 $SRC/pam.common-account  \
+		$PKG/etc/pam.d/common-account
+	install -o root -g root -m 0644 $SRC/pam.common-auth     \
+		$PKG/etc/pam.d/common-auth
+	install -o root -g root -m 0644 $SRC/pam.common-password \
+		$PKG/etc/pam.d/common-password
+	install -o root -g root -m 0644 $SRC/pam.common-session  \
+		$PKG/etc/pam.d/common-session
+	install -o root -g root -m 0644 $SRC/pam.other           \
+		$PKG/etc/pam.d/other
+
+	# remove junk
+	cd $PKG/usr; rm -r lib/systemd share/doc
+}

@@ -1,0 +1,33 @@
+# Description: Secure Sockets Layer and Transport Layer Security tools
+# URL:         https://www.openssl.org/
+
+name=openssl
+version=1.1.1t
+release=1
+source="https://www.openssl.org/source/$name-$version.tar.gz
+	mksslcert.sh mksslcert.1.pod"
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/config            \
+		--prefix=/usr               \
+		--libdir=lib                \
+		--openssldir=/etc/ssl       \
+		shared                      \
+		enable-ec_nistp_64_gcc_128  \
+
+	make V=1 depend
+	make V=1
+	make V=1 MANSUFFIX=ssl DESTDIR=$PKG \
+		install_sw install_ssldirs install_man_docs
+
+	# mksslcert
+	pod2man --nourls -r $version -c ' ' -n mksslcert -s 1 \
+		$SRC/mksslcert.1.pod > mksslcert.1
+	install -m 0755 -D $SRC/mksslcert.sh $PKG/usr/bin/mksslcert
+	install -m 0644 -D mksslcert.1 $PKG/usr/share/man/man1/mksslcert.1
+
+	# remove junk
+	find $PKG -name "*fips*" | xargs rm -rf
+}

@@ -1,0 +1,49 @@
+# Description: Miscellaneous system utilities
+# URL:         https://github.com/karelzak/util-linux
+# Depends on:  eudev file libcap-ng readline
+
+name=util-linux
+version=2.38.1
+release=1
+source=https://www.kernel.org/pub/linux/utils/$name/v${version%.*}/$name-$version.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	# --disable-chfn-chsh: provided by shadow
+	# --disable-login: provided by shadow
+	# --disable-runuser: unused
+	# --disable-su: provided by shadow
+	# --disable-sulogin: provided by sysvinit
+	# --disable-nologin: provided by shadow
+	# --enable-asciidoc: generate man pages, requires asciidoctor
+	../$name-$version/configure   \
+		--prefix=/usr         \
+		--disable-chfn-chsh   \
+		--disable-login       \
+		--disable-nls         \
+		--disable-runuser     \
+		--disable-su          \
+		--disable-sulogin     \
+		--disable-nologin     \
+		--enable-asciidoc     \
+		--enable-kill         \
+		--enable-raw          \
+		--enable-write        \
+		--without-python      \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	install -d $PKG/etc/ $PKG/var/lib/libuuid
+	touch $PKG/etc/adjtime
+
+	# remove junk and obsolete files
+	rm -r $PKG/usr/share/doc/                   \
+	      $PKG/sbin/mkfs.bfs                    \
+	      $PKG/sbin/mkfs.minix                  \
+	      $PKG/sbin/fsck.minix                  \
+	      $PKG/usr/share/man/man8/mkfs.bfs.8    \
+	      $PKG/usr/share/man/man8/mkfs.minix.8  \
+	      $PKG/usr/share/man/man8/fsck.minix.8
+}

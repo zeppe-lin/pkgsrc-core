@@ -1,0 +1,23 @@
+# Description: System Utilities Based on Sysfs
+# URL:         http://linux-diag.sourceforge.net/Sysfsutils.html
+
+name=sysfsutils
+version=2.1.1
+release=1
+source=https://github.com/linux-ras/$name/archive/v$version/$name-$version.tar.gz
+
+build() {
+	mkdir build; cd build
+
+	autoreconf -fi ../$name-$version
+	../$name-$version/configure                \
+		--prefix=/usr                      \
+		--mandir=/usr/share/man            \
+		--with-pci.ids=/usr/share/pci.ids  \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# remove obsolete
+	rm -f $PKG/usr/bin/dlist_test
+}

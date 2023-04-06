@@ -1,0 +1,15 @@
+8daef1febaeef6ab0dce557f006732a8  cron.pwck
+ae583ed541c03b077e5a664f38a4ca28  login.defs
+54fb33ea64d8e6a2522e5b22111a4949  pam.chfn
+36fcd4b61dc5c701050862f2b441861d  pam.chsh
+485a983979677dc6256735739a308416  pam.groupadd
+3464dd406ad90fef409c1761943a97e6  pam.groupdel
+82eba8b7ffbf90de4d2d7043ac033bdc  pam.groupmems
+d4359ecc6fa1abc4758425621b9e74d1  pam.groupmod
+b40029c8f82d9ead06942311a8c89e2f  pam.login
+82cfcf7a6dcf4225d04689c8805c7a61  pam.passwd
+ea515781ed05ca3f6e0b8bf5129f16ff  pam.su
+fce891b47096c1320246a863761f936d  pam.useradd
+7222278a3537ab7c3cf1885f80bac19f  pam.userdel
+0b1dbb7dc20dd3472610b084504c5af4  pam.usermod
+b1ab01b5462ddcf43588374d57bec123  shadow-4.13.tar.xz

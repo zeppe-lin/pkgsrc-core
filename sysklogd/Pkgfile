@@ -1,0 +1,37 @@
+# Description: Kernel and system logging daemons
+# URL:         https://github.com/troglobit/sysklogd
+
+name=sysklogd
+version=2.4.4
+release=1
+source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
+	rotatelog cron.syslog syslog.conf rc.sysklogd"
+
+build() {
+	mkdir build; cd build
+
+	# --without-logger: logger(1) is provided by sbase or util-linux
+	../$name-$version/configure   \
+		--prefix=/usr         \
+		--sysconfdir=/etc     \
+		--localstatedir=/var  \
+		--runstatedir=/run    \
+		--without-logger      \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	install -m 0755 -D $SRC/rc.sysklogd $PKG/etc/rc.d/sysklogd
+	install -m 0755 -D $SRC/rotatelog   $PKG/usr/sbin/rotatelog
+	install -m 0755 -D $SRC/cron.syslog $PKG/etc/cron/weekly/syslog
+	install -m 0644 -D $SRC/syslog.conf $PKG/etc/syslog.conf
+
+	install -d $PKG/var/log $PKG/etc/syslog.d
+	for _F in auth cron debug kernel mail messages; do
+		touch     $PKG/var/log/$_F
+		chmod 640 $PKG/var/log/$_F
+	done
+
+	# remove junk
+	rm -r $PKG/usr/share/doc/
+}

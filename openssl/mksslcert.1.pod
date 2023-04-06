@@ -1,0 +1,40 @@
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+mksslcert - create self-signed openssl certificate
+
+=head1 SYNOPSIS
+
+B<mksslcert> I<KEY> I<CERT> [I<HOSTNAME>]
+
+=head1 DESCRIPTION
+
+B<mksslcert> creates self-signed L<openssl(1)> certificates based on the local
+hostname or the given one. Fallback to I<localhost> if not set.
+
+=head1 OPTIONS
+
+=over 8
+
+=item I<KEY>
+
+Full path to openssl private key.
+
+=item I<CERT>
+
+Full path to openssl certificate.
+
+=item I<HOSTNAME>
+
+Host name of certificate.
+
+=back
+
+=head1 AUTHOR
+
+Juergen Daubert, jue at crux dot nu
+
+=cut 

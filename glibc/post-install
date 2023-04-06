@@ -1,0 +1,6 @@
+#!/bin/sh -ex
+
+# Tell the daemon to re-execute itself.
+/sbin/telinit U
+
+# End of file.

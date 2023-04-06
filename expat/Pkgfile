@@ -1,0 +1,26 @@
+# Description: XML parser library
+# URL:         https://libexpat.github.io/
+
+name=expat
+version=2.5.0
+release=1
+source=https://download.sourceforge.net/expat/expat-$version.tar.lz
+
+build() {
+	mkdir build; cd build
+
+	../expat-$version/configure  \
+		--prefix=/usr        \
+		--without-examples   \
+		--without-tests      \
+		--without-docbook    \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	install -m 0644 -Dt $PKG/usr/share/man/man1/ \
+		../$name-$version/doc/xmlwf.1
+
+	# remove junk
+	rm -r $PKG/usr/share/doc
+}

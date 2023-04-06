@@ -1,0 +1,13 @@
+diff -pruN vim-8.2.2282/runtime/vimrc_example.vim vim-8.2.2282.new/runtime/vimrc_example.vim
+--- vim-8.2.2282/runtime/vimrc_example.vim	2021-01-02 21:14:23.000000000 +0200
++++ vim-8.2.2282.new/runtime/vimrc_example.vim	2021-01-31 15:59:40.776759881 +0200
+@@ -39,6 +39,9 @@ augroup vimrcEx
+ 
+   " For all text files set 'textwidth' to 78 characters.
+   autocmd FileType text setlocal textwidth=78
++
++  " Automatically use sh syntax highlighting for Pkgfiles
++  au BufNewFile,BufRead *Pkgfile set filetype=sh cc=76
+ augroup END
+ 
+ " Add optional packages.

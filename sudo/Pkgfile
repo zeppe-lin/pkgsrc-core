@@ -1,0 +1,31 @@
+# Description: Give certain users the ability to run some commands as root
+# URL:         https://www.sudo.ws/sudo/
+# Depends on:  linux-pam openssl zlib
+
+name=sudo
+version=1.9.13p3
+release=1
+source="https://www.sudo.ws/dist/sudo-$version.tar.gz
+	pam.sudo"
+
+build() {
+	mkdir build; cd build
+
+	../sudo-$version/configure                  \
+		--prefix=/usr                       \
+		--libexecdir=/usr/lib               \
+		--with-logfac=auth                  \
+		--with-vardir=/var/lib/sudo         \
+		--with-rundir=/run/sudo             \
+		--with-sendmail=/usr/sbin/sendmail  \
+		--disable-nls                       \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# PAM service file
+	install -m 0644 -D $SRC/pam.sudo $PKG/etc/pam.d/sudo
+
+	# remove junk
+	rm -r $PKG/usr/share/doc/ $PKG/run
+}

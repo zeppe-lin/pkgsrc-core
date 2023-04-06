@@ -1,0 +1,21 @@
+# Description: Compression/decompression Library
+# URL:         http://www.zlib.net/
+
+name=zlib
+version=1.2.13
+release=1
+source=https://www.zlib.net/$name-$version.tar.gz
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+		--sharedlibdir=/lib  \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	ln -sf ../../lib/libz.so.$version $PKG/usr/lib/libz.so
+	rm $PKG/lib/libz.so
+}

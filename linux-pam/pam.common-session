@@ -1,0 +1,11 @@
+#
+# /etc/pam.d/common-session - common session module configuration
+#
+
+session required    pam_limits.so
+session required    pam_unix.so
+
+# requires "dumb_runtime_dir" package
+#session optional    pam_dumb_runtime_dir.so
+
+# End of file.

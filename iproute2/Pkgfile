@@ -1,0 +1,26 @@
+# Description: IP Routing Utilities
+# URL:         http://www.linuxfoundation.org/collaborate/workgroups/networking/iproute2
+# Depends on:  db elfutils iptables libbsd libcap libtirpc
+
+name=iproute2
+version=6.2.0
+release=1
+source="https://www.kernel.org/pub/linux/utils/net/$name/$name-$version.tar.xz
+	rc.lo rc.net rc.bridge"
+
+build() {
+	cd $name-$version
+
+	./configure
+
+	make -j1 CCOPTS="$CFLAGS" V=1
+	make -j1 DESTDIR=$PKG install
+
+	install -m 0755 -D $SRC/rc.lo     $PKG/etc/rc.d/lo
+	install -m 0755 -D $SRC/rc.net    $PKG/etc/rc.d/net
+	install -m 0755 -D $SRC/rc.bridge $PKG/etc/rc.d/bridge
+
+	# add ip to user path via symlink
+	install -d $PKG/bin
+	ln -s /sbin/ip $PKG/bin/ip
+}

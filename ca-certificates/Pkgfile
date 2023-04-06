@@ -1,0 +1,11 @@
+# Description: Bundle of CA Root Certificates from Mozilla
+# URL:         https://curl.haxx.se/ca/
+
+name=ca-certificates
+version=20230110
+release=1
+source=cacert.pem
+
+build() {
+	install -m 0644 -D $SRC/cacert.pem $PKG/etc/ssl/cert.pem
+}

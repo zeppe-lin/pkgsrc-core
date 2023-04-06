@@ -1,0 +1,68 @@
+# Description: GNU Compiler Collection
+# URL:         https://gcc.gnu.org
+# Depends on:  glibc-32 libmpc zstd
+
+name=gcc
+version=12.2.0
+release=1
+source="ftp://gcc.gnu.org/pub/gcc/releases/gcc-$version/gcc-$version.tar.xz
+	c99 gcc-nocheck-fixincludes.patch gcc-4.7.3-multilib-dirs.patch"
+
+build() {
+	# fix libasan.a
+	sed -i  -e '/static.*SIGSTKSZ/d'                          \
+		-e 's/return kAltStackSize/return SIGSTKSZ * 4/'  \
+		gcc-$version/libsanitizer/sanitizer_common/sanitizer_posix_libcdep.cpp
+
+	patch -d gcc-$version -p1 -i $SRC/gcc-nocheck-fixincludes.patch
+	patch -d gcc-$version -p1 -i $SRC/gcc-4.7.3-multilib-dirs.patch
+
+	mkdir build; cd build
+
+	../gcc-$version/configure         \
+		--prefix=/usr             \
+		--libexecdir=/usr/lib     \
+		--disable-nls             \
+		--enable-__cxa_atexit     \
+		--enable-clocale=gnu      \
+		--enable-default-pie      \
+		--enable-default-ssp      \
+		--enable-languages=c,c++  \
+		--enable-multilib         \
+		--enable-shared           \
+		--enable-threads=posix    \
+		--with-system-zlib        \
+		--with-x=no               \
+
+	make bootstrap
+	make -j1 DESTDIR=$PKG install
+
+	install -d $PKG/lib
+	ln -sf ../usr/bin/cpp $PKG/lib/cpp
+	ln -sf gcc $PKG/usr/bin/cc
+	ln -sf g++ $PKG/usr/bin/c++
+
+	# POSIX compliance
+	install -m 0755 $SRC/c99 $PKG/usr/bin/c99
+
+	mv	$PKG/usr/lib/gcc/*/$version/include-fixed/limits.h    \
+		$PKG/usr/lib/gcc/*/$version/include-fixed/syslimits.h \
+		$PKG/usr/lib/gcc/*/$version/include/                  \
+
+	# remove junk
+	rm -r	$PKG/usr/share/info                        \
+		$PKG/usr/share/gcc-$version                \
+		$PKG/usr/bin/*-linux-gnu-*                 \
+		$PKG/usr/lib/gcc/*/$version/install-tools  \
+		$PKG/usr/lib/gcc/*/$version/include-fixed  \
+
+	for _d in lib lib32; do
+		install -m 0755 -d $PKG/usr/share/gdb/auto-load/usr/$_d
+		mv $PKG/usr/$_d/libstdc++.so.*-gdb.py \
+			$PKG/usr/share/gdb/auto-load/usr/$_d
+	done
+
+	sed -i "s|-L$SRC[^ ]* ||g" \
+		$PKG/usr/lib/libstdc++.la $PKG/usr/lib32/libstdc++.la \
+		$PKG/usr/lib/libsupc++.la $PKG/usr/lib32/libsupc++.la
+}

@@ -1,0 +1,30 @@
+# Description: Programmable completion functions for bash
+# URL:         https://github.com/scop/bash-completion
+
+name=bash-completion
+version=2.11
+release=1
+source=https://github.com/scop/$name/releases/download/$version/$name-$version.tar.xz
+
+build() {
+	sed -i 's|profiledir = .*|profiledir = /etc|g' \
+		$name-$version/Makefile.*
+
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+		--sysconfdir=/etc    \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	mv $PKG/etc/bash_completion.sh $PKG/etc/bash_completion
+	chmod 0755 $PKG/usr/share/$name/bash_completion
+
+	# remove tools intended for other distros
+	cd $PKG/usr/share/bash-completion/completions/
+	rm apt-* aptitude* dpkg* explodepkg installpkg makepkg       \
+	   removepkg sbopkg slackpkg upgradepkg pkg-get pkg_* pkgadd \
+	   pkgrm pkgtool pkgutil slapt-*
+}

@@ -1,0 +1,34 @@
+# Description: Kernel module utilities and library
+# URL:         https://git.kernel.org/?p=utils/kernel/kmod/kmod.git
+
+name=kmod
+version=30
+release=1
+source=https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-$version.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	../kmod-$version/configure      \
+		--prefix=/usr           \
+		--bindir=/sbin          \
+		--sysconfdir=/etc       \
+		--disable-manpages      \
+		--with-rootlibdir=/lib  \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	install -d $PKG/etc/modprobe.d $PKG/etc/depmod.d
+	install -d $PKG/bin
+	install -d $PKG/usr/share/man/man5 $PKG/usr/share/man/man8
+
+	cd ../kmod-$version/man
+	install -m 0644 *.5 $PKG/usr/share/man/man5/
+	install -m 0644 *.8 $PKG/usr/share/man/man8/
+
+	for f in modinfo depmod insmod lsmod rmmod modprobe; do
+		ln -s kmod $PKG/sbin/$f
+	done
+	ln -s ../sbin/kmod $PKG/bin/lsmod
+}

@@ -1,0 +1,4 @@
+d04cd9ce6a399c2e453faf0776d34b9d  c99
+73bafd0af874439dcdb9fc063b6fb069  gcc-12.2.0.tar.xz
+61a057afa31006764b957a483ba90b9d  gcc-4.7.3-multilib-dirs.patch
+7c9128522053af79791bcfdd55834c2a  gcc-nocheck-fixincludes.patch

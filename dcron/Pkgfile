@@ -1,0 +1,24 @@
+# Description: Multi-user cron daemon
+# URL:         http://www.jimpryor.net/linux/dcron.html
+
+name=dcron
+version=4.5
+release=2
+source="http://www.jimpryor.net/linux/releases/$name-$version.tar.gz
+	crontab rc.crond runjobs"
+
+build() {
+	cd $name-$version
+
+	make PREFIX=/usr
+	make DESTDIR=$PKG CRONTAB_GROUP=users install
+
+	install -m 0600 $SRC/crontab $PKG/var/spool/cron/crontabs/root
+	ln -s ../var/spool/cron/crontabs/root $PKG/etc/crontab
+
+	install -m 0755 -D $SRC/rc.crond $PKG/etc/rc.d/crond
+	install -m 0755 -D $SRC/runjobs  $PKG/usr/bin/runjobs
+
+	install -d $PKG/etc/cron/hourly $PKG/etc/cron/daily \
+	           $PKG/etc/cron/weekly $PKG/etc/cron/monthly
+}

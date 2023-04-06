@@ -1,0 +1,37 @@
+# Description: GNU compression utility (replacement for compress)
+# URL:         https://www.gzip.org/
+
+name=gzip
+version=1.12
+release=1
+source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure --prefix=/usr
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	install -d $PKG/bin
+	mv $PKG/usr/bin/gzip   $PKG/bin/
+	mv $PKG/usr/bin/gunzip $PKG/bin/
+	mv $PKG/usr/bin/zcat   $PKG/bin/
+
+	rm $PKG/usr/share/man/man1/gunzip.1
+	rm $PKG/usr/share/man/man1/zcat.1
+	rm $PKG/usr/share/man/man1/zcmp.1
+
+	ln -s gzip.1.gz  $PKG/usr/share/man/man1/gunzip.1.gz
+	ln -s gzip.1.gz  $PKG/usr/share/man/man1/zcat.1.gz
+	ln -s zdiff.1.gz $PKG/usr/share/man/man1/zcmp.1.gz
+
+	# Make uncompress a symlink to gunzip, since the hardlink
+	# will not work if / and /usr are on different file systems.
+	rm $PKG/usr/bin/uncompress
+	ln -s /bin/gunzip $PKG/usr/bin/uncompress
+
+	# remove junk
+	rm -r $PKG/usr/share/info
+}

@@ -1,0 +1,29 @@
+# Description: Extended attribute support library for ACL support
+# URL:         http://savannah.nongnu.org/projects/attr
+
+name=attr
+version=2.5.1
+release=1
+source=https://download-mirror.savannah.gnu.org/releases/attr/attr-$version.tar.gz
+
+build() {
+	mkdir build; cd build
+
+	../attr-$version/configure  \
+		--prefix=/usr       \
+		--bindir=/bin       \
+		--sysconfdir=/etc   \
+		--disable-nls       \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# install libs from /usr/lib to /lib
+	install -d $PKG/lib
+	mv $PKG/usr/lib/libattr.so.* $PKG/lib/
+	ln -sf ../../lib/$(readlink $PKG/usr/lib/libattr.so) \
+		$PKG/usr/lib/libattr.so
+
+	# remove junk
+	rm -r $PKG/usr/share/doc/
+}

@@ -1,0 +1,29 @@
+#
+# /etc/fstab: static file system information
+#
+# See fstab(5) for more information.
+#
+# FILESYSTEM DIR TYPE OPTS DUMP PASS
+
+#/dev/zpln/root / ext4 defaults,noatime,nodiratime 1 1
+#/dev/zpln/swap swap swap defaults 0 0
+#/dev/sda1 /boot vfat defaults,noatime,nodiratime 1 2
+#/dev/cdrom /cdrom iso9660 ro,user,noauto,unhide 0 0
+#/dev/sr0 /dvd udf ro,user,noauto,unhide 0 0
+
+# efi-related entries
+#efivars /sys/firmware/efi/efivars efivarfs defaults 0 0
+#/dev/%ESP% /boot/efi vfat defaults 0 0
+
+# https://ubuntu.com/blog/data-driven-analysis-tmp-on-tmpfs
+# Note that a tmpfs can swap.
+#tmpfs /tmp tmpfs mode=1777,nodev,nosuid,size=2G 0 0
+
+# build in ram
+#pkgmk /var/cache/pkgmk/work tmpfs defaults,uid=pkgmk,size=16G 0 0
+
+# the following entries are required for proper system operation
+devpts /dev/pts devpts noexec,nosuid,gid=tty,mode=0620 0 0
+shm /dev/shm tmpfs defaults 0 0
+
+# End of file.

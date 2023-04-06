@@ -1,0 +1,14 @@
+# Description: POSIX man-pages (0p, 1p, 3p)
+# URL:         https://www.kernel.org/doc/man-pages/
+
+name=man-pages-posix
+version=2017-a
+release=1
+source=https://www.kernel.org/pub/linux/docs/man-pages/$name/$name-$version.tar.xz
+
+build() {
+	cd $name-*
+
+	make RMDIR=rmdir prefix=/usr DESTDIR=$PKG install
+	touch $PKG/usr/share/man/whatis
+}

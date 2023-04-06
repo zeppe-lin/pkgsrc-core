@@ -1,0 +1,41 @@
+# Description: Collection of common network programs
+# URL:         http://www.gnu.org/software/inetutils/inetutils.html
+# Depends on:  readline
+
+name=inetutils
+version=2.4
+release=2
+source="http://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
+	inetd.conf rc.inetd"
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure      \
+		--prefix=/usr            \
+		--libexecdir=/usr/sbin   \
+		--localstatedir=/var     \
+		--sysconfdir=/etc        \
+		--disable-clients        \
+		--disable-servers        \
+		--enable-ftp             \
+		--enable-hostname        \
+		--enable-ifconfig        \
+		--enable-inetd           \
+		--enable-telnet          \
+		--enable-traceroute      \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	mkdir -p $PKG/bin $PKG/sbin
+	mv $PKG/usr/bin/hostname $PKG/bin/
+	mv $PKG/usr/bin/ifconfig $PKG/sbin/
+
+	mkdir -p $PKG/etc/rc.d
+	install -m 0644 $SRC/inetd.conf $PKG/etc/inetd.conf
+	install -m 0755 $SRC/rc.inetd   $PKG/etc/rc.d/inetd
+
+	# remove junk
+	rm -r $PKG/usr/share/info/
+}

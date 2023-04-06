@@ -1,0 +1,24 @@
+# Description: Tiny Internationalized Message Handling Library and tools
+# URL:         https://github.com/sabotage-linux/gettext-tiny
+
+name=gettext-tiny
+version=0.3.2
+release=1
+source="http://ftp.barfooze.de/pub/sabotage/tarballs/$name-$version.tar.xz
+	flip-macro-logic.patch
+	line-length.patch
+	respect-cflags.patch"
+
+build() {
+	cd $name-$version
+
+	patch -p1 -i $SRC/line-length.patch
+	patch -p1 -i $SRC/respect-cflags.patch
+	patch -p1 -i $SRC/flip-macro-logic.patch
+
+	make prefix=/usr
+	make prefix=/usr DESTDIR=$PKG install
+
+	# already provided by glibc
+	rm $PKG/usr/include/libintl.h
+}

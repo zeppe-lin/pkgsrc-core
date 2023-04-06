@@ -1,0 +1,23 @@
+# Description: Check for missing libraries of installed packages
+# URL:         https://github.com/zeppe-lin/revdep
+# Depends on:  elfutils
+
+name=revdep
+version=2.1-69f532d
+release=1
+source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+
+build() {
+	cd $name-${version#*-}*
+
+	# it's safe to optimize
+	CXXFLAGS="$(echo $CXXFLAGS | sed 's/-O. /-O3 /')"
+
+	# pick up system flags
+	sed -i '/^\(CXX\|LD\)FLAGS/s/ = /+=/g' config.mk
+
+	make DESTDIR=$PKG install
+
+	install -m 0644 -D bash_completion \
+		$PKG/usr/share/bash-completion/completions/$name
+}

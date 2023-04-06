@@ -1,0 +1,21 @@
+# Description: Line-oriented text editor
+# URL:         http://www.gnu.org/software/ed/ed.html
+
+name=ed
+version=1.19
+release=1
+source=https://ftpmirror.gnu.org/gnu/ed/ed-$version.tar.lz
+
+build() {
+	# fix default optimization flag
+	sed -i "/^CFLAGS/s/-O2/$CFLAGS/" ed-$version/configure
+
+	mkdir build; cd build
+
+	../ed-$version/configure  \
+		--prefix=/usr     \
+		--exec-prefix=/   \
+
+	make V=1
+	make DESTDIR=$PKG install-bin install-man
+}

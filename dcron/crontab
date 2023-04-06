@@ -1,0 +1,12 @@
+#
+# /etc/crontab: crond(8) configuration
+#
+# See crontab(1) for more information.
+#
+
+@hourly   ID=sys.hourly   /usr/bin/runjobs /etc/cron/hourly
+@daily    ID=sys.daily    /usr/bin/runjobs /etc/cron/daily
+@weekly   ID=sys.weekly   /usr/bin/runjobs /etc/cron/weekly
+@monthly  ID=sys.monthly  /usr/bin/runjobs /etc/cron/monthly
+
+# End of file.

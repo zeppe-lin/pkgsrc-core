@@ -1,0 +1,49 @@
+# Description: Secure SHell server and client tools
+# URL:         http://www.openssh.org/
+# Depends on:  libmd linux-pam openssl zlib
+
+name=openssh
+version=9.3p1
+release=1
+source="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
+	rc.sshd  pam.sshd"
+
+build() {
+	sed -i 's/OSSH_CHECK_CFLAG_COMPILE(\[-pipe\])//' \
+		$name-$version/configure.ac
+
+	mkdir build; cd build
+
+	autoreconf -fi ../$name-$version
+	../$name-$version/configure             \
+		--prefix=/usr                   \
+		--libexecdir=/usr/lib/ssh       \
+		--sysconfdir=/etc/ssh           \
+		--with-mantype=man              \
+		--mandir=/usr/share/man         \
+		--with-pid-dir=/run             \
+		--with-pam                      \
+		--with-privsep-user=nobody      \
+		--with-privsep-path=/var/empty  \
+		--with-xauth=/usr/bin/xauth     \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# service
+	install -m 0755 -D $SRC/rc.sshd  $PKG/etc/rc.d/sshd
+
+	# pam
+	install -m 0644 -D $SRC/pam.sshd $PKG/etc/pam.d/sshd
+
+	# enable PAM by default
+	sed -i '/^#UsePAM/aUsePAM yes' $PKG/etc/ssh/sshd_config
+
+	# ssh-copy-id
+	cd ../$name-$version
+	install -m 0755 -Dt $PKG/usr/bin/            contrib/ssh-copy-id
+	install -m 0644 -Dt $PKG/usr/share/man/man1/ contrib/ssh-copy-id.1
+
+	# remove junk
+	rm -r $PKG/var
+}

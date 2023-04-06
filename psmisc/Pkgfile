@@ -1,0 +1,24 @@
+# Description: Small utilities that use the /proc filesystem
+# URL:         https://gitlab.com/psmisc/psmisc
+# Depends on:  ncurses
+
+name=psmisc
+version=23.6
+release=1
+source=https://downloads.sourceforge.net/project/$name/$name/$name-$version.tar.xz
+
+build() {
+	export LINGUAS=' '
+
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+		--disable-nls        \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# remove obsolete binaries
+	rm $PKG/usr/bin/pstree.x11
+}

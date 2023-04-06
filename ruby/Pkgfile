@@ -1,0 +1,32 @@
+# Description: Ruby interpreter
+# URL:         https://www.ruby-lang.org
+# Depends on:  gdbm libffi libgmp libyaml openssl zlib
+
+name=ruby
+version=3.1.4
+release=1
+source=https://cache.ruby-lang.org/pub/ruby/${version%.*}/ruby-$version.tar.xz
+
+build() {
+	cd ruby-$version
+
+	export CFLAGS="$CFLAGS -fno-strict-aliasing"
+	export CFLAGS="$(echo $CFLAGS | sed 's/-fomit-frame-pointer//')"
+
+	./configure                        \
+		--prefix=/usr              \
+		--with-ruby-version=minor  \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# remove junk
+	find $PKG -type f \(               \
+		   -name COPYING           \
+		-o -name README.md         \
+		-o -name LICENSE           \
+		-o -name LICENSE.txt       \
+		-o -name TODO.md           \
+		\) -delete
+	rmdir $PKG/usr/share/doc/ruby $PKG/usr/share/doc
+}

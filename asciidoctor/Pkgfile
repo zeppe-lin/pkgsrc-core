@@ -1,0 +1,30 @@
+# Description: Implementation of AsciiDoc in Ruby
+# URL:         https://asciidoctor.org/
+# Depends on:  ruby
+
+name=asciidoctor
+version=2.0.18
+release=1
+source=https://github.com/$name/$name/archive/v$version/$name-$version.tar.gz
+
+build() {
+	cd $name-$version
+
+	# install the main asciidoctor scripts
+	install -D bin/asciidoctor $PKG/usr/bin/asciidoctor
+
+	# install libraries
+	install -D lib/asciidoctor.rb \
+		$PKG/usr/lib/ruby/vendor_ruby/asciidoctor.rb
+	cp -r lib/asciidoctor $PKG/usr/lib/ruby/vendor_ruby/asciidoctor
+
+	# install shared stylesheets
+	install -D data/stylesheets/asciidoctor-default.css \
+		$PKG/usr/lib/ruby/data/stylesheets/asciidoctor-default.css
+	install -D data/stylesheets/coderay-asciidoctor.css \
+		$PKG/usr/lib/ruby/data/stylesheets/coderay-asciidoctor.css
+
+	# install the man page
+	install -m 0644 -D man/asciidoctor.1 \
+		$PKG/usr/share/man/man1/asciidoctor.1
+}

@@ -1,0 +1,20 @@
+# Description: Show full path of commands
+# URL:         https://directory.fsf.org/wiki/Which
+
+name=which
+version=2.21
+release=1
+source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# remove junk
+	rm -r $PKG/usr/share/info/
+}

@@ -1,0 +1,22 @@
+# Description: Internationalization tool collection
+# URL:         https://freedesktop.org/wiki/Software/intltool/
+# Depends on:  p5-xml-parser
+
+name=intltool
+version=0.51.0
+release=1
+source="https://edge.launchpad.net/$name/trunk/$version/+download/$name-$version.tar.gz
+	intltool-perl-5.22.patch"
+
+
+build() {
+	patch -d $name-$version -p0 -i $SRC/intltool-perl-5.22.patch
+
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+
+	make V=1
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,24 @@
+# Description: File type identification utility
+# URL:         http://www.darwinsys.com/file
+# Depends on:  bzip2 zstd
+
+name=file
+version=5.44
+release=1
+source=ftp://ftp.astron.com/pub/file/$name-$version.tar.gz
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure   \
+		--prefix=/usr         \
+		--enable-fsect-man5   \
+		--enable-static       \
+		--disable-libseccomp  \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# remove junk
+	rmdir $PKG/usr/share/man/man4
+}

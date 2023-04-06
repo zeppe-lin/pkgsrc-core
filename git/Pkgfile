@@ -1,0 +1,65 @@
+# Description: Directory content manager
+# URL:         https://git-scm.com/
+# Depends on:  curl expat perl
+
+name=git
+version=2.40.0
+release=1
+source="https://www.kernel.org/pub/software/scm/git/git-$version.tar.xz
+	https://www.kernel.org/pub/software/scm/git/git-manpages-$version.tar.xz
+	rc.gitd"
+
+build() {
+	cd $name-$version
+
+	cat >> config.mak <<-EOF
+		NO_GETTEXT=YesPlease
+		NO_SVN_TESTS=YesPlease
+		NO_TCLTK=YesPlease
+		#NO_EXPAT=YesPlease
+		NO_NSEC=YesPlease
+		#NO_PYTHON=YesPlease
+		#NO_PERL=YesPlease
+		NO_SYS_POLL_H=1
+		NO_CROSS_DIRECTORY_HARDLINKS=1
+		NO_INSTALL_HARDLINKS=1
+		CFLAGS=$CFLAGS
+		ICONV_OMITS_BOM=Yes
+		PYTHON_PATH=/usr/bin/python3
+	EOF
+
+	./configure \
+		--prefix=/usr                           \
+		--libexecdir=/usr/lib                   \
+		ac_cv_lib_curl_curl_global_init=yes     \
+		ac_cv_snprintf_returns_bogus=no         \
+		ac_cv_fread_reads_directories=yes       \
+
+	P5LIB=$(perl -MConfig -e 'print $Config::Config{installsitelib}')
+	make install \
+		prefix=/usr                             \
+		gitexecdir=/usr/lib/git-core            \
+		INSTALLSITEMAN3DIR=/usr/share/man/man3  \
+		perllibdir="$P5LIB"                     \
+		CFLAGS="$CFLAGS"                        \
+		DESTDIR=$PKG                            \
+		V=1                                     \
+
+	# bash-completion
+	install -m 0644 -D contrib/completion/git-completion.bash \
+		$PKG/usr/share/bash-completion/completions/git
+
+	# manual pages
+	cd $SRC
+	for i in man*; do
+		install -d          $PKG/usr/share/man/$i
+		install -m 644 $i/* $PKG/usr/share/man/$i
+	done
+
+	# service
+	install -m 0755 -D $SRC/rc.gitd $PKG/etc/rc.d/gitd
+
+	# remove junk
+	find $PKG \( -name perllocal.pod -o -name .packlist \) \
+		-delete
+}

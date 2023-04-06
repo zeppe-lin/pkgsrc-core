@@ -1,0 +1,24 @@
+# Description: Library giving userland programs access to USB devices
+# URL:         https://libusb.info
+# Depends on:  eudev
+
+name=libusb
+version=1.0.26
+release=1
+source=https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.bz2
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# move libs from /usr/lib to /lib
+	install -d $PKG/lib
+	mv $PKG/usr/lib/libusb-1.0.so.* $PKG/lib
+	ln -sf ../../lib/$(readlink $PKG/lib/libusb-1.0.so.0) \
+		$PKG/usr/lib/libusb-1.0.so
+}

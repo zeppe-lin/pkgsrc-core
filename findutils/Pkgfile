@@ -1,0 +1,28 @@
+# Description: Basic directory searching utilities
+# URL:         http://www.gnu.org/software/findutils/
+
+name=findutils
+version=4.9.0
+release=1
+source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+		--disable-nls        \
+		--without-selinux    \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# provided by mlocate
+	rm $PKG/usr/bin/updatedb $PKG/usr/bin/locate \
+	   $PKG/usr/share/man/man1/updatedb.1 \
+	   $PKG/usr/share/man/man1/locate.1 \
+
+	# remove junk
+	rm -r $PKG/usr/libexec $PKG/usr/var $PKG/usr/share/info \
+	      $PKG/usr/share/man/man5
+}

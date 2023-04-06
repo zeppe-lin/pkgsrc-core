@@ -1,0 +1,19 @@
+# Description: Collection of Linux man pages
+# URL:         https://www.kernel.org/doc/man-pages/
+
+name=man-pages
+version=6.03
+release=1
+source=https://www.kernel.org/pub/linux/docs/$name/$name-$version.tar.xz
+
+build() {
+	cd $name-$version
+
+	# we don't need libbsd
+	sed '/PKG-CONFIG/s/^/#/' -i lib/build-src.mk
+
+	# provided by shadow package
+	rm man5/passwd.5
+
+	make prefix=/usr DESTDIR=$PKG install
+}

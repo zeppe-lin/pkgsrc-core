@@ -1,0 +1,20 @@
+# Description: Gives a fake root environment
+# URL:         https://packages.debian.org/unstable/utils/fakeroot
+
+name=fakeroot
+version=1.31
+release=1
+source=https://deb.debian.org/debian/pool/main/f/$name/${name}_${version}.orig.tar.gz
+
+build() {
+	sed -i '/^SUBDIRS/d' $name-$version/doc/Makefile.am
+
+	mkdir build; cd build
+
+	autoreconf -fi ../$name-$version
+	../$name-$version/configure  \
+		--prefix=/usr        \
+
+	make V=1
+	make DESTDIR=$PKG install
+}

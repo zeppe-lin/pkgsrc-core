@@ -1,0 +1,20 @@
+# Description: Generates automatic source code configuration scripts
+# URL:         http://www.gnu.org/software/autoconf
+
+name=autoconf
+version=2.71
+release=1
+source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	../$name-$version/configure  \
+		--prefix=/usr        \
+
+	make V=1
+	make prefix=$PKG/usr install
+
+	# remove junk
+	rm -r $PKG/usr/share/info $PKG/usr/share/$name/INSTALL
+}

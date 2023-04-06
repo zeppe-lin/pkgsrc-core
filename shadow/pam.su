@@ -1,0 +1,23 @@
+#
+# /etc/pam.d/su - su service module configuration
+#
+
+# always allow root
+auth    sufficient  pam_rootok.so
+
+# allow users in the wheel group to execute su without a password
+#auth   sufficient  pam_wheel.so trust use_uid
+
+# include common auth settings
+auth    include     common-auth
+
+# limit su to users in the wheel group
+#auth   required    pam_wheel.so use_uid
+
+# include common account settings
+account include     common-account
+
+# include common session settings
+session include     common-session
+
+# End of file.

@@ -1,0 +1,21 @@
+# Description: GNU Make build tool
+# URL:         https://www.gnu.org/software/make/
+
+name=make
+version=4.4.1
+release=1
+source=https://ftpmirror.gnu.org/gnu/make/make-$version.tar.lz
+
+build() {
+	mkdir build; cd build
+
+	../make-$version/configure  \
+		--prefix=/usr       \
+		--disable-nls       \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# remove junk
+	rm -r $PKG/usr/share/info
+}

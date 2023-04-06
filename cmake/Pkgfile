@@ -1,0 +1,39 @@
+# Description: Cross-platform, open-source make system
+# URL:         https://cmake.org/
+# Depends on:  curl expat libarchive libmd lz4 ncurses
+
+name=cmake
+version=3.26.2
+release=1
+source=https://cmake.org/files/v${version%.*}/$name-$version.tar.gz
+
+build() {
+	sed -i $name-$version/Source/CMakeInstallDestinations.cmake -e \
+		's|share/cmake-${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}|share/cmake|'
+
+	pkgman isinst ccache && PKGMK_CMAKE="$PKGMK_CMAKE --enable-ccache"
+
+	cmake -S $name-$version -B build -G Ninja       \
+		-D CMAKE_INSTALL_PREFIX=/usr            \
+		-D CMAKE_BUILD_TYPE=Release             \
+		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS"      \
+		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS"  \
+		-D USE_SYSTEM_CURL=True                 \
+		-D USE_SYSTEM_EXPAT=True                \
+		-D USE_SYSTEM_ZLIB=True                 \
+		-D USE_SYSTEM_BZIP2=True                \
+		-D USE_SYSTEM_LIBARCHIVE=True           \
+		-D USE_SYSTEM_ZSTD=True                 \
+		-D BUILD_TESTING=OFF                    \
+
+	ninja -C build -j ${JOBS:-1} -v
+	DESTDIR=$PKG ninja -C build install
+
+	ln -sf $name $PKG/usr/share/$name-${version%.*}
+
+	# remove junk
+	rm -r $PKG/usr/doc                            \
+	      $PKG/usr/share/cmake/Help               \
+	      $PKG/usr/share/emacs                    \
+	      $PKG/usr/share/cmake/Modules/readme.txt
+}

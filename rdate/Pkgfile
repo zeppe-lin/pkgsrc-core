@@ -1,0 +1,26 @@
+# Description: Time setting software
+# URL:         https://github.com/leahneukirchen/outils
+
+name=rdate
+version=0.12
+release=1
+source="https://github.com/leahneukirchen/outils/archive/v$version/outils-$version.tar.gz 
+	ntpleaps.patch
+	cron.rdate"
+
+build() {
+	cd outils-$version
+
+	# FS1462
+	patch -p0 -d src/usr.sbin/rdate -i $SRC/ntpleaps.patch
+
+	make PREFIX=/usr src/usr.sbin/rdate/rdate
+
+	install -m 0755 -Dt $PKG/usr/sbin/ \
+		src/usr.sbin/rdate/rdate
+	install -m 0644 -Dt $PKG/usr/share/man/man8/ \
+		src/usr.sbin/rdate/rdate.8
+
+	# cron
+	install -m 0755 -D $SRC/cron.rdate $PKG/etc/cron/daily/rdate
+}

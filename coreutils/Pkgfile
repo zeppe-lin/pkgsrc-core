@@ -1,0 +1,39 @@
+# Description: Collection of core GNU utilities
+# URL:         https://www.gnu.org/software/coreutils/
+# Depends on:  acl libcap libgmp
+
+name=coreutils
+version=9.2
+release=1
+source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	# --enable-no-install-program=uptime,kill,chcon,runcon,groups:
+	# uptime - provided by procps
+	# kill   - provided by util-linux
+	# chcon  - unused
+	# runcon - unused
+	# groups - provided by shadow
+	FORCE_UNSAFE_CONFIGURE=1 ../$name-$version/configure  \
+		--prefix=/usr                                 \
+		--libexecdir=/usr/lib                         \
+		--disable-assert                              \
+		--disable-nls                                 \
+		--enable-no-install-program=uptime,kill,chcon,runcon,groups
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	install -d $PKG/bin
+	for _F in cat chgrp chmod chown cp date dd df echo false ln  \
+		ls mkdir sleep mknod mv pwd readlink rm rmdir stty   \
+		sync touch true uname
+	do
+		mv $PKG/usr/bin/$_F $PKG/bin/
+	done
+
+	# remove junk
+	rm -r $PKG/usr/share/info/
+}

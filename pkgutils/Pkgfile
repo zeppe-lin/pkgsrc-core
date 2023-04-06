@@ -1,0 +1,24 @@
+# Description: Set of utilities to manage software packages
+# URL:         https://github.com/zeppe-lin/pkgutils
+# Depends on:  libarchive
+
+name=pkgutils
+version=5.41-cd26041
+release=1
+source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+	pkgadd.conf"
+
+build() {
+	cd $name-${version#*-}*
+
+	# pick up system flags
+	sed -i '/^\(CXX\|LD\)FLAGS/s/ = /+=/g' config.mk
+
+	make DESTDIR=$PKG install
+
+	install -m 0644 -Dt $PKG/etc/ $SRC/pkgadd.conf
+	install -m 0644 -D bash_completion \
+		$PKG/usr/share/bash-completion/completions/pkgadd
+	ln -s pkgadd $PKG/usr/share/bash-completion/completions/pkginfo
+	ln -s pkgadd $PKG/usr/share/bash-completion/completions/pkgrm
+}

@@ -1,0 +1,7 @@
+#
+# /lib/udev/rules.d/81-fuse.rules
+# 
+
+KERNEL=="fuse", ACTION=="add", RUN+="/bin/mount -t fusectl fusectl /sys/fs/fuse/connections"
+
+# End of file.

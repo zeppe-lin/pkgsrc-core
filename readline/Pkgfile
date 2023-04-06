@@ -1,0 +1,46 @@
+# Description: Lets users edit command lines as they are typed in
+# URL:         https://tiswww.cwru.edu/php/chet/readline/rltop.html
+# Depends on:  ncurses
+
+name=readline
+version=8.2.1
+release=1
+source="https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}.tar.gz
+	https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}-patches/${name}82-001
+	inputrc"
+
+build() {
+	for _F in $SRC/${name}8?-???; do
+		patch -d $name-${version%.*} -p0 -i $_F
+	done
+
+	# remove RPATH from shared objects (FS#14366)
+	sed -i 's|-Wl,-rpath,$(libdir) ||g' \
+		$name-${version%.*}/support/shobj-conf
+
+	# build with -fPIC for x86_64 (FS#15634)
+	CFLAGS="$CFLAGS -fPIC"
+
+	mkdir build; cd build
+
+	../$name-${version%.*}/configure    \
+		--prefix=/usr               \
+		--disable-install-examples  \
+
+	make -j1 V=1 SHLIB_LIBS=-lncurses
+	make -j1 DESTDIR=$PKG install
+
+	# move libs from /usr/lib to /lib
+	install -d $PKG/lib
+	mv $PKG/usr/lib/lib*.so.* $PKG/lib/
+	ln -sf ../../lib/libhistory.so.${version%.*} \
+		$PKG/usr/lib/libhistory.so
+	ln -sf ../../lib/libreadline.so.${version%.*} \
+		$PKG/usr/lib/libreadline.so
+
+	# config
+	install -m 0644 -D $SRC/inputrc $PKG/etc/inputrc
+
+	# remove junk
+	rm -r $PKG/usr/share/doc $PKG/usr/share/info
+}
