@@ -3,7 +3,7 @@
 
 name=pkgman
 version=6.0.1-fba9a93
-release=1
+release=2
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgman.conf"
 
