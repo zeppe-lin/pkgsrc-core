@@ -103,8 +103,12 @@ footprint-junk:
 	 ) print "junk file found: "FILENAME": "$$3;                 \
 	}' ${PKGSRCDIR}/*/.footprint
 
-# Check Pkgfiles for dependencies that are outside of this collection
-# and/or outside of collections that this collection depends on or are
+######################################################################
+# Check Pkgfiles for typical errors.                                 #
+######################################################################
+
+# Check for dependencies that are outside of this collection and/or
+# outside of collections that this collection depends on or are
 # completely missing.
 check-deps-core:
 	@pkgman --root= --no-std-config \
