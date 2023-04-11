@@ -10,20 +10,22 @@ OPTIONS:
 
 TARGETS:
 
-  * check               perform all checks listed below:
+  Generic:
+  └ check               perform all checks listed below:
 
   Check .footprint files for typical errors:
-  ┌ check-footprint     perform all footprint checks listed below
+  ├ check-footprint     perform all footprint checks listed below
   ├── footprint-sugid   check for SUID/SGID files and dirs
   ├── footprint-ww      check for world-writeable files and dirs
   ├── footprint-dirs    check for invalid directories like /usr/info
   └── footprint-junk    check for junk files like perllocal.pod, etc
 
-  Check Pkgfiles for misdeclared dependencies:
-  └ check-deps          check Pkgfiles for dependencies that are outside
-                        of this collection and/or outside of collections
-                        that this collection depends on or are completely
-			missing
+  Check Pkgfiles for typical errors:
+  └ check-deps          check Pkgfiles for misdeclared dependencies:
+                        dependencies that are outside of this
+                        collection and/or outside of collections that
+                        this collection depends on or are completely
+                        missing
 endef
 
 all: help
@@ -107,9 +109,10 @@ footprint-junk:
 # Check Pkgfiles for typical errors.                                 #
 ######################################################################
 
-# Check for dependencies that are outside of this collection and/or
-# outside of collections that this collection depends on or are
-# completely missing.
+# Check Pkgfiles for misdeclared dependencies:
+# dependencies that are outside of this collection and/or outside of
+# collections that this collection depends on or are completely
+# missing.
 check-deps-core:
 	@pkgman --root= --no-std-config                              \
 		--config-append="pkgsrcdir ${CURDIR}"                \
