@@ -126,7 +126,7 @@ help:
 	@echo $(info ${USAGE})
 
 .PHONY: all help
-.PHONY: check-footprint check-deps
+.PHONY: check-footprint
 .PHONY: footprint-sugid footprint-wowr footprint-dirs footprint-junk
 
 # vim: cc=72:tw=70
