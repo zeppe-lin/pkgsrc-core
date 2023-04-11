@@ -109,7 +109,7 @@ footprint-junk:
 check-deps-core:
 	@pkgman --root= --no-std-config \
 		--config-append="pkgsrcdir ${CURDIR}" \
-		list-orphans -v | grep '(required by .*)'
+		list-orphans -v | grep '(required by .*)' >&2
 
 ######################################################################
 %: %-core
