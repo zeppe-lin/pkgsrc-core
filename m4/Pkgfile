@@ -1,6 +1,6 @@
 # Description: GNU version of UNIX m4 macro language processor
 # URL:         http://www.seindal.dk/rene/gnu/
-
+# Depends on:  mkrootfs
 name=m4
 version=1.4.19
 release=1
