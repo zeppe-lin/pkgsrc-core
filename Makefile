@@ -111,8 +111,8 @@ footprint-junk:
 # outside of collections that this collection depends on or are
 # completely missing.
 check-deps-core:
-	@pkgman --root= --no-std-config \
-		--config-append="pkgsrcdir ${CURDIR}" \
+	@pkgman --root= --no-std-config                              \
+		--config-append="pkgsrcdir ${CURDIR}"                \
 		list-orphans -v | grep '(required by .*)' >&2
 
 ######################################################################
