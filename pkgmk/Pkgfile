@@ -1,8 +1,8 @@
 # Description: Package management utility which makes a software package
-# URL:         https://github.com/zeppe-lin/pkgmk/
+# URL:         https://github.com/zeppe-lin/pkgmk
 
 name=pkgmk
-version=5.41.2-4fdc755
+version=5.41.2-3cf2b92
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgmk.conf"
