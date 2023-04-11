@@ -1,8 +1,8 @@
 # Description: Services and protocols files for /etc
-# URL:         https://www.iana.org/
+# URL:         https://www.iana.org
 
 name=iana-etc
-version=20230217
+version=20230405
 release=1
 source='protocols services'
 

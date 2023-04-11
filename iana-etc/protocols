@@ -4,7 +4,7 @@
 # See protocols(5) for more information.
 #
 
-# Last updated: 2023-02-02
+# Last updated: 2023-03-16
 # Source:       https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xml
 
 hopopt         0 HOPOPT
@@ -86,7 +86,6 @@ iso-ip        80 ISO-IP
 vmtp          81 VMTP
 secure-vmtp   82 SECURE-VMTP
 vines         83 VINES
-ttp           84 TTP
 iptm          84 IPTM
 nsfnet-igp    85 NSFNET-IGP
 dgp           86 DGP
