@@ -4,13 +4,13 @@ drwxr-xr-x	root/root	usr/bin/
 drwxr-xr-x	root/root	usr/lib/
 drwxr-xr-x	root/root	usr/lib/python3.9/
 drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/
-drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/meson-1.0.1-py3.9.egg-info/
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.0.1-py3.9.egg-info/PKG-INFO
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.0.1-py3.9.egg-info/SOURCES.txt
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.0.1-py3.9.egg-info/dependency_links.txt
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.0.1-py3.9.egg-info/entry_points.txt
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.0.1-py3.9.egg-info/requires.txt
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.0.1-py3.9.egg-info/top_level.txt
+drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/meson-1.1.0-py3.9.egg-info/
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.1.0-py3.9.egg-info/PKG-INFO
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.1.0-py3.9.egg-info/SOURCES.txt
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.1.0-py3.9.egg-info/dependency_links.txt
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.1.0-py3.9.egg-info/entry_points.txt
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.1.0-py3.9.egg-info/requires.txt
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.1.0-py3.9.egg-info/top_level.txt
 drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/__init__.py (EMPTY)
 drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/__pycache__/
@@ -102,6 +102,8 @@ drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycach
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycache__/backends.cpython-39.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycache__/ninjabackend.cpython-39.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycache__/ninjabackend.cpython-39.pyc
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycache__/nonebackend.cpython-39.opt-2.pyc
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycache__/nonebackend.cpython-39.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycache__/vs2010backend.cpython-39.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycache__/vs2010backend.cpython-39.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycache__/vs2012backend.cpython-39.opt-2.pyc
@@ -120,6 +122,7 @@ drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycach
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycache__/xcodebackend.cpython-39.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/backends.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/ninjabackend.py
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/nonebackend.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/vs2010backend.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/vs2012backend.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/vs2013backend.py
@@ -305,6 +308,8 @@ drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/__p
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/__pycache__/pkgconfig.cpython-39.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/__pycache__/platform.cpython-39.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/__pycache__/platform.cpython-39.pyc
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/__pycache__/python.cpython-39.opt-2.pyc
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/__pycache__/python.cpython-39.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/__pycache__/qt.cpython-39.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/__pycache__/qt.cpython-39.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/__pycache__/scalapack.cpython-39.opt-2.pyc
@@ -335,6 +340,7 @@ drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/dat
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/mpi.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/pkgconfig.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/platform.py
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/python.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/qt.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/scalapack.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/dependencies/ui.py
@@ -567,6 +573,8 @@ drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/__pycach
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/__pycache__/meson_exe.cpython-39.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/__pycache__/msgfmthelper.cpython-39.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/__pycache__/msgfmthelper.cpython-39.pyc
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/__pycache__/python_info.cpython-39.opt-2.pyc
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/__pycache__/python_info.cpython-39.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/__pycache__/regen_checker.cpython-39.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/__pycache__/regen_checker.cpython-39.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/__pycache__/run_tool.cpython-39.opt-2.pyc
@@ -604,6 +612,7 @@ drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/__pycach
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/itstool.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/meson_exe.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/msgfmthelper.py
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/python_info.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/regen_checker.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/run_tool.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/scripts/scanbuild.py
