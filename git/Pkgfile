@@ -1,9 +1,9 @@
 # Description: Directory content manager
-# URL:         https://git-scm.com/
+# URL:         https://git-scm.com
 # Depends on:  curl expat perl
 
 name=git
-version=2.40.0
+version=2.40.1
 release=1
 source="https://www.kernel.org/pub/software/scm/git/git-$version.tar.xz
 	https://www.kernel.org/pub/software/scm/git/git-manpages-$version.tar.xz
