@@ -4,11 +4,14 @@
 
 name=meson
 version=1.1.0
-release=1
-source=https://github.com/mesonbuild/meson/releases/download/$version/$name-$version.tar.gz
+release=2
+source="https://github.com/mesonbuild/meson/releases/download/$version/$name-$version.tar.gz
+	minstall.patch"
 
 build() {
 	cd $name-$version
+
+	patch -Np1 -i $SRC/minstall.patch
 
 	/usr/bin/python3 setup.py build
 	/usr/bin/python3 setup.py install --prefix=/usr --root=$PKG -O2

@@ -1,0 +1,82 @@
+From 9a77c45e4192df1b89a3631aa3ce379922c4bf5c Mon Sep 17 00:00:00 2001
+From: Eli Schwartz <eschwartz@archlinux.org>
+Date: Tue, 11 Apr 2023 13:11:00 -0400
+Subject: [PATCH 1/2] minstall: do not drop privileges if msetup also ran under
+ sudo
+
+A user might run `sudo somewrapper` to build and install something with
+meson, and it is not actually possible to drop privileges and build,
+since the build directory is also owned by root.
+
+A common case of this is `sudo pip install` for projects using
+meson-python or other python build-backends that wrap around meson.
+
+Fixes #11665
+---
+ mesonbuild/minstall.py | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/mesonbuild/minstall.py b/mesonbuild/minstall.py
+index c4de5c2c25b..04726b08af7 100644
+--- a/mesonbuild/minstall.py
++++ b/mesonbuild/minstall.py
+@@ -788,6 +788,10 @@ def drop_privileges() -> T.Tuple[T.Optional[EnvironOrDict], T.Optional[T.Callabl
+             else:
+                 return None, None
+ 
++            if os.stat(os.path.join(wd, 'build.ninja')).st_uid != int(orig_uid):
++                # the entire build process is running with sudo, we can't drop privileges
++                return None, None
++
+             env['USER'] = orig_user
+             env['HOME'] = homedir
+ 
+
+From 3bc2236c59249f44f20f8b52ddcd7a44938ea2f0 Mon Sep 17 00:00:00 2001
+From: Eli Schwartz <eschwartz@archlinux.org>
+Date: Tue, 11 Apr 2023 12:42:36 -0400
+Subject: [PATCH 2/2] minstall: work around broken environments with missing
+ UIDs
+
+Running some container-like mechanisms such as chroot(1) from sudo, can
+result in a new isolated environment where the environment variables
+exist but no users exist. From there, a build is performed as root but
+installation fails when we try to look up the passwd database entry for
+the user outside of the chroot.
+
+Proper container mechanisms such as systemd-nspawn, and even improper
+ones like docker, sanitize this and ensure those stale environment
+variables don't exist anymore. But chroot is very low-level.
+
+Avoid crashing when this happens.
+
+Fixes #11662
+---
+ mesonbuild/minstall.py | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/mesonbuild/minstall.py b/mesonbuild/minstall.py
+index 04726b08af7..b9fe7d58d8d 100644
+--- a/mesonbuild/minstall.py
++++ b/mesonbuild/minstall.py
+@@ -778,10 +778,18 @@ def drop_privileges() -> T.Tuple[T.Optional[EnvironOrDict], T.Optional[T.Callabl
+                 orig_user = env.pop('SUDO_USER')
+                 orig_uid = env.pop('SUDO_UID', 0)
+                 orig_gid = env.pop('SUDO_GID', 0)
+-                homedir = pwd.getpwuid(int(orig_uid)).pw_dir
++                try:
++                    homedir = pwd.getpwuid(int(orig_uid)).pw_dir
++                except KeyError:
++                    # `sudo chroot` leaves behind stale variable and builds as root without a user
++                    return None, None
+             elif os.environ.get('DOAS_USER') is not None:
+                 orig_user = env.pop('DOAS_USER')
+-                pwdata = pwd.getpwnam(orig_user)
++                try:
++                    pwdata = pwd.getpwnam(orig_user)
++                except KeyError:
++                    # `doas chroot` leaves behind stale variable and builds as root without a user
++                    return None, None
+                 orig_uid = pwdata.pw_uid
+                 orig_gid = pwdata.pw_gid
+                 homedir = pwdata.pw_dir
