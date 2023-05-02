@@ -3,7 +3,7 @@
 # Depends on:  eudev
 
 name=pciutils
-version=3.9.0
+version=3.10.0
 release=1
 source=https://github.com/$name/$name/archive/v$version/$name-$version.tar.gz
 
