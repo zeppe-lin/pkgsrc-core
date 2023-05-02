@@ -2,16 +2,14 @@
 # URL:         http://www.gnu.org/software/cpio/
 
 name=cpio
-version=2.13
+version=2.14
 release=1
-source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.bz2
+source=https://ftpmirror.gnu.org/gnu/cpio/cpio-$version.tar.bz2
 
 build() {
-	export CFLAGS="$CFLAGS -fcommon"
-
 	mkdir build; cd build
 
-	../$name-$version/configure    \
+	../cpio-$version/configure     \
 		--prefix=/usr          \
 		--libexecdir=/usr/lib  \
 		--disable-nls          \
@@ -19,7 +17,9 @@ build() {
 	make V=1
 	make DESTDIR=$PKG install
 
+	# remove obsolete /usr/lib/rmt, /usr/share/man/man8/rmt.8
+	rm -r $PKG/usr/lib $PKG/usr/share/man/man8
+
 	# remove junk
-	# /usr/lib/rmt and /usr/share/man/man8/rmt.8 are obsolete
-	cd $PKG/usr; rm -r share/info/ share/man/man8 lib/
+	rm -r $PKG/usr/share/info
 }
