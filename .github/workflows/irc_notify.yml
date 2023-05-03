@@ -14,10 +14,10 @@ jobs:
           channel: '#zeppe-lin'
           nickname: zeppbot
           message: |-
-            ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }}
+            ${{ github.actor }} pushed ${{ github.repository }}:${{ github.event.ref }}
             ${{ join(github.event.commits.*.message, '
             ') }}
-            https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+            ${{ github.event.compare }}
 
       - name: Pull Request Notification
         uses: Gottox/irc-message-action@v2
@@ -35,6 +35,6 @@ jobs:
           channel: '#zeppe-lin'
           nickname: zeppbot
           message: |-
-            ${{ github.actor }} tagged ${{ github.repository }} ${{ github.event.ref }}
+            ${{ github.actor }} tagged ${{ github.repository }}:${{ github.event.ref }}
 
 # End of file.
