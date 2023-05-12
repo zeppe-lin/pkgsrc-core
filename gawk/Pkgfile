@@ -3,9 +3,9 @@
 # Depends on:  libmpfr ncurses
 
 name=gawk
-version=5.2.1
+version=5.2.2
 release=1
-source=http://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
+source=http://ftpmirror.gnu.org/gnu/gawk/gawk-$version.tar.xz
 
 build() {
 	# don't link against libsigsegv
@@ -13,8 +13,8 @@ build() {
 
 	mkdir build; cd build
 
-	autoreconf -fi ../$name-$version
-	../$name-$version/configure    \
+	autoreconf -fi ../gawk-$version
+	../gawk-$version/configure     \
 		--prefix=/usr          \
 		--libexecdir=/usr/lib  \
 		--disable-nls          \
@@ -23,5 +23,6 @@ build() {
 	make DESTDIR=$PKG install
 
 	# remove junk
-	rm -r $PKG/usr/etc/ $PKG/usr/share/info $PKG/usr/bin/gawk-$version
+	rm -r $PKG/usr/etc/ $PKG/usr/share/info \
+		$PKG/usr/bin/gawk-$version
 }
