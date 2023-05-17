@@ -1,9 +1,9 @@
 # Description: SQL database engine
-# URL:         https://www.sqlite.org/
+# URL:         https://www.sqlite.org
 # Depends on:  readline zlib
 
 name=sqlite3
-version=3.41.2
+version=3.42.0
 release=1
 _version=$(printf "%i%.2i%.2i%.2i" $(echo $version | sed 's/\./ /g'))
 source=https://www.sqlite.org/2023/sqlite-autoconf-$_version.tar.gz
