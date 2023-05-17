@@ -66,10 +66,10 @@ index d1e139d03c..09c0cf8357 100644
  else	   					# -s
  verbose	:=
 diff --git a/NEWS b/NEWS
-index f61e521fc8..aff6951c1d 100644
+index f61e521fc8..0b3ee2ad14 100644
 --- a/NEWS
 +++ b/NEWS
-@@ -5,6 +5,57 @@ See the end for copying conditions.
+@@ -5,6 +5,63 @@ See the end for copying conditions.
  Please send GNU C library bug reports via <https://sourceware.org/bugzilla/>
  using `glibc' in the "product" field.
  
@@ -93,7 +93,9 @@ index f61e521fc8..aff6951c1d 100644
 +
 +  [12154] Do not fail DNS resolution for CNAMEs which are not host names
 +  [24816] Fix tst-nss-files-hosts-long on single-stack hosts
++  [27576] gmon: improve mcount overflow handling
 +  [28846] CMSG_NXTHDR may trigger -Wstrict-overflow warning
++  [29444] gmon: Fix allocated buffer overflow (bug 29444)
 +  [29864] libc: __libc_start_main() should obtain program headers
 +    address (_dl_phdr) from the auxv, not the ELF header.
 +  [29305] Conserve NSS buffer space during DNS packet parsing
@@ -123,6 +125,10 @@ index f61e521fc8..aff6951c1d 100644
 +  [29776] elf/tst-tlsopt-powerpc fails when compiled with -mcpu=power10
 +  [29951] time: Set daylight to 1 for matching DST/offset change
 +  [30053] time: strftime %s returns -1 after 2038 on 32 bits systems
++  [30101] gmon: fix memory corruption issues
++  [30151] gshadow: Matching sgetsgent, sgetsgent_r ERANGE handling
++  [30163] posix: Fix system blocks SIGCHLD erroneously
++  [30305] x86_64: Fix asm constraints in feraiseexcept
 +
  Version 2.36
  
@@ -641,6 +647,28 @@ index 4af0b5b2ce..f45b630ba5 100644
  
    call_function_static_weak (_dl_find_object_init);
  
+diff --git a/elf/dl-tunables.list b/elf/dl-tunables.list
+index e6a56b3070..9fa3b484cf 100644
+--- a/elf/dl-tunables.list
++++ b/elf/dl-tunables.list
+@@ -169,4 +169,17 @@ glibc {
+       default: 2
+     }
+   }
++
++  gmon {
++    minarcs {
++      type: INT_32
++      minval: 50
++      default: 50
++    }
++    maxarcs {
++      type: INT_32
++      minval: 50
++      default: 1048576
++    }
++  }
+ }
 diff --git a/elf/dso-sort-tests-1.def b/elf/dso-sort-tests-1.def
 index 5f7f18ef27..4bf9052db1 100644
 --- a/elf/dso-sort-tests-1.def
@@ -946,6 +974,469 @@ index 0000000000..ec937bf4ec
 +esac
 +
 +exit $errors
+diff --git a/gmon/Makefile b/gmon/Makefile
+index 552b7d7751..fbe2b0ba5c 100644
+--- a/gmon/Makefile
++++ b/gmon/Makefile
+@@ -1,4 +1,5 @@
+-# Copyright (C) 1995-2022 Free Software Foundation, Inc.
++# Copyright (C) 1995-2023 Free Software Foundation, Inc.
++# Copyright The GNU Toolchain Authors.
+ # This file is part of the GNU C Library.
+ 
+ # The GNU C Library is free software; you can redistribute it and/or
+@@ -25,7 +26,7 @@ include ../Makeconfig
+ headers	:= sys/gmon.h sys/gmon_out.h sys/profil.h
+ routines := gmon mcount profil sprofil prof-freq
+ 
+-tests	= tst-sprofil tst-gmon
++tests	= tst-sprofil tst-gmon tst-mcleanup
+ ifeq ($(build-profile),yes)
+ tests	+= tst-profile-static
+ tests-static	+= tst-profile-static
+@@ -56,6 +57,14 @@ ifeq ($(run-built-tests),yes)
+ tests-special += $(objpfx)tst-gmon-gprof.out
+ endif
+ 
++CFLAGS-tst-mcleanup.c := -fno-omit-frame-pointer -pg
++tst-mcleanup-no-pie = yes
++CRT-tst-mcleanup := $(csu-objpfx)g$(start-installed-name)
++tst-mcleanup-ENV := GMON_OUT_PREFIX=$(objpfx)tst-mcleanup.data
++ifeq ($(run-built-tests),yes)
++tests-special += $(objpfx)tst-mcleanup.out
++endif
++
+ CFLAGS-tst-gmon-static.c := $(PIE-ccflag) -fno-omit-frame-pointer -pg
+ CRT-tst-gmon-static := $(csu-objpfx)g$(static-start-installed-name)
+ tst-gmon-static-no-pie = yes
+@@ -103,6 +112,18 @@ $(objpfx)tst-gmon.out: clean-tst-gmon-data
+ clean-tst-gmon-data:
+ 	rm -f $(objpfx)tst-gmon.data.*
+ 
++$(objpfx)tst-mcount-overflow.o: clean-tst-mcount-overflow-data
++clean-tst-mcount-overflow-data:
++	rm -f $(objpfx)tst-mcount-overflow.data.*
++
++$(objpfx)tst-mcount-overflow-check.out: tst-mcount-overflow-check.sh $(objpfx)tst-mcount-overflow.out
++	$(SHELL) $< $(objpfx)tst-mcount-overflow > $@; \
++	$(evaluate-test)
++
++$(objpfx)tst-mcleanup.out: clean-tst-mcleanup-data
++clean-tst-mcleanup-data:
++	rm -f $(objpfx)tst-mcleanup.data.*
++
+ $(objpfx)tst-gmon-gprof.out: tst-gmon-gprof.sh $(objpfx)tst-gmon.out
+ 	$(SHELL) $< $(GPROF) $(objpfx)tst-gmon $(objpfx)tst-gmon.data.* > $@; \
+ 	$(evaluate-test)
+diff --git a/gmon/gmon.c b/gmon/gmon.c
+index dee64803ad..97be1f72ca 100644
+--- a/gmon/gmon.c
++++ b/gmon/gmon.c
+@@ -97,11 +97,8 @@ __moncontrol (int mode)
+ {
+   struct gmonparam *p = &_gmonparam;
+ 
+-  /* Don't change the state if we ran into an error.  */
+-  if (p->state == GMON_PROF_ERROR)
+-    return;
+-
+-  if (mode)
++  /* Treat start request as stop if error or gmon not initialized. */
++  if (mode && p->state != GMON_PROF_ERROR && p->tos != NULL)
+     {
+       /* start */
+       __profil((void *) p->kcount, p->kcountsize, p->lowpc, s_scale);
+@@ -111,7 +108,9 @@ __moncontrol (int mode)
+     {
+       /* stop */
+       __profil(NULL, 0, 0, 0);
+-      p->state = GMON_PROF_OFF;
++      /* Don't change the state if we ran into an error. */
++      if (p->state != GMON_PROF_ERROR)
++        p->state = GMON_PROF_OFF;
+     }
+ }
+ libc_hidden_def (__moncontrol)
+@@ -124,6 +123,19 @@ __monstartup (u_long lowpc, u_long highpc)
+   int o;
+   char *cp;
+   struct gmonparam *p = &_gmonparam;
++  long int minarcs, maxarcs;
++
++  /* No tunables, we use hardcoded defaults */
++  minarcs = MINARCS;
++  maxarcs = MAXARCS;
++
++  /*
++   * If we are incorrectly called twice in a row (without an
++   * intervening call to _mcleanup), ignore the second call to
++   * prevent leaking memory.
++   */
++  if (p->tos != NULL)
++      return;
+ 
+   /*
+    * round lowpc and highpc to multiples of the density we're using
+@@ -132,6 +144,8 @@ __monstartup (u_long lowpc, u_long highpc)
+   p->lowpc = ROUNDDOWN(lowpc, HISTFRACTION * sizeof(HISTCOUNTER));
+   p->highpc = ROUNDUP(highpc, HISTFRACTION * sizeof(HISTCOUNTER));
+   p->textsize = p->highpc - p->lowpc;
++  /* This looks like a typo, but it's here to align the p->froms
++     section.  */
+   p->kcountsize = ROUNDUP(p->textsize / HISTFRACTION, sizeof(*p->froms));
+   p->hashfraction = HASHFRACTION;
+   p->log_hashfraction = -1;
+@@ -142,12 +156,12 @@ __monstartup (u_long lowpc, u_long highpc)
+ 	 instead of integer division.  Precompute shift amount. */
+       p->log_hashfraction = ffs(p->hashfraction * sizeof(*p->froms)) - 1;
+   }
+-  p->fromssize = p->textsize / HASHFRACTION;
++  p->fromssize = ROUNDUP(p->textsize / HASHFRACTION, sizeof(*p->froms));
+   p->tolimit = p->textsize * ARCDENSITY / 100;
+-  if (p->tolimit < MINARCS)
+-    p->tolimit = MINARCS;
+-  else if (p->tolimit > MAXARCS)
+-    p->tolimit = MAXARCS;
++  if (p->tolimit < minarcs)
++    p->tolimit = minarcs;
++  else if (p->tolimit > maxarcs)
++    p->tolimit = maxarcs;
+   p->tossize = p->tolimit * sizeof(struct tostruct);
+ 
+   cp = calloc (p->kcountsize + p->fromssize + p->tossize, 1);
+@@ -440,9 +454,14 @@ _mcleanup (void)
+ {
+   __moncontrol (0);
+ 
+-  if (_gmonparam.state != GMON_PROF_ERROR)
++  if (_gmonparam.state != GMON_PROF_ERROR && _gmonparam.tos != NULL)
+     write_gmon ();
+ 
+   /* free the memory. */
+   free (_gmonparam.tos);
++
++  /* reset buffer to initial state for safety */
++  memset(&_gmonparam, 0, sizeof _gmonparam);
++  /* somewhat confusingly, ON=0, OFF=3 */
++  _gmonparam.state = GMON_PROF_OFF;
+ }
+diff --git a/gmon/mcount.c b/gmon/mcount.c
+index 9d4a1a50fa..f7180fdb83 100644
+--- a/gmon/mcount.c
++++ b/gmon/mcount.c
+@@ -41,6 +41,10 @@ static char sccsid[] = "@(#)mcount.c	8.1 (Berkeley) 6/4/93";
+ 
+ #include <atomic.h>
+ 
++#include <not-cancel.h>
++#include <unistd.h>
++#define ERR(s) __write_nocancel (STDERR_FILENO, s, sizeof (s) - 1)
++
+ /*
+  * mcount is called on entry to each function compiled with the profiling
+  * switch set.  _mcount(), which is declared in a machine-dependent way
+@@ -170,6 +174,7 @@ done:
+ 	return;
+ overflow:
+ 	p->state = GMON_PROF_ERROR;
++	ERR("mcount: call graph buffer size limit exceeded, gmon.out will not be generated\n");
+ 	return;
+ }
+ 
+diff --git a/gmon/sys/gmon.h b/gmon/sys/gmon.h
+index b4cc3b043a..af0582a371 100644
+--- a/gmon/sys/gmon.h
++++ b/gmon/sys/gmon.h
+@@ -111,6 +111,8 @@ extern struct __bb *__bb_head;
+  * Always allocate at least this many tostructs.  This
+  * hides the inadequacy of the ARCDENSITY heuristic, at least
+  * for small programs.
++ *
++ * Value can be overridden at runtime by glibc.gmon.minarcs tunable.
+  */
+ #define MINARCS		50
+ 
+@@ -124,8 +126,8 @@ extern struct __bb *__bb_head;
+  * Used to be max representable value of ARCINDEX minus 2, but now
+  * that ARCINDEX is a long, that's too large; we don't really want
+  * to allow a 48 gigabyte table.
+- * The old value of 1<<16 wasn't high enough in practice for large C++
+- * programs; will 1<<20 be adequate for long?  FIXME
++ *
++ * Value can be overridden at runtime by glibc.gmon.maxarcs tunable.
+  */
+ #define MAXARCS		(1 << 20)
+ 
+diff --git a/gmon/tst-mcleanup.c b/gmon/tst-mcleanup.c
+new file mode 100644
+index 0000000000..b259653ec8
+--- /dev/null
++++ b/gmon/tst-mcleanup.c
+@@ -0,0 +1,31 @@
++/* Test program for repeated invocation of _mcleanup
++   Copyright The GNU Toolchain Authors.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, see
++   <https://www.gnu.org/licenses/>.  */
++
++/* Intentionally calls _mcleanup() twice: once manually, it will be
++   called again as an atexit handler. This is incorrect use of the API,
++   but the point of the test is to make sure we don't crash when the
++   API is misused in this way. */
++
++#include <sys/gmon.h>
++
++int
++main (void)
++{
++  _mcleanup();
++  return 0;
++}
+diff --git a/gmon/tst-mcount-overflow-check.sh b/gmon/tst-mcount-overflow-check.sh
+new file mode 100644
+index 0000000000..27eb5538fd
+--- /dev/null
++++ b/gmon/tst-mcount-overflow-check.sh
+@@ -0,0 +1,45 @@
++#!/bin/sh
++# Test expected messages generated when mcount overflows
++# Copyright (C) 2017-2023 Free Software Foundation, Inc.
++# Copyright The GNU Toolchain Authors.
++# This file is part of the GNU C Library.
++
++# The GNU C Library is free software; you can redistribute it and/or
++# modify it under the terms of the GNU Lesser General Public
++# License as published by the Free Software Foundation; either
++# version 2.1 of the License, or (at your option) any later version.
++
++# The GNU C Library is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++# Lesser General Public License for more details.
++
++# You should have received a copy of the GNU Lesser General Public
++# License along with the GNU C Library; if not, see
++# <https://www.gnu.org/licenses/>.
++
++LC_ALL=C
++export LC_ALL
++set -e
++exec 2>&1
++
++program="$1"
++
++check_msg() {
++    if ! grep -q "$1" "$program.out"; then
++       echo "FAIL: expected message not in output: $1"
++       exit 1
++    fi
++}
++
++check_msg 'monstartup: maxarcs < minarcs, setting maxarcs = minarcs'
++check_msg 'mcount: call graph buffer size limit exceeded, gmon.out will not be generated'
++
++for data_file in $1.data.*; do
++  if [ -f "$data_file" ]; then
++    echo "FAIL: expected no data files, but found $data_file"
++    exit 1
++  fi
++done
++
++echo PASS
+diff --git a/gmon/tst-mcount-overflow.c b/gmon/tst-mcount-overflow.c
+new file mode 100644
+index 0000000000..06cc93ef87
+--- /dev/null
++++ b/gmon/tst-mcount-overflow.c
+@@ -0,0 +1,72 @@
++/* Test program to trigger mcount overflow in profiling collection.
++   Copyright (C) 2017-2023 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, see
++   <https://www.gnu.org/licenses/>.  */
++
++/* Program with sufficiently complex, yet pointless, call graph
++   that it will trigger an mcount overflow, when you set the
++   minarcs/maxarcs tunables to very low values. */
++
++#define PREVENT_TAIL_CALL asm volatile ("")
++
++/* Calls REP(n) macro 16 times, for n=0..15.
++ * You need to define REP(n) before using this.
++ */
++#define REPS \
++  REP(0) REP(1) REP(2) REP(3) REP(4) REP(5) REP(6) REP(7) \
++  REP(8) REP(9) REP(10) REP(11) REP(12) REP(13) REP(14) REP(15)
++
++/* Defines 16 leaf functions named f1_0 to f1_15 */
++#define REP(n) \
++  __attribute__ ((noinline, noclone, weak)) void f1_##n (void) {};
++REPS
++#undef REP
++
++/* Calls all 16 leaf functions f1_* in succession */
++__attribute__ ((noinline, noclone, weak)) void
++f2 (void)
++{
++# define REP(n) f1_##n();
++  REPS
++# undef REP
++  PREVENT_TAIL_CALL;
++}
++
++/* Defines 16 functions named f2_0 to f2_15, which all just call f2 */
++#define REP(n) \
++  __attribute__ ((noinline, noclone, weak)) void \
++  f2_##n (void) { f2(); PREVENT_TAIL_CALL; };
++REPS
++#undef REP
++
++__attribute__ ((noinline, noclone, weak)) void
++f3 (int count)
++{
++  for (int i = 0; i < count; ++i)
++    {
++      /* Calls f1_0(), f2_0(), f1_1(), f2_1(), f3_0(), etc */
++#     define REP(n) f1_##n(); f2_##n();
++      REPS
++#     undef REP
++    }
++}
++
++int
++main (void)
++{
++  f3 (1000);
++  return 0;
++}
+diff --git a/gshadow/Makefile b/gshadow/Makefile
+index eff303f538..5b3fa7e387 100644
+--- a/gshadow/Makefile
++++ b/gshadow/Makefile
+@@ -26,7 +26,7 @@ headers		= gshadow.h
+ routines	= getsgent getsgnam sgetsgent fgetsgent putsgent \
+ 		  getsgent_r getsgnam_r sgetsgent_r fgetsgent_r
+ 
+-tests = tst-gshadow tst-putsgent tst-fgetsgent_r
++tests = tst-gshadow tst-putsgent tst-fgetsgent_r tst-sgetsgent
+ 
+ CFLAGS-getsgent_r.c += -fexceptions
+ CFLAGS-getsgent.c += -fexceptions
+diff --git a/gshadow/sgetsgent_r.c b/gshadow/sgetsgent_r.c
+index 28c826c9b5..a767a643d4 100644
+--- a/gshadow/sgetsgent_r.c
++++ b/gshadow/sgetsgent_r.c
+@@ -61,7 +61,10 @@ __sgetsgent_r (const char *string, struct sgrp *resbuf, char *buffer,
+       buffer[buflen - 1] = '\0';
+       sp = strncpy (buffer, string, buflen);
+       if (buffer[buflen - 1] != '\0')
+-	return ERANGE;
++	{
++	  __set_errno (ERANGE);
++	  return ERANGE;
++	}
+     }
+   else
+     sp = (char *) string;
+diff --git a/gshadow/tst-sgetsgent.c b/gshadow/tst-sgetsgent.c
+new file mode 100644
+index 0000000000..0370c10fd0
+--- /dev/null
++++ b/gshadow/tst-sgetsgent.c
+@@ -0,0 +1,69 @@
++/* Test large input for sgetsgent (bug 30151).
++   Copyright (C) 2023 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, see
++   <https://www.gnu.org/licenses/>.  */
++
++#include <gshadow.h>
++#include <stddef.h>
++#include <support/check.h>
++#include <support/support.h>
++#include <support/xmemstream.h>
++#include <stdlib.h>
++
++static int
++do_test (void)
++{
++  /* Create a shadow group with 1000 members.  */
++  struct xmemstream mem;
++  xopen_memstream (&mem);
++  const char *passwd = "k+zD0nucwfxAo3sw1NXUj6K5vt5M16+X0TVGdE1uFvq5R8V7efJ";
++  fprintf (mem.out, "group-name:%s::m0", passwd);
++  for (int i = 1; i < 1000; ++i)
++    fprintf (mem.out, ",m%d", i);
++  xfclose_memstream (&mem);
++
++  /* Call sgetsgent.  */
++  char *input = mem.buffer;
++  struct sgrp *e = sgetsgent (input);
++  TEST_VERIFY_EXIT (e != NULL);
++  TEST_COMPARE_STRING (e->sg_namp, "group-name");
++  TEST_COMPARE_STRING (e->sg_passwd, passwd);
++  /* No administrators.  */
++  TEST_COMPARE_STRING (e->sg_adm[0], NULL);
++  /* Check the members list.  */
++  for (int i = 0; i < 1000; ++i)
++    {
++      char *member = xasprintf ("m%d", i);
++      TEST_COMPARE_STRING (e->sg_mem[i], member);
++      free (member);
++    }
++  TEST_COMPARE_STRING (e->sg_mem[1000], NULL);
++
++  /* Check that putsgent brings back the input string.  */
++  xopen_memstream (&mem);
++  TEST_COMPARE (putsgent (e, mem.out), 0);
++  xfclose_memstream (&mem);
++  /* Compare without the trailing '\n' that putsgent added.  */
++  TEST_COMPARE (mem.buffer[mem.length - 1], '\n');
++  mem.buffer[mem.length - 1] = '\0';
++  TEST_COMPARE_STRING (mem.buffer, input);
++
++  free (mem.buffer);
++  free (input);
++  return 0;
++}
++
++#include <support/test-driver.c>
 diff --git a/iconv/gconv_parseconfdir.h b/iconv/gconv_parseconfdir.h
 index debb96b322..b72933b526 100644
 --- a/iconv/gconv_parseconfdir.h
@@ -5672,6 +6163,57 @@ index 0000000000..0596b9763b
 +
 +#define TEST_FUNCTION do_test
 +#include <support/test-driver.c>
+diff --git a/stdlib/tst-system.c b/stdlib/tst-system.c
+index f7fa74b2a6..5e0c79475f 100644
+--- a/stdlib/tst-system.c
++++ b/stdlib/tst-system.c
+@@ -25,6 +25,7 @@
+ #include <support/check.h>
+ #include <support/temp_file.h>
+ #include <support/support.h>
++#include <support/xthread.h>
+ #include <support/xunistd.h>
+ 
+ static char *tmpdir;
+@@ -71,6 +72,20 @@ call_system (void *closure)
+     }
+ }
+ 
++static void *
++sleep_and_check_sigchld (void *closure)
++{
++  double *seconds = (double *) closure;
++  char cmd[namemax];
++  sprintf (cmd, "sleep %lf" , *seconds);
++  TEST_COMPARE (system (cmd), 0);
++
++  sigset_t blocked = {0};
++  TEST_COMPARE (sigprocmask (SIG_BLOCK, NULL, &blocked), 0);
++  TEST_COMPARE (sigismember (&blocked, SIGCHLD), 0);
++  return NULL;
++}
++
+ static int
+ do_test (void)
+ {
+@@ -154,6 +169,17 @@ do_test (void)
+     xchmod (_PATH_BSHELL, st.st_mode);
+   }
+ 
++  {
++    pthread_t long_sleep_thread = xpthread_create (NULL,
++                                                   sleep_and_check_sigchld,
++                                                   &(double) { 0.2 });
++    pthread_t short_sleep_thread = xpthread_create (NULL,
++                                                    sleep_and_check_sigchld,
++                                                    &(double) { 0.1 });
++    xpthread_join (short_sleep_thread);
++    xpthread_join (long_sleep_thread);
++  }
++
+   TEST_COMPARE (system (""), 0);
+ 
+   return 0;
 diff --git a/string/test-strnlen.c b/string/test-strnlen.c
 index 4a9375112a..5cbaf4b734 100644
 --- a/string/test-strnlen.c
@@ -5789,6 +6331,183 @@ index bf7f0b81c4..c1d1c43e50 100644
    i = strlen (netname);
    if (netname[i - 1] == '.')
      netname[i - 1] = '\0';
+diff --git a/support/Makefile b/support/Makefile
+index 9b50eac117..2b661a7eb8 100644
+--- a/support/Makefile
++++ b/support/Makefile
+@@ -32,6 +32,8 @@ libsupport-routines = \
+   check_hostent \
+   check_netent \
+   delayed_exit \
++  dtotimespec \
++  dtotimespec-time64 \
+   ignore_stderr \
+   next_to_fault \
+   oom_error \
+diff --git a/support/dtotimespec-time64.c b/support/dtotimespec-time64.c
+new file mode 100644
+index 0000000000..b3d5e351e3
+--- /dev/null
++++ b/support/dtotimespec-time64.c
+@@ -0,0 +1,27 @@
++/* Convert double to timespec.  64-bit time support.
++   Copyright (C) 2011-2023 Free Software Foundation, Inc.
++   This file is part of the GNU C Library and is also part of gnulib.
++   Patches to this file should be submitted to both projects.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, see
++   <https://www.gnu.org/licenses/>.  */
++
++#include <time.h>
++
++#if __TIMESIZE != 64
++# define timespec      __timespec64
++# define time_t        __time64_t
++# define dtotimespec   dtotimespec_time64
++# include "dtotimespec.c"
++#endif
+diff --git a/support/dtotimespec.c b/support/dtotimespec.c
+new file mode 100644
+index 0000000000..cde5b4d74c
+--- /dev/null
++++ b/support/dtotimespec.c
+@@ -0,0 +1,50 @@
++/* Convert double to timespec.
++   Copyright (C) 2011-2023 Free Software Foundation, Inc.
++   This file is part of the GNU C Library and is also part of gnulib.
++   Patches to this file should be submitted to both projects.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, see
++   <https://www.gnu.org/licenses/>.  */
++
++/* Convert the double value SEC to a struct timespec.  Round toward
++   positive infinity.  On overflow, return an extremal value.  */
++
++#include <support/timespec.h>
++#include <intprops.h>
++
++struct timespec
++dtotimespec (double sec)
++{
++  if (sec <= TYPE_MINIMUM (time_t))
++    return make_timespec (TYPE_MINIMUM (time_t), 0);
++  else if (sec >= 1.0 + TYPE_MAXIMUM (time_t))
++    return make_timespec (TYPE_MAXIMUM (time_t), TIMESPEC_HZ - 1);
++  else
++    {
++      time_t s = sec;
++      double frac = TIMESPEC_HZ * (sec - s);
++      long ns = frac;
++      ns += ns < frac;
++      s += ns / TIMESPEC_HZ;
++      ns %= TIMESPEC_HZ;
++
++      if (ns < 0)
++        {
++          s--;
++          ns += TIMESPEC_HZ;
++        }
++
++      return make_timespec (s, ns);
++    }
++}
+diff --git a/support/shell-container.c b/support/shell-container.c
+index 1c73666f0a..6698061b9b 100644
+--- a/support/shell-container.c
++++ b/support/shell-container.c
+@@ -39,6 +39,7 @@
+ #include <error.h>
+ 
+ #include <support/support.h>
++#include <support/timespec.h>
+ 
+ /* Design considerations
+ 
+@@ -171,6 +172,32 @@ kill_func (char **argv)
+   return 0;
+ }
+ 
++/* Emulate the "/bin/sleep" command.  No suffix support.  Options are
++   ignored.  */
++static int
++sleep_func (char **argv)
++{
++  if (argv[0] == NULL)
++    {
++      fprintf (stderr, "sleep: missing operand\n");
++      return 1;
++    }
++  char *endptr = NULL;
++  double sec = strtod (argv[0], &endptr);
++  if (endptr == argv[0] || errno == ERANGE || sec < 0)
++    {
++      fprintf (stderr, "sleep: invalid time interval '%s'\n", argv[0]);
++      return 1;
++    }
++  struct timespec ts = dtotimespec (sec);
++  if (nanosleep (&ts, NULL) < 0)
++    {
++      fprintf (stderr, "sleep: failed to nanosleep: %s\n", strerror (errno));
++      return 1;
++    }
++  return 0;
++}
++
+ /* This is a list of all the built-in commands we understand.  */
+ static struct {
+   const char *name;
+@@ -181,6 +208,7 @@ static struct {
+   { "cp", copy_func },
+   { "exit", exit_func },
+   { "kill", kill_func },
++  { "sleep", sleep_func },
+   { NULL, NULL }
+ };
+ 
+diff --git a/support/timespec.h b/support/timespec.h
+index 4d2ac2737d..1bba3a6837 100644
+--- a/support/timespec.h
++++ b/support/timespec.h
+@@ -57,6 +57,8 @@ int support_timespec_check_in_range (struct timespec expected,
+ 				     struct timespec observed,
+ 				     double lower_bound, double upper_bound);
+ 
++struct timespec dtotimespec (double sec) __attribute__((const));
++
+ #else
+ struct timespec __REDIRECT (timespec_add, (struct timespec, struct timespec),
+ 			    timespec_add_time64);
+@@ -82,6 +84,8 @@ int __REDIRECT (support_timespec_check_in_range, (struct timespec expected,
+ 						  double lower_bound,
+ 						  double upper_bound),
+ 		support_timespec_check_in_range_time64);
++
++struct timespec __REDIRECT (dtotimespec, (double sec), dtotimespec_time64);
+ #endif
+ 
+ /* Check that the timespec on the left represents a time before the
 diff --git a/sysdeps/aarch64/dl-trampoline.S b/sysdeps/aarch64/dl-trampoline.S
 index 909b208578..d66f0b9c45 100644
 --- a/sysdeps/aarch64/dl-trampoline.S
@@ -6127,6 +6846,30 @@ index bcff909b2f..5cda9bb072 100644
  	    res->got_ipv6 = true;
  	}
        at[count].next = at + count + 1;
+diff --git a/sysdeps/posix/system.c b/sysdeps/posix/system.c
+index 8014f63355..20c9420dd4 100644
+--- a/sysdeps/posix/system.c
++++ b/sysdeps/posix/system.c
+@@ -179,16 +179,16 @@ do_system (const char *line)
+       as if the shell had terminated using _exit(127).  */
+    status = W_EXITCODE (127, 0);
+ 
++  /* sigaction can not fail with SIGINT/SIGQUIT used with old
++     disposition.  Same applies for sigprocmask.  */
+   DO_LOCK ();
+   if (SUB_REF () == 0)
+     {
+-      /* sigaction can not fail with SIGINT/SIGQUIT used with old
+-	 disposition.  Same applies for sigprocmask.  */
+       __sigaction (SIGINT, &intr, NULL);
+       __sigaction (SIGQUIT, &quit, NULL);
+-      __sigprocmask (SIG_SETMASK, &omask, NULL);
+     }
+   DO_UNLOCK ();
++  __sigprocmask (SIG_SETMASK, &omask, NULL);
+ 
+   if (ret != 0)
+     __set_errno (ret);
 diff --git a/sysdeps/powerpc/mod-tlsopt-powerpc.c b/sysdeps/powerpc/mod-tlsopt-powerpc.c
 index 2a82e53baf..d941024963 100644
 --- a/sysdeps/powerpc/mod-tlsopt-powerpc.c
@@ -7828,6 +8571,57 @@ index 037af22290..5711d1c312 100644
      TEST_VERIFY (fd > 0);
  
      char *path = xasprintf ("/proc/%d/fd/%d", pid, remote_fd);
+diff --git a/sysdeps/x86/dl-cacheinfo.h b/sysdeps/x86/dl-cacheinfo.h
+index e9f3382108..637b5a022d 100644
+--- a/sysdeps/x86/dl-cacheinfo.h
++++ b/sysdeps/x86/dl-cacheinfo.h
+@@ -861,6 +861,18 @@ dl_init_cacheinfo (struct cpu_features *cpu_features)
+      share of the cache, it has a substantial risk of negatively
+      impacting the performance of other threads running on the chip. */
+   unsigned long int non_temporal_threshold = shared * 3 / 4;
++  /* SIZE_MAX >> 4 because memmove-vec-unaligned-erms right-shifts the value of
++     'x86_non_temporal_threshold' by `LOG_4X_MEMCPY_THRESH` (4) and it is best
++     if that operation cannot overflow. Minimum of 0x4040 (16448) because the
++     L(large_memset_4x) loops need 64-byte to cache align and enough space for
++     at least 1 iteration of 4x PAGE_SIZE unrolled loop.  Both values are
++     reflected in the manual.  */
++  unsigned long int maximum_non_temporal_threshold = SIZE_MAX >> 4;
++  unsigned long int minimum_non_temporal_threshold = 0x4040;
++  if (non_temporal_threshold < minimum_non_temporal_threshold)
++    non_temporal_threshold = minimum_non_temporal_threshold;
++  else if (non_temporal_threshold > maximum_non_temporal_threshold)
++    non_temporal_threshold = maximum_non_temporal_threshold;
+ 
+ #if HAVE_TUNABLES
+   /* NB: The REP MOVSB threshold must be greater than VEC_SIZE * 8.  */
+@@ -915,8 +927,8 @@ dl_init_cacheinfo (struct cpu_features *cpu_features)
+     shared = tunable_size;
+ 
+   tunable_size = TUNABLE_GET (x86_non_temporal_threshold, long int, NULL);
+-  /* NB: Ignore the default value 0.  */
+-  if (tunable_size != 0)
++  if (tunable_size > minimum_non_temporal_threshold
++      && tunable_size <= maximum_non_temporal_threshold)
+     non_temporal_threshold = tunable_size;
+ 
+   tunable_size = TUNABLE_GET (x86_rep_movsb_threshold, long int, NULL);
+@@ -931,14 +943,9 @@ dl_init_cacheinfo (struct cpu_features *cpu_features)
+ 
+   TUNABLE_SET_WITH_BOUNDS (x86_data_cache_size, data, 0, SIZE_MAX);
+   TUNABLE_SET_WITH_BOUNDS (x86_shared_cache_size, shared, 0, SIZE_MAX);
+-  /* SIZE_MAX >> 4 because memmove-vec-unaligned-erms right-shifts the value of
+-     'x86_non_temporal_threshold' by `LOG_4X_MEMCPY_THRESH` (4) and it is best
+-     if that operation cannot overflow. Minimum of 0x4040 (16448) because the
+-     L(large_memset_4x) loops need 64-byte to cache align and enough space for
+-     at least 1 iteration of 4x PAGE_SIZE unrolled loop.  Both values are
+-     reflected in the manual.  */
+   TUNABLE_SET_WITH_BOUNDS (x86_non_temporal_threshold, non_temporal_threshold,
+-			   0x4040, SIZE_MAX >> 4);
++			   minimum_non_temporal_threshold,
++			   maximum_non_temporal_threshold);
+   TUNABLE_SET_WITH_BOUNDS (x86_rep_movsb_threshold, rep_movsb_threshold,
+ 			   minimum_rep_movsb_threshold, SIZE_MAX);
+   TUNABLE_SET_WITH_BOUNDS (x86_rep_stosb_threshold, rep_stosb_threshold, 1,
 diff --git a/sysdeps/x86/get-isa-level.h b/sysdeps/x86/get-isa-level.h
 index 1ade78ab73..5b4dd5f062 100644
 --- a/sysdeps/x86/get-isa-level.h
@@ -7855,6 +8649,28 @@ index 3c4480aba7..06f6c9663e 100644
  #define MOVBE_X86_ISA_LEVEL 3
  
  /* ISA level >= 2 guaranteed includes.  */
+diff --git a/sysdeps/x86_64/fpu/fraiseexcpt.c b/sysdeps/x86_64/fpu/fraiseexcpt.c
+index 864f4777a2..23446ff4ac 100644
+--- a/sysdeps/x86_64/fpu/fraiseexcpt.c
++++ b/sysdeps/x86_64/fpu/fraiseexcpt.c
+@@ -33,7 +33,7 @@ __feraiseexcept (int excepts)
+       /* One example of an invalid operation is 0.0 / 0.0.  */
+       float f = 0.0;
+ 
+-      __asm__ __volatile__ ("divss %0, %0 " : : "x" (f));
++      __asm__ __volatile__ ("divss %0, %0 " : "+x" (f));
+       (void) &f;
+     }
+ 
+@@ -43,7 +43,7 @@ __feraiseexcept (int excepts)
+       float f = 1.0;
+       float g = 0.0;
+ 
+-      __asm__ __volatile__ ("divss %1, %0" : : "x" (f), "x" (g));
++      __asm__ __volatile__ ("divss %1, %0" : "+x" (f) : "x" (g));
+       (void) &f;
+     }
+ 
 diff --git a/sysdeps/x86_64/multiarch/ifunc-avx2.h b/sysdeps/x86_64/multiarch/ifunc-avx2.h
 index a57a9952f3..f2f5e8a211 100644
 --- a/sysdeps/x86_64/multiarch/ifunc-avx2.h

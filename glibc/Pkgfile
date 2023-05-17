@@ -2,7 +2,7 @@
 # URL:         http://www.gnu.org/software/libc/
 
 name=glibc
-version=2.36-4
+version=2.36-5
 release=1
 
 # Kernel is in the "system" packages directory that may be disabled by
