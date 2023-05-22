@@ -3,13 +3,14 @@
 # Depends on:  python3
 
 name=py3-setuptools
-version=67.7.2
+version=67.8.0
 release=1
 source=https://files.pythonhosted.org/packages/source/s/${name#*-}/${name#*-}-$version.tar.gz
 
 build() {
 	cd ${name#*-}-$version
 
+	export TMPDIR="$PKGMK_WORK_DIR"
 	export SETUPTOOLS_INSTALL_WINDOWS_SPECIFIC_FILES=0
 
 	/usr/bin/python3 setup.py build
