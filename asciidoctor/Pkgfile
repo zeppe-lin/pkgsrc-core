@@ -1,9 +1,9 @@
 # Description: Implementation of AsciiDoc in Ruby
-# URL:         https://asciidoctor.org/
+# URL:         https://asciidoctor.org
 # Depends on:  ruby
 
 name=asciidoctor
-version=2.0.18
+version=2.0.20
 release=1
 source=https://github.com/$name/$name/archive/v$version/$name-$version.tar.gz
 
