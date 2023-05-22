@@ -2,13 +2,14 @@
 # URL:         http://www.gnu.org/software/diffutils/
 
 name=diffutils
-version=3.9
+version=3.10
 release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
 build() {
 	mkdir build; cd build
 
+	#autoreconf -fi ../$name-$version
 	../$name-$version/configure  \
 		--prefix=/usr        \
 		--disable-nls        \
