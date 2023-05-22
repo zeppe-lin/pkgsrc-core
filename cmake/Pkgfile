@@ -1,9 +1,9 @@
 # Description: Cross-platform, open-source make system
-# URL:         https://cmake.org/
+# URL:         https://cmake.org
 # Depends on:  curl expat libarchive libmd lz4 ncurses
 
 name=cmake
-version=3.26.3
+version=3.26.4
 release=1
 source=https://cmake.org/files/v${version%.*}/$name-$version.tar.gz
 
