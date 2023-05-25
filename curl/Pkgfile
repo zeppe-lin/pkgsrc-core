@@ -3,14 +3,14 @@
 # Depends on:  openssl zstd
 
 name=curl
-version=8.1.0
+version=8.1.1
 release=1
-source=https://curl.haxx.se/download/$name-$version.tar.xz
+source=https://curl.haxx.se/download/curl-$version.tar.xz
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure                 \
+	../curl-$version/configure                  \
 		--prefix=/usr                       \
 		--disable-ldap                      \
 		--disable-ldaps                     \
