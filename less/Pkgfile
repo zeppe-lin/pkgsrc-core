@@ -3,17 +3,17 @@
 # Depends on:  libpcre2 ncurses
 
 name=less
-version=632
+version=634
 release=1
-source="https://www.greenwoodsoftware.com/less/$name-$version-beta.tar.gz
+source="https://www.greenwoodsoftware.com/less/less-$version-beta.tar.gz
 	filter"
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure  \
-		--prefix=/usr        \
-		--with-regex=pcre2   \
+	../less-$version/configure  \
+		--prefix=/usr       \
+		--with-regex=pcre2  \
 
 	make V=1
 	make DESTDIR=$PKG install
