@@ -3,19 +3,18 @@
 # Depends on:  glibc-32 libmpc zstd
 
 name=gcc
-version=12.2.0
+version=12.3.0
 release=1
 source="ftp://gcc.gnu.org/pub/gcc/releases/gcc-$version/gcc-$version.tar.xz
-	c99 gcc-nocheck-fixincludes.patch gcc-4.7.3-multilib-dirs.patch"
+	c99
+	gcc-nocheck-fixincludes.patch
+	gcc-4.7.3-multilib-dirs.patch
+	fix-nested-generic-lambda.patch"
 
 build() {
-	# fix libasan.a
-	sed -i  -e '/static.*SIGSTKSZ/d'                          \
-		-e 's/return kAltStackSize/return SIGSTKSZ * 4/'  \
-		gcc-$version/libsanitizer/sanitizer_common/sanitizer_posix_libcdep.cpp
-
 	patch -d gcc-$version -p1 -i $SRC/gcc-nocheck-fixincludes.patch
 	patch -d gcc-$version -p1 -i $SRC/gcc-4.7.3-multilib-dirs.patch
+	patch -d gcc-$version -p1 -i $SRC/fix-nested-generic-lambda.patch
 
 	mkdir build; cd build
 
