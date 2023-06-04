@@ -4,13 +4,14 @@
 
 name=inetutils
 version=2.4
-release=2
+release=3
 source="http://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
 	inetd.conf rc.inetd"
 
 build() {
 	mkdir build; cd build
 
+	# --disable-traceroute: provided by traceroute package
 	../$name-$version/configure      \
 		--prefix=/usr            \
 		--libexecdir=/usr/sbin   \
@@ -23,7 +24,7 @@ build() {
 		--enable-ifconfig        \
 		--enable-inetd           \
 		--enable-telnet          \
-		--enable-traceroute      \
+		--disable-traceroute     \
 
 	make V=1
 	make DESTDIR=$PKG install
