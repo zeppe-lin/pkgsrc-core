@@ -3,7 +3,7 @@
 # Depends on:  libarchive
 
 name=pkgutils
-version=5.43.1-5da889b
+version=6.00-bd2951e
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
@@ -14,11 +14,7 @@ build() {
 	# pick up system flags
 	sed -i '/^\(CXX\|LD\)FLAGS/s/ = /+=/g' config.mk
 
-	make DESTDIR=$PKG install
+	make DESTDIR=$PKG install install-bashcomp
 
 	install -m 0644 -Dt $PKG/etc/ $SRC/pkgadd.conf
-	install -m 0644 -D bash_completion \
-		$PKG/usr/share/bash-completion/completions/pkgadd
-	ln -s pkgadd $PKG/usr/share/bash-completion/completions/pkginfo
-	ln -s pkgadd $PKG/usr/share/bash-completion/completions/pkgrm
 }
