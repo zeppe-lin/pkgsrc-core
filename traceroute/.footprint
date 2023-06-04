@@ -1,0 +1,9 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/traceroute
+lrwxrwxrwx	root/root	usr/bin/traceroute6 -> traceroute
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man8/
+-rw-r--r--	root/root	usr/share/man/man8/traceroute.8.gz
+lrwxrwxrwx	root/root	usr/share/man/man8/traceroute6.8.gz -> traceroute.8.gz

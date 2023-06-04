@@ -1,0 +1,20 @@
+# Description: Track the route taken by packets over an IP network
+# URL:         https://traceroute.sourceforge.net
+
+name=traceroute
+version=2.1.2
+release=1
+source="https://downloads.sourceforge.net/$name/$name-$version.tar.gz
+	reproducible-build.patch"
+
+build() {
+	cd $name-$version
+
+	patch -p1 -i $SRC/reproducible-build.patch
+
+	make CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS"
+	make prefix=/usr DESTDIR=$PKG install
+
+	ln -sf traceroute   $PKG/usr/bin/traceroute6
+	ln -sf traceroute.8 $PKG/usr/share/man/man8/traceroute6.8
+}
