@@ -2,14 +2,14 @@
 # URL:         https://github.com/zeppe-lin/rc
 
 name=rc
-version=2.34.1-e74f2ba
+version=2.34.1-ab56d1a
 release=1
 source="https://github.com/zeppe-lin/rc/archive/${version#*-}/rc-$version.tar.gz
 	inittab
 	rc.conf"
 
 build() {
-	cd $name-${version#*-}*
+	cd rc-${version#*-}*
 
 	make DESTDIR=$PKG install
 
