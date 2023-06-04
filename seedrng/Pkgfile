@@ -1,0 +1,13 @@
+# Description: Seed the Linux kernel random number generator from seed files
+# URL:         https://github.com/zeppe-lin/seedrng
+
+name=seedrng
+version=0.1-97e2991
+release=1
+source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+
+build() {
+	cd $name-${version#*-}*
+
+	make PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG install
+}
