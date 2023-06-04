@@ -1,4 +1,4 @@
-PKGSRCDIR = ${CURDIR}
+PKGSRCDIR = ${CURDIR}/*
 
 define USAGE
 Usage: make [OPTION...] [TARGET...] [PKGSRCDIR="PATH..."]
@@ -50,7 +50,7 @@ footprint-sugid:
 	  print "suid directory found: "FILENAME": "$$3;             \
 	if ($$1 ~ /^d.....s.../)                                     \
 	  print "sgid directory found: "FILENAME": "$$3;             \
-	}' ${PKGSRCDIR}/*/.footprint
+	}' ${PKGSRCDIR}/.footprint
 
 # Check for world-writeable files and directories.
 footprint-wowr:
@@ -59,7 +59,7 @@ footprint-wowr:
           print "world writeable directory found: "FILENAME": "$$0;  \
         if ($$1 ~ /^-.......w./)                                     \
           print "world writeable file found: "FILENAME": "$$0;       \
-        }' ${PKGSRCDIR}/*/.footprint
+        }' ${PKGSRCDIR}/.footprint
 
 # Check for invalid directories.
 footprint-dirs:
@@ -78,7 +78,7 @@ footprint-dirs:
 	 ) print "invalid directory found: "FILENAME": "$$3;         \
 	else if ($$3 ~ /^usr\/share\/man\/[^\/]+$$/)                 \
 	   print "invalid man location found: "FILENAME": "$$3;      \
-	}' ${PKGSRCDIR}/*/.footprint
+	}' ${PKGSRCDIR}/.footprint
 
 # Check for junk files.
 footprint-junk:
@@ -87,7 +87,7 @@ footprint-junk:
 	 || $$3 ~ /\/perl5\/.*\/\.packlist$$/                        \
 	 || $$3 ~ /\/perl5\/.*\/[^\/]+\.bs$$/                        \
 	 ) print "junk file found: "FILENAME": "$$3;                 \
-	}' ${PKGSRCDIR}/*/.footprint
+	}' ${PKGSRCDIR}/.footprint
 	@awk >&2 -v IGNORECASE=1 '{                                  \
 	if ($$3 ~ /^usr\/share\/terminfo\/n\/news$$/)                \
 	   1; # skip ncurses terminfo file                           \
@@ -103,7 +103,7 @@ footprint-junk:
 	 || $$3 ~ /\/THANKS$$/                                       \
 	 || $$3 ~ /\/TODO$$/                                         \
 	 ) print "junk file found: "FILENAME": "$$3;                 \
-	}' ${PKGSRCDIR}/*/.footprint
+	}' ${PKGSRCDIR}/.footprint
 
 ######################################################################
 # Check Pkgfiles for typical errors.                                 #
