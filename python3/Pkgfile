@@ -1,31 +1,30 @@
 # Description: Python interpreter, version 3
-# URL:         https://www.python.org/
+# URL:         https://www.python.org
 # Depends on:  bzip2 expat gdbm libffi libnsl mpdecimal openssl sqlite3 xz
 
 # 3.9.x LTS (05 Oct 2025)
 
 name=python3
-version=3.9.16
+version=3.9.17
 release=1
-source="https://www.python.org/ftp/python/${version%rc*}/Python-$version.tar.xz
+source="https://github.com/python/cpython/archive/v$version/python-$version.tar.gz
 	mpdecimal-2.5.1.patch"
 
 build() {
-	cd Python-$version
+	cd cpython-$version
 
 	export PYTHON_DISABLE_MODULES="_tkinter _uuid"
 
 	patch -Np1 -i $SRC/mpdecimal-2.5.1.patch
 
 	# ensure that we are using the system copy of various libraries
-	rm -r   Modules/expat Modules/_ctypes/darwin*              \
-		Modules/_ctypes/libffi* Modules/_decimal/libmpdec  \
+	rm -r Modules/expat  Modules/_ctypes/darwin*              \
+	      Modules/_ctypes/libffi*  Modules/_decimal/libmpdec  \
 
 	# remove tests
-	rm -r   Lib/test Lib/ctypes/test Lib/sqlite3/test  \
-		Lib/tkinter/test Lib/unittest/test         \
-		Lib/distutils/tests Lib/lib2to3/tests      \
-		Lib/idlelib/idle_test                      \
+	rm -r Lib/test Lib/ctypes/test Lib/sqlite3/test              \
+	      Lib/tkinter/test Lib/unittest/test Lib/distutils/tests \
+	      Lib/lib2to3/tests Lib/idlelib/idle_test                \
 
 	./configure \
 		--prefix=/usr                        \
