@@ -1,9 +1,9 @@
 # Description: Highly configurable text editor
-# URL:         http://www.vim.org
+# URL:         https://www.vim.org
 # Depends on:  acl ncurses
 
 name=vim
-version=9.0.1500
+version=9.0.1623
 release=1
 source="https://github.com/vim/vim/archive/v$version/vim-$version.tar.gz
 	vimrc_Pkgfile.patch"

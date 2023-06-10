@@ -543,6 +543,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/logtalk.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/lprolog.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/lua.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/luau.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/lynx.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/m3build.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/m3quake.vim
@@ -668,6 +669,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/udevperm.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/udevrules.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/updatedb.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/usd.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/vb.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/vdf.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/verilog.vim
@@ -733,6 +735,7 @@ drwxr-xr-x	root/root	usr/share/vim/indent/
 -rw-r--r--	root/root	usr/share/vim/indent/dosbatch.vim
 -rw-r--r--	root/root	usr/share/vim/indent/dtd.vim
 -rw-r--r--	root/root	usr/share/vim/indent/dtrace.vim
+-rw-r--r--	root/root	usr/share/vim/indent/dts.vim
 -rw-r--r--	root/root	usr/share/vim/indent/dune.vim
 -rw-r--r--	root/root	usr/share/vim/indent/dylan.vim
 -rw-r--r--	root/root	usr/share/vim/indent/eiffel.vim
@@ -777,6 +780,7 @@ drwxr-xr-x	root/root	usr/share/vim/indent/
 -rw-r--r--	root/root	usr/share/vim/indent/livebook.vim
 -rw-r--r--	root/root	usr/share/vim/indent/logtalk.vim
 -rw-r--r--	root/root	usr/share/vim/indent/lua.vim
+-rw-r--r--	root/root	usr/share/vim/indent/luau.vim
 -rw-r--r--	root/root	usr/share/vim/indent/mail.vim
 -rw-r--r--	root/root	usr/share/vim/indent/make.vim
 -rw-r--r--	root/root	usr/share/vim/indent/matlab.vim
@@ -1303,6 +1307,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/lsl.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/lss.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/lua.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/luau.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/lynx.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/lyrics.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/m3build.vim
