@@ -1,9 +1,9 @@
 # Description: Pluggable Authentication Modules (PAM) for Linux
-# URL:         http://www.linux-pam.org/
+# URL:         https://github.com/linux-pam/linux-pam
 # Depends on:  bash
 
 name=linux-pam
-version=1.5.2
+version=1.5.3
 release=1
 source="https://github.com/$name/$name/releases/download/v${version}/Linux-PAM-$version.tar.xz
 	pam.common-account
@@ -23,6 +23,7 @@ build() {
 		--disable-nls            \
 		--disable-prelude        \
 		--enable-db=no           \
+		--enable-lastlog         \
 
 	make V=1
 	make DESTDIR=$PKG install
@@ -46,5 +47,5 @@ build() {
 		$PKG/etc/pam.d/other
 
 	# remove junk
-	cd $PKG/usr; rm -r lib/systemd share/doc
+	rm -r $PKG/usr/lib/systemd $PKG/usr/share/doc
 }
