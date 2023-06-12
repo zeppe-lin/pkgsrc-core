@@ -1,15 +1,15 @@
 # Description: Keytable files and keyboard utilities
-# URL:         https://kbd-project.org/
+# URL:         https://kbd-project.org
 
 name=kbd
-version=2.5.1
+version=2.6.0
 release=1
-source=https://www.kernel.org/pub/linux/utils/$name/$name-$version.tar.xz
+source=https://www.kernel.org/pub/linux/utils/kbd/kbd-$version.tar.xz
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure       \
+	../kbd-$version/configure         \
 		--prefix=/usr             \
 		--datadir=/usr/share/kbd  \
 		--disable-vlock           \
@@ -26,7 +26,7 @@ build() {
 	# remove junk and obsolete files
 	#
 
-	cd $PKG/usr/share/kbd/keymaps
+	cd $PKG/usr/share/kbd/keymaps &&
 	rm -r ppc mac atari amiga sun pine
 
 	for f in loadunimap mapscrn resizecons; do
