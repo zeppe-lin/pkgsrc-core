@@ -1,9 +1,9 @@
 # Description: Pager program similar to more(1)
-# URL:         http://www.greenwoodsoftware.com/less/
+# URL:         http://greenwoodsoftware.com/less/
 # Depends on:  libpcre2 ncurses
 
 name=less
-version=635
+version=636
 release=1
 source="https://www.greenwoodsoftware.com/less/less-$version-beta.tar.gz
 	filter"
