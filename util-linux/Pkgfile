@@ -3,7 +3,7 @@
 # Depends on:  eudev file libcap-ng readline
 
 name=util-linux
-version=2.39
+version=2.39.1
 release=1
 source=https://www.kernel.org/pub/linux/utils/$name/v$version/$name-$version.tar.xz
 
