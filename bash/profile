@@ -1,5 +1,5 @@
 #
-# /etc/profile: system-wide defaults for bash(1) login shells
+# /etc/profile: system-wide defaults for login shells
 #
 
 if [ ! -f ~/.inputrc ]; then
