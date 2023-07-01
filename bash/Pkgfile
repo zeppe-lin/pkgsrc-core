@@ -1,5 +1,5 @@
 # Description: GNU Bourne Again Shell
-# URL:         https://tiswww.case.edu/php/chet/bash/bashtop.html
+# URL:         https://www.gnu.org/software/bash/
 # Depends on:  readline
 
 name=bash
@@ -27,10 +27,10 @@ build() {
 	mkdir build; cd build
 
 	for p in $SRC/bash5?-???; do
-		patch -p0 -d ../$name-${version%.*} -i $p
+		patch -p0 -d ../bash-${version%.*} -i $p
 	done
 
-	../$name-${version%.*}/configure   \
+	../bash-${version%.*}/configure    \
 		--prefix=/usr              \
 		--exec-prefix=             \
 		--disable-nls              \
@@ -43,7 +43,7 @@ build() {
 	install -m 0755 -Dt $PKG/bin/  bash
 
 	install -m 0644 -Dt $PKG/usr/share/man/man1/ \
-		../$name-${version%.*}/doc/bash.1
+		../bash-${version%.*}/doc/bash.1
 
 	install -m 0644 -Dt $PKG/etc/  $SRC/profile
 }
