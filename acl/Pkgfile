@@ -5,15 +5,15 @@
 name=acl
 version=2.3.1
 release=1
-source=https://download-mirror.savannah.gnu.org/releases/$name/$name-$version.tar.gz
+source=https://download-mirror.savannah.gnu.org/releases/acl/acl-$version.tar.gz
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure  \
-		--prefix=/usr        \
-		--bindir=/bin        \
-		--disable-nls        \
+	../acl-$version/configure  \
+		--prefix=/usr      \
+		--bindir=/bin      \
+		--disable-nls      \
 
 	make V=1
 	make DESTDIR=$PKG install
