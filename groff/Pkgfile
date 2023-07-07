@@ -2,27 +2,19 @@
 # URL:         http://www.gnu.org/software/groff/groff.html
 
 name=groff
-version=1.22.4
+version=1.23.0
 release=1
-source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
+source=https://ftpmirror.gnu.org/gnu/groff/groff-$version.tar.gz
 
 build() {
-	# We install only the Base14 and EURO pdf fonts
-	# and don't lookup for fonts in the filesystem.
-	# https://savannah.gnu.org/bugs/?38029
-	sed -E  -e '/^EURO\|/s/N/Y/' \
-		-e '/^[A-Z]+\|N/d'   \
-		-e '/\(gs\)/d'       \
-		-i $name-$version/font/devpdf/Foundry.in
-
 	mkdir build; cd build
 
 	../$name-$version/configure  \
 		--prefix=/usr        \
+		--sysconfdir=/etc    \
 		--without-x          \
-		--with-doc=no        \
 
-	make V=1 -j1
+	make V=1
 	make DESTDIR=$PKG install
 
 	sed -e 's|^\(papersize\).*|\1 /etc/papersize|' \
@@ -36,5 +28,5 @@ build() {
 	ln -s soelim  $PKG/usr/bin/zsoelim
 
 	# remove junk
-	rm -r $PKG/usr/share/doc/
+	rm -r $PKG/usr/share/doc/ $PKG/usr/share/info
 }
