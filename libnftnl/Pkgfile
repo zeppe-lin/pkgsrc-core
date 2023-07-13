@@ -3,9 +3,9 @@
 # Depends on:  libmnl
 
 name=libnftnl
-version=1.2.3
+version=1.2.6
 release=1
-source=https://www.netfilter.org/pub/$name/$name-$version.tar.bz2
+source=https://www.netfilter.org/pub/$name/$name-$version.tar.xz
 
 build() {
 	mkdir build; cd build
