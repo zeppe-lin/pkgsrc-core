@@ -584,7 +584,6 @@ drwxr-xr-x	root/root	usr/include/linux/cifs/
 -rw-r--r--	root/root	usr/include/linux/dm-ioctl.h
 -rw-r--r--	root/root	usr/include/linux/dm-log-userspace.h
 -rw-r--r--	root/root	usr/include/linux/dma-buf.h
--rw-r--r--	root/root	usr/include/linux/dn.h
 -rw-r--r--	root/root	usr/include/linux/dns_resolver.h
 -rw-r--r--	root/root	usr/include/linux/dqblk_xfs.h
 drwxr-xr-x	root/root	usr/include/linux/dvb/
@@ -915,7 +914,6 @@ drwxr-xr-x	root/root	usr/include/linux/netfilter_bridge/
 -rw-r--r--	root/root	usr/include/linux/netfilter_bridge/ebt_stp.h
 -rw-r--r--	root/root	usr/include/linux/netfilter_bridge/ebt_vlan.h
 -rw-r--r--	root/root	usr/include/linux/netfilter_bridge/ebtables.h
--rw-r--r--	root/root	usr/include/linux/netfilter_decnet.h
 -rw-r--r--	root/root	usr/include/linux/netfilter_ipv4.h
 drwxr-xr-x	root/root	usr/include/linux/netfilter_ipv4/
 -rw-r--r--	root/root	usr/include/linux/netfilter_ipv4/ip_tables.h
