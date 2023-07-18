@@ -2,7 +2,7 @@
 # URL:         https://github.com/zeppe-lin/pkgmk
 
 name=pkgmk
-version=5.42.2-4b85714
+version=5.42.3-a77d860
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgmk.conf"
