@@ -1,12 +1,12 @@
 # Description: Secure SHell server and client tools
-# URL:         http://www.openssh.org/
+# URL:         https://www.openssh.com/
 # Depends on:  libmd linux-pam openssl zlib
 
 name=openssh
-version=9.3p1
+version=9.3p2
 release=1
-source="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
-	rc.sshd  pam.sshd"
+source="https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
+	rc.sshd pam.sshd"
 
 build() {
 	sed -i 's/OSSH_CHECK_CFLAG_COMPILE(\[-pipe\])//' \
