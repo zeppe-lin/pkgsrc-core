@@ -2,17 +2,17 @@
 # URL:         http://www.gnu.org/software/libc/
 
 name=glibc
-version=2.36-5
+version=2.36-6
 release=1
 
 # Kernel is in the "system" packages directory that may be disabled by
 # user through pkgman.conf configuration.  If it is available, use
 # packages' already downloaded source, otherwise download the hardcoded
 # one.
-_kernver=$(pkgman printf %v --filter=linux || echo 5.4.232)
-
-source="https://ftp.gnu.org/gnu/$name/$name-${version%-*}.tar.xz
-	https://www.kernel.org/pub/linux/kernel/v5.x/linux-$_kernver.tar.xz
+source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
+	https://www.kernel.org/pub/linux/kernel/v5.x/linux-$(
+		pkgman printf %v --filter=linux || echo 5.4.249
+	).tar.xz
 	glibc-$version.patch
 	hosts resolv.conf nsswitch.conf host.conf ld.so.conf"
 
@@ -22,23 +22,24 @@ build() {
 	# redundant for core collection (it's placed in "system"
 	# packages directory).  The following "find" command simply
 	# does the same.
-	(cd linux-$_kernver
+	cd linux-*
 	make mrproper
 	#make headers_check
 	#make INSTALL_HDR_PATH=$PKG/usr headers_install
 	#chown root:root $PKG/usr
 	make headers
-	find usr/include -name \*.h -type f | while read -r _hdr; do
-		install -g root -o root -m 644 -D $_hdr $PKG/$_hdr
-	done)
+	find usr/include -name \*.h -type f | while read -r _HDR; do
+		install -g root -o root -m 0644 -D $_HDR $PKG/$_HDR
+	done
+	cd -
 
-	patch -p1 -d $name-${version%-*} -i $SRC/glibc-$version.patch
+	patch -p1 -d glibc-${version%-*} -i $SRC/glibc-$version.patch
 
 	mkdir build; cd build
 
 	export libc_cv_slibdir=/lib
 
-	../$name-${version%-*}/configure         \
+	../glibc-${version%-*}/configure         \
 		--prefix=/usr                    \
 		--libdir=/usr/lib                \
 		--libexecdir=/usr/lib            \
@@ -57,7 +58,7 @@ build() {
 	make install_root=$PKG install
 
 	install -m 0644 -Dt $PKG/etc/                    \
-		$SRC/$name-${version%-*}/nscd/nscd.conf  \
+		$SRC/glibc-${version%-*}/nscd/nscd.conf  \
 		$SRC/hosts                               \
 		$SRC/resolv.conf                         \
 		$SRC/nsswitch.conf                       \
@@ -73,20 +74,16 @@ build() {
 
 	# install required locales
 	install -d $PKG/usr/lib/locale
-	LC_ALL=C ./elf/ld.so --library-path . \
-		$PKG/usr/bin/localedef \
-		--force \
-		--quiet \
-		--inputfile=$SRC/$name-${version%-*}/localedata/locales/C \
-		--charmap=$SRC/$name-${version%-*}/localedata/charmaps/UTF-8 \
-		$PKG/usr/lib/locale/C.UTF-8 || true
-	#localedef -i POSIX -f UTF-8 $PKG/usr/lib/locale/C.UTF-8 \
-	#	2> /dev/null || true
+	LC_ALL=C ./elf/ld.so --library-path . $PKG/usr/bin/localedef   \
+	  --force --quiet                                              \
+	  --inputfile=$SRC/glibc-${version%-*}/localedata/locales/C    \
+	  --charmap=$SRC/glibc-${version%-*}/localedata/charmaps/UTF-8 \
+	  $PKG/usr/lib/locale/C.UTF-8 || true
 
 	# remove junk
 	rm -rf $PKG/usr/share/locale $PKG/usr/share/info
 	rm $PKG/usr/bin/tzselect $PKG/usr/bin/zdump $PKG/usr/sbin/zic
-	find $PKG -type f \(            \
+	find $PKG  -type f \(           \
 		   -name \*install.cmd  \
 		-o -name ".\install"    \
 		\) -delete

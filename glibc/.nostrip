@@ -1,2 +1,2 @@
-^lib/ld-.*\.so$
-^lib/libpthread-.*\.so$
+^lib/ld-.*\.so\.[0-9]$
+^lib/libpthread.*\.so\.[0-9]$
