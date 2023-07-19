@@ -1,9 +1,9 @@
 # Description: Cross-platform, open-source make system
-# URL:         https://cmake.org
+# URL:         https://cmake.org/
 # Depends on:  curl expat libarchive libmd lz4 ncurses
 
 name=cmake
-version=3.26.4
+version=3.27.0
 release=1
 source=https://cmake.org/files/v${version%.*}/$name-$version.tar.gz
 
@@ -16,6 +16,7 @@ build() {
 	cmake -S $name-$version -B build -G Ninja       \
 		-D CMAKE_INSTALL_PREFIX=/usr            \
 		-D CMAKE_BUILD_TYPE=Release             \
+		-D CMAKE_BUILD_LTO=ON                   \
 		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS"      \
 		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS"  \
 		-D USE_SYSTEM_CURL=True                 \
@@ -24,6 +25,7 @@ build() {
 		-D USE_SYSTEM_BZIP2=True                \
 		-D USE_SYSTEM_LIBARCHIVE=True           \
 		-D USE_SYSTEM_ZSTD=True                 \
+		-D USE_SYSTEM_CPPDAP=False              \
 		-D BUILD_TESTING=OFF                    \
 
 	ninja -C build -j ${JOBS:-1} -v
