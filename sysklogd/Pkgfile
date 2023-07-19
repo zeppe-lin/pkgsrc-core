@@ -3,11 +3,18 @@
 
 name=sysklogd
 version=2.5.0
-release=1
+release=2
 source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
+	https://github.com/troglobit/$name/commit/7e8243e.patch
+	https://github.com/troglobit/$name/commit/ba35121.patch
 	rotatelog cron.syslog syslog.conf rc.sysklogd"
 
 build() {
+	# 7e8243e: Minor, fix initializer: 0 vs NULL
+	# ba35121: Fix #64: sub-second faking of kernel timestamps
+	patch -d $name-$version -p1 -i $SRC/7e8243e.patch
+	patch -d $name-$version -p1 -i $SRC/ba35121.patch
+
 	mkdir build; cd build
 
 	# --without-logger: logger(1) is provided by sbase or util-linux
@@ -21,15 +28,17 @@ build() {
 	make V=1
 	make DESTDIR=$PKG install
 
-	install -m 0755 -D $SRC/rc.sysklogd $PKG/etc/rc.d/sysklogd
 	install -m 0755 -D $SRC/rotatelog   $PKG/usr/sbin/rotatelog
 	install -m 0755 -D $SRC/cron.syslog $PKG/etc/cron/weekly/syslog
+	install -m 0755 -D $SRC/rc.sysklogd $PKG/etc/rc.d/sysklogd
 	install -m 0644 -D $SRC/syslog.conf $PKG/etc/syslog.conf
 
 	install -d $PKG/var/log $PKG/etc/syslog.d
-	for _F in auth cron debug kernel mail messages; do
-		touch     $PKG/var/log/$_F
-		chmod 640 $PKG/var/log/$_F
+
+	local _FILE
+	for _FILE in auth cron debug kernel mail messages; do
+		touch     $PKG/var/log/$_FILE
+		chmod 640 $PKG/var/log/$_FILE
 	done
 
 	# remove junk
