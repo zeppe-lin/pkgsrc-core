@@ -1,2 +1,2 @@
-^lib32/ld-.*\.so$
-^lib32/libpthread-.*\.so$
+^lib32/ld-.*\.so\.[0-9]$
+^lib32/libpthread.*\.so\.[0-9]$
