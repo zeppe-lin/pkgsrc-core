@@ -49,9 +49,7 @@ check-deps-core:
 help:
 	@echo $(info ${USAGE})
 
-.PHONY: all help
-.PHONY: check-footprint check-urls
-.PHONY: footprint-sugid footprint-wowr footprint-dirs footprint-junk
+.PHONY: all help pkglint check-urls
 
 # vim: cc=72:tw=70
 # End of file.
