@@ -1,3 +1,5 @@
+PKGLINT   = /usr/bin/pkglint
+PKGMAN    = /usr/bin/pkgman
 PKGSRCDIR = ${CURDIR}/*
 
 define USAGE
@@ -24,19 +26,19 @@ check: pkglint check-urls check-deps
 # Check for invalid directories, junk files, SUID/SGID
 # files and directories, and world-writeable files and directories.
 pkglint:
-	@pkglint -ijsw $(shell find ${CURDIR} -mindepth 1 -maxdepth 1 \
-		-type d -not -name .git\*)
+	@${PKGLINT} -ijsw $(shell find ${CURDIR} \
+		-mindepth 1 -maxdepth 1 -type d -not -name .git\*)
 
 # Check for dead links.
 check-urls:
-	@pkglint -d $(shell find ${CURDIR} -mindepth 1 -maxdepth 1 \
-		-type d -not -name .git\*)
+	@${PKGLINT} -d $(shell find ${CURDIR} \
+		-mindepth 1 -maxdepth 1 -type d -not -name .git\*)
 
 # Check Pkgfiles for dependencies that are outside of this collection
 # and/or outside of collections that this collection depends on or are
 # completely missing.
 check-deps-core:
-	@pkgman --root= --no-std-config                              \
+	@${PKGMAN} --root= --no-std-config                           \
 		--config-append="pkgsrcdir ${CURDIR}"                \
 		list-orphans -v | grep '(required by .*)' >&2 || :
 
