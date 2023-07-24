@@ -1,9 +1,9 @@
 # Description: High performance build system
-# URL:         https://mesonbuild.com
+# URL:         https://mesonbuild.com/
 # Depends on:  py3-setuptools
 
 name=meson
-version=1.1.1
+version=1.2.0
 release=1
 source=https://github.com/mesonbuild/meson/releases/download/$version/$name-$version.tar.gz
 
@@ -13,7 +13,8 @@ build() {
 	export TMPDIR="$PKGMK_WORK_DIR"
 
 	/usr/bin/python3 setup.py build
-	/usr/bin/python3 setup.py install --prefix=/usr --root=$PKG -O2
+	/usr/bin/python3 setup.py install \
+		--skip-build --prefix=/usr --root=$PKG --optimize=2
 
 	# vim syntax highlight
 	install -d $PKG/usr/share/vim/vimfiles
