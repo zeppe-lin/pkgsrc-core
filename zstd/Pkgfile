@@ -1,15 +1,35 @@
 # Description: Real-time compression algorithm with high compression ratios
-# URL:         https://facebook.github.io/zstd
+# URL:         https://facebook.github.io/zstd/
 # Depends on:  lz4 xz zlib
 
 name=zstd
 version=1.5.5
-release=1
+release=2
 source=https://github.com/facebook/zstd/releases/download/v$version/zstd-$version.tar.gz
 
 build() {
-	cd $name-$version
+	export CFLAGS="$CFLAGS -ffat-lto-objects"
+	export CXXFLAGS="$CXXFLAGS -ffat-lto-objects"
 
-	make V=1 HAVE_THREAD=1
-	make V=1 PREFIX=/usr DESTDIR=$PKG install
+	# -D ZSTD_BUILD_CONTRIB=OFF:
+	#  * disable building pzstd utility which has no man page
+	#  * disable building documentation in /usr/share/doc
+	cmake -S $name-$version/build/cmake -B build -G Ninja  \
+		-D CMAKE_BUILD_TYPE=Release                    \
+		-D CMAKE_INSTALL_PREFIX=/usr                   \
+		-D CMAKE_INSTALL_LIBDIR=/usr/lib               \
+		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS"             \
+		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS"         \
+		-D ZSTD_ZLIB_SUPPORT=ON                        \
+		-D ZSTD_LZMA_SUPPORT=ON                        \
+		-D ZSTD_LZ4_SUPPORT=ON                         \
+		-D ZSTD_MULTITHREAD_SUPPORT=ON                 \
+		-D ZSTD_BUILD_STATIC=ON                        \
+		-D ZSTD_BUILD_CONTRIB=OFF                      \
+		-D ZSTD_BUILD_TESTS=OFF                        \
+		-D ZSTD_PROGRAMS_LINK_SHARED=ON                \
+
+	ninja -C build -j ${JOBS:-1} -v
+	DESTDIR=$PKG ninja -C build install
+	ln -s zstd.1 $PKG/usr/share/man/man1/zstdmt.1
 }
