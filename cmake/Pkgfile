@@ -3,17 +3,15 @@
 # Depends on:  curl expat libarchive libmd lz4 ncurses
 
 name=cmake
-version=3.27.0
+version=3.27.1
 release=1
-source=https://cmake.org/files/v${version%.*}/$name-$version.tar.gz
+source=https://cmake.org/files/v${version%.*}/cmake-$version.tar.gz
 
 build() {
-	sed -i $name-$version/Source/CMakeInstallDestinations.cmake -e \
+	sed -i cmake-$version/Source/CMakeInstallDestinations.cmake -e \
 		's|share/cmake-${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}|share/cmake|'
 
-	pkgman isinst ccache && PKGMK_CMAKE="$PKGMK_CMAKE --enable-ccache"
-
-	cmake -S $name-$version -B build -G Ninja       \
+	cmake -S cmake-$version -B build -G Ninja       \
 		-D CMAKE_INSTALL_PREFIX=/usr            \
 		-D CMAKE_BUILD_TYPE=Release             \
 		-D CMAKE_BUILD_LTO=ON                   \
@@ -27,15 +25,18 @@ build() {
 		-D USE_SYSTEM_ZSTD=True                 \
 		-D USE_SYSTEM_CPPDAP=False              \
 		-D BUILD_TESTING=OFF                    \
+		$(if pkgman isinst ccache 2>/dev/null; then
+			echo --enable-ccache
+		fi)
 
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
 
-	ln -sf $name $PKG/usr/share/$name-${version%.*}
+	ln -sf cmake $PKG/usr/share/cmake-${version%.*}
 
 	# remove junk
-	rm -r $PKG/usr/doc                            \
-	      $PKG/usr/share/cmake/Help               \
-	      $PKG/usr/share/emacs                    \
+	rm -r $PKG/usr/doc                              \
+	      $PKG/usr/share/cmake/Help                 \
+	      $PKG/usr/share/emacs                      \
 	      $PKG/usr/share/cmake/Modules/readme.txt
 }
