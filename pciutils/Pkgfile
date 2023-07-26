@@ -10,7 +10,7 @@ source=https://github.com/$name/$name/archive/v$version/$name-$version.tar.gz
 build() {
 	cd $name-$version
 
-	_CONF="V=1 ZLIB=no PREFIX=/usr DESTDIR=$PKG"
+	local _CONF="V=1 ZLIB=no PREFIX=/usr DESTDIR=$PKG"
 
 	make -j1 $_CONF OPT="$CFLAGS" SHARED=yes install install-lib
 	make clean
