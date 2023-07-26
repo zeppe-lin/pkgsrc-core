@@ -7,10 +7,8 @@ release=1
 source=https://github.com/michaelforney/$name/archive/$version/$name-$version.tar.gz
 
 build() {
-	cd $name-$version
-
-	make PREFIX=/usr
-	make PREFIX=/usr DESTDIR=$PKG install
+	make -C $name-$version PREFIX=/usr
+	make -C $name-$version PREFIX=/usr DESTDIR=$PKG install
 
 	ln -s samu $PKG/usr/bin/ninja
 }
