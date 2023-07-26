@@ -9,9 +9,7 @@ source="https://github.com/zeppe-lin/rc/archive/${version#*-}/rc-$version.tar.gz
 	rc.conf"
 
 build() {
-	cd rc-${version#*-}*
-
-	make DESTDIR=$PKG install
+	make -C rc-* DESTDIR=$PKG install
 
 	install -m 0644 -Dt $PKG/etc/ $SRC/inittab $SRC/rc.conf
 }
