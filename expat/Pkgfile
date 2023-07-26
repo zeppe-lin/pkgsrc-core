@@ -19,7 +19,7 @@ build() {
 	make DESTDIR=$PKG install
 
 	install -m 0644 -Dt $PKG/usr/share/man/man1/ \
-		../$name-$version/doc/xmlwf.1
+		../expat-$version/doc/xmlwf.1
 
 	# remove junk
 	rm -r $PKG/usr/share/doc
