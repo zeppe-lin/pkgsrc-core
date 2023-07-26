@@ -4,12 +4,12 @@
 name=gzip
 version=1.12
 release=1
-source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
+source=https://ftpmirror.gnu.org/gnu/gzip/gzip-$version.tar.xz
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure --prefix=/usr
+	../gzip-$version/configure --prefix=/usr
 
 	make V=1
 	make DESTDIR=$PKG install
