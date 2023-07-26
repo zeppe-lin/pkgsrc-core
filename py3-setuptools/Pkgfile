@@ -5,14 +5,15 @@
 name=py3-setuptools
 version=68.0.0
 release=1
-source=https://files.pythonhosted.org/packages/source/s/${name#*-}/${name#*-}-$version.tar.gz
+source=https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-$version.tar.gz
 
 build() {
-	cd ${name#*-}-$version
-
 	export TMPDIR="$PKGMK_WORK_DIR"
 	export SETUPTOOLS_INSTALL_WINDOWS_SPECIFIC_FILES=0
 
+	cd setuptools-$version
+
 	/usr/bin/python3 setup.py build
-	/usr/bin/python3 setup.py install --prefix=/usr --root=$PKG -O2
+	/usr/bin/python3 setup.py install \
+		--skip-build --prefix=/usr --root=$PKG --optimize=2
 }
