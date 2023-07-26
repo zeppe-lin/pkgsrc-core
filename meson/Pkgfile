@@ -5,12 +5,12 @@
 name=meson
 version=1.2.0
 release=1
-source=https://github.com/mesonbuild/meson/releases/download/$version/$name-$version.tar.gz
+source=https://github.com/mesonbuild/meson/releases/download/$version/meson-$version.tar.gz
 
 build() {
-	cd $name-$version
-
 	export TMPDIR="$PKGMK_WORK_DIR"
+
+	cd meson-$version
 
 	/usr/bin/python3 setup.py build
 	/usr/bin/python3 setup.py install \
@@ -18,8 +18,9 @@ build() {
 
 	# vim syntax highlight
 	install -d $PKG/usr/share/vim/vimfiles
-	for dir in data/syntax-highlighting/vim/*/; do
-		cp -r $dir $PKG/usr/share/vim/vimfiles
+	local _dir
+	for _dir in data/syntax-highlighting/vim/*/; do
+		cp -r $_dir $PKG/usr/share/vim/vimfiles
 	done
 
 	# bash-completion
