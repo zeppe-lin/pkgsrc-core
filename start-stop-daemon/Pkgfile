@@ -7,10 +7,8 @@ release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
-	cd $name-${version#*-}*
-
 	# pick up system flags
-	sed -i '/^\(C\|LD\)FLAGS/s/ = /+=/g' config.mk
+	sed -ri '/^(C|LD)FLAGS/s| = |+=|g' $name-*/config.mk
 
-	make PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG install
+	make -C $name-* PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG install
 }
