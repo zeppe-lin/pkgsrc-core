@@ -7,17 +7,15 @@ release=1
 source=https://distfiles.gentoo.org/distfiles/nasm-$version.tar.xz
 
 build() {
-	if pkgman isinst ccache; then
-		PKGMK_NASM="$PKGMK_NASM --enable-ccache"
-	fi
-
 	# build in separate dir is broken
 	cd $name-$version
 
 	./configure            \
 		--prefix=/usr  \
 		--enable-lto   \
-		$PKGMK_NASM    \
+		$(if pkgman isinst ccache 2>/dev/null; then
+			echo "--enable-ccache"
+		fi)
 
 	make V=1
 	make DESTDIR=$PKG install
