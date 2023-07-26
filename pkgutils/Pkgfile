@@ -9,12 +9,10 @@ source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.
 	pkgadd.conf"
 
 build() {
-	cd $name-${version#*-}*
-
 	# pick up system flags
-	sed -i '/^\(CXX\|LD\)FLAGS/s/ = /+=/g' config.mk
+	sed -ri '/^(CXX|LD)FLAGS/s| = |+=|g' $name-*/config.mk
 
-	make DESTDIR=$PKG install install-bashcomp
+	make -C $name-* DESTDIR=$PKG install install-bashcomp
 
 	install -m 0644 -Dt $PKG/etc/ $SRC/pkgadd.conf
 }
