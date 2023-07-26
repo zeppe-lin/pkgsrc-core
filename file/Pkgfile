@@ -1,16 +1,16 @@
 # Description: File type identification utility
-# URL:         http://www.darwinsys.com/file
+# URL:         https://www.darwinsys.com/file/
 # Depends on:  bzip2 zstd
 
 name=file
 version=5.44
 release=1
-source=ftp://ftp.astron.com/pub/file/$name-$version.tar.gz
+source=ftp://ftp.astron.com/pub/file/file-$version.tar.gz
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure   \
+	../file-$version/configure    \
 		--prefix=/usr         \
 		--enable-fsect-man5   \
 		--enable-static       \
