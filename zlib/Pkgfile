@@ -4,12 +4,12 @@
 name=zlib
 version=1.2.13
 release=1
-source=https://www.zlib.net/$name-$version.tar.gz
+source=https://www.zlib.net/zlib-$version.tar.gz
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure  \
+	../zlib-$version/configure   \
 		--prefix=/usr        \
 		--sharedlibdir=/lib  \
 
