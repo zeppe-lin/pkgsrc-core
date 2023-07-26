@@ -7,7 +7,5 @@ release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
-	cd $name-${version#*-}*
-
-	make PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG install
+	make -C $name-* PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG install
 }
