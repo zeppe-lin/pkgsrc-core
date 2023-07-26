@@ -8,9 +8,7 @@ source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.
 	rejmerge.conf"
 
 build() {
-	cd $name-${version#*-}*
-
-	make DESTDIR=$PKG install install-bashcomp
+	make -C $name-* DESTDIR=$PKG install install-bashcomp
 
 	install -m 0644 -Dt $PKG/etc/ $SRC/rejmerge.conf
 }
