@@ -4,20 +4,20 @@
 name=db
 version=5.3.28
 release=1
-source="https://download.oracle.com/berkeley-db/$name-$version.tar.gz
+source="https://download.oracle.com/berkeley-db/db-$version.tar.gz
 	help_building_with_clang.patch"
 
 build() {
-	patch -p1 -d $name-$version -i $SRC/help_building_with_clang.patch
+	patch -p1 -d db-$version -i $SRC/help_building_with_clang.patch
 
 	mkdir build; cd build
 
-	../$name-$version/dist/configure  \
-		--prefix=/usr             \
-		--enable-compat185        \
-		--enable-shared           \
-		--enable-static           \
-		--enable-cxx              \
+	../db-$version/dist/configure  \
+		--prefix=/usr          \
+		--enable-compat185     \
+		--enable-shared        \
+		--enable-static        \
+		--enable-cxx           \
 
 	make V=1
 	make DESTDIR=$PKG install
