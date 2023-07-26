@@ -4,12 +4,12 @@
 name=gperf
 version=3.1
 release=1
-source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
+source=https://ftpmirror.gnu.org/gnu/gperf/gperf-$version.tar.gz
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure  \
+	../gperf-$version/configure  \
 		--prefix=/usr        \
 
 	make V=1
