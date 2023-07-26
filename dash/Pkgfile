@@ -4,12 +4,12 @@
 name=dash
 version=0.5.12
 release=1
-source=http://gondor.apana.org.au/~herbert/dash/files/$name-$version.tar.gz
+source=http://gondor.apana.org.au/~herbert/dash/files/dash-$version.tar.gz
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure      \
+	../dash-$version/configure       \
 		--prefix=/               \
 		--mandir=/usr/share/man  \
 		--enable-static          \
