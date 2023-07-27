@@ -4,7 +4,7 @@
 
 name=pkgutils
 version=6.00-905e0e0
-release=1
+release=2
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
 
