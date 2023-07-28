@@ -3,7 +3,7 @@
 # Depends on:  bzip2 zstd
 
 name=file
-version=5.44
+version=5.45
 release=1
 source=ftp://ftp.astron.com/pub/file/file-$version.tar.gz
 
@@ -19,6 +19,6 @@ build() {
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# remove empty dir
 	rmdir $PKG/usr/share/man/man4
 }
