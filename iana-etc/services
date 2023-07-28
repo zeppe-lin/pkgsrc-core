@@ -4,7 +4,7 @@
 # See services(5) for more information.
 #
 
-# Last updated: 2023-04-05
+# Last updated: 2023-06-29
 # Source:       https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
 
 tcpmux              1/tcp
@@ -4077,6 +4077,8 @@ service-ctrl     2367/tcp
 service-ctrl     2367/udp
 opentable        2368/tcp
 opentable        2368/udp
+bif-p2p          2369/tcp
+bif-p2p          2369/udp
 l3-hbmon         2370/tcp
 l3-hbmon         2370/udp
 rda              2371/tcp
@@ -10763,6 +10765,7 @@ dsmcc-download  13821/udp
 dsmcc-ccp       13822/tcp
 dsmcc-ccp       13822/udp
 bmdss           13823/tcp
+a-trust-rpc     13832/tcp
 ucontrol        13894/tcp
 ucontrol        13894/udp
 dta-systems     13929/tcp
