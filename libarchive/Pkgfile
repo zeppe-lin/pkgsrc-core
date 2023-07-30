@@ -1,17 +1,18 @@
-# Description: Library to create and read several archive formats
+# Description: Multi-format archive and compression library
 # URL:         http://www.libarchive.org/
 # Depends on:  acl bzip2 expat openssl zstd
 
 name=libarchive
-version=3.7.0
+version=3.7.1
 release=1
 source=https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.xz
 
 build() {
 	export CFLAGS="$CFLAGS -DHAVE_LZMA_STREAM_ENCODER_MT=1"
 
-	# XML support is only needed for the xar format which we
-	# can live without.
+	# -D ENABLE_LIBXML2=OFF:
+	# XML support is only needed for the xar format which we can
+	# live without.
 	cmake -S $name-$version -B build -G Ninja   \
 		-D CMAKE_INSTALL_PREFIX=/usr        \
 		-D CMAKE_BUILD_TYPE=Release         \
