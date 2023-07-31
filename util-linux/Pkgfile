@@ -11,12 +11,12 @@ build() {
 	mkdir build; cd build
 
 	# --disable-chfn-chsh: provided by shadow
-	# --disable-login: provided by shadow
-	# --disable-runuser: unused
-	# --disable-su: provided by shadow
-	# --disable-sulogin: provided by sysvinit
-	# --disable-nologin: provided by shadow
-	# --enable-asciidoc: generate man pages, requires asciidoctor
+	# --disable-login:     provided by shadow
+	# --disable-runuser:   unused
+	# --disable-su:        provided by shadow
+	# --disable-sulogin:   provided by sysvinit
+	# --disable-nologin:   provided by shadow
+	# --enable-asciidoc:   generate man pages, requires asciidoctor
 	../$name-$version/configure   \
 		--prefix=/usr         \
 		--disable-chfn-chsh   \

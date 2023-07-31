@@ -12,6 +12,7 @@ build() {
 
 	local _CONF="V=1 ZLIB=no PREFIX=/usr DESTDIR=$PKG"
 
+	# parallel build is broken
 	make -j1 $_CONF OPT="$CFLAGS" SHARED=yes install install-lib
 	make clean
 	make -j1 $_CONF OPT="$CFLAGS" SHARED=no  install install-lib

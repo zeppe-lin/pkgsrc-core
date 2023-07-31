@@ -20,15 +20,15 @@ build() {
 	touch      $PKG/var/log/btmp
 	chmod 0600 $PKG/var/log/btmp
 
-	# provided by util-linux
+	# provided by util-linux package
 	cd $PKG/usr/bin
 	rm last   lastb   mesg   utmpdump   wall
 	cd $PKG/usr/share/man/man1
 	rm last.1 lastb.1 mesg.1 utmpdump.1 wall.1
 
-	# provided by procps
+	# provided by procps package
 	rm $PKG/bin/pidof    $PKG/usr/share/man/man8/pidof.8
 
-	# provided by e2fsprogs
+	# provided by e2fsprogs package
 	rm $PKG/sbin/logsave $PKG/usr/share/man/man8/logsave.8
 }

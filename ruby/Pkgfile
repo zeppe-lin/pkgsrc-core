@@ -1,5 +1,5 @@
 # Description: Ruby interpreter
-# URL:         https://www.ruby-lang.org
+# URL:         https://www.ruby-lang.org/
 # Depends on:  gdbm libffi libgmp libyaml openssl zlib
 
 name=ruby

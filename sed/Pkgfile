@@ -1,5 +1,5 @@
 # Description: Streams EDitor
-# URL:         http://www.gnu.org/software/sed//sed.html
+# URL:         https://www.gnu.org/software/sed/sed.html
 # Depends on:  acl
 
 name=sed

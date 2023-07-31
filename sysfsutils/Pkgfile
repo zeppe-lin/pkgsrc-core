@@ -1,5 +1,5 @@
 # Description: System Utilities Based on Sysfs
-# URL:         http://linux-diag.sourceforge.net/Sysfsutils.html
+# URL:         https://linux-diag.sourceforge.net/Sysfsutils.html
 
 name=sysfsutils
 version=2.1.1

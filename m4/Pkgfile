@@ -1,5 +1,5 @@
 # Description: GNU version of UNIX m4 macro language processor
-# URL:         http://www.seindal.dk/rene/gnu/
+# URL:         https://www.gnu.org/software/m4/
 
 name=m4
 version=1.4.19
@@ -17,5 +17,5 @@ build() {
 	make DESTDIR=$PKG install
 
 	# remove junk
-	rm -rf $PKG/usr/share/info
+	rm -r $PKG/usr/share/info
 }

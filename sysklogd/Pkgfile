@@ -17,7 +17,8 @@ build() {
 
 	mkdir build; cd build
 
-	# --without-logger: logger(1) is provided by sbase or util-linux
+	# --without-logger: logger(1) is provided by sbase or
+	#                   util-linux packages
 	../$name-$version/configure   \
 		--prefix=/usr         \
 		--sysconfdir=/etc     \
@@ -42,5 +43,5 @@ build() {
 	done
 
 	# remove junk
-	rm -r $PKG/usr/share/doc/
+	rm -r $PKG/usr/share/doc
 }

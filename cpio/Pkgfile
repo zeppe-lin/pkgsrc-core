@@ -1,5 +1,5 @@
 # Description: Copy files into or out of a cpio or tar archive
-# URL:         http://www.gnu.org/software/cpio/
+# URL:         https://www.gnu.org/software/cpio/
 
 name=cpio
 version=2.14
@@ -17,7 +17,7 @@ build() {
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove obsolete /usr/lib/rmt, /usr/share/man/man8/rmt.8
+	# remove obsolete /usr/lib/rmt and /usr/share/man/man8/rmt.8
 	rm -r $PKG/usr/lib $PKG/usr/share/man/man8
 
 	# remove junk

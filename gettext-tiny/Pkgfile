@@ -19,6 +19,6 @@ build() {
 	make prefix=/usr
 	make prefix=/usr DESTDIR=$PKG install
 
-	# already provided by glibc
+	# already provided by glibc package
 	rm $PKG/usr/include/libintl.h
 }

@@ -1,11 +1,11 @@
 # Description: Network utility for downloading content from the Web
-# URL:         http://www.gnu.org/software/wget/
+# URL:         https://www.gnu.org/software/wget/
 # Depends on:  libpcre libunistring openssl zlib
 
 name=wget
 version=1.21.3
 release=1
-source="http://ftp.gnu.org/gnu/$name/$name-$version.tar.lz
+source="http://ftp.gnu.org/gnu/wget/wget-$version.tar.lz
         wgetrc"
 
 build() {
@@ -13,22 +13,22 @@ build() {
 
 	mkdir build; cd build
 
-	../$name-$version/configure  \
-		--prefix=/usr        \
-		--sysconfdir=/etc    \
-		--disable-debug      \
-		--disable-iri        \
-		--disable-pcre2      \
-		--disable-nls        \
-		--with-ssl=openssl   \
-		--without-cares      \
-		--without-libpsl     \
-		--without-libuuid    \
+	../wget-$version/configure  \
+		--prefix=/usr       \
+		--sysconfdir=/etc   \
+		--disable-debug     \
+		--disable-iri       \
+		--disable-pcre2     \
+		--disable-nls       \
+		--with-ssl=openssl  \
+		--without-cares     \
+		--without-libpsl    \
+		--without-libuuid   \
 
 	make V=1
 	make DESTDIR=$PKG install 
 
-	# config
+	# config file
 	install -m 0644 -Dt $PKG/etc/ $SRC/wgetrc
 
 	# remove junk

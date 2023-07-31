@@ -9,13 +9,13 @@ source="https://github.com/vim/vim/archive/v$version/vim-$version.tar.gz
 	vimrc_Pkgfile.patch"
 
 build() {
-	# build in separate dir is broken!
+	# build in separate dir is broken
 	cd vim-$version/src
 
-	# remove custom flags
+	# remove custom cflags
 	sed -i '/^CFLAGS/d' Makefile
 
-	# automatically use sh syntax highlighting for Pkgfile
+	# automatically use sh syntax highlighting for Pkgfiles
 	patch -d .. -p1 -i $SRC/vimrc_Pkgfile.patch
 
 	./configure                       \

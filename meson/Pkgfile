@@ -18,9 +18,9 @@ build() {
 
 	# vim syntax highlight
 	install -d $PKG/usr/share/vim/vimfiles
-	local _dir
-	for _dir in data/syntax-highlighting/vim/*/; do
-		cp -r $_dir $PKG/usr/share/vim/vimfiles
+	local _DIR
+	for _DIR in data/syntax-highlighting/vim/*/; do
+		cp -r $_DIR $PKG/usr/share/vim/vimfiles
 	done
 
 	# bash-completion

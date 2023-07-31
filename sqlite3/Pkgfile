@@ -1,5 +1,5 @@
 # Description: SQL database engine
-# URL:         https://www.sqlite.org
+# URL:         https://www.sqlite.org/
 # Depends on:  readline zlib
 
 name=sqlite3

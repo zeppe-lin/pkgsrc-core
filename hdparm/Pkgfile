@@ -9,8 +9,8 @@ source=https://downloads.sourceforge.net/project/$name/$name/$name-$version.tar.
 build() {
 	cd $name-$version
 
-	# 1. remove default optimization flag
-	# 2. don't strip, pkgmk will do it
+	# remove default optimization flag, and skip stripping (pkgmk
+	# already doing it)
 	sed -e "/^CFLAGS :=/s/-O2//g"    \
 	    -e "/^STRIP/s/strip/true/g"  \
 	    -i Makefile

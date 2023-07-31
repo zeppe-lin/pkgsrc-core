@@ -1,5 +1,5 @@
 # Description: Library giving userland programs access to USB devices
-# URL:         https://libusb.info
+# URL:         https://libusb.info/
 # Depends on:  eudev
 
 name=libusb

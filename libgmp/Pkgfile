@@ -18,7 +18,7 @@ build() {
 	make V=1
 	make DESTDIR=$PKG install
 
-	mv $PKG/usr/include/gmp.h $PKG/usr/include/gmp-64.h
+	mv $PKG/usr/include/gmp.h  $PKG/usr/include/gmp-64.h
 	install -m 0644 $SRC/gmp.h $PKG/usr/include/
 
 	# remove junk

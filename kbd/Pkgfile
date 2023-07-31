@@ -25,9 +25,10 @@ build() {
 	# remove junk and obsolete files
 	cd $PKG/usr/share/kbd/keymaps &&
 		rm -r ppc mac atari amiga sun pine
-	for f in loadunimap mapscrn resizecons; do
-		rm $PKG/usr/bin/$f
-		rm $PKG/usr/share/man/man8/$f.8
+	local _FILE
+	for _FILE in loadunimap mapscrn resizecons; do
+		rm $PKG/usr/bin/$_FILE
+		rm $PKG/usr/share/man/man8/$_FILE.8
 	done
 	rm $PKG/usr/bin/psf*table $PKG/usr/share/man/man1/psf*table.1
 	find $PKG/usr/share/kbd/ -type f -name README\* -delete

@@ -1,5 +1,5 @@
 # Description: Standard Unix documentation system accessed using the man command
-# URL:         http://man-db.nongnu.org/
+# URL:         https://man-db.nongnu.org/
 # Depends on:  gdbm groff libpipeline zlib
 
 name=man-db

@@ -1,5 +1,5 @@
 # Description: System V Release 4.0 curses emulation library
-# URL:         http://www.gnu.org/software/ncurses/ncurses.html
+# URL:         https://invisible-island.net/ncurses/
 
 name=ncurses
 version=6.4
@@ -12,7 +12,7 @@ build() {
 	# do not link against test libraries
 	patch -d $name-$version -p1 -i $SRC/$name-6.3-libs.patch
 
-	# do not leak build-time LDFLAGS into the pkgconfig files:
+	# do not leak build-time LDFLAGS into the pkgconfig files
 	# https://bugs.archlinux.org/task/68523
 	patch -d $name-$version -p1 -i $SRC/$name-6.3-pkgconfig.patch
 
@@ -42,9 +42,10 @@ build() {
 		$PKG/lib/libncurses.so.${version%%.*}
 
 	# linker scripts and .pc files for non-wide ncurses
-	for LIB in ncurses form panel menu; do
-		echo "INPUT(-l${LIB}w)" > $PKG/usr/lib/lib${LIB}.so
-		ln -s ${LIB}w.pc  $PKG/usr/lib/pkgconfig/${LIB}.pc
+	local _LIB
+	for _LIB in ncurses form panel menu; do
+		echo "INPUT(-l${_LIB}w)" > $PKG/usr/lib/lib${_LIB}.so
+		ln -s ${_LIB}w.pc $PKG/usr/lib/pkgconfig/${_LIB}.pc
 	done
 
 	# linker script for the curses library

@@ -47,12 +47,13 @@ build() {
 	touch $PKG/var/log/faillog
 
 	# pam configs
-	for _F in pam.chfn pam.chsh pam.groupadd pam.groupdel   \
-		pam.groupmems pam.groupmod pam.login pam.passwd \
+	local _FILE
+	for _FILE in pam.chfn pam.chsh pam.groupadd pam.groupdel  \
+		pam.groupmems pam.groupmod pam.login pam.passwd   \
 		pam.su pam.useradd pam.userdel pam.usermod
 	do
 		install -o root -g root -m 0644 \
-			$SRC/$_F $PKG/etc/pam.d/${_F#pam.}
+			$SRC/$_FILE $PKG/etc/pam.d/${_FILE#pam.}
 	done
 
 	# remove junk & unused

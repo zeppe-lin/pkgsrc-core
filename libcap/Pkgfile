@@ -10,7 +10,7 @@ source=https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$name-
 build() {
 	cd $name-$version
 
-	# fix build flags
+	# fix build flags, remove default optimization flag
 	sed -i "/^CFLAGS/s/-O2/$CFLAGS/" Make.Rules 
 
 	make BUILD_COPTS=                     \

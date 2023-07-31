@@ -1,5 +1,5 @@
 # Description: Extremely fast compression algorithm
-# URL:         https://github.com/lz4/lz4/
+# URL:         https://lz4.org/
 
 name=lz4
 version=1.9.4

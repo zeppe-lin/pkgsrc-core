@@ -1,5 +1,5 @@
 # Description: GNU C Library (32bit)
-# URL:         http://www.gnu.org/software/libc
+# URL:         https://www.gnu.org/software/libc/
 
 name=glibc-32
 version=2.36-6

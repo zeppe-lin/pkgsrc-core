@@ -1,5 +1,5 @@
 # Description: Track the route taken by packets over an IP network
-# URL:         https://traceroute.sourceforge.net
+# URL:         https://traceroute.sourceforge.net/
 
 name=traceroute
 version=2.1.2
@@ -15,6 +15,6 @@ build() {
 	make CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS"
 	make prefix=/usr DESTDIR=$PKG install
 
-	ln -sf traceroute   $PKG/usr/bin/traceroute6
-	ln -sf traceroute.8 $PKG/usr/share/man/man8/traceroute6.8
+	ln -s traceroute   $PKG/usr/bin/traceroute6
+	ln -s traceroute.8 $PKG/usr/share/man/man8/traceroute6.8
 }

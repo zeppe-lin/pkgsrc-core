@@ -1,5 +1,5 @@
 # Description: Perl Compatible Regular Expressions
-# URL:         http://www.pcre.org
+# URL:         http://www.pcre.org/
 
 name=libpcre2
 version=10.42

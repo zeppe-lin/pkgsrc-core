@@ -27,5 +27,5 @@ build() {
 	install -m 0644 -D $SRC/pam.sudo $PKG/etc/pam.d/sudo
 
 	# remove junk
-	rm -r $PKG/usr/share/doc/ $PKG/run
+	rm -r $PKG/usr/share/doc $PKG/run
 }

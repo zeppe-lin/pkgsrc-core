@@ -1,15 +1,15 @@
 # Description: Show full path of commands
-# URL:         https://directory.fsf.org/wiki/Which
+# URL:         https://carlowood.github.io/which/
 
 name=which
 version=2.21
 release=1
-source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
+source=https://ftpmirror.gnu.org/gnu/which/which-$version.tar.gz
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure  \
+	../which-$version/configure  \
 		--prefix=/usr        \
 
 	make V=1

@@ -13,7 +13,7 @@ build() {
 
 	# -D ZSTD_BUILD_CONTRIB=OFF:
 	#  * disable building pzstd utility which has no man page
-	#  * disable building documentation in /usr/share/doc
+	#  * disable building /usr/share/doc files
 	cmake -S $name-$version/build/cmake -B build -G Ninja  \
 		-D CMAKE_BUILD_TYPE=Release                    \
 		-D CMAKE_INSTALL_PREFIX=/usr                   \

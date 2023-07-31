@@ -1,10 +1,10 @@
 # Description: Arbitrary precision decimal floating point arithmetic
-# URL:         http://www.bytereef.org/mpdecimal/index.html
+# URL:         https://www.bytereef.org/mpdecimal/index.html
 
 name=mpdecimal
 version=2.5.1
 release=1
-source=http://www.bytereef.org/software/$name/releases/$name-$version.tar.gz
+source=https://www.bytereef.org/software/$name/releases/$name-$version.tar.gz
 
 build() {
 	# build in separate dir is broken
@@ -18,6 +18,6 @@ build() {
 	make DESTDIR=$PKG install
 
 	# remove junk
-	rm -rf $PKG/usr/share/doc
+	rm -r $PKG/usr/share/doc
 	rmdir $PKG/usr/share
 }

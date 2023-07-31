@@ -3,6 +3,7 @@
 # /etc/rc.d/bridge: setting up bridge and tap iface for qemu
 #
 
+# ifaces
 DEV=eth0
 BRIDGE=br0
 TAP=tap0

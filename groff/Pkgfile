@@ -1,5 +1,5 @@
 # Description: GNU troff text-formatting system
-# URL:         http://www.gnu.org/software/groff/groff.html
+# URL:         https://www.gnu.org/software/groff/groff.html
 
 name=groff
 version=1.23.0
@@ -28,5 +28,5 @@ build() {
 	ln -s soelim  $PKG/usr/bin/zsoelim
 
 	# remove junk
-	rm -r $PKG/usr/share/doc/ $PKG/usr/share/info
+	rm -r $PKG/usr/share/doc $PKG/usr/share/info
 }

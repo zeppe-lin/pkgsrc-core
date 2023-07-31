@@ -10,7 +10,7 @@ source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	# --enable-no-install-program=uptime,kill,chcon,runcon,groups:
+	local _DISABLED_PROGS=uptime,kill,chcon,runcon,groups
 	# uptime - provided by procps
 	# kill   - provided by util-linux
 	# chcon  - unused
@@ -21,17 +21,18 @@ build() {
 		--libexecdir=/usr/lib                         \
 		--disable-assert                              \
 		--disable-nls                                 \
-		--enable-no-install-program=uptime,kill,chcon,runcon,groups
+		--enable-no-install-program=$_DISABLED_PROGS
 
 	make V=1
 	make DESTDIR=$PKG install
 
 	install -d $PKG/bin
-	for _F in cat chgrp chmod chown cp date dd df echo false ln  \
-		ls mkdir sleep mknod mv pwd readlink rm rmdir stty   \
-		sync touch true uname
+	local _FILE
+	for _FILE in cat chgrp chmod chown cp date dd df echo false \
+		ln ls mkdir sleep mknod mv pwd readlink rm rmdir    \
+		stty sync touch true uname
 	do
-		mv $PKG/usr/bin/$_F $PKG/bin/
+		mv $PKG/usr/bin/$_FILE $PKG/bin/
 	done
 
 	# remove junk

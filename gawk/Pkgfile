@@ -1,5 +1,5 @@
-# Description: GNU awk utility
-# URL:         http://www.gnu.org/software/gawk/gawk.html
+# Description: Pattern scanning and processing language
+# URL:         https://www.gnu.org/software/gawk/gawk.html
 # Depends on:  libmpfr ncurses
 
 name=gawk
@@ -23,6 +23,7 @@ build() {
 	make DESTDIR=$PKG install
 
 	# remove junk
-	rm -r $PKG/usr/etc/ $PKG/usr/share/info \
-		$PKG/usr/bin/gawk-$version
+	rm -r $PKG/usr/etc/        \
+	      $PKG/usr/share/info  \
+	      $PKG/usr/bin/gawk-$version
 }
