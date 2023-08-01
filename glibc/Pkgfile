@@ -11,7 +11,7 @@ release=1
 # one.
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 	https://www.kernel.org/pub/linux/kernel/v5.x/linux-$(
-		pkgman printf %v --filter=linux || echo 5.4.249
+		pkgman printf %v --filter=linux || echo 5.4.251
 	).tar.xz
 	glibc-$version.patch
 	hosts resolv.conf nsswitch.conf host.conf ld.so.conf"
