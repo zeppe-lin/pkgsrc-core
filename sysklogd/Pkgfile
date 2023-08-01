@@ -2,19 +2,12 @@
 # URL:         https://github.com/troglobit/sysklogd
 
 name=sysklogd
-version=2.5.0
-release=2
+version=2.5.1
+release=1
 source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
-	https://github.com/troglobit/$name/commit/7e8243e.patch
-	https://github.com/troglobit/$name/commit/ba35121.patch
 	rotatelog cron.syslog syslog.conf rc.sysklogd"
 
 build() {
-	# 7e8243e: Minor, fix initializer: 0 vs NULL
-	# ba35121: Fix #64: sub-second faking of kernel timestamps
-	patch -d $name-$version -p1 -i $SRC/7e8243e.patch
-	patch -d $name-$version -p1 -i $SRC/ba35121.patch
-
 	mkdir build; cd build
 
 	# --without-logger: logger(1) is provided by sbase or
