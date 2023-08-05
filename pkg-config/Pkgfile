@@ -1,5 +1,5 @@
 # Description: Managing library compile/link flags
-# URL:         http://pkgconfig.freedesktop.org/wiki/
+# URL:         https://www.freedesktop.org/wiki/Software/pkg-config/
 
 name=pkg-config
 version=0.29.2
@@ -9,6 +9,11 @@ source=https://pkgconfig.freedesktop.org/releases/$name-$version.tar.gz
 build() {
 	mkdir build; cd build
 
+	# --disable-host-tool: disable creation of an undesired hard
+	#   link to the pkg-config
+	# --with-internal-glib: allow pkg-config to use its internal
+	#   version of Glib because an internal version is not available
+	#   in core
 	../$name-$version/configure   \
 		--prefix=/usr         \
 		--disable-host-tool   \
