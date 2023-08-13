@@ -8,6 +8,10 @@ source="https://github.com/troglobit/$name/releases/download/v$version/$name-$ve
 	rotatelog cron.syslog syslog.conf rc.sysklogd"
 
 build() {
+	# fix sh!\t promotion
+	sed 's/(The shipped systemd unit file disables this by default.)//' \
+		-i $name-$version/man/syslogd.8
+
 	mkdir build; cd build
 
 	# --without-logger: logger(1) is provided by sbase or
