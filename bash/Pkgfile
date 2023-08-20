@@ -6,22 +6,10 @@ name=bash
 version=5.2.15
 release=1
 source="https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}.tar.gz
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-001
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-002
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-003
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-004
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-005
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-006
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-007
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-008
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-009
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-010
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-011
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-012
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-013
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-014
-	https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-015
-	profile"
+	profile
+	$(for _PV in $(seq 1 ${version##*.}); do printf \
+	"https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash52-%03d\n" $_PV
+	done)"
 
 build() {
 	mkdir build; cd build
