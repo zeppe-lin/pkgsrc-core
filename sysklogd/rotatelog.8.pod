@@ -1,0 +1,33 @@
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+rotatelog - rotate system log file
+
+=head1 SYNOPSIS
+
+B<rotatelog> I<logfile>
+
+=head1 DESCRIPTION
+
+B<rotatelog> is a very simple L<sh(1p)> script to rotate the system
+log file in F</var/log> directory.  If F</var/log/>I<logfile> exists,
+it will be copied to F</var/log/old/>I<logfile>.1 and nulled
+afterwards.  Meanwhile, if F</var/log/old/>I<logfile>.1 already
+exists, it will be copied to F</var/log/old/>I<logfile>.2 first.  If
+second logfile exists, it will be copied to the third and so on, up to
+9.  If F</var/log/old/>I<logfile>.9 exists, it will be nulled, and
+overwritten by eight copy.  This is a pretty simple scheme used by
+default in Zeppe-Lin system: just call this script as weekly
+L<crond(8)> task on every file in F</var/log> directory.
+
+If you need something else, see L<syslog.conf(5)> for log rotation, or
+L<logrotate(8)> for something more sophisticated.
+
+=head1 SEE ALSO
+
+L<syslog.conf(5)>, L<logrotate(8)>
+
+=cut
