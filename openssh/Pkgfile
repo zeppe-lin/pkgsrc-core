@@ -4,7 +4,7 @@
 
 name=openssh
 version=9.4p1
-release=1
+release=2
 source="https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
 	rc.sshd pam.sshd"
 
@@ -26,6 +26,7 @@ build() {
 		--with-privsep-user=nobody      \
 		--with-privsep-path=/var/empty  \
 		--with-xauth=/usr/bin/xauth     \
+		--without-zlib-version-check    \
 
 	make V=1
 	make DESTDIR=$PKG install
