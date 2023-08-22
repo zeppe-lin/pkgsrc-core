@@ -2,10 +2,10 @@
 # URL:         https://github.com/troglobit/sysklogd
 
 name=sysklogd
-version=2.5.1
+version=2.5.2
 release=1
 source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
-	rotatelog cron.syslog syslog.conf rc.sysklogd"
+	rotatelog rotatelog.8.pod cron.syslog syslog.conf rc.sysklogd"
 
 build() {
 	# fix sh!\t promotion
@@ -25,6 +25,10 @@ build() {
 
 	make V=1
 	make DESTDIR=$PKG install
+
+	# logrotate helper
+	pod2man -c ' ' -n rotatelog -r "rotatelog 0.1" -s 8 \
+		$SRC/rotatelog.8.pod > $PKG/usr/share/man/man8/rotatelog.8
 
 	install -m 0755 -D $SRC/rotatelog   $PKG/usr/sbin/rotatelog
 	install -m 0755 -D $SRC/cron.syslog $PKG/etc/cron/weekly/syslog
