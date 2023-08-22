@@ -4,12 +4,12 @@
 #
 
 if [ "$1" = "" ]; then
-	echo "usage : ${0##*/} <logfile>"
+	echo "usage: ${0##*/} <logfile>"
 	exit 1
 fi
 
 if [ ! -f "/var/log/$1" ]; then
-	echo "${0##*/}: /var/log/$1 not found" >&2
+	echo "${0##*/}: '/var/log/$1' not found" 1>&2
 	exit 1
 fi
 
