@@ -1,6 +1,6 @@
 # Description: Directory content manager
 # URL:         https://git-scm.com/
-# Depends on:  curl expat perl
+# Depends on:  curl expat libpcre2 perl
 
 name=git
 version=2.42.0
