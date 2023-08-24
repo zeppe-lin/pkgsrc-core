@@ -1,9 +1,9 @@
 # Description: Directory content manager
-# URL:         https://git-scm.com
+# URL:         https://git-scm.com/
 # Depends on:  curl expat perl
 
 name=git
-version=2.41.0
+version=2.42.0
 release=1
 source="https://www.kernel.org/pub/software/scm/git/git-$version.tar.xz
 	https://www.kernel.org/pub/software/scm/git/git-manpages-$version.tar.xz
@@ -29,23 +29,22 @@ build() {
 	EOF
 
 	./configure \
-		--prefix=/usr                           \
-		--libexecdir=/usr/lib                   \
-		ac_cv_lib_curl_curl_global_init=yes     \
-		ac_cv_snprintf_returns_bogus=no         \
-		ac_cv_fread_reads_directories=yes       \
+		--prefix=/usr                              \
+		--libexecdir=/usr/lib                      \
+		ac_cv_lib_curl_curl_global_init=yes        \
+		ac_cv_snprintf_returns_bogus=no            \
+		ac_cv_fread_reads_directories=yes          \
 
-	P5LIB=$(perl -MConfig -e 'print $Config::Config{installsitelib}')
-	make install \
-		prefix=/usr                             \
-		gitexecdir=/usr/lib/git-core            \
-		INSTALLSITEMAN3DIR=/usr/share/man/man3  \
-		perllibdir="$P5LIB"                     \
-		CFLAGS="$CFLAGS"                        \
-		DESTDIR=$PKG                            \
-		V=1                                     \
+	P5LIB=$(perl -MConfig -E 'say $Config{installsitelib}')
+	make install V=1 USE_LIBPCRE2=1 DESTDIR=$PKG       \
+		prefix=/usr                                \
+		gitexecdir=/usr/lib/git-core               \
+		perllibdir="$P5LIB"                        \
+		INSTALLSITEMAN3DIR=/usr/share/man/man3     \
+		CFLAGS="$CFLAGS -flto -ffat-lto-objects"   \
+		LDFLAGS="$LDFLAGS -flto -ffat-lto-objects" \
 
-	# bash-completion
+	# bash completion
 	install -m 0644 -D contrib/completion/git-completion.bash \
 		$PKG/usr/share/bash-completion/completions/git
 
@@ -60,6 +59,5 @@ build() {
 	install -m 0755 -D $SRC/rc.gitd $PKG/etc/rc.d/gitd
 
 	# remove junk
-	find $PKG \( -name perllocal.pod -o -name .packlist \) \
-		-delete
+	find $PKG \( -name perllocal.pod -o -name .packlist \) -delete
 }
