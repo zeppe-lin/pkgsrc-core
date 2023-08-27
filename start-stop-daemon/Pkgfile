@@ -2,13 +2,13 @@
 # URL:         https://github.com/zeppe-lin/start-stop-daemon
 
 name=start-stop-daemon
-version=1.21-0693b26
+version=1.21-9c37745
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
 	# pick up system flags
-	sed -ri '/^(C|LD)FLAGS/s| = |+=|g' $name-*/config.mk
+	sed -ri '/^(C|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
 
 	make -C $name-* PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG install
 }
