@@ -2,8 +2,11 @@
 # URL:         https://www.python.org/
 # Depends on:  bzip2 expat gdbm libffi libnsl mpdecimal openssl sqlite3 xz
 
+# 3.9.x LTS (05 Oct 2025)
+# https://devguide.python.org/versions/
+
 name=python3
-version=3.9.17 # 3.9.x LTS (05 Oct 2025)
+version=3.9.18
 release=1
 source="https://github.com/python/cpython/archive/v$version/python-$version.tar.gz
 	mpdecimal-2.5.1.patch"
