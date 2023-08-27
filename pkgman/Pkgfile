@@ -2,19 +2,20 @@
 # URL:         https://github.com/zeppe-lin/pkgman
 
 name=pkgman
-version=6.0.2-f4ecf55
+version=6.0.2-8951d38
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgman.conf"
 
 build() {
 	# pick up system flags
-	sed -ri '/^(CXX|LD)FLAGS/s| = |+=|g' $name-*/config.mk
+	sed -ri '/^(CXX|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
 
 	# it's safe to optimize
 	CXXFLAGS="$(echo "$CXXFLAGS" | sed 's/-O. /-Ofast /')"
 
 	make -C $name-* DESTDIR=$PKG install install-bashcomp
 
+	# config
 	install -m 0644 -Dt $PKG/etc/ $SRC/pkgman.conf
 }
