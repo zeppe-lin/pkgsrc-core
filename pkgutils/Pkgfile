@@ -3,16 +3,17 @@
 # Depends on:  libarchive
 
 name=pkgutils
-version=6.00-905e0e0
-release=2
+version=6.00-130e041
+release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
 
 build() {
 	# pick up system flags
-	sed -ri '/^(CXX|LD)FLAGS/s| = |+=|g' $name-*/config.mk
+	sed -ri '/^(CXX|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
 
 	make -C $name-* DESTDIR=$PKG install install-bashcomp
 
+	# config
 	install -m 0644 -Dt $PKG/etc/ $SRC/pkgadd.conf
 }
