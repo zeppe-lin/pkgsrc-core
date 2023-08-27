@@ -3,16 +3,16 @@
 # Depends on:  elfutils
 
 name=revdep
-version=3.1-a441b42
+version=3.1-415dcdd
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
 	# pick up system flags
-	sed -ri '/^(CXX|LD)FLAGS/s| = |+=|g' $name-*/config.mk
+	sed -ri '/^(CXX|LD)FLAGS/s| = |+=|g' $name*/config.mk
 
 	# it's safe to optimize
 	CXXFLAGS="$(echo $CXXFLAGS | sed 's/-O. /-Ofast /')"
 
-	make -C $name-* DESTDIR=$PKG install install-bashcomp
+	make -C $name* DESTDIR=$PKG install install-bashcomp
 }
