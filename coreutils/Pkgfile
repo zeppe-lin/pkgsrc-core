@@ -3,14 +3,16 @@
 # Depends on:  acl libcap libgmp
 
 name=coreutils
-version=9.3
+version=9.4
 release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
 build() {
+	local _DISABLED_PROGS=uptime,kill,chcon,runcon,groups
+	local _FILE
+
 	mkdir build; cd build
 
-	local _DISABLED_PROGS=uptime,kill,chcon,runcon,groups
 	# uptime - provided by procps
 	# kill   - provided by util-linux
 	# chcon  - unused
@@ -27,7 +29,6 @@ build() {
 	make DESTDIR=$PKG install
 
 	install -d $PKG/bin
-	local _FILE
 	for _FILE in cat chgrp chmod chown cp date dd df echo false \
 		ln ls mkdir sleep mknod mv pwd readlink rm rmdir    \
 		stty sync touch true uname
