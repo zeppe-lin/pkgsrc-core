@@ -3,7 +3,7 @@
 # Depends on:  ncurses
 
 name=procps
-version=4.0.3
+version=4.0.4
 release=1
 source="https://downloads.sourceforge.net/project/$name-ng/Production/$name-ng-$version.tar.xz
 	sysctl.conf"
@@ -14,6 +14,7 @@ build() {
 	mkdir build; cd build
 
 	# --disable-kill: /bin/kill is already provided by util-linux
+	# --disable-modern-top: "modern" top is messy
 	../$name-ng-$version/configure  \
 		--prefix=/usr           \
 		--sbindir=/sbin         \
