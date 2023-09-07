@@ -3,14 +3,12 @@
 # Depends on:  python3
 
 name=py3-setuptools
-version=68.1.2
+version=68.2.0
 release=1
 source=https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-$version.tar.gz
 
 build() {
-	# place setuptools' build artefacts into pkgmk's work dir
 	export TMPDIR="$PKGMK_WORK_DIR"
-
 	export SETUPTOOLS_INSTALL_WINDOWS_SPECIFIC_FILES=0
 
 	cd setuptools-$version
