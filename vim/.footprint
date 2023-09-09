@@ -480,6 +480,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/fetchmail.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/fish.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/flexwiki.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/forth.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/fortran.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/fpcmake.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/framescript.vim
@@ -608,6 +609,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/python.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/qb64.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/qf.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/qml.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/quake.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/quarto.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/r.vim
@@ -634,6 +636,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/scheme.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/screen.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/scss.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/sed.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/sensors.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/services.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/setserial.vim
@@ -644,6 +647,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slpconf.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slpreg.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slpspi.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/solidity.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/solution.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/spec.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/sql.vim
@@ -811,6 +815,7 @@ drwxr-xr-x	root/root	usr/share/vim/indent/
 -rw-r--r--	root/root	usr/share/vim/indent/pyrex.vim
 -rw-r--r--	root/root	usr/share/vim/indent/python.vim
 -rw-r--r--	root/root	usr/share/vim/indent/qb64.vim
+-rw-r--r--	root/root	usr/share/vim/indent/qml.vim
 -rw-r--r--	root/root	usr/share/vim/indent/quarto.vim
 -rw-r--r--	root/root	usr/share/vim/indent/r.vim
 -rw-r--r--	root/root	usr/share/vim/indent/racket.vim
@@ -912,6 +917,24 @@ drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/dvorak/plugin/
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editexisting/
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editexisting/plugin/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editexisting/plugin/editexisting.vim
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/.editorconfig
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/autoload/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/autoload/editorconfig.vim
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/autoload/editorconfig_core.vim
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/autoload/editorconfig_core/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/autoload/editorconfig_core/fnmatch.vim
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/autoload/editorconfig_core/handler.vim
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/autoload/editorconfig_core/ini.vim
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/autoload/editorconfig_core/util.vim
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/doc/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/doc/editorconfig.txt
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/doc/tags
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/ftdetect/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/ftdetect/editorconfig.vim
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/mkzip.sh
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/plugin/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/plugin/editorconfig.vim
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/justify/
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/justify/plugin/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/justify/plugin/justify.vim
@@ -1449,6 +1472,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/python2.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/qb64.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/qf.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/qml.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/quake.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/quarto.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/r.vim
@@ -1687,6 +1711,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/shared/
 -rw-r--r--	root/root	usr/share/vim/syntax/zig.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/zimbu.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/zir.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/zserio.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/zsh.vim
 drwxr-xr-x	root/root	usr/share/vim/tools/
 -rw-r--r--	root/root	usr/share/vim/tools/blink.c

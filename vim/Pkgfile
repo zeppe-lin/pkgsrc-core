@@ -3,7 +3,7 @@
 # Depends on:  acl ncurses
 
 name=vim
-version=9.0.1712
+version=9.0.1888
 release=1
 source="https://github.com/vim/vim/archive/v$version/vim-$version.tar.gz
 	vimrc_Pkgfile.patch"
@@ -61,8 +61,11 @@ build() {
 	ln -sf vim.1.gz  $PKG/usr/share/man/man1/gvim.1.gz
 
 	# remove junk
-	rm -r $PKG/usr/share/man/man?/vimtutor*  \
-	      $PKG/usr/share/vim/tutor/tutor.*   \
-	      $PKG/usr/share/vim/tutor/README*
+	rm -r $PKG/usr/share/man/man?/vimtutor* \
+	      $PKG/usr/share/vim/tutor/tutor.*  \
+	      $PKG/usr/share/vim/tutor/README*  \
+	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/CONTRIBUTORS \
+	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/LICENSE*     \
+	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/README*
 	find $PKG -type f -name README.txt -delete
 }
