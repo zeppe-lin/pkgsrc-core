@@ -2,12 +2,12 @@
 
 print_help() {
 	cat <<EOF
-Usage: ${0##*/} KEY CERT [HOSTNAME]
+Usage: ${0##*/} key crt [hostname]
 Create self-signed openssl certificates.
 
-  KEY       full path to openssl private key
-  CERT      full path to openssl certificate
-  HOSTNAME  host name of certificate
+  key       full path to openssl private key
+  crt       full path to openssl certificate
+  hostname  host name of certificate
 EOF
 }
 
@@ -29,7 +29,7 @@ main() {
 	printf "$INFO\n" | openssl $OPTS -out $CRT -keyout $KEY 2> /dev/null
 	
 	if [ $? -ne 0 ]; then
-		echo "Error: creating of certificate failed"
+		echo "Error: creating of certificate failed" 1>&2
 		exit 1
 	else
 		echo "SSL certificate $CRT with key $KEY for host $FQDN created"

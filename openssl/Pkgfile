@@ -2,10 +2,10 @@
 # URL:         https://www.openssl.org/
 
 name=openssl
-version=1.1.1v
+version=1.1.1w
 release=1
 source="https://www.openssl.org/source/$name-$version.tar.gz
-	mksslcert.sh mksslcert.1.pod"
+	mksslcert.sh mksslcert.1"
 
 build() {
 	mkdir build; cd build
@@ -23,10 +23,9 @@ build() {
 		install_sw install_ssldirs install_man_docs
 
 	# mksslcert
-	pod2man --nourls -r $version -c ' ' -n mksslcert -s 1 \
-		$SRC/mksslcert.1.pod > mksslcert.1
 	install -m 0755 -D $SRC/mksslcert.sh $PKG/usr/bin/mksslcert
-	install -m 0644 -D mksslcert.1 $PKG/usr/share/man/man1/mksslcert.1
+	install -m 0644 -D $SRC/mksslcert.1  \
+		$PKG/usr/share/man/man1/mksslcert.1
 
 	# remove junk
 	find $PKG -name "*fips*" | xargs rm -rf

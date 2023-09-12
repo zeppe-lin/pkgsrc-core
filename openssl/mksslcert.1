@@ -1,0 +1,51 @@
+.\" mksslcert(1) manual page
+.Dd September 12, 2023
+.Dt MKSSLCERT 1
+.Os
+.\" ==================================================================
+.Sh NAME
+.Nm mksslcert
+.Nd create self-signed openssl certificate
+.\" ==================================================================
+.Sh SYNOPSIS
+.Nm
+.Ar key
+.Ar crt
+.Op hostname
+.\" ==================================================================
+.Sh DESCRIPTION
+.Sy mksslcert
+creates self-signed
+.Xr openssl 1
+certificates based on the local hostname or the given one.
+Fallback to
+.Em localhost
+if not set.
+.Pp
+The options are as follows:
+.Bl -tag -width "hostname" -compact
+.It Ar key
+Full path to openssl private key.
+.It Ar crt
+Full path to openssl certificate.
+.It Ar hostname
+Host name of certificate.
+.El
+.\" ==================================================================
+.Sh AUTHORS
+The original
+.Nm
+script was written by
+.An Juergen Daubert Aq Mt jue@crux.nu
+as part of
+.Dq Sy core/openssl
+port.
+.Pp
+This implementation
+.Pq including this manual page
+was done by
+.An Alexandr Savca Aq Mt alexandr.savca89@gmail.com
+for
+.Lk http://zeppel.ink Zeppe-Lin .
+.\" vim: cc=72 tw=70
+.\" End of file.
