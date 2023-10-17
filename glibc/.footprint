@@ -1204,6 +1204,7 @@ drwxr-xr-x	root/root	usr/include/linux/usb/
 -rw-r--r--	root/root	usr/include/linux/vt.h
 -rw-r--r--	root/root	usr/include/linux/vtpm_proxy.h
 -rw-r--r--	root/root	usr/include/linux/wait.h
+-rw-r--r--	root/root	usr/include/linux/watch_queue.h
 -rw-r--r--	root/root	usr/include/linux/watchdog.h
 -rw-r--r--	root/root	usr/include/linux/wimax.h
 drwxr-xr-x	root/root	usr/include/linux/wimax/
