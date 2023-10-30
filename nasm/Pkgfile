@@ -1,10 +1,10 @@
 # Description: 80x86 assembler
-# URL:         https://www.nasm.us
+# URL:         https://www.nasm.us/
 
 name=nasm
 version=2.16.01
 release=1
-source=https://distfiles.gentoo.org/distfiles/nasm-$version.tar.xz
+source=https://www.nasm.us/pub/nasm/releasebuilds/$version/nasm-$version.tar.xz
 
 build() {
 	# build in separate dir is broken
