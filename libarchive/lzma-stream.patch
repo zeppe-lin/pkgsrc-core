@@ -1,0 +1,39 @@
+From 2ba3d92706384be14cd376734f3f7ebe5648591e Mon Sep 17 00:00:00 2001
+From: alice <alice@ayaya.dev>
+Date: Sat, 23 Sep 2023 01:57:55 +0200
+Subject: [PATCH] fix detection of lzma_stream_encoder_mt with Werror (#1965)
+
+the function is marked as warn-unused-result, so by default in a Debug
+build with cmake, when Werror is set, this fails to detect. do the same
+for autotools.
+---
+ CMakeLists.txt | 2 +-
+ configure.ac   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index dc1fcc72a..6211fd8ac 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -523,7 +523,7 @@ IF(LIBLZMA_FOUND)
+     "#include <lzma.h>\nint main() {return (int)lzma_version_number(); }"
+     "WITHOUT_LZMA_API_STATIC;LZMA_API_STATIC")
+   CHECK_C_SOURCE_COMPILES(
+-    "#include <lzma.h>\n#if LZMA_VERSION < 50020000\n#error unsupported\n#endif\nint main(void){lzma_stream_encoder_mt(0, 0); return 0;}"
++    "#include <lzma.h>\n#if LZMA_VERSION < 50020000\n#error unsupported\n#endif\nint main(void){int ignored __attribute__((unused)); ignored = lzma_stream_encoder_mt(0, 0); return 0;}"
+     HAVE_LZMA_STREAM_ENCODER_MT)
+   IF(NOT WITHOUT_LZMA_API_STATIC AND LZMA_API_STATIC)
+     ADD_DEFINITIONS(-DLZMA_API_STATIC)
+diff --git a/configure.ac b/configure.ac
+index 67235c5d9..79a13b53d 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -482,7 +482,7 @@ if test "x$with_lzma" != "xno"; then
+                        [#if LZMA_VERSION < 50020000]
+                        [#error unsupported]
+                        [#endif]],
+-                      [[lzma_stream_encoder_mt(0, 0);]])],
++                      [[int ignored __attribute__((unused)); ignored = lzma_stream_encoder_mt(0, 0);]])],
+       [ac_cv_lzma_has_mt=yes], [ac_cv_lzma_has_mt=no])])
+   if test "x$ac_cv_lzma_has_mt" != xno; then
+ 	  AC_DEFINE([HAVE_LZMA_STREAM_ENCODER_MT], [1], [Define to 1 if you have the `lzma_stream_encoder_mt' function.])
