@@ -3,11 +3,13 @@
 # Depends on:  py3-setuptools
 
 name=meson
-version=1.2.1
+version=1.2.3
 release=1
 source=https://github.com/mesonbuild/meson/releases/download/$version/meson-$version.tar.gz
 
 build() {
+	local dir
+
 	export TMPDIR="$PKGMK_WORK_DIR"
 
 	cd meson-$version
@@ -18,9 +20,8 @@ build() {
 
 	# vim syntax highlight
 	install -d $PKG/usr/share/vim/vimfiles
-	local _DIR
-	for _DIR in data/syntax-highlighting/vim/*/; do
-		cp -r $_DIR $PKG/usr/share/vim/vimfiles
+	for dir in data/syntax-highlighting/vim/*/; do
+		cp -r $dir $PKG/usr/share/vim/vimfiles
 	done
 
 	# bash-completion
