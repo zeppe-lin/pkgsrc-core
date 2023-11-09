@@ -2,11 +2,13 @@
 # URL:         https://git.kernel.org/?p=utils/kernel/kmod/kmod.git
 
 name=kmod
-version=30
+version=31
 release=1
 source=https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-$version.tar.xz
 
 build() {
+	local link
+
 	mkdir build; cd build
 
 	../kmod-$version/configure      \
@@ -27,9 +29,8 @@ build() {
 	install -m 0644 *.5 $PKG/usr/share/man/man5/
 	install -m 0644 *.8 $PKG/usr/share/man/man8/
 
-	local _LINK
-	for _LINK in modinfo depmod insmod lsmod rmmod modprobe; do
-		ln -s kmod $PKG/sbin/$_LINK
+	for link in modinfo depmod insmod lsmod rmmod modprobe; do
+		ln -s kmod $PKG/sbin/$link
 	done
 	ln -s ../sbin/kmod $PKG/bin/lsmod
 }
