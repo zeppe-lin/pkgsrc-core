@@ -3,7 +3,7 @@
 # Depends on:  eudev libusb usbids
 
 name=usbutils
-version=015
+version=017
 release=1
 source=https://github.com/gregkh/$name/archive/v$version/$name-$version.tar.gz
 #source=http://www.kernel.org/pub/linux/utils/usb/$name/$name-$version.tar.xz
