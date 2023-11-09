@@ -3,7 +3,7 @@
 # Depends on:  openssl zstd
 
 name=curl
-version=8.3.0
+version=8.4.0
 release=1
 source=https://curl.se/download/curl-$version.tar.xz
 
