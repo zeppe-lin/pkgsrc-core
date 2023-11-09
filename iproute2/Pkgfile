@@ -3,7 +3,7 @@
 # Depends on:  db elfutils iptables libbsd libcap libtirpc
 
 name=iproute2
-version=6.5.0
+version=6.6.0
 release=1
 source="https://www.kernel.org/pub/linux/utils/net/$name/$name-$version.tar.xz
 	rc.lo rc.net rc.bridge"
@@ -16,6 +16,7 @@ build() {
 	make CCOPTS="$CFLAGS" V=1
 	make DESTDIR=$PKG install
 
+	# services
 	install -m 0755 -D $SRC/rc.lo     $PKG/etc/rc.d/lo
 	install -m 0755 -D $SRC/rc.net    $PKG/etc/rc.d/net
 	install -m 0755 -D $SRC/rc.bridge $PKG/etc/rc.d/bridge
