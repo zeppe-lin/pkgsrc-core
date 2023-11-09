@@ -1,6 +1,6 @@
 # Description: Pattern scanning and processing language
 # URL:         https://www.gnu.org/software/gawk/gawk.html
-# Depends on:  libmpfr ncurses
+# Depends on:  libmpfr readline
 
 name=gawk
 version=5.3.0
