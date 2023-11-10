@@ -3,7 +3,7 @@
 # Depends on:  readline
 
 name=bash
-version=5.2.15
+version=5.2.21
 release=1
 source="https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}.tar.gz
 	profile
