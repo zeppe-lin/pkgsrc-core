@@ -3,15 +3,18 @@
 # Depends on:  ncurses
 
 name=readline
-version=8.2.1
+version=8.2.7
 release=1
 source="https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}.tar.gz
-	https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}-patches/${name}82-001
-	inputrc"
+	inputrc
+	$(for _PV in $(seq 1 ${version##*.}); do printf \
+	"https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}-patches/${name}82-%03d\n" $_PV
+	done)"
 
 build() {
-	for _F in $SRC/${name}8?-???; do
-		patch -d $name-${version%.*} -p0 -i $_F
+	ls
+	for P in $SRC/${name}8?-???; do
+		patch -d $name-${version%.*} -p0 -i $P
 	done
 
 	# remove RPATH from shared objects (FS#14366)
