@@ -4,13 +4,13 @@ drwxr-xr-x	root/root	usr/bin/
 drwxr-xr-x	root/root	usr/lib/
 drwxr-xr-x	root/root	usr/lib/python3.9/
 drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/
-drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/meson-1.2.3-py3.9.egg-info/
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.2.3-py3.9.egg-info/PKG-INFO
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.2.3-py3.9.egg-info/SOURCES.txt
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.2.3-py3.9.egg-info/dependency_links.txt
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.2.3-py3.9.egg-info/entry_points.txt
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.2.3-py3.9.egg-info/requires.txt
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.2.3-py3.9.egg-info/top_level.txt
+drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/meson-1.3.0-py3.9.egg-info/
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.3.0-py3.9.egg-info/PKG-INFO
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.3.0-py3.9.egg-info/SOURCES.txt
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.3.0-py3.9.egg-info/dependency_links.txt
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.3.0-py3.9.egg-info/entry_points.txt
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.3.0-py3.9.egg-info/requires.txt
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/meson-1.3.0-py3.9.egg-info/top_level.txt
 drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/__init__.py (EMPTY)
 drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/__pycache__/
@@ -133,7 +133,7 @@ drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/__pycach
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/backend/xcodebackend.py
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/build.py
 drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/cargo/
--rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/cargo/__init__.py (EMPTY)
+-rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/cargo/__init__.py
 drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/mesonbuild/cargo/__pycache__/
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/cargo/__pycache__/__init__.cpython-39.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.9/site-packages/mesonbuild/cargo/__pycache__/__init__.cpython-39.pyc
