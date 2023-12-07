@@ -3,7 +3,7 @@
 # Depends on:  util-linux
 
 name=libdevmapper
-version=2.03.22
+version=2.03.23
 release=1
 source=https://mirrors.kernel.org/sourceware/lvm2/LVM2.$version.tgz
 
@@ -13,21 +13,22 @@ build() {
 
 	mkdir build; cd build
 
-	CONFIG_SHELL=/bin/bash           \
-	../LVM2.$version/configure       \
-		--prefix=/usr            \
-		--exec-prefix=           \
-		--datarootdir=/usr       \
-		--with-udev-prefix=      \
-		--mandir=/usr/share/man  \
-		--disable-readline       \
-		--disable-selinux        \
-		--enable-pkgconfig       \
-		--enable-static_link     \
-		--enable-udev_sync       \
-		--enable-udev_rules      \
-		--with-user=root         \
-		--with-group=root        \
+	CONFIG_SHELL=/bin/bash                   \
+	../LVM2.$version/configure               \
+		--prefix=/usr                    \
+		--exec-prefix=                   \
+		--datarootdir=/usr               \
+		--with-libexecdir=/usr/lib/lvm2  \
+		--with-udev-prefix=              \
+		--mandir=/usr/share/man          \
+		--disable-readline               \
+		--disable-selinux                \
+		--enable-pkgconfig               \
+		--enable-static_link             \
+		--enable-udev_sync               \
+		--enable-udev_rules              \
+		--with-user=root                 \
+		--with-group=root                \
 
 	make V=1 device-mapper
 	make -j1 DESTDIR=$PKG install_device-mapper
