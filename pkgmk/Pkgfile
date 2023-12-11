@@ -2,7 +2,7 @@
 # URL:         https://github.com/zeppe-lin/pkgmk
 
 name=pkgmk
-version=5.43-bfe5f61
+version=5.43.1-c042b11
 release=1
 source="https://github.com/zeppe-lin/pkgmk/archive/${version#*-}/pkgmk-$version.tar.gz
 	pkgmk.conf"
@@ -11,6 +11,11 @@ build() {
 	make -C pkgmk-* DESTDIR=$PKG install install_bashcomp
 
 	# config file and directories required by it
+	# XXX to prevent the following errors from pkgadd(8):
+	# pkgadd: could not remove /var/cache/pkgmk/work/: Device or resource busy
+	# may be is better to add the following directories to filesystem package?
+	# It's no good action to add them to post-install since core packages must
+	# avoid them as much as possible.
 	install -m 0644 -Dt $PKG/etc/ $SRC/pkgmk.conf
 	install -o pkgmk -g pkgmk -d $PKG/var/cache/pkgmk
 	install -o pkgmk -g pkgmk -d $PKG/var/cache/pkgmk/sources
