@@ -3,7 +3,7 @@
 # Depends on:  libmd linux-pam openssl zlib
 
 name=openssh
-version=9.5p1
+version=9.6p1
 release=1
 source="https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
 	rc.sshd pam.sshd"
