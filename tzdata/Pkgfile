@@ -2,7 +2,7 @@
 # URL:         https://www.iana.org/time-zones
 
 name=tzdata
-version=2023c
+version=2023d
 release=1
 source=https://data.iana.org/time-zones/releases/tzdb-$version.tar.lz
 
