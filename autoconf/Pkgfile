@@ -2,7 +2,7 @@
 # URL:         http://www.gnu.org/software/autoconf
 
 name=autoconf
-version=2.71
+version=2.72
 release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
