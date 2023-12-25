@@ -4,7 +4,7 @@
 
 name=vim
 version=9.0.2160
-release=1
+release=2
 source="https://github.com/vim/vim/archive/v$version/vim-$version.tar.gz
 	vimrc_Pkgfile.patch"
 
@@ -66,6 +66,7 @@ build() {
 	      $PKG/usr/share/vim/tutor/README*  \
 	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/CONTRIBUTORS \
 	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/LICENSE*     \
-	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/README*
+	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/README*      \
+	      $PKG/usr/share/applications/gvim.desktop
 	find $PKG -type f -name README.txt -delete
 }
