@@ -3,15 +3,16 @@
 # Depends on:  readline
 
 name=inetutils
-version=2.4
-release=3
+version=2.5
+release=1
 source="http://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
 	inetd.conf rc.inetd"
 
 build() {
 	mkdir build; cd build
 
-	# --disable-traceroute: provided by traceroute package
+	# --disable-traceroute: better traceroute(8) utility is
+	#   provided by traceroute package
 	../$name-$version/configure      \
 		--prefix=/usr            \
 		--libexecdir=/usr/sbin   \
