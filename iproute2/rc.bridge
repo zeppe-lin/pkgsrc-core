@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh
 #
 # /etc/rc.d/bridge: setting up bridge and tap iface for qemu
 #
@@ -14,21 +14,23 @@ GROUP=username
 
 case $1 in
 start)
-	/sbin/ip link add name $BRIDGE type bridge
-	/sbin/ip link set $BRIDGE up
-	/sbin/ip addr flush dev $DEV
-	/sbin/ip link set $DEV up
-	/sbin/ip link set $DEV master $BRIDGE
-	/sbin/modprobe tun tap vhost
-	/sbin/ip tuntap add mode tap user $USER group $GROUP $TAP
-	/sbin/ip link set $TAP up
+	set -x
+	/sbin/ip link add name $BRIDGE type bridge &&
+	/sbin/ip link set $BRIDGE up &&
+	/sbin/ip addr flush dev $DEV &&
+	/sbin/ip link set $DEV up &&
+	/sbin/ip link set $DEV master $BRIDGE &&
+	/sbin/modprobe tun tap vhost &&
+	/sbin/ip tuntap add mode tap user $USER group $GROUP $TAP &&
+	/sbin/ip link set $TAP up &&
 	/sbin/ip link set $TAP master $BRIDGE
 	;;
 stop)
-	/sbin/ip link set $DEV nomaster
-	/sbin/ip link set $TAP nomaster
-	/sbin/ip link set $DEV down
-	/sbin/ip tuntap del mode tap $TAP
+	set -x
+	/sbin/ip link set $DEV nomaster &&
+	/sbin/ip link set $TAP nomaster &&
+	/sbin/ip link set $DEV down &&
+	/sbin/ip tuntap del mode tap $TAP &&
 	/sbin/ip link delete $BRIDGE type bridge
 	;;
 restart)
@@ -36,8 +38,11 @@ restart)
 	sleep 2
 	$0 start
 	;;
+status)
+	echo "status unavailable"
+	;;
 *)
-	echo "usage: $0 [start|stop|restart]"
+	echo "usage: $0 [start|stop|restart|status]"
 	;;
 esac
 
