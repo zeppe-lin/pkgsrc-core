@@ -1,9 +1,9 @@
 # Description: Provides useful functions found on BSD systems
-# URL:         https://libbsd.freedesktop.org
+# URL:         https://libbsd.freedesktop.org/wiki/
 # Depends on:  libmd
 
 name=libbsd
-version=0.11.7
+version=0.11.8
 release=1
 source=https://libbsd.freedesktop.org/releases/$name-$version.tar.xz
 
