@@ -3,7 +3,7 @@
 # Depends on:  libarchive
 
 name=pkgutils
-version=6.0.1-33275ce
+version=6.0.1-ec33656
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
