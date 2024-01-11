@@ -4,7 +4,7 @@
 
 name=vim
 version=9.0.2160
-release=2
+release=3
 source="https://github.com/vim/vim/archive/v$version/vim-$version.tar.gz
 	vimrc_Pkgfile.patch"
 
@@ -60,6 +60,10 @@ build() {
 	ln -sf vim.1.gz  $PKG/usr/share/man/man1/rview.1.gz
 	ln -sf vim.1.gz  $PKG/usr/share/man/man1/gvim.1.gz
 
+	# remove i18n entries and comments
+	sed -r -e '/\[.+\]=/d' -e '/^#/d' \
+	    -i $PKG/usr/share/applications/*.desktop
+
 	# remove junk
 	rm -r $PKG/usr/share/man/man?/vimtutor* \
 	      $PKG/usr/share/vim/tutor/tutor.*  \
@@ -67,6 +71,7 @@ build() {
 	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/CONTRIBUTORS \
 	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/LICENSE*     \
 	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/README*      \
-	      $PKG/usr/share/applications/gvim.desktop
+	      $PKG/usr/share/applications/gvim.desktop                   \
+	      $PKG/usr/share/icons
 	find $PKG -type f -name README.txt -delete
 }
