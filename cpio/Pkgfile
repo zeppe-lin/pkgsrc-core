@@ -2,7 +2,7 @@
 # URL:         https://www.gnu.org/software/cpio/
 
 name=cpio
-version=2.14
+version=2.15
 release=1
 source=https://ftpmirror.gnu.org/gnu/cpio/cpio-$version.tar.bz2
 
