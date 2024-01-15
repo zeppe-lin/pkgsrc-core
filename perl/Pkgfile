@@ -3,7 +3,7 @@
 # Depends on:  db gdbm libnsl
 
 name=perl
-version=5.34.1
+version=5.34.3
 release=1
 source=https://www.cpan.org/src/5.0/$name-$version.tar.xz
 
