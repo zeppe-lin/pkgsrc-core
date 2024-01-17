@@ -4,10 +4,15 @@
 
 name=libcap
 version=2.69
-release=1
-source=https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$name-$version.tar.xz
+release=2
+source="https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$name-$version.tar.xz
+	011eb766ce43f943a4138837bdf742ac31590d26.patch
+	ee20d385ef319f8523f1debc49f375c8eff257a6.patch"
 
 build() {
+	patch -d $name-$version -p1 -i $SRC/011eb766ce43f943a4138837bdf742ac31590d26.patch
+	patch -d $name-$version -p1 -i $SRC/ee20d385ef319f8523f1debc49f375c8eff257a6.patch
+
 	cd $name-$version
 
 	# fix build flags, remove default optimization flag
