@@ -1,6 +1,6 @@
 README iproute2
 
-KERNEL MODULE
+KERNEL MODULES
 
 	Add the following lines to /etc/rc.modules to autoload modules needed
 	by /etc/rc.d/bridge:
