@@ -1,3 +1,6 @@
+# This Makefile is for automated checking of this pkgsrc collection
+# for various programmatic and stylistic errors.
+
 PKGLINT   = /usr/bin/pkglint
 PKGMAN    = /usr/bin/pkgman
 PKGSRCDIR = ${CURDIR}/*
@@ -51,5 +54,5 @@ help:
 
 .PHONY: all help pkglint check-urls
 
-# vim: cc=72:tw=70
+# vim: cc=72 tw=70
 # End of file.
