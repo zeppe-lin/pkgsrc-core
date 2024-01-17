@@ -39,6 +39,10 @@ build() {
 	make V=1
 	make DESTDIR=$PKG install 
 
+	# fix man reference
+	sed -i 's|/usr/local/etc/wgetrc|/etc/wgetrc|g' \
+		$PKG/usr/share/man/man1/wget.1
+
 	# config file
 	install -m 0644 -Dt $PKG/etc/ $SRC/wgetrc
 
