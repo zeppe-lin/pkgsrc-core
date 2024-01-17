@@ -24,8 +24,8 @@ build() {
 	   $PKG/usr/share/man/man1/locate.1    \
 
 	# remove junk
-	rm -r $PKG/usr/libexec        \
-	      $PKG/usr/var            \
-	      $PKG/usr/share/info     \
-	      $PKG/usr/share/man/man5
+	rm $PKG/usr/libexec/frcode
+	rm $PKG/usr/share/man/man5/locatedb.5
+	rm -r $PKG/usr/share/info
+	rmdir $PKG/usr/var $PKG/usr/libexec $PKG/usr/share/man/man5
 }
