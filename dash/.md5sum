@@ -1,1 +1,14 @@
+b5da38403513d581e00112fc2792ed64  0004-SHELL-Disable-sh-c-command-sh-c-exec-command-optimiza.diff
+dbcafac7f90873520937cf8ae458d373  0007-Don-t-execute-binary-files-if-execve-returned-ENOEXE.diff
+bb561e0c91c87d6e8ba2210cf1723133  0008-Support-e-in-echo-and-printf-builtins.diff
+88a968abbc5a97a61ed0ee8f49fd5790  0009-dash-Fix-stack-overflow-from-infinite-recursion-in-s.patch
+25e66841886d95cd9cda8a4fea7a56c4  0010-exec-Check-executable-bit-when-searching-path.patch
+391d727653cc8000d6a5381467e21111  0012-enable-large-file-support-when-available.patch
+b5c3f5995ab100449407a053b6719e14  0013-enable-hardening-for-helpers.patch
+db987a5ce724d178fd7b69465c307036  0017-histedit-Fix-infinite-loop-when-using-fc--s.patch
+7f48b5a07786e50e10ddca3cfc5ee836  0018-builtin-Don-t-early-exit-when-first-hash-r-is-found.patch
+4739f2029c1ecfb9effce4c63607d088  0019-builtin-Actually-accept-ulimit-r.patch
+3cfaf95f5a05c58101e63d8d015e3b71  0020-Update-manpages.patch
+f9d032022ef3a6b6397f2d3f85033eeb  9001-Add-privmode-Part-1.diff
+62e592087b9440d37194598a39c740d7  9002-Add-privmode-Part-2.diff
 57222b768b84003ea4b801e5d5e0e52b  dash-0.5.12.tar.gz

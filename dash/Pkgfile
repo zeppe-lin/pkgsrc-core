@@ -1,12 +1,30 @@
-# Description: The Almquist shell, a POSIX-compliant /bin/sh implementation
+# Description: Debian Almquist shell, POSIX-compliant
 # URL:         http://gondor.apana.org.au/~herbert/dash/
 
 name=dash
 version=0.5.12
-release=1
-source=http://gondor.apana.org.au/~herbert/dash/files/dash-$version.tar.gz
+release=2
+source="http://gondor.apana.org.au/~herbert/dash/files/dash-$version.tar.gz
+	0004-SHELL-Disable-sh-c-command-sh-c-exec-command-optimiza.diff
+	0007-Don-t-execute-binary-files-if-execve-returned-ENOEXE.diff
+	0008-Support-e-in-echo-and-printf-builtins.diff
+	0009-dash-Fix-stack-overflow-from-infinite-recursion-in-s.patch
+	0010-exec-Check-executable-bit-when-searching-path.patch
+	0012-enable-large-file-support-when-available.patch
+	0013-enable-hardening-for-helpers.patch
+	0017-histedit-Fix-infinite-loop-when-using-fc--s.patch
+	0018-builtin-Don-t-early-exit-when-first-hash-r-is-found.patch
+	0019-builtin-Actually-accept-ulimit-r.patch
+	0020-Update-manpages.patch
+	9001-Add-privmode-Part-1.diff
+	9002-Add-privmode-Part-2.diff"
 
 build() {
+	# debian patches
+	for p in $SRC/*.patch $SRC/*.diff; do
+		patch -d dash-$version -p1 -i $p
+	done
+
 	mkdir build; cd build
 
 	../dash-$version/configure       \

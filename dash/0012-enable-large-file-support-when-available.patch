@@ -1,0 +1,21 @@
+From: You-Sheng Yang <vicamo@gmail.com>
+Date: Wed, 12 Dec 2018 14:02:40 +0800
+Subject: enable large file support when available
+
+---
+ configure.ac | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/configure.ac b/configure.ac
+index 52aa429..648f3d4 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -10,6 +10,8 @@ dnl Checks for programs.
+ AC_PROG_CC
+ AC_USE_SYSTEM_EXTENSIONS
+ 
++AC_SYS_LARGEFILE
++
+ AC_MSG_CHECKING([for build system compiler])
+ if test "$cross_compiling" = yes; then
+ 	CC_FOR_BUILD=${CC_FOR_BUILD-cc}

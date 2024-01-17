@@ -1,0 +1,26 @@
+From: 宇砂ワシ <usawashi16@yahoo.co.jp>
+Date: Sat, 27 Apr 2019 22:46:34 +0900
+Subject: histedit: Fix infinite loop when using 'fc -s'
+
+When compiling with libedit, he.num may somehow overrun last, causing
+an infinite loop when using fc -s.
+This mild change to the check plugs it.
+
+Bug-Debian: https://bugs.debian.org/928072
+---
+ src/histedit.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/histedit.c b/src/histedit.c
+index f5c90ab..aaac1c2 100644
+--- a/src/histedit.c
++++ b/src/histedit.c
+@@ -388,7 +388,7 @@ histcmd(int argc, char **argv)
+ 		 * At end?  (if we were to lose last, we'd sure be
+ 		 * messed up).
+ 		 */
+-		if (he.num == last)
++		if (he.num >= last)
+ 			break;
+ 	}
+ 	if (editor) {
