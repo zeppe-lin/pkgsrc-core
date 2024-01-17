@@ -1,4 +1,4 @@
-# Description: Standard Unix documentation system accessed using the man command
+# Description: Tools for searching and reading manual pages
 # URL:         https://man-db.nongnu.org/
 # Depends on:  gdbm groff libpipeline zlib
 
