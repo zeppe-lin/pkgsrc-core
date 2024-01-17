@@ -30,5 +30,5 @@ c6:2:respawn:/sbin/agetty 38400 tty6 linux
 ca::ctrlaltdel:/sbin/shutdown -t3 -r now
 pf::powerfail:/sbin/shutdown -t3 -h now
 
-# vim: nospell
+# vim: set ft=inittab nospell
 # End of file.
