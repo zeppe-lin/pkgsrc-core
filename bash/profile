@@ -8,8 +8,6 @@ fi
 
 export PATH="/sbin:/usr/sbin:/bin:/usr/bin"
 export LESS="-RX"
-export PS1="\[\033[1m\]\\$ \[\033[0m\]"
-export PS2="\[\033[1m\]> \[\033[0m\]"
 
 umask 022
 

@@ -4,7 +4,7 @@
 
 name=bash
 version=5.2.26
-release=1
+release=2
 source="https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}.tar.gz
 	profile
 	$(for _PV in $(seq 1 ${version##*.}); do printf \
