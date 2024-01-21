@@ -1,6 +1,6 @@
 52b2544aedf0ed90007ce936b63aa975  cron.syslog
-7083582fbd12043adbef3c3368470fd0  rc.sysklogd
+06705a148bc033eac191069e969f052f  rc.sysklogd
 576f95e96bcafa77d7b3d0553b94a682  rotatelog
-54edfffb4099859b6503e4a2b52b2b81  rotatelog.8.pod
+5c719bfb276a38769c038b658f868949  rotatelog.8
 8d731aa7215a899f1070029c9794b423  sysklogd-2.5.2.tar.gz
-db08d2611d892d1c50373aa2d1ee14f1  syslog.conf
+7b3c5a3ba4a1f8d111e1520ae01e6725  syslog.conf

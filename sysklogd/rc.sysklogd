@@ -6,7 +6,7 @@
 SSD=/sbin/start-stop-daemon
 PROG=/usr/sbin/syslogd
 PID=/run/syslogd.pid
-OPTS=-ss
+OPTS="-ss"
 
 case $1 in
 start)
@@ -19,6 +19,9 @@ restart)
 	$0 stop
 	$0 start
 	;;
+reload)
+	/bin/kill -HUP $PID
+	;;
 status)
 	$SSD --status --pidfile $PID
 	case $? in
@@ -29,7 +32,7 @@ status)
 	esac
 	;;
 *)
-	echo "usage: $0 [start|stop|restart|status]"
+	echo "usage: $0 [start|stop|restart|reload|status]"
 	;;
 esac
 

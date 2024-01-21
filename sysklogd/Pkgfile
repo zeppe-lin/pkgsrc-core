@@ -3,9 +3,9 @@
 
 name=sysklogd
 version=2.5.2
-release=1
+release=2
 source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
-	rotatelog rotatelog.8.pod cron.syslog syslog.conf rc.sysklogd"
+	rotatelog rotatelog.8 cron.syslog syslog.conf rc.sysklogd"
 
 build() {
 	# fix sh!\t promotion
@@ -27,20 +27,18 @@ build() {
 	make DESTDIR=$PKG install
 
 	# logrotate helper
-	pod2man -c ' ' -n rotatelog -r "rotatelog 0.1" -s 8 \
-		$SRC/rotatelog.8.pod > $PKG/usr/share/man/man8/rotatelog.8
+	install -m 0755 -Dt $PKG/usr/sbin/            $SRC/rotatelog
+	install -m 0644 -Dt $PKG/usr/share/man/man8/  $SRC/rotatelog.8
 
-	install -m 0755 -D $SRC/rotatelog   $PKG/usr/sbin/rotatelog
 	install -m 0755 -D $SRC/cron.syslog $PKG/etc/cron/weekly/syslog
 	install -m 0755 -D $SRC/rc.sysklogd $PKG/etc/rc.d/sysklogd
 	install -m 0644 -D $SRC/syslog.conf $PKG/etc/syslog.conf
 
 	install -d $PKG/var/log $PKG/etc/syslog.d
 
-	local _FILE
-	for _FILE in auth cron debug kernel mail messages; do
-		touch     $PKG/var/log/$_FILE
-		chmod 640 $PKG/var/log/$_FILE
+	for f in auth cron debug kernel mail messages; do
+		touch     $PKG/var/log/$f
+		chmod 640 $PKG/var/log/$f
 	done
 
 	# remove junk
