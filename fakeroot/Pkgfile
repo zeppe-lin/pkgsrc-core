@@ -4,7 +4,7 @@
 name=fakeroot
 version=1.33
 release=1
-source=https://deb.debian.org/debian/pool/main/f/$name/${name}_${version}.orig.tar.gz
+source=https://deb.debian.org/debian/pool/main/f/$name/${name}_$version.orig.tar.gz
 
 build() {
 	sed -i '/^SUBDIRS/d' $name-$version/doc/Makefile.am
