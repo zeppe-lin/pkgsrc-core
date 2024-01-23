@@ -1,0 +1,17 @@
+diff --git a/rejmerge b/rejmerge
+index e875d09..e83af74 100755
+--- a/rejmerge
++++ b/rejmerge
+@@ -350,11 +350,7 @@ main() {
+ 	done
+ 
+ 	# Remove empty directories.
+-	find "$_REJECTED_DIR" -depth -type d | while read -r _DIR; do
+-		if [ "$_DIR" != "$_REJECTED_DIR" ]; then
+-			rmdir "$_DIR" >/dev/null 2>&1
+-		fi
+-	done
++	find "$_REJECTED_DIR" -depth -mindepth 1 -empty -type d -delete >/dev/null 2>&1
+ 
+ 	if [ "$REJECTED_FILES_FOUND" = "no" ]; then
+ 		echo "Nothing to merge"

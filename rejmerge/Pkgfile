@@ -3,11 +3,15 @@
 
 name=rejmerge
 version=5.45-cf65081
-release=1
+release=2
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
-	rejmerge.conf"
+	rejmerge.conf
+	gnufind.patch"
 
 build() {
+	# https://github.com/zeppe-lin/rejmerge/issues/8
+	patch -d $name-* -p1 -i $SRC/gnufind.patch
+
 	make -C $name-* DESTDIR=$PKG install install_bashcomp
 
 	# config
