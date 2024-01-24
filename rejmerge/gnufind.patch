@@ -6,12 +6,12 @@ index e875d09..e83af74 100755
  	done
  
  	# Remove empty directories.
--	find "$_REJECTED_DIR" -depth -type d | while read -r _DIR; do
--		if [ "$_DIR" != "$_REJECTED_DIR" ]; then
--			rmdir "$_DIR" >/dev/null 2>&1
+-	find "$_rejected_dir" -depth -type d | while read -r _dir; do
+-		if [ "$_dir" != "$_rejected_dir" ]; then
+-			rmdir "$_dir" >/dev/null 2>&1
 -		fi
 -	done
-+	find "$_REJECTED_DIR" -depth -mindepth 1 -empty -type d -delete >/dev/null 2>&1
++	find "$_rejected_dir" -depth -mindepth 1 -empty -type d -delete >/dev/null 2>&1
  
  	if [ "$REJECTED_FILES_FOUND" = "no" ]; then
  		echo "Nothing to merge"

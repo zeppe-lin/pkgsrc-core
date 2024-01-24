@@ -2,8 +2,8 @@
 # URL:         https://github.com/zeppe-lin/rejmerge
 
 name=rejmerge
-version=5.45-cf65081
-release=2
+version=5.45-bc32339
+release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	rejmerge.conf
 	gnufind.patch"
