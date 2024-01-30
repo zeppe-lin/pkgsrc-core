@@ -1,6 +1,8 @@
 #!/bin/sh -
 #@ Update protocols and services from IANA.
-#@ Taken from ArchLinux script written by Gaetan Bisson.  Adjusted for CRUX.
+#@ Taken from ArchLinux script written by Gaetan Bisson.
+#@ Adjusted for CRUX by Juergen Daubert <jue@jue.li>.
+#@ Adjusted for Zeppe-Lin by Alexandr Savca <alexandr.savca89@gmail.com>.
 
 awk=awk
 curl=curl
