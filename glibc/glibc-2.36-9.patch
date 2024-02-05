@@ -1,9 +1,26 @@
-From: H.J. Lu <hjl.tools@gmail.com>
-Date: Sat, 23 Dec 2023 14:27:50 +0000 (-0800)
-Subject: NEWS: Mention bug fixes for 29039/30745/30843
+From: Daniel Cederman <cederman@gaisler.com>
+Date: Tue, 16 Jan 2024 08:31:41 +0000 (+0100)
+Subject: sparc: Remove unwind information from signal return stubs [BZ #31244]
 X-Git-Url: https://sourceware.org/git/?p=glibc.git;a=commitdiff_plain;hp=refs%2Ftags%2Fglibc-2.36;h=refs%2Fheads%2Frelease%2F2.36%2Fmaster
 
-NEWS: Mention bug fixes for 29039/30745/30843
+sparc: Remove unwind information from signal return stubs [BZ #31244]
+
+The functions were previously written in C, but were not compiled
+with unwind information. The ENTRY/END macros includes .cfi_startproc
+and .cfi_endproc which adds unwind information. This caused the
+tests cleanup-8 and cleanup-10 in the GCC testsuite to fail.
+This patch adds a version of the ENTRY/END macros without the
+CFI instructions that can be used instead.
+
+sigaction registers a restorer address that is located two instructions
+before the stub function. This patch adds a two instruction padding to
+avoid that the unwinder accesses the unwind information from the function
+that the linker has placed right before it in memory. This fixes an issue
+with pthread_cancel that caused tst-mutex8-static (and other tests) to fail.
+
+Signed-off-by: Daniel Cederman <cederman@gaisler.com>
+Reviewed-by: Adhemerval Zanella  <adhemerval.zanella@linaro.org>
+(cherry picked from commit 7bd06985c0a143cdcba2762bfe020e53514a53de)
 ---
 
 diff --git a/Makeconfig b/Makeconfig
@@ -2365,6 +2382,32 @@ index 8be2d220f8..4a4d5aa6b2 100644
    const unsigned char *cp;
    const unsigned char *usrc;
  
+diff --git a/misc/Makefile b/misc/Makefile
+index ba8232a0e9..66e9ded8f9 100644
+--- a/misc/Makefile
++++ b/misc/Makefile
+@@ -115,7 +115,10 @@ tests-special += $(objpfx)tst-error1-mem.out \
+   $(objpfx)tst-allocate_once-mem.out
+ endif
+ 
+-tests-container := tst-syslog
++tests-container := \
++  tst-syslog \
++  tst-syslog-long-progname \
++  # tests-container
+ 
+ CFLAGS-select.c += -fexceptions -fasynchronous-unwind-tables
+ CFLAGS-tsearch.c += $(uses-callbacks)
+@@ -175,6 +178,9 @@ $(objpfx)tst-allocate_once-mem.out: $(objpfx)tst-allocate_once.out
+ 	$(common-objpfx)malloc/mtrace $(objpfx)tst-allocate_once.mtrace > $@; \
+ 	$(evaluate-test)
+ 
++tst-syslog-long-progname-ENV = GLIBC_TUNABLES=glibc.malloc.check=3 \
++			       LD_PRELOAD=libc_malloc_debug.so.0
++
+ $(objpfx)tst-select: $(librt)
+ $(objpfx)tst-select-time64: $(librt)
+ $(objpfx)tst-pselect: $(librt)
 diff --git a/misc/bits/syslog.h b/misc/bits/syslog.h
 index fd30dd3114..916d2b6f12 100644
 --- a/misc/bits/syslog.h
@@ -2454,10 +2497,30 @@ index d933fea104..3888153ed2 100644
  
  __END_DECLS
 diff --git a/misc/syslog.c b/misc/syslog.c
-index 554089bfc4..f67d4b58a4 100644
+index 554089bfc4..9336036666 100644
 --- a/misc/syslog.c
 +++ b/misc/syslog.c
-@@ -167,7 +167,7 @@ __vsyslog_internal (int pri, const char *fmt, va_list ap,
+@@ -41,6 +41,7 @@ static char sccsid[] = "@(#)syslog.c	8.4 (Berkeley) 3/18/94";
+ #include <sys/uio.h>
+ #include <sys/un.h>
+ #include <syslog.h>
++#include <limits.h>
+ 
+ static int LogType = SOCK_DGRAM;	/* type of socket connection */
+ static int LogFile = -1;		/* fd for log */
+@@ -122,8 +123,9 @@ __vsyslog_internal (int pri, const char *fmt, va_list ap,
+ {
+   /* Try to use a static buffer as an optimization.  */
+   char bufs[1024];
+-  char *buf = NULL;
+-  size_t bufsize = 0;
++  char *buf = bufs;
++  size_t bufsize;
++
+   int msgoff;
+   int saved_errno = errno;
+ 
+@@ -167,7 +169,7 @@ __vsyslog_internal (int pri, const char *fmt, va_list ap,
  		  _nl_C_locobj_ptr);
  
  #define SYSLOG_HEADER(__pri, __timestamp, __msgoff, pid) \
@@ -2466,19 +2529,74 @@ index 554089bfc4..f67d4b58a4 100644
    __pri, __timestamp, __msgoff,                          \
    LogTag == NULL ? __progname : LogTag,                  \
    "[" + (pid == 0), pid, "]" + (pid == 0)
-@@ -193,28 +193,32 @@ __vsyslog_internal (int pri, const char *fmt, va_list ap,
-       int vl = __vsnprintf_internal (bufs + l, sizeof bufs - l, fmt, apc,
-                                      mode_flags);
-       if (0 <= vl && vl < sizeof bufs - l)
+@@ -175,53 +177,95 @@ __vsyslog_internal (int pri, const char *fmt, va_list ap,
+ #define SYSLOG_HEADER_WITHOUT_TS(__pri, __msgoff)        \
+   "<%d>: %n", __pri, __msgoff
+ 
+-  int l;
++  int l, vl;
+   if (has_ts)
+     l = __snprintf (bufs, sizeof bufs,
+ 		    SYSLOG_HEADER (pri, timestamp, &msgoff, pid));
+   else
+     l = __snprintf (bufs, sizeof bufs,
+ 		    SYSLOG_HEADER_WITHOUT_TS (pri, &msgoff));
+-  if (0 <= l && l < sizeof bufs)
++  if (l < 0)
++    goto out;
++
++  char *pos;
++  size_t len;
++
++  if (l < sizeof bufs)
+     {
+-      va_list apc;
+-      va_copy (apc, ap);
++      /* At this point, there is still a chance that we can print the
++         remaining part of the log into bufs and use that.  */
++      pos = bufs + l;
++      len = sizeof (bufs) - l;
++    }
++  else
++    {
++      buf = NULL;
++      /* We already know that bufs is too small to use for this log message.
++         The next vsnprintf into bufs is used only to calculate the total
++         required buffer length.  We will discard bufs contents and allocate
++         an appropriately sized buffer later instead.  */
++      pos = bufs;
++      len = sizeof (bufs);
++    }
+ 
+-      /* Restore errno for %m format.  */
+-      __set_errno (saved_errno);
++  {
++    va_list apc;
++    va_copy (apc, ap);
+ 
+-      int vl = __vsnprintf_internal (bufs + l, sizeof bufs - l, fmt, apc,
+-                                     mode_flags);
+-      if (0 <= vl && vl < sizeof bufs - l)
 -        {
 -          buf = bufs;
 -          bufsize = l + vl;
 -        }
-+        buf = bufs;
-+      bufsize = l + vl;
++    /* Restore errno for %m format.  */
++    __set_errno (saved_errno);
  
-       va_end (apc);
-     }
+-      va_end (apc);
+-    }
++    vl = __vsnprintf_internal (pos, len, fmt, apc, mode_flags);
++    va_end (apc);
++
++    if (vl < 0 || vl >= INT_MAX - l)
++      goto out;
++
++    if (vl >= len)
++      buf = NULL;
++
++    bufsize = l + vl;
++  }
  
    if (buf == NULL)
      {
@@ -2489,23 +2607,94 @@ index 554089bfc4..f67d4b58a4 100644
  	  /* Tell the cancellation handler to free this buffer.  */
  	  clarg.buf = buf;
  
++	  int cl;
  	  if (has_ts)
 -	    __snprintf (bufs, sizeof bufs,
-+	    __snprintf (buf, l + 1,
- 			SYSLOG_HEADER (pri, timestamp, &msgoff, pid));
+-			SYSLOG_HEADER (pri, timestamp, &msgoff, pid));
++	    cl = __snprintf (buf, l + 1,
++			     SYSLOG_HEADER (pri, timestamp, &msgoff, pid));
  	  else
 -	    __snprintf (bufs, sizeof bufs,
-+	    __snprintf (buf, l + 1,
- 			SYSLOG_HEADER_WITHOUT_TS (pri, &msgoff));
+-			SYSLOG_HEADER_WITHOUT_TS (pri, &msgoff));
++	    cl = __snprintf (buf, l + 1,
++			     SYSLOG_HEADER_WITHOUT_TS (pri, &msgoff));
++	  if (cl != l)
++	    goto out;
 +
 +	  va_list apc;
 +	  va_copy (apc, ap);
-+	  __vsnprintf_internal (buf + l, bufsize - l + 1, fmt, apc,
-+				mode_flags);
++	  cl = __vsnprintf_internal (buf + l, bufsize - l + 1, fmt, apc,
++				     mode_flags);
 +	  va_end (apc);
++
++	  if (cl != vl)
++	    goto out;
  	}
        else
          {
++          int bl;
+ 	  /* Nothing much to do but emit an error message.  */
+-          bufsize = __snprintf (bufs, sizeof bufs,
+-                                "out of memory[%d]", __getpid ());
++          bl = __snprintf (bufs, sizeof bufs,
++                           "out of memory[%d]", __getpid ());
++          if (bl < 0 || bl >= sizeof bufs)
++            goto out;
++
++          bufsize = bl;
+           buf = bufs;
++          msgoff = 0;
+         }
+     }
+ 
+diff --git a/misc/tst-syslog-long-progname.c b/misc/tst-syslog-long-progname.c
+new file mode 100644
+index 0000000000..88f37a8a00
+--- /dev/null
++++ b/misc/tst-syslog-long-progname.c
+@@ -0,0 +1,39 @@
++/* Test heap buffer overflow in syslog with long __progname (CVE-2023-6246)
++   Copyright (C) 2023 Free Software Foundation, Inc.
++   This file is part of the GNU C Library.
++
++   The GNU C Library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Lesser General Public
++   License as published by the Free Software Foundation; either
++   version 2.1 of the License, or (at your option) any later version.
++
++   The GNU C Library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Lesser General Public License for more details.
++
++   You should have received a copy of the GNU Lesser General Public
++   License along with the GNU C Library; if not, see
++   <https://www.gnu.org/licenses/>.  */
++
++#include <syslog.h>
++#include <string.h>
++
++extern char * __progname;
++
++static int
++do_test (void)
++{
++  char long_progname[2048];
++
++  memset (long_progname, 'X', sizeof (long_progname) - 1);
++  long_progname[sizeof (long_progname) - 1] = '\0';
++
++  __progname = long_progname;
++
++  syslog (LOG_INFO, "Hello, World!");
++
++  return 0;
++}
++
++#include <support/test-driver.c>
+diff --git a/misc/tst-syslog-long-progname.root/postclean.req b/misc/tst-syslog-long-progname.root/postclean.req
+new file mode 100644
+index 0000000000..e69de29bb2
 diff --git a/misc/tst-syslog.c b/misc/tst-syslog.c
 index e550d15796..3560b518a2 100644
 --- a/misc/tst-syslog.c
@@ -8089,6 +8278,61 @@ index 2a82e53baf..d941024963 100644
  #else
    register unsigned long thread_pointer __asm__ ("r2");
    asm ("bcl 20,31,1f\n1:\t"
+diff --git a/sysdeps/sparc/sparc32/memset.S b/sysdeps/sparc/sparc32/memset.S
+index b1b67cb2d1..5154263317 100644
+--- a/sysdeps/sparc/sparc32/memset.S
++++ b/sysdeps/sparc/sparc32/memset.S
+@@ -55,7 +55,7 @@ ENTRY(memset)
+ 
+ 	andcc		%o0, 3, %o2
+ 	bne		3f
+-4:	 andcc		%o0, 4, %g0
++5:	 andcc		%o0, 4, %g0
+ 
+ 	be		2f
+ 	 mov		%g3, %g2
+@@ -139,7 +139,7 @@ ENTRY(memset)
+ 	stb		%g3, [%o0 + 0x02]
+ 2:	sub		%o2, 4, %o2
+ 	add		%o1, %o2, %o1
+-	b		4b
++	b		5b
+ 	 sub		%o0, %o2, %o0
+ END(memset)
+ libc_hidden_builtin_def (memset)
+diff --git a/sysdeps/sparc/sparc64/memmove.S b/sysdeps/sparc/sparc64/memmove.S
+index 8d46f2cd4e..7746684160 100644
+--- a/sysdeps/sparc/sparc64/memmove.S
++++ b/sysdeps/sparc/sparc64/memmove.S
+@@ -38,7 +38,7 @@ ENTRY(memmove)
+ /*
+  * normal, copy forwards
+  */
+-2:	ble	%XCC, .Ldbytecp
++2:	bleu	%XCC, .Ldbytecp
+ 	 andcc	%o1, 3, %o5	/* is src word aligned  */
+ 	bz,pn	%icc, .Laldst
+ 	 cmp	%o5, 2		/* is src half-word aligned  */
+diff --git a/sysdeps/sparc/sysdep.h b/sysdeps/sparc/sysdep.h
+index 95068071cc..baab6817a6 100644
+--- a/sysdeps/sparc/sysdep.h
++++ b/sysdeps/sparc/sysdep.h
+@@ -76,6 +76,15 @@ C_LABEL(name)				\
+ 	cfi_endproc;			\
+ 	.size name, . - name
+ 
++#define ENTRY_NOCFI(name)			\
++	.align	4;			\
++	.global	C_SYMBOL_NAME(name);	\
++	.type	name, @function;	\
++C_LABEL(name)
++
++#define END_NOCFI(name)			\
++	.size name, . - name
++
+ #undef LOC
+ #define LOC(name)  .L##name
+ 
 diff --git a/sysdeps/unix/sysv/linux/Makefile b/sysdeps/unix/sysv/linux/Makefile
 index a139a16532..d5d9af4de2 100644
 --- a/sysdeps/unix/sysv/linux/Makefile
@@ -9488,6 +9732,47 @@ index ea38935497..f00817a6f6 100644
  }
  #if __TIMESIZE != 64
  libc_hidden_def (__shmctl64)
+diff --git a/sysdeps/unix/sysv/linux/sparc/sparc32/sigreturn_stub.S b/sysdeps/unix/sysv/linux/sparc/sparc32/sigreturn_stub.S
+index 2829e881eb..a1492ea59e 100644
+--- a/sysdeps/unix/sysv/linux/sparc/sparc32/sigreturn_stub.S
++++ b/sysdeps/unix/sysv/linux/sparc/sparc32/sigreturn_stub.S
+@@ -23,12 +23,15 @@
+ 
+    [1] https://lkml.org/lkml/2016/5/27/465  */
+ 
+-ENTRY (__rt_sigreturn_stub)
++	nop
++	nop
++
++ENTRY_NOCFI (__rt_sigreturn_stub)
+ 	mov	__NR_rt_sigreturn, %g1
+ 	ta	0x10
+-END (__rt_sigreturn_stub)
++END_NOCFI (__rt_sigreturn_stub)
+ 
+-ENTRY (__sigreturn_stub)
++ENTRY_NOCFI (__sigreturn_stub)
+ 	mov	__NR_sigreturn, %g1
+ 	ta	0x10
+-END (__sigreturn_stub)
++END_NOCFI (__sigreturn_stub)
+diff --git a/sysdeps/unix/sysv/linux/sparc/sparc64/sigreturn_stub.S b/sysdeps/unix/sysv/linux/sparc/sparc64/sigreturn_stub.S
+index ac6af95e36..23b8b93f56 100644
+--- a/sysdeps/unix/sysv/linux/sparc/sparc64/sigreturn_stub.S
++++ b/sysdeps/unix/sysv/linux/sparc/sparc64/sigreturn_stub.S
+@@ -23,7 +23,10 @@
+ 
+    [1] https://lkml.org/lkml/2016/5/27/465  */
+ 
+-ENTRY (__rt_sigreturn_stub)
++	nop
++	nop
++
++ENTRY_NOCFI (__rt_sigreturn_stub)
+ 	mov	__NR_rt_sigreturn, %g1
+ 	ta	0x6d
+-END (__rt_sigreturn_stub)
++END_NOCFI (__rt_sigreturn_stub)
 diff --git a/sysdeps/unix/sysv/linux/sys/mount.h b/sysdeps/unix/sysv/linux/sys/mount.h
 index f965986ba8..19841d0738 100644
 --- a/sysdeps/unix/sysv/linux/sys/mount.h
@@ -10153,6 +10438,29 @@ index 0db2cb4152..7619e743e1 100644
  	movq	-8(%rsp), %rdi
  	ret
  .Lslow:
+diff --git a/sysdeps/x86_64/ffsll.c b/sysdeps/x86_64/ffsll.c
+index 842ebaeb4c..d352866d9f 100644
+--- a/sysdeps/x86_64/ffsll.c
++++ b/sysdeps/x86_64/ffsll.c
+@@ -26,13 +26,13 @@ int
+ ffsll (long long int x)
+ {
+   long long int cnt;
+-  long long int tmp;
+ 
+-  asm ("bsfq %2,%0\n"		/* Count low bits in X and store in %1.  */
+-       "cmoveq %1,%0\n"		/* If number was zero, use -1 as result.  */
+-       : "=&r" (cnt), "=r" (tmp) : "rm" (x), "1" (-1));
++  asm ("mov $-1,%k0\n"	/* Initialize cnt to -1.  */
++       "bsf %1,%0\n"	/* Count low bits in x and store in cnt.  */
++       "inc %k0\n"	/* Increment cnt by 1.  */
++       : "=&r" (cnt) : "r" (x));
+ 
+-  return cnt + 1;
++  return cnt;
+ }
+ 
+ #ifndef __ILP32__
 diff --git a/sysdeps/x86_64/fpu/fraiseexcpt.c b/sysdeps/x86_64/fpu/fraiseexcpt.c
 index 864f4777a2..23446ff4ac 100644
 --- a/sysdeps/x86_64/fpu/fraiseexcpt.c
