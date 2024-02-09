@@ -11,7 +11,8 @@ NOTES
 
 		hdparm -I /dev/sda | grep NCQ
 
-	Note, that Logical Volume Management (LVM) based partitions cannot use
-	the barrier option.
+	Important:
+		The Logical Volume Management (LVM) based partitions cannot
+		use the barrier option.
 
 End of file.
