@@ -5,7 +5,8 @@ name=openssl
 version=1.1.1w
 release=1
 source="https://www.openssl.org/source/$name-$version.tar.gz
-	mksslcert.sh mksslcert.1"
+	mksslcert.sh
+	mksslcert.1"
 
 build() {
 	mkdir build; cd build

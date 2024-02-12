@@ -13,7 +13,7 @@ EOF
 
 main() {
 	if [ ! "$1" ] || [ ! "$2" ]; then
-		print_help
+		print_help 1>&2
 		exit 1
 	fi
 	
