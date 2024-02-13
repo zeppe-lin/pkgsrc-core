@@ -77,8 +77,8 @@ EOF
 	3. Populate the repository from a client system.
 	------------------------------------------------
 
-		NOTE: All the instructions in this section and the next should
-		be done on a user system, not the server system.
+		IMPORTANT: All the instructions in this section and the next
+		should be done on a user system, not the server system.
 	
 	 Now that the repository is created, it can be used by the developers
 	 to put some files into it. Once the ssh key of the user is imported
@@ -98,8 +98,8 @@ EOF
 	On the developer's machine, set up some files to be pushed to the
 	repository as the initial content:
 
-		NOTE:  The gitserver term used below should be the host name
-		(or ip address) of the git server.
+		IMPORTANT:  The gitserver term used below should be the host
+		name (or IP address) of the git server.
 
 		mkdir myproject
 		cd myproject
@@ -130,7 +130,7 @@ EOF
 		git push
 
 		NOTE: This is a very basic server setup based on OpenSSH
-		access. All developers are using the git user to perform
+		access.  All developers are using the git user to perform
 		actions on the repository and the changes users are committing
 		can be distinguished as the local user name (see ~/.gitconfig)
 		is recorded in the changesets.
@@ -159,7 +159,7 @@ EOF
 	 The setup described above makes a repository available for
 	 authenticated users (via providing the ssh public key file). There is
 	 also a simple way to publish the repository to unauthenticated users
-	 — of course without write access.
+	 -- of course without write access.
 
 	The combination of access via ssh (for authenticated users) and the
 	export of repositories to unauthenticated users via the daemon is in
@@ -189,6 +189,7 @@ EOF
 	To start the server at boot time, add the gitd into the /etc/rc.conf's
 	SERVICE variable.
 
+
 GITWEB
 
 	The following instructions will configure the gitweb service using
@@ -215,7 +216,7 @@ GITWEB
 			ssh://git@<your server>/srv/git
 			);
 
-		# vim:ft=perl
+		# vim: ft=perl
 		# End of file.
 
 
@@ -281,5 +282,6 @@ GITWEB
 		}
 
 		# End of file.
+
 
 End of file.
