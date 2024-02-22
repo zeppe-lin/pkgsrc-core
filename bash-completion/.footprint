@@ -1,5 +1,7 @@
 drwxr-xr-x	root/root	etc/
 -rw-r--r--	root/root	etc/bash_completion
+drwxr-xr-x	root/root	etc/bash_completion.d/
+-rw-r--r--	root/root	etc/bash_completion.d/000_bash_completion_compat.bash
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/bash-completion/
@@ -8,38 +10,149 @@ drwxr-xr-x	root/root	usr/share/bash-completion/completions/
 -rw-r--r--	root/root	usr/share/bash-completion/completions/2to3
 -rw-r--r--	root/root	usr/share/bash-completion/completions/7z
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/7za -> 7z
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/7zr -> 7z
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/7zz -> 7z
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/7zzs -> 7z
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_adb
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_airflow -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_allero -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible-config -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible-console -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible-doc -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible-galaxy -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible-inventory -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible-playbook -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible-pull -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible-vault -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_arduino-cli -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_black -> _pipenv
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_blackd -> _pipenv
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_buf -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_cal
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_cargo
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_chezmoi -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_chfn
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_chsh
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_cilium -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_cloudquery -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_conda -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_constellation -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_consul -> _vault
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_crc -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_cz -> _nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_datree -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_deno -> _mdbook
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_diesel -> _mdbook
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_dmesg
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_docker -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_dprint -> _mdbook
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_eject
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_flamegraph
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_flask -> _pipenv
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_gaiacli
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_gaiad -> _gaiacli
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_gardenctl -> _golangci-lint
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_gh
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_gh-label -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_git-bump -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_go-licenses -> _golangci-lint
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_gopherjs -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_goreleaser -> _golangci-lint
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_gsctl
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_helm -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_hexdump
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_httpx -> _pipenv
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_hugo -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_hwclock
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ignite -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_infracost -> _gh
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_ionice
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_istioctl -> _golangci-lint
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_jungle
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_k3s -> _golangci-lint
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_keyring
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_kn -> _golangci-lint
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_kontena
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_kool -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_kratos -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_kubeadm -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_kubectl -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_kubescape -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_lefthook -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_linkerd -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_look
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_mattermost -> _golangci-lint
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_mdbook
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_metalctl -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_minikube -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_mise -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_mmctl -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_mock
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_modules
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_moldy -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_mount
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_mount.linux
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_multi-gitter -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_newgrp
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_nfpm -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_nmcli
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_nomad -> _vault
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_nox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_npm -> _gaiacli
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_nvm
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_oc -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_okteto -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_op -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ory -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_packer -> _vault
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_pip
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_pip3 -> _pip
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_pipenv
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_polygon-edge -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_pulumi -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_px -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_qrpc -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_random -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_rclone -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_renice
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_repomanage
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_reptyr
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_rfkill
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_rtcwake
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_ruff
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_runuser
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_rustup
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_skaffold -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ssh-inscribe -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_sshi -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_starship -> _mdbook
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_su
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_svn
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_svnadmin
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_svnlook
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_tanzu -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_tanzu-core -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_tendermint -> _gaiacli
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_terraform -> _vault
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_tkn -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_tkn-pac -> _golangci-lint
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_tokio-console
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_trivy -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_udevadm
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_umount
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_umount.linux
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_upctl -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_vacuum -> _golangci-lint
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_vault
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_virtctl -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_watchexec -> _flamegraph
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_write
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_xm
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_yq
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_yum
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_zitadel -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/a2x
 -rw-r--r--	root/root	usr/share/bash-completion/completions/abook
 -rw-r--r--	root/root	usr/share/bash-completion/completions/aclocal
@@ -83,7 +196,10 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/automake-1.16 -> auto
 -rw-r--r--	root/root	usr/share/bash-completion/completions/autoscan
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/autossh -> ssh
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/autoupdate -> autoscan
+-rw-r--r--	root/root	usr/share/bash-completion/completions/avahi-browse
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/avahi-browse-domains -> avahi-browse
 -rw-r--r--	root/root	usr/share/bash-completion/completions/avctrl
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/b2sum -> sha256sum
 -rw-r--r--	root/root	usr/share/bash-completion/completions/badblocks
 -rw-r--r--	root/root	usr/share/bash-completion/completions/bind
 -rw-r--r--	root/root	usr/share/bash-completion/completions/bk
@@ -102,6 +218,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/c++ -> gcc
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/cc -> gcc
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ccache
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ccze
+-rw-r--r--	root/root	usr/share/bash-completion/completions/cd
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/cdrecord -> wodim
 -rw-r--r--	root/root	usr/share/bash-completion/completions/cfagent
 -rw-r--r--	root/root	usr/share/bash-completion/completions/cfrun
@@ -153,7 +270,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/createuser -> psql
 -rw-r--r--	root/root	usr/share/bash-completion/completions/cvsps
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/dcop -> qdbus
 -rw-r--r--	root/root	usr/share/bash-completion/completions/dd
-lrwxrwxrwx	root/root	usr/share/bash-completion/completions/declare -> function
+-rw-r--r--	root/root	usr/share/bash-completion/completions/declare
 -rw-r--r--	root/root	usr/share/bash-completion/completions/deja-dup
 -rw-r--r--	root/root	usr/share/bash-completion/completions/desktop-file-validate
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/dfutool -> hcitool
@@ -195,6 +312,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/filebucket -> puppet
 -rw-r--r--	root/root	usr/share/bash-completion/completions/find_member
 -rw-r--r--	root/root	usr/share/bash-completion/completions/fio
 -rw-r--r--	root/root	usr/share/bash-completion/completions/firefox
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/firefox-esr -> firefox
 -rw-r--r--	root/root	usr/share/bash-completion/completions/flake8
 -rw-r--r--	root/root	usr/share/bash-completion/completions/freebsd-update
 -rw-r--r--	root/root	usr/share/bash-completion/completions/freeciv
@@ -264,14 +382,17 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/gpgv2 -> gpgv
 -rw-r--r--	root/root	usr/share/bash-completion/completions/groupmod
 -rw-r--r--	root/root	usr/share/bash-completion/completions/growisofs
 -rw-r--r--	root/root	usr/share/bash-completion/completions/grpck
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/gssdp-device-sniffer -> gssdp-discover
 -rw-r--r--	root/root	usr/share/bash-completion/completions/gssdp-discover
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/gtar -> tar
 -rw-r--r--	root/root	usr/share/bash-completion/completions/gzip
+-rw-r--r--	root/root	usr/share/bash-completion/completions/hash
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/hciattach -> hcitool
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/hciconfig -> hcitool
 -rw-r--r--	root/root	usr/share/bash-completion/completions/hcitool
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/hd -> _hexdump
 -rw-r--r--	root/root	usr/share/bash-completion/completions/hddtemp
+-rw-r--r--	root/root	usr/share/bash-completion/completions/help
 -rw-r--r--	root/root	usr/share/bash-completion/completions/hid2hci
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/host -> nslookup
 -rw-r--r--	root/root	usr/share/bash-completion/completions/hostname
@@ -371,7 +492,27 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lintian-info -> linti
 -rw-r--r--	root/root	usr/share/bash-completion/completions/lsscsi
 -rw-r--r--	root/root	usr/share/bash-completion/completions/lsusb
 -rw-r--r--	root/root	usr/share/bash-completion/completions/lua
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lua5.0 -> lua
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lua5.1 -> lua
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lua5.2 -> lua
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lua5.3 -> lua
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lua5.4 -> lua
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lua50 -> lua
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lua51 -> lua
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lua52 -> lua
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lua53 -> lua
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lua54 -> lua
 -rw-r--r--	root/root	usr/share/bash-completion/completions/luac
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/luac5.0 -> luac
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/luac5.1 -> luac
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/luac5.2 -> luac
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/luac5.3 -> luac
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/luac5.4 -> luac
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/luac50 -> luac
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/luac51 -> luac
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/luac52 -> luac
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/luac53 -> luac
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/luac54 -> luac
 -rw-r--r--	root/root	usr/share/bash-completion/completions/luseradd
 -rw-r--r--	root/root	usr/share/bash-completion/completions/luserdel
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lusermod -> luseradd
@@ -399,6 +540,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/mailsnarf -> filesnar
 -rw-r--r--	root/root	usr/share/bash-completion/completions/man
 -rw-r--r--	root/root	usr/share/bash-completion/completions/mc
 -rw-r--r--	root/root	usr/share/bash-completion/completions/mcrypt
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/md5sum -> sha256sum
 -rw-r--r--	root/root	usr/share/bash-completion/completions/mdadm
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/mdecrypt -> mcrypt
 -rw-r--r--	root/root	usr/share/bash-completion/completions/mdtool
@@ -437,6 +579,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/muttng -> mutt
 -rw-r--r--	root/root	usr/share/bash-completion/completions/nc
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/ncal -> _cal
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ncftp
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/neomutt -> mutt
 -rw-r--r--	root/root	usr/share/bash-completion/completions/nethogs
 -rw-r--r--	root/root	usr/share/bash-completion/completions/newlist
 -rw-r--r--	root/root	usr/share/bash-completion/completions/newusers
@@ -447,7 +590,6 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/ncal -> _cal
 -rw-r--r--	root/root	usr/share/bash-completion/completions/nsupdate
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ntpdate
 -rw-r--r--	root/root	usr/share/bash-completion/completions/oggdec
--rw-r--r--	root/root	usr/share/bash-completion/completions/op
 -rw-r--r--	root/root	usr/share/bash-completion/completions/openssl
 -rw-r--r--	root/root	usr/share/bash-completion/completions/opera
 -rw-r--r--	root/root	usr/share/bash-completion/completions/optipng
@@ -457,6 +599,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/ncal -> _cal
 -rw-r--r--	root/root	usr/share/bash-completion/completions/patch
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pbzip2 -> bzip2
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pccardctl -> cardctl
+-rw-r--r--	root/root	usr/share/bash-completion/completions/pdftoppm
 -rw-r--r--	root/root	usr/share/bash-completion/completions/pdftotext
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pdlzip -> lzip
 -rw-r--r--	root/root	usr/share/bash-completion/completions/perl
@@ -470,8 +613,10 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pigz -> gzip
 -rw-r--r--	root/root	usr/share/bash-completion/completions/pine
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pinfo -> info
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ping
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/ping4 -> ping
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/ping6 -> ping
 -rw-r--r--	root/root	usr/share/bash-completion/completions/pkg-config
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pkgconf -> pkg-config
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pkill -> pgrep
 -rw-r--r--	root/root	usr/share/bash-completion/completions/plague-client
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/plzip -> lzip
@@ -496,6 +641,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/ppc-koji -> koji
 -rw-r--r--	root/root	usr/share/bash-completion/completions/prelink
 -rw-r--r--	root/root	usr/share/bash-completion/completions/printenv
 -rw-r--r--	root/root	usr/share/bash-completion/completions/protoc
+-rw-r--r--	root/root	usr/share/bash-completion/completions/ps
 -rw-r--r--	root/root	usr/share/bash-completion/completions/psql
 -rw-r--r--	root/root	usr/share/bash-completion/completions/puppet
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/puppetca -> puppet
@@ -504,6 +650,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/puppetdoc -> puppet
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/puppetmasterd -> puppet
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/puppetqd -> puppet
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/puppetrun -> puppet
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pushd -> cd
 -rw-r--r--	root/root	usr/share/bash-completion/completions/pv
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pvchange -> lvm
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pvcreate -> lvm
@@ -530,6 +677,8 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pylint-2 -> pylint
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pylint-3 -> pylint
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pypy -> python
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pypy3 -> python
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pyston -> python
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pyston3 -> python
 -rw-r--r--	root/root	usr/share/bash-completion/completions/pytest
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pytest-2 -> pytest
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pytest-3 -> pytest
@@ -537,18 +686,26 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pytest-3 -> pytest
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python2 -> python
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python2.7 -> python
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python3 -> python
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python3.10 -> python
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python3.11 -> python
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python3.12 -> python
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python3.3 -> python
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python3.4 -> python
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python3.5 -> python
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python3.6 -> python
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python3.7 -> python
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python3.8 -> python
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/python3.9 -> python
 -rw-r--r--	root/root	usr/share/bash-completion/completions/pyvenv
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pyvenv-3.10 -> pyvenv
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pyvenv-3.11 -> pyvenv
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pyvenv-3.12 -> pyvenv
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pyvenv-3.4 -> pyvenv
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pyvenv-3.5 -> pyvenv
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pyvenv-3.6 -> pyvenv
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pyvenv-3.7 -> pyvenv
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pyvenv-3.8 -> pyvenv
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/pyvenv-3.9 -> pyvenv
 -rw-r--r--	root/root	usr/share/bash-completion/completions/qdbus
 -rw-r--r--	root/root	usr/share/bash-completion/completions/qemu
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/qemu-kvm -> qemu
@@ -597,6 +754,12 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/sdptool -> hcitool
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/setquota -> quota
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/sftp -> ssh
 -rw-r--r--	root/root	usr/share/bash-completion/completions/sh
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/sha1sum -> sha256sum
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/sha224sum -> sha256sum
+-rw-r--r--	root/root	usr/share/bash-completion/completions/sha256sum
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/sha384sum -> sha256sum
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/sha512sum -> sha256sum
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/shasum -> sha256sum
 -rw-r--r--	root/root	usr/share/bash-completion/completions/shellcheck
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/sidedoor -> ssh
 -rw-r--r--	root/root	usr/share/bash-completion/completions/sitecopy
@@ -618,6 +781,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/spovray -> povray
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ssh-add
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ssh-copy-id
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ssh-keygen
+-rw-r--r--	root/root	usr/share/bash-completion/completions/ssh-keyscan
 -rw-r--r--	root/root	usr/share/bash-completion/completions/sshfs
 -rw-r--r--	root/root	usr/share/bash-completion/completions/sshmitm
 -rw-r--r--	root/root	usr/share/bash-completion/completions/sshow
@@ -643,10 +807,12 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/tightvncviewer -> vnc
 -rw-r--r--	root/root	usr/share/bash-completion/completions/tox
 -rw-r--r--	root/root	usr/share/bash-completion/completions/tracepath
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/tracepath6 -> tracepath
+-rw-r--r--	root/root	usr/share/bash-completion/completions/tree
+-rw-r--r--	root/root	usr/share/bash-completion/completions/truncate
 -rw-r--r--	root/root	usr/share/bash-completion/completions/tshark
 -rw-r--r--	root/root	usr/share/bash-completion/completions/tsig-keygen
 -rw-r--r--	root/root	usr/share/bash-completion/completions/tune2fs
-lrwxrwxrwx	root/root	usr/share/bash-completion/completions/typeset -> function
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/typeset -> declare
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ulimit
 -rw-r--r--	root/root	usr/share/bash-completion/completions/unace
 -rw-r--r--	root/root	usr/share/bash-completion/completions/unpack200
@@ -689,6 +855,9 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/whatis -> man
 -rw-r--r--	root/root	usr/share/bash-completion/completions/wine
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/wine-development -> wine
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/wine-stable -> wine
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/wine64 -> wine
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/wine64-development -> wine
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/wine64-stable -> wine
 -rw-r--r--	root/root	usr/share/bash-completion/completions/withlist
 -rw-r--r--	root/root	usr/share/bash-completion/completions/wodim
 -rw-r--r--	root/root	usr/share/bash-completion/completions/wol
@@ -697,6 +866,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/wine-stable -> wine
 -rw-r--r--	root/root	usr/share/bash-completion/completions/wvdial
 -rw-r--r--	root/root	usr/share/bash-completion/completions/xdg-mime
 -rw-r--r--	root/root	usr/share/bash-completion/completions/xdg-settings
+-rw-r--r--	root/root	usr/share/bash-completion/completions/xev
 -rw-r--r--	root/root	usr/share/bash-completion/completions/xfreerdp
 -rw-r--r--	root/root	usr/share/bash-completion/completions/xgamma
 -rw-r--r--	root/root	usr/share/bash-completion/completions/xhost
@@ -719,6 +889,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/ypcat -> ypmatch
 -rw-r--r--	root/root	usr/share/bash-completion/completions/zopfli
 -rw-r--r--	root/root	usr/share/bash-completion/completions/zopflipng
 drwxr-xr-x	root/root	usr/share/bash-completion/helpers/
+-rw-r--r--	root/root	usr/share/bash-completion/helpers/make-extract-targets.awk
 -rw-r--r--	root/root	usr/share/bash-completion/helpers/perl
 -rw-r--r--	root/root	usr/share/bash-completion/helpers/python
 drwxr-xr-x	root/root	usr/share/cmake/
