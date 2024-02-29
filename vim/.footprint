@@ -410,6 +410,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/apache.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/arch.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/art.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/asciidoc.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/asm.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/aspvbs.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/automake.vim
