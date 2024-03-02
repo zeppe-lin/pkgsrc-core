@@ -10,7 +10,7 @@ release=1
 # already downloaded source, otherwise download the hardcoded one.
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 	https://www.kernel.org/pub/linux/kernel/v5.x/linux-$(
-		pkgman printf %v --filter=linux || echo 5.4.268
+		pkgman printf %v --filter=linux || echo 5.4.270
 	).tar.xz
 	../glibc/glibc-$version.patch
 	lib32.conf"
