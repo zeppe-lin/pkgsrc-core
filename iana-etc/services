@@ -4,7 +4,7 @@
 # See services(5) for more information.
 #
 
-# Last updated: 2024-01-12
+# Last updated: 2024-03-05
 # Source:       https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
 
 tcpmux              1/tcp
@@ -11160,6 +11160,7 @@ icl-twobase9    25008/tcp
 icl-twobase9    25008/udp
 icl-twobase10   25009/tcp
 icl-twobase10   25009/udp
+db2c-tls        25100/tcp
 rna             25471/sctp
 sauterdongle    25576/tcp
 idtp            25604/tcp
