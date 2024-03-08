@@ -1,4 +1,4 @@
-# Description: Text pages, similar to more(1)
+# Description: Text pager, similar to more(1)
 # URL:         http://greenwoodsoftware.com/less/
 # Depends on:  libpcre2 ncurses
 
