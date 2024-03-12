@@ -3,10 +3,12 @@
 # Depends on:  db elfutils iptables libbsd libcap libtirpc
 
 name=iproute2
-version=6.7.0
+version=6.8.0
 release=1
 source="https://www.kernel.org/pub/linux/utils/net/$name/$name-$version.tar.xz
-	rc.lo rc.net rc.bridge"
+	rc.lo
+	rc.net
+	rc.bridge"
 
 build() {
 	cd $name-$version
@@ -22,6 +24,6 @@ build() {
 	install -m 0755 -D $SRC/rc.bridge $PKG/etc/rc.d/bridge
 
 	# add ip to user path via symlink
-	install -d $PKG/bin
+	mkdir -p $PKG/bin
 	ln -s /sbin/ip $PKG/bin/ip
 }
