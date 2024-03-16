@@ -2,7 +2,7 @@
 # URL:         https://libexpat.github.io/
 
 name=expat
-version=2.6.1
+version=2.6.2
 release=1
 source=https://download.sourceforge.net/expat/expat-$version.tar.lz
 
