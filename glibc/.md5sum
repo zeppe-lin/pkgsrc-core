@@ -3,6 +3,6 @@ c977d5b0b17318047de6f6ebb3e31243  glibc-2.36-9.patch
 54af1c896f6bcae1c924c89a541d8963  host.conf
 103e9765b2dce0aec32cf54ca47e9786  hosts
 a8f293bf6841a8afeb531cdf9ceaf5d4  ld.so.conf
-fa5001531de3771cd4ca6c653402a0d2  linux-5.4.271.tar.xz
+7cff0a0291d63afe0447d4e8ae4e94b4  linux-5.4.273.tar.xz
 15d8c1ad194306ebddf52cefe8315ba3  nsswitch.conf
 647d4648991ec18948005f8d64494f24  resolv.conf
