@@ -1,6 +1,6 @@
 # Description: Miscellaneous system utilities
 # URL:         https://github.com/util-linux/util-linux
-# Depends on:  eudev file libcap-ng readline
+# Depends on:  eudev file libcap-ng linux-pam sqlite3
 
 name=util-linux
 version=2.40
