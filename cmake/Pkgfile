@@ -3,13 +3,13 @@
 # Depends on:  curl expat libarchive libmd lz4 ncurses
 
 name=cmake
-version=3.29.0
+version=3.29.1
 release=1
 source=https://cmake.org/files/v${version%.*}/cmake-$version.tar.gz
 
 build() {
-	sed -i cmake-$version/Source/CMakeInstallDestinations.cmake -e \
-		's|share/cmake-${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}|share/cmake|'
+	sed 's|share/cmake-${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}|share/cmake|' \
+		-i cmake-$version/Source/CMakeInstallDestinations.cmake
 
 	cmake -S cmake-$version -B build -G Ninja       \
 		-D CMAKE_INSTALL_PREFIX=/usr            \
