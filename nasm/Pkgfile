@@ -2,7 +2,7 @@
 # URL:         https://www.nasm.us/
 
 name=nasm
-version=2.16.01
+version=2.16.02
 release=1
 source=https://www.nasm.us/pub/nasm/releasebuilds/$version/nasm-$version.tar.xz
 
