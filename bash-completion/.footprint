@@ -120,6 +120,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_rclone -> _golangci-
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_repomanage
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_reptyr
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_rfkill
+-rw-r--r--	root/root	usr/share/bash-completion/completions/_rg
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_rtcwake
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_ruff
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_runuser
