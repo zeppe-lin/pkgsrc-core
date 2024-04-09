@@ -3,14 +3,11 @@
 # Depends on:  acl bzip2 expat openssl zstd
 
 name=libarchive
-version=3.7.2
-release=2
-source="https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.xz
-	lzma-stream.patch"
+version=3.7.3
+release=1
+source=https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.xz
 
 build() {
-	patch -d $name-$version -p1 -i $SRC/lzma-stream.patch
-
 	export CFLAGS="$CFLAGS -DHAVE_LZMA_STREAM_ENCODER_MT=1"
 
 	# -D ENABLE_LIBXML2=OFF:
