@@ -2,7 +2,7 @@
 # URL:         https://invisible-island.net/ncurses/
 
 name=ncurses
-version=6.4
+version=6.5
 release=1
 source="https://invisible-mirror.net/archives/$name/$name-$version.tar.gz
 	$name-6.3-libs.patch
@@ -34,7 +34,7 @@ build() {
 	make DESTDIR=$PKG install
 
 	# move library from /usr/lib to /lib and create symlinks
-	install -d $PKG/lib
+	mkdir -p $PKG/lib
 	mv $PKG/usr/lib/libncursesw.so.*  $PKG/lib/
 	ln -sf ../../lib/libncursesw.so.$version \
 		$PKG/usr/lib/libncursesw.so
@@ -42,10 +42,9 @@ build() {
 		$PKG/lib/libncurses.so.${version%%.*}
 
 	# linker scripts and .pc files for non-wide ncurses
-	local _LIB
-	for _LIB in ncurses form panel menu; do
-		echo "INPUT(-l${_LIB}w)" > $PKG/usr/lib/lib${_LIB}.so
-		ln -s ${_LIB}w.pc $PKG/usr/lib/pkgconfig/${_LIB}.pc
+	for f in ncurses form panel menu; do
+		echo "INPUT(-l${f}w)" > $PKG/usr/lib/lib${f}.so
+		ln -s ${f}w.pc $PKG/usr/lib/pkgconfig/${f}.pc
 	done
 
 	# linker script for the curses library
