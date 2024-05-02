@@ -9,17 +9,15 @@ source="https://github.com/leahneukirchen/outils/archive/v$version/outils-$versi
 	cron.rdate"
 
 build() {
-	cd outils-$version
-
 	# https://crux.nu/bugs/index.php?do=details&task_id=1462
-	patch -p0 -d src/usr.sbin/rdate -i $SRC/ntpleaps.patch
+	patch -d outils-$version/src/usr.sbin/rdate -p0 -i $SRC/ntpleaps.patch
 
-	make PREFIX=/usr src/usr.sbin/rdate/rdate
+	make -C outils-$version PREFIX=/usr src/usr.sbin/rdate/rdate
 
-	install -m 0755 -Dt $PKG/usr/sbin/ \
-		src/usr.sbin/rdate/rdate
-	install -m 0644 -Dt $PKG/usr/share/man/man8/ \
-		src/usr.sbin/rdate/rdate.8
+	install -m 0755 -Dt $PKG/usr/sbin/               \
+		outils-$version/src/usr.sbin/rdate/rdate
+	install -m 0644 -Dt $PKG/usr/share/man/man8/     \
+		outils-$version/src/usr.sbin/rdate/rdate.8
 
 	# cron
 	install -m 0755 -D $SRC/cron.rdate $PKG/etc/cron/daily/rdate
