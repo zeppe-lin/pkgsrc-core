@@ -7,14 +7,9 @@ release=1
 source=https://downloads.sourceforge.net/project/$name/$name/$name-$version.tar.gz
 
 build() {
-	cd $name-$version
+	# remove default optimization flag and hardcoded jobs
+	sed -e '/^CFLAGS :=/s/-O2//' -e "s/-j4/-j$JOBS/" -i $name-*/Makefile
 
-	# remove default optimization flag, and skip stripping (pkgmk
-	# already doing it)
-	sed -e "/^CFLAGS :=/s/-O2//g"    \
-	    -e "/^STRIP/s/strip/true/g"  \
-	    -i Makefile
-
-	make V=1
-	make DESTDIR=$PKG install
+	make -C $name-* V=1 STRIP=: all
+	make -C $name-* DESTDIR=$PKG install
 }
