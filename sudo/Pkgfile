@@ -4,7 +4,7 @@
 
 name=sudo
 version=1.9.15p5
-release=1
+release=2
 source="https://www.sudo.ws/dist/sudo-$version.tar.gz
 	pam.sudo"
 
