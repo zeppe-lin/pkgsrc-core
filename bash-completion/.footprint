@@ -26,6 +26,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible-playbook -> 
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible-pull -> _nox
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ansible-vault -> _nox
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_arduino-cli -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_bao -> _vault
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_black -> _pipenv
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_blackd -> _pipenv
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_buf -> _golangci-lint
@@ -44,6 +45,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_cz -> _nox
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_datree -> _golangci-lint
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_deno -> _mdbook
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_diesel -> _mdbook
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_dlv -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_dmesg
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_docker -> _golangci-lint
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_dprint -> _mdbook
@@ -61,12 +63,14 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_go-licenses -> _gola
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_gopherjs -> _golangci-lint
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_goreleaser -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_gsctl
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_gup -> _golangci-lint
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_helm -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_hexdump
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_httpx -> _pipenv
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_hugo -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_hwclock
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_ignite -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_incus -> _golangci-lint
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_infracost -> _gh
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_ionice
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_istioctl -> _golangci-lint
@@ -139,6 +143,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_tendermint -> _gaiac
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_terraform -> _vault
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_tkn -> _golangci-lint
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_tkn-pac -> _golangci-lint
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_tofu -> _vault
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_tokio-console
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_trivy -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_udevadm
@@ -153,6 +158,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_watchexec -> _flameg
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_xm
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_yq
 -rw-r--r--	root/root	usr/share/bash-completion/completions/_yum
+lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_zarf -> _golangci-lint
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/_zitadel -> _golangci-lint
 -rw-r--r--	root/root	usr/share/bash-completion/completions/a2x
 -rw-r--r--	root/root	usr/share/bash-completion/completions/abook
@@ -293,6 +299,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/dropuser -> psql
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ebtables
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ecryptfs-migrate-home
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/edquota -> quota
+-rw-r--r--	root/root	usr/share/bash-completion/completions/env
 -rw-r--r--	root/root	usr/share/bash-completion/completions/eog
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ether-wake
 lrwxrwxrwx	root/root	usr/share/bash-completion/completions/etherwake -> ether-wake
