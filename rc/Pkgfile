@@ -2,7 +2,7 @@
 # URL:         https://github.com/zeppe-lin/rc
 
 name=rc
-version=3.0.1-b162970
+version=3.0.1-ae59bc2
 release=1
 source="https://github.com/zeppe-lin/rc/archive/${version#*-}/rc-$version.tar.gz
 	inittab
