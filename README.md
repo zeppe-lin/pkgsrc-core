@@ -9,8 +9,8 @@ rewritten in POSIX sh(1p).  Also, the Zeppe-Lin has its own criteria for what
 packages should be in **core** collection.
 
 The original sources can be downloaded from:
-1. https://crux.nu/gitweb/?p=ports/core.git;a=summary
-2. https://crux.nu/gitweb/?p=ports/core.git;a=shortlog;h=refs/heads/3.6
+  1. https://crux.nu/gitweb/?p=ports/core.git;a=summary
+  2. https://crux.nu/gitweb/?p=ports/core.git;a=shortlog;h=refs/heads/3.6
 
 
 LICENSE
