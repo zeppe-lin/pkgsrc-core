@@ -15,6 +15,18 @@ lrwxrwxrwx	root/root	usr/bin/vimdiff -> vim
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/applications/
 -rw-r--r--	root/root	usr/share/applications/vim.desktop
+drwxr-xr-x	root/root	usr/share/icons/
+drwxr-xr-x	root/root	usr/share/icons/hicolor/
+drwxr-xr-x	root/root	usr/share/icons/hicolor/48x48/
+drwxr-xr-x	root/root	usr/share/icons/hicolor/48x48/apps/
+-rw-r--r--	root/root	usr/share/icons/hicolor/48x48/apps/gvim.png
+drwxr-xr-x	root/root	usr/share/icons/locolor/
+drwxr-xr-x	root/root	usr/share/icons/locolor/16x16/
+drwxr-xr-x	root/root	usr/share/icons/locolor/16x16/apps/
+-rw-r--r--	root/root	usr/share/icons/locolor/16x16/apps/gvim.png
+drwxr-xr-x	root/root	usr/share/icons/locolor/32x32/
+drwxr-xr-x	root/root	usr/share/icons/locolor/32x32/apps/
+-rw-r--r--	root/root	usr/share/icons/locolor/32x32/apps/gvim.png
 drwxr-xr-x	root/root	usr/share/man/
 drwxr-xr-x	root/root	usr/share/man/man1/
 -rw-r--r--	root/root	usr/share/man/man1/evim.1.gz
@@ -538,6 +550,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/java.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/javascript.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/javascriptreact.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/jj.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/jproperties.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/jq.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/json.vim
@@ -1342,6 +1355,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/javascriptreact.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/jess.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/jgraph.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/jj.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/jovial.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/jproperties.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/jq.vim
