@@ -11,11 +11,13 @@ GW=192.168.1.1
 
 case $1 in
 start)
+	set -x
 	/sbin/ip addr add $ADDR/$MASK dev $DEV broadcast +
 	/sbin/ip link set $DEV up
 	/sbin/ip route add default via $GW
 	;;
 stop)
+	set -x
 	/sbin/ip route del default
 	/sbin/ip link set $DEV down
 	/sbin/ip addr del $ADDR/$MASK dev $DEV
