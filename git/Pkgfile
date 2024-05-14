@@ -3,30 +3,17 @@
 # Depends on:  curl expat libpcre2 perl
 
 name=git
-version=2.45.0
+version=2.45.1
 release=1
 source="https://www.kernel.org/pub/software/scm/git/git-$version.tar.xz
 	https://www.kernel.org/pub/software/scm/git/git-manpages-$version.tar.xz
+	config.mak
 	rc.gitd"
 
 build() {
 	cd $name-$version
 
-	cat >> config.mak <<-EOF
-		NO_GETTEXT=YesPlease
-		NO_SVN_TESTS=YesPlease
-		NO_TCLTK=YesPlease
-		#NO_EXPAT=YesPlease
-		NO_NSEC=YesPlease
-		#NO_PYTHON=YesPlease
-		#NO_PERL=YesPlease
-		NO_SYS_POLL_H=1
-		NO_CROSS_DIRECTORY_HARDLINKS=1
-		NO_INSTALL_HARDLINKS=1
-		CFLAGS=$CFLAGS
-		ICONV_OMITS_BOM=Yes
-		PYTHON_PATH=/usr/bin/python3
-	EOF
+	sed "s/@CFLAGS@/$CFLAGS/" $SRC/config.mak > config.mak
 
 	./configure \
 		--prefix=/usr                              \
