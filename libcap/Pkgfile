@@ -3,19 +3,14 @@
 # Depends on:  linux-pam
 
 name=libcap
-version=2.69
-release=2
-source="https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$name-$version.tar.xz
-	011eb766ce43f943a4138837bdf742ac31590d26.patch
-	ee20d385ef319f8523f1debc49f375c8eff257a6.patch"
+version=2.70
+release=1
+source=https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$name-$version.tar.xz
 
 build() {
-	patch -d $name-$version -p1 -i $SRC/011eb766ce43f943a4138837bdf742ac31590d26.patch
-	patch -d $name-$version -p1 -i $SRC/ee20d385ef319f8523f1debc49f375c8eff257a6.patch
-
 	cd $name-$version
 
-	# fix build flags, remove default optimization flag
+	# remove default optimization flag
 	sed -i "/^CFLAGS/s/-O2/$CFLAGS/" Make.Rules 
 
 	make BUILD_COPTS=                     \
@@ -27,7 +22,7 @@ build() {
 	     install
 
 	# move libs from /usr/lib to /lib
-	install -d $PKG/usr/lib
+	mkdir -p $PKG/usr/lib
 	mv $PKG/lib/libcap.a $PKG/lib/libpsx.* $PKG/usr/lib/
 	rm $PKG/lib/libcap.so
 	ln -s ../../lib/libcap.so.$version $PKG/usr/lib/libcap.so
