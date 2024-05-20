@@ -4,12 +4,21 @@
 
 name=usbutils
 version=017
-release=1
-source=https://github.com/gregkh/$name/archive/v$version/$name-$version.tar.gz
+release=2
+source="https://github.com/gregkh/$name/archive/v$version/$name-$version.tar.gz
+	01-add-a-manpage-for-lsusb.py.patch
+	02-add-lsusb.py.1-to-distcleanfiles.patch
+	03-add-a-manpage-for-usbreset.patch"
+
 #source=http://www.kernel.org/pub/linux/utils/usb/$name/$name-$version.tar.xz
 
 
 build() {
+	# debian patches
+	patch -d $name-$version -p1 -i $SRC/01-add-a-manpage-for-lsusb.py.patch
+	patch -d $name-$version -p1 -i $SRC/02-add-lsusb.py.1-to-distcleanfiles.patch
+	patch -d $name-$version -p1 -i $SRC/03-add-a-manpage-for-usbreset.patch
+
 	mkdir build; cd build
 
 	autoreconf -fi ../$name-$version
@@ -18,4 +27,7 @@ build() {
 
 	make V=1
 	make DESTDIR=$PKG install
+	
+	# install manually
+	install -m 0755 -D usbreset $PKG/usr/bin/usbreset
 }
