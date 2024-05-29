@@ -3,17 +3,17 @@
 # Depends on:  gdbm libffi libgmp libyaml openssl zlib
 
 name=ruby
-version=3.1.5
+version=3.1.6
 release=1
 source=https://cache.ruby-lang.org/pub/ruby/${version%.*}/ruby-$version.tar.xz
 
 build() {
-	cd ruby-$version
-
 	export CFLAGS="$CFLAGS -fno-strict-aliasing"
 	export CFLAGS="$(echo $CFLAGS | sed 's/-fomit-frame-pointer//')"
 
-	./configure                        \
+	mkdir build; cd build
+
+	../ruby-$version/configure         \
 		--prefix=/usr              \
 		--with-ruby-version=minor  \
 
