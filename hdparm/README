@@ -14,8 +14,8 @@ following command returns non-empty output, the option is supported:
 
 
 IMPORTANT!
-The Logical Volume Management (LVM) based partitions cannot
-use the barrier option.
+The Logical Volume Management (LVM) based partitions cannot use the barrier
+option.
 
 
 End of file.
