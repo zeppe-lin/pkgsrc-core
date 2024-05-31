@@ -3,7 +3,7 @@
 # Depends on:  py3-setuptools
 
 name=meson
-version=1.4.0
+version=1.4.1
 release=1
 source=https://github.com/mesonbuild/meson/releases/download/$version/meson-$version.tar.gz
 
@@ -16,8 +16,11 @@ build() {
 	/usr/bin/python3 setup.py install \
 		--skip-build --prefix=/usr --root=$PKG --optimize=2
 
+	# fix man perm
+	chmod 0644 $PKG/usr/share/man/man1/meson.1
+
 	# vim syntax highlight
-	install -d $PKG/usr/share/vim/vimfiles
+	mkdir -p $PKG/usr/share/vim/vimfiles
 	for d in data/syntax-highlighting/vim/*/; do
 		cp -r $d $PKG/usr/share/vim/vimfiles
 	done
