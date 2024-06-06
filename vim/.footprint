@@ -567,6 +567,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kconfig.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kotlin.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kwt.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/lc.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/ld.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/less.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/lftp.vim
