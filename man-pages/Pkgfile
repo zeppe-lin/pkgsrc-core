@@ -2,15 +2,13 @@
 # URL:         https://www.kernel.org/doc/man-pages/
 
 name=man-pages
-version=6.9
+version=6.9.1
 release=1
 source=https://www.kernel.org/pub/linux/docs/$name/$name-$version.tar.xz
 
 build() {
-	cd $name-$version
+	make -C $name-$version prefix=/usr DESTDIR=$PKG install
 
 	# provided by shadow package
-	rm man5/passwd.5
-
-	make prefix=/usr DESTDIR=$PKG install
+	rm $PKG/usr/share/man/man5/passwd.5
 }
