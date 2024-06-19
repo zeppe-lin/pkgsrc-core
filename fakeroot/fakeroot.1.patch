@@ -1,0 +1,10 @@
+--- a/doc/fakeroot.1.orig	2024-06-19 04:18:55.987717116 +0300
++++ b/doc/fakeroot.1	2024-06-19 04:19:11.598749162 +0300
+@@ -298,7 +298,4 @@ mostly by J.H.M. Dassen
+ Rather a lot mods/additions by joost and Clint.
+ .SH "SEE ALSO"
+ .BR faked (1)
+-.BR dpkg\-buildpackage (1),
+-.BR debuild (1)
+-.BR /usr/share/doc/fakeroot/DEBUG
+ 

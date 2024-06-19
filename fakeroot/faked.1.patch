@@ -1,0 +1,11 @@
+--- a/doc/faked.1.orig	2024-06-19 04:21:41.639057158 +0300
++++ b/doc/faked.1	2024-06-19 04:21:54.929084439 +0300
+@@ -91,7 +91,4 @@ mostly by J.H.M. Dassen
+ .RI <jdassen@debian.org> 
+ mods/additions by joost and Clint.
+ .SH "SEE ALSO"
+-.BR fakeroot (1),
+-.BR dpkg-buildpackage (1),
+-.BR debuild (1)
+-.BR /usr/share/doc/fakeroot/DEBUG
++.BR fakeroot (1)

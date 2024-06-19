@@ -3,10 +3,16 @@
 
 name=fakeroot
 version=1.34
-release=1
-source=https://deb.debian.org/debian/pool/main/f/$name/${name}_$version.orig.tar.gz
+release=2
+#source="https://deb.debian.org/debian/pool/main/f/$name/${name}_$version.orig.tar.gz
+source="fakeroot_1.34.orig.tar.gz
+	faked.1.patch
+	fakeroot.1.patch"
 
 build() {
+	patch -d $name-$version -p1 -i $SRC/faked.1.patch
+	patch -d $name-$version -p1 -i $SRC/fakeroot.1.patch
+
 	sed -i '/^SUBDIRS/d' $name-$version/doc/Makefile.am
 
 	mkdir build; cd build
