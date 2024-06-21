@@ -472,6 +472,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/csc.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/csh.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/css.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/csv.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/cucumber.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/cvsrc.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/dart.vim
@@ -524,6 +525,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gitrebase.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gitsendemail.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/go.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/gomod.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gpg.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gprof.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/graphql.vim
@@ -565,6 +567,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/jsp.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/julia.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kconfig.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/kdl.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kotlin.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kwt.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/lc.vim
@@ -694,6 +697,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slpconf.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slpreg.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slpspi.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/snakemake.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/solidity.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/solution.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/spec.vim
@@ -703,6 +707,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/sshdconfig.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/stylus.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/sudoers.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/svelte.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/svg.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/swayconfig.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/swift.vim
@@ -840,6 +845,7 @@ drwxr-xr-x	root/root	usr/share/vim/indent/
 -rw-r--r--	root/root	usr/share/vim/indent/jsonc.vim
 -rw-r--r--	root/root	usr/share/vim/indent/jsp.vim
 -rw-r--r--	root/root	usr/share/vim/indent/julia.vim
+-rw-r--r--	root/root	usr/share/vim/indent/kdl.vim
 -rw-r--r--	root/root	usr/share/vim/indent/kotlin.vim
 -rw-r--r--	root/root	usr/share/vim/indent/krl.vim
 -rw-r--r--	root/root	usr/share/vim/indent/ld.vim
@@ -1016,6 +1022,9 @@ drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/matchit/doc/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/matchit/doc/tags
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/matchit/plugin/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/matchit/plugin/matchit.vim
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/nohlsearch/
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/nohlsearch/plugin/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/nohlsearch/plugin/nohlsearch.vim
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/shellmenu/
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/shellmenu/plugin/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/shellmenu/plugin/shellmenu.vim
@@ -1196,6 +1205,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/csh.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/csp.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/css.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/csv.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/cterm.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/ctrlh.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/cucumber.vim
@@ -1382,6 +1392,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/jsp.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/julia.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/kconfig.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/kdl.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/kivy.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/kix.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/kotlin.vim
