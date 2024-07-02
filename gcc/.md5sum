@@ -1,5 +1,4 @@
 d04cd9ce6a399c2e453faf0776d34b9d  c99
-507c1780a370500cdb233be39cc2c772  fix-nested-generic-lambda.patch
-58a863b2a50e4d42eacc20fec419bc3b  gcc-12.3.0.tar.xz
+fd7779aee878db67456575922281fa71  gcc-12.4.0.tar.xz
 61a057afa31006764b957a483ba90b9d  gcc-4.7.3-multilib-dirs.patch
 7c9128522053af79791bcfdd55834c2a  gcc-nocheck-fixincludes.patch
