@@ -4,7 +4,7 @@
 # See protocols(5) for more information.
 #
 
-# Last updated: 2024-01-08
+# Last updated: 2024-05-02
 # Source:       https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xml
 
 hopopt         0 HOPOPT
