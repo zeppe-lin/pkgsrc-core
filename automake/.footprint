@@ -41,6 +41,7 @@ drwxr-xr-x	root/root	usr/share/aclocal-1.16/internal/
 -rw-r--r--	root/root	usr/share/aclocal-1.16/upc.m4
 -rw-r--r--	root/root	usr/share/aclocal-1.16/vala.m4
 drwxr-xr-x	root/root	usr/share/aclocal/
+-rw-r--r--	root/root	usr/share/aclocal/README
 drwxr-xr-x	root/root	usr/share/automake-1.16/
 drwxr-xr-x	root/root	usr/share/automake-1.16/Automake/
 -rw-r--r--	root/root	usr/share/automake-1.16/Automake/ChannelDefs.pm
@@ -64,6 +65,8 @@ drwxr-xr-x	root/root	usr/share/automake-1.16/Automake/
 -rw-r--r--	root/root	usr/share/automake-1.16/Automake/Version.pm
 -rw-r--r--	root/root	usr/share/automake-1.16/Automake/Wrap.pm
 -rw-r--r--	root/root	usr/share/automake-1.16/Automake/XFile.pm
+-rw-r--r--	root/root	usr/share/automake-1.16/COPYING
+-rw-r--r--	root/root	usr/share/automake-1.16/INSTALL
 drwxr-xr-x	root/root	usr/share/automake-1.16/am/
 -rw-r--r--	root/root	usr/share/automake-1.16/am/check.am
 -rw-r--r--	root/root	usr/share/automake-1.16/am/check2.am
@@ -116,6 +119,7 @@ drwxr-xr-x	root/root	usr/share/automake-1.16/am/
 -rwxr-xr-x	root/root	usr/share/automake-1.16/py-compile
 -rwxr-xr-x	root/root	usr/share/automake-1.16/tap-driver.sh
 -rwxr-xr-x	root/root	usr/share/automake-1.16/test-driver
+-rw-r--r--	root/root	usr/share/automake-1.16/texinfo.tex
 -rwxr-xr-x	root/root	usr/share/automake-1.16/ylwrap
 drwxr-xr-x	root/root	usr/share/man/
 drwxr-xr-x	root/root	usr/share/man/man1/
