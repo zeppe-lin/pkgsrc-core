@@ -3,7 +3,7 @@
 
 name=libtool
 version=2.4.7
-release=1
+release=2
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
 build() {
@@ -15,8 +15,10 @@ build() {
 	make V=1
 	make DESTDIR=$PKG install
 
+	# don't remove these files, they're need by libtoolize
+	# rm $PKG/usr/share/$name/README
+	# rm $PKG/usr/share/$name/COPYING.LIB
+
 	# remove junk
-	rm -r $PKG/usr/share/info               \
-	      $PKG/usr/share/$name/README       \
-	      $PKG/usr/share/$name/COPYING.LIB
+	rm -r $PKG/usr/share/info
 }
