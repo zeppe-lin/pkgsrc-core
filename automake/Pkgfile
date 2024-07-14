@@ -3,8 +3,8 @@
 # Depends on:  gawk perl autoconf
 
 name=automake
-version=1.16.5
-release=2
+version=1.17
+release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
 build() {
@@ -17,9 +17,5 @@ build() {
 	make DESTDIR=$PKG install
 
 	# remove junk
-	cd $PKG/usr/share;             rm -r info doc
-
-	# don't remove these files, they're required by autoconf/automake
-	#cd $PKG/usr/share/automake-*; rm texinfo.tex COPYING INSTALL
-	#cd $PKG/usr/share/aclocal;    rm README
+	rm -r $PKG/usr/share/info $PKG/usr/share/doc
 }
