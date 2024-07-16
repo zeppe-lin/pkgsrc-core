@@ -2,20 +2,19 @@
 # URL:         https://github.com/troglobit/sysklogd
 
 name=sysklogd
-version=2.5.2
-release=2
+version=2.6.0
+release=1
 source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
 	rotatelog rotatelog.8 cron.syslog syslog.conf rc.sysklogd"
 
 build() {
-	# fix sh!\t promotion
+	# remove irrelevant note from the man page
 	sed 's/(The shipped systemd unit file disables this by default.)//' \
 		-i $name-$version/man/syslogd.8
 
 	mkdir build; cd build
 
-	# --without-logger: logger(1) is provided by sbase or
-	#                   util-linux packages
+	# --without-logger: logger(1) is provided by util-linux/sbase package
 	../$name-$version/configure   \
 		--prefix=/usr         \
 		--sysconfdir=/etc     \
