@@ -3,11 +3,15 @@
 
 name=sysklogd
 version=2.6.0
-release=1
+release=2
 source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
+	28a1fb30567c6aecb1b50c79c4b7d17a03ed2453.patch
 	rotatelog rotatelog.8 cron.syslog syslog.conf rc.sysklogd"
 
 build() {
+	# [PATCH] Read *.conf files from include/ directories sorted
+	patch -d $name-$version -p1 -i $SRC/28a1fb30567c6aecb1b50c79c4b7d17a03ed2453.patch
+
 	# remove irrelevant note from the man page
 	sed 's/(The shipped systemd unit file disables this by default.)//' \
 		-i $name-$version/man/syslogd.8
