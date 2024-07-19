@@ -3,7 +3,7 @@
 # Depends on:  curl expat libarchive libmd lz4 ncurses
 
 name=cmake
-version=3.30.0
+version=3.30.1
 release=1
 source=https://cmake.org/files/v${version%.*}/cmake-$version.tar.gz
 
