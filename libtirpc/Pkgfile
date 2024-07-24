@@ -2,14 +2,11 @@
 # URL:         http://git.linux-nfs.org/?p=steved/libtirpc.git;a=summary
 
 name=libtirpc
-version=1.3.4
+version=1.3.5
 release=1
 source=https://downloads.sourceforge.net/project/$name/$name/$version/$name-$version.tar.bz2
 
 build() {
-	# move path for rpcbind.sock to /run
-	sed -i 's|/var/run|/run|' $name-$version/tirpc/rpc/rpcb_prot.h
-
 	mkdir build; cd build
 
 	../$name-$version/configure  \
