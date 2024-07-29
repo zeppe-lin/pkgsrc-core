@@ -2,24 +2,12 @@
 # URL:         https://github.com/troglobit/sysklogd
 
 name=sysklogd
-version=2.6.0
-release=3
+version=2.6.1
+release=1
 source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
-	14a4eb9a3de5031bbcfdfd99e68c8c822e31e98b.patch
-	28a1fb30567c6aecb1b50c79c4b7d17a03ed2453.patch
-	6df714454eee13d2b0a088725f6260b68ab429ae.patch
 	rotatelog rotatelog.8 cron.syslog syslog.conf rc.sysklogd"
 
 build() {
-	# [PATCH] Read *.conf files from include/ directories sorted.
-	patch -d $name-$version -p1 -i $SRC/28a1fb30567c6aecb1b50c79c4b7d17a03ed2453.patch
-	
-	# [PATCH] Add extra linefeed to wall message to ensure it's seen.
-	patch -d $name-$version -p1 -i $SRC/14a4eb9a3de5031bbcfdfd99e68c8c822e31e98b.patch
-
-	# [PATCH] Fix segfault on shutdown.
-	patch -d $name-$version -p1 -i $SRC/6df714454eee13d2b0a088725f6260b68ab429ae.patch
-
 	# Remove irrelevant note from the man page.
 	sed 's/(The shipped systemd unit file disables this by default.)//' \
 		-i $name-$version/man/syslogd.8
