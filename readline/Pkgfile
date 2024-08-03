@@ -3,7 +3,7 @@
 # Depends on:  ncurses
 
 name=readline
-version=8.2.10
+version=8.2.13
 release=1
 source="https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}.tar.gz
 	inputrc
@@ -12,16 +12,16 @@ source="https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}.tar.gz
 	done)"
 
 build() {
-	ls
-	for P in $SRC/${name}8?-???; do
-		patch -d $name-${version%.*} -p0 -i $P
+	for p in $SRC/${name}8?-???; do
+		patch -d $name-${version%.*} -p0 -i $p
 	done
 
 	# remove RPATH from shared objects (FS#14366)
 	sed -i 's|-Wl,-rpath,$(libdir) ||g' \
 		$name-${version%.*}/support/shobj-conf
 
-	# build with -fPIC for x86_64 (FS#15634)
+	# build with -fPIC for x86_64
+	# FS#15634: https://bugs.archlinux.org/task/15634
 	CFLAGS="$CFLAGS -fPIC"
 
 	mkdir build; cd build
@@ -34,7 +34,7 @@ build() {
 	make -j1 DESTDIR=$PKG install
 
 	# move libs from /usr/lib to /lib
-	install -d $PKG/lib
+	mkdir -p $PKG/lib
 	mv $PKG/usr/lib/lib*.so.* $PKG/lib/
 	ln -sf ../../lib/libhistory.so.${version%.*} \
 		$PKG/usr/lib/libhistory.so
