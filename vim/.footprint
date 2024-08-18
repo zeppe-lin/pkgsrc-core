@@ -442,6 +442,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/aspvbs.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/astro.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/asy.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/autohotkey.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/automake.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/awk.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/bash.vim
@@ -535,6 +536,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gitrebase.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gitsendemail.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/go.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/goaccess.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gomod.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gpg.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gprof.vim
@@ -745,6 +747,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/tex.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/text.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/tf.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/thrift.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/tidy.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/tmux.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/toml.vim
@@ -850,6 +853,7 @@ drwxr-xr-x	root/root	usr/share/vim/indent/
 -rw-r--r--	root/root	usr/share/vim/indent/gdscript.vim
 -rw-r--r--	root/root	usr/share/vim/indent/gitconfig.vim
 -rw-r--r--	root/root	usr/share/vim/indent/gitolite.vim
+-rw-r--r--	root/root	usr/share/vim/indent/glsl.vim
 -rw-r--r--	root/root	usr/share/vim/indent/go.vim
 -rw-r--r--	root/root	usr/share/vim/indent/gyp.vim
 -rw-r--r--	root/root	usr/share/vim/indent/haml.vim
@@ -902,6 +906,7 @@ drwxr-xr-x	root/root	usr/share/vim/indent/
 -rw-r--r--	root/root	usr/share/vim/indent/postscr.vim
 -rw-r--r--	root/root	usr/share/vim/indent/pov.vim
 -rw-r--r--	root/root	usr/share/vim/indent/prolog.vim
+-rw-r--r--	root/root	usr/share/vim/indent/proto.vim
 -rw-r--r--	root/root	usr/share/vim/indent/ps1.vim
 -rw-r--r--	root/root	usr/share/vim/indent/pyrex.vim
 -rw-r--r--	root/root	usr/share/vim/indent/python.vim
@@ -941,6 +946,7 @@ drwxr-xr-x	root/root	usr/share/vim/indent/
 -rw-r--r--	root/root	usr/share/vim/indent/teraterm.vim
 -rw-r--r--	root/root	usr/share/vim/indent/tex.vim
 -rw-r--r--	root/root	usr/share/vim/indent/tf.vim
+-rw-r--r--	root/root	usr/share/vim/indent/thrift.vim
 -rw-r--r--	root/root	usr/share/vim/indent/tilde.vim
 -rw-r--r--	root/root	usr/share/vim/indent/treetop.vim
 -rw-r--r--	root/root	usr/share/vim/indent/typescript.vim
@@ -1343,9 +1349,11 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/gitrebase.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/gitsendemail.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/gkrellmrc.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/glsl.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/gnash.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/gnuplot.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/go.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/goaccess.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/godoc.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/gp.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/gpg.vim
@@ -1761,6 +1769,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/shared/
 -rw-r--r--	root/root	usr/share/vim/syntax/texinfo.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/texmf.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/tf.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/thrift.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/tidy.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/tilde.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/tli.vim
