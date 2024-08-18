@@ -2,10 +2,9 @@
 # URL:         https://packages.debian.org/unstable/utils/fakeroot
 
 name=fakeroot
-version=1.34
-release=2
-#source="https://deb.debian.org/debian/pool/main/f/$name/${name}_$version.orig.tar.gz
-source="fakeroot_1.34.orig.tar.gz
+version=1.36
+release=1
+source="https://deb.debian.org/debian/pool/main/f/$name/${name}_$version.orig.tar.gz
 	faked.1.patch
 	fakeroot.1.patch"
 
