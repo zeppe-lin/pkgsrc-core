@@ -3,9 +3,9 @@
 # Depends on:  libpcre2 ncurses
 
 name=less
-version=661
+version=664
 release=1
-source="https://www.greenwoodsoftware.com/less/less-$version.tar.gz
+source="https://www.greenwoodsoftware.com/less/less-$version-beta.tar.gz
 	filter"
 
 build() {
