@@ -641,6 +641,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/nix.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/nroff.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/nsis.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/nu.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/objc.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/objcpp.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/objdump.vim
@@ -1388,6 +1389,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/hostconf.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/hostsaccess.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/html.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/htmlangular.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/htmlcheetah.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/htmldjango.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/htmlm4.vim
