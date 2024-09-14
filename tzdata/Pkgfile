@@ -3,11 +3,15 @@
 
 name=tzdata
 version=2024b
-release=1
-source=https://data.iana.org/time-zones/releases/tzdb-$version.tar.lz
+release=2
+source="https://data.iana.org/time-zones/releases/tzdb-$version.tar.lz
+	0001-Apr-not-April.patch"
 
 build() {
 	cd tzdb-$version
+
+	# https://github.com/HowardHinnant/date/issues/836
+	patch -p1 -i $SRC/0001-Apr-not-April.patch
 
 	make V=1 CFLAGS="$CFLAGS"
 	make DESTDIR=$PKG install
@@ -16,6 +20,5 @@ build() {
 	rm -r $PKG/usr/share/man/man5 $PKG/usr/share/man/man8
 
 	# conflicts with glibc package
-	rm $PKG/etc/localtime
-	rmdir $PKG/etc
+	rm $PKG/etc/localtime && rmdir $PKG/etc
 }
