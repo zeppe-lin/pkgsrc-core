@@ -3,7 +3,7 @@
 # Depends on:  db elfutils iptables libbsd libcap libtirpc
 
 name=iproute2
-version=6.10.0
+version=6.11.0
 release=1
 source="https://www.kernel.org/pub/linux/utils/net/$name/$name-$version.tar.xz
 	rc.lo
@@ -12,6 +12,9 @@ source="https://www.kernel.org/pub/linux/utils/net/$name/$name-$version.tar.xz
 
 build() {
 	cd $name-$version
+
+	# configure uses TMPDIR during tests
+	export TMPDIR=$PKGMK_WORK_DIR
 
 	./configure
 

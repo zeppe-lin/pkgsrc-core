@@ -5,10 +5,12 @@
 
 case $1 in
 start)
+	set -x
 	/sbin/ip addr add 127.0.0.1/8 dev lo broadcast + scope host
 	/sbin/ip link set lo up
 	;;
 stop)
+	set -x
 	/sbin/ip link set lo down
 	/sbin/ip addr del 127.0.0.1/8 dev lo
 	;;
