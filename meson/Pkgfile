@@ -1,9 +1,9 @@
-# Description: High performance build system
+# Description: Meson build system
 # URL:         https://mesonbuild.com/
 # Depends on:  py3-setuptools
 
 name=meson
-version=1.5.1
+version=1.5.2
 release=1
 source=https://github.com/mesonbuild/meson/releases/download/$version/meson-$version.tar.gz
 
