@@ -3,7 +3,7 @@
 # Depends on:  python3
 
 name=py3-setuptools
-version=70.3.0
+version=75.1.0
 release=1
 source=https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-$version.tar.gz
 
