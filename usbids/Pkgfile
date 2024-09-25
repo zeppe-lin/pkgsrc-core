@@ -2,7 +2,7 @@
 # URL:         http://www.linux-usb.org/usb-ids.html
 
 name=usbids
-version=20240318
+version=20240704
 release=1
 source=usb.ids
 
