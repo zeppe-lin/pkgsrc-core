@@ -4,7 +4,7 @@
 # See services(5) for more information.
 #
 
-# Last updated: 2024-08-13
+# Last updated: 2024-09-23
 # Source:       https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
 
 tcpmux              1/tcp
@@ -11200,6 +11200,7 @@ exoconfig       26487/udp
 exonet          26489/tcp
 exonet          26489/udp
 flex-lmadmin    27010/tcp
+chlenix         27016/tcp
 mongodb         27017/tcp
 imagepump       27345/tcp
 imagepump       27345/udp
