@@ -3,7 +3,7 @@
 # Depends on:  flex zlib
 
 name=binutils
-version=2.39
+version=2.42
 release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
