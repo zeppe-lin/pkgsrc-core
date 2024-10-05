@@ -45,6 +45,14 @@ build() {
 	ln -s ../var $PKG/usr/var
 	mkdir $PKG/var
 	mkdir $PKG/var/cache
+
+	# pkgmk stuff
+	install -o pkgmk -g pkgmk -m 0755      \
+		$PKG/var/cache/pkgmk           \
+		$PKG/var/cache/pkgmk/packages  \
+		$PKG/var/cache/pkgmk/sources   \
+		$PKG/var/cache/pkgmk/work      \
+
 	mkdir $PKG/var/lib
 	mkdir $PKG/var/lib/pkg
 	mkdir $PKG/var/log
