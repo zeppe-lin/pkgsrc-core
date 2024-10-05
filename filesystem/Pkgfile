@@ -5,7 +5,7 @@ name=filesystem
 version=0.3
 release=1
 source='fstab group issue mime.types motd passwd securetty shadow
-	shells'
+	shells os-release'
 
 build() {
 	# Directory structure
@@ -80,5 +80,6 @@ build() {
 	install -m 0644 $SRC/securetty  $PKG/etc/
 	install -m 0644 $SRC/fstab      $PKG/etc/
 	install -m 0644 $SRC/mime.types $PKG/etc/
+	install -m 0644 $SRC/os-release $PKG/etc/
 	ln -s /proc/self/mounts $PKG/etc/mtab
 }
