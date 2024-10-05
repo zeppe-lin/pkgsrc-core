@@ -47,7 +47,7 @@ build() {
 	mkdir $PKG/var/cache
 
 	# pkgmk stuff
-	install -o pkgmk -g pkgmk -m 0755      \
+	install -o pkgmk -g pkgmk -m 0755 -d   \
 		$PKG/var/cache/pkgmk           \
 		$PKG/var/cache/pkgmk/packages  \
 		$PKG/var/cache/pkgmk/sources   \
