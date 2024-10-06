@@ -1,0 +1,12 @@
+# Description: Creates self‐signed openssl certificate
+# URL:         https://zeppe-lin.github.io/
+
+name=mksslcert
+version=0.1
+release=1
+source="mksslcert.sh mksslcert.1"
+
+build() {
+	install -m 0755 -D $SRC/mksslcert.sh $PKG/usr/bin/mksslcert
+	install -m 0644 -D $SRC/mksslcert.1  $PKG/usr/share/man/man1/mksslcert.1
+}
