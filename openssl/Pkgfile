@@ -2,11 +2,9 @@
 # URL:         https://www.openssl.org/
 
 name=openssl
-version=1.1.1w
-release=2
-source="https://www.openssl.org/source/$name-$version.tar.gz
-	mksslcert.sh
-	mksslcert.1"
+version=3.3.2
+release=1
+source=https://www.openssl.org/source/$name-$version.tar.gz
 
 build() {
 	mkdir build; cd build
@@ -15,18 +13,26 @@ build() {
 		--prefix=/usr               \
 		--libdir=lib                \
 		--openssldir=/etc/ssl       \
-		shared                      \
+		disable-tests               \
+		enable-camellia             \
 		enable-ec_nistp_64_gcc_128  \
+		enable-rfc3779              \
+		enable-seed                 \
+		no-ec2m                     \
+		no-mdc2                     \
+		no-sm2                      \
+		no-sm4                      \
+		shared                      \
+		threads                     \
+		zlib                        \
+
+	# pick up system flags
+	sed -i "s,-O3,$CFLAGS," Makefile
 
 	make V=1 depend
 	make V=1
 	make V=1 MANSUFFIX=ssl DESTDIR=$PKG \
 		install_sw install_ssldirs install_man_docs
-
-	# mksslcert
-	install -m 0755 -D $SRC/mksslcert.sh $PKG/usr/bin/mksslcert
-	install -m 0644 -D $SRC/mksslcert.1  \
-		$PKG/usr/share/man/man1/mksslcert.1
 
 	# remove junk
 	find $PKG -name "*fips*" | xargs rm -rf
