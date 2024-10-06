@@ -1,0 +1,38 @@
+# Description: Modern library for one-way hashing of passwords (Legacy APIs)
+# URL:         https://github.com/besser82/libxcrypt
+
+name=libxcrypt-compat
+version=4.4.36
+release=1
+source=https://github.com/besser82/libxcrypt/releases/download/v$version/libxcrypt-$version.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	../libxcrypt-$version/configure                 \
+		--prefix=/usr                           \
+		--disable-failure-tokens                \
+		--disable-silent-rules                  \
+		--disable-static                        \
+		--disable-valgrind                      \
+		--enable-hashes=strong,glibc            \
+		--enable-obsolete-api=glibc             \
+		--enable-shared                         \
+		--with-pkgconfigdir=/usr/lib/pkgconfig  \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# remove conflicts
+	rm -r $PKG/usr/include        \
+	      $PKG/usr/lib/lib*.so    \
+	      $PKG/usr/lib/*.la       \
+	      $PKG/usr/lib/pkgconfig  \
+	      $PKG/usr/share
+
+	# move /usr/lib to /lib
+	mkdir -p $PKG/lib
+	mv $PKG/usr/lib/libcrypt.so.* $PKG/lib
+	ln -fs ../../lib/$(readlink $PKG/lib/libcrypt.so.1) \
+		$PKG/usr/lib/libcrypt.so.1
+}
