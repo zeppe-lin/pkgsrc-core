@@ -11,17 +11,36 @@ build() {
 	sed 's|share/cmake-${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}|share/cmake|' \
 		-i cmake-$version/Source/CMakeInstallDestinations.cmake
 
-	cmake -S cmake-$version -B build -G Ninja       \
-		-D CMAKE_INSTALL_PREFIX=/usr            \
-		-D CMAKE_BUILD_TYPE=Release             \
-		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS"      \
-		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS"  \
-		-D BUILD_CursesDialog=OFF               \
-		-D BUILD_QtDialog=OFF                   \
-		-D BUILD_TESTING=OFF                    \
-		$(if pkgman isinst ccache 2>/dev/null; then
-			echo "--enable-ccache"
-		fi)
+	# Use cmake to build cmake if installed and isn't broken.
+	# This leads to a much faster build.
+	if command -v cmake && cmake --version; then
+		cmake -S cmake-$version -B build -G Ninja       \
+			-D CMAKE_INSTALL_PREFIX=/usr            \
+			-D CMAKE_BUILD_TYPE=Release             \
+			-D CMAKE_C_FLAGS_RELEASE="$CFLAGS"      \
+			-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS"  \
+			-D BUILD_CursesDialog=OFF               \
+			-D BUILD_QtDialog=OFF                   \
+			-D BUILD_TESTING=OFF                    \
+			$(if pkgman isinst ccache 2>/dev/null; then
+				echo "--enable-ccache"
+			fi)
+	else
+		mkdir build; cd build
+
+		../cmake-$version/bootstrap        \
+			--generator=Ninja          \
+			--prefix=/usr              \
+			--datadir=/share/cmake     \
+			--parallel="$(nproc)"      \
+			--                         \
+			-D CMake_BUILD_LTO=ON      \
+			-D BUILD_CursesDialog=OFF  \
+			-D BUILD_TESTING=OFF       \
+
+		cd -
+
+	fi
 
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
