@@ -2,8 +2,11 @@
 # URL:         https://pypi.org/project/setuptools/
 # Depends on:  python3
 
+# XXX This is the last non-deprecated release.
+# See c1aaa522594346c01af25d7be9183ed71cf8d300 for more information.
+
 name=py3-setuptools
-version=75.1.0
+version=71.0.0
 release=1
 source=https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-$version.tar.gz
 
