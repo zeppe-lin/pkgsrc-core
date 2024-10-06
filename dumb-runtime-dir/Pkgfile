@@ -1,0 +1,13 @@
+# Description: Creates XDG_RUNTIME_DIR on login and never removes it
+# URL:         https://github.com/ifreund/dumb_runtime_dir
+# Depends on:  linux-pam
+
+name=dumb-runtime-dir
+version=1.0.4
+release=1
+source=https://github.com/ifreund/dumb_runtime_dir/releases/download/v$version/dumb_runtime_dir-$version.tar.gz
+
+build() {
+	make -C dumb_runtime_dir-$version DESTDIR=$PKG PAMDIR=/lib/security \
+		install
+}
