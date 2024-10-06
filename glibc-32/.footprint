@@ -9,7 +9,6 @@ drwxr-xr-x	root/root	lib32/
 -rwxr-xr-x	root/root	lib32/libanl.so.1
 -rwxr-xr-x	root/root	lib32/libc.so.6
 -rwxr-xr-x	root/root	lib32/libc_malloc_debug.so.0
--rwxr-xr-x	root/root	lib32/libcrypt.so.1
 -rwxr-xr-x	root/root	lib32/libdl.so.2
 -rwxr-xr-x	root/root	lib32/libm.so.6
 -rwxr-xr-x	root/root	lib32/libmemusage.so
@@ -311,8 +310,6 @@ lrwxrwxrwx	root/root	usr/lib32/libanl.so -> ../../lib32/libanl.so.1
 -rw-r--r--	root/root	usr/lib32/libc.so
 lrwxrwxrwx	root/root	usr/lib32/libc_malloc_debug.so -> ../../lib32/libc_malloc_debug.so.0
 -rw-r--r--	root/root	usr/lib32/libc_nonshared.a
--rw-r--r--	root/root	usr/lib32/libcrypt.a
-lrwxrwxrwx	root/root	usr/lib32/libcrypt.so -> ../../lib32/libcrypt.so.1
 -rw-r--r--	root/root	usr/lib32/libdl.a
 -rw-r--r--	root/root	usr/lib32/libg.a
 -rw-r--r--	root/root	usr/lib32/libm.a

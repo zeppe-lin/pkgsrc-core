@@ -1,26 +1,27 @@
-# Description: GNU C Library (32bit)
+# Description: GNU C Library (32-bit)
 # URL:         https://www.gnu.org/software/libc/
 
 name=glibc-32
-version=2.36-10
+version=2.40
 release=1
 
-# Kernel is in the "system" packages directory that may be disabled by
-# user in pkgmk.conf configuration.  If it is available, use packages'
-# already downloaded source, otherwise download the hardcoded one.
+# Kernel is in the pkgsrc-system collection that may be disabled by user
+# through pkgmk.conf configuration.  If it's available, use packages' already
+# downloaded source, otherwise download the hardcoded one.
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
+
 	https://www.kernel.org/pub/linux/kernel/v5.x/linux-$(
 		pkgman printf %v --filter=linux || echo 5.4.273
 	).tar.xz
-	../glibc/glibc-$version.patch
+
+	../glibc/glibc-2.4x-fhs-1.patch
 	lib32.conf"
 
 build() {
 	# Install kernel headers.
-	# The headers require rsync for installation, which is
-	# redundant for core collection (it's placed in "system"
-	# packages directory).  The following "find" command simply
-	# does the same.
+	# The headers require rsync for installation, which is redundant for
+	# core collection (rsync is placed in pkgsrc-system).  The following
+	# "find" command simply does the same.
 	cd linux-*
 	make mrproper
 	#make headers_check
@@ -32,7 +33,7 @@ build() {
 	done
 	cd -
 
-	patch -d glibc-${version%-*} -p1 -i $SRC/glibc-$version.patch
+	patch -d glibc-${version%-*} -p1 -i $SRC/glibc-2.4x-fhs-1.patch
 
 	mkdir build; cd build
 
@@ -55,7 +56,7 @@ build() {
 		--without-gd                      \
 		i686-pc-linux-gnu                 \
 
-	make
+	make V=1
 	#make check
 	make install_root=$PKG install
 
@@ -68,6 +69,6 @@ build() {
 
 	install -D $SRC/lib32.conf $PKG/etc/ld.so.conf.d/lib32.conf
 
-	install -d $PKG/lib
+	mkdir -p $PKG/lib
 	ln -s /lib32/ld-linux.so.2 $PKG/lib/ld-linux.so.2
 }
