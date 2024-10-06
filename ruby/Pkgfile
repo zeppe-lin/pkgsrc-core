@@ -1,20 +1,19 @@
-# Description: Ruby interpreter
+# Description: Ruby interpreter, version 3
 # URL:         https://www.ruby-lang.org/
 # Depends on:  gdbm libffi libgmp libyaml openssl zlib
 
 name=ruby
-version=3.1.6
+version=3.3.5
 release=1
 source=https://cache.ruby-lang.org/pub/ruby/${version%.*}/ruby-$version.tar.xz
 
 build() {
-	export CFLAGS="$CFLAGS -fno-strict-aliasing"
-	export CFLAGS="$(echo $CFLAGS | sed 's/-fomit-frame-pointer//')"
-
 	mkdir build; cd build
 
 	../ruby-$version/configure         \
 		--prefix=/usr              \
+		--enable-shared            \
+		--disable-install-doc      \
 		--with-ruby-version=minor  \
 
 	make V=1
@@ -23,10 +22,11 @@ build() {
 	# remove junk
 	find $PKG -type f \(               \
 		   -name COPYING           \
-		-o -name README.md         \
+		-o -name ChangeLog         \
 		-o -name LICENSE           \
 		-o -name LICENSE.txt       \
+		-o -name README.md         \
+		-o -name TODO              \
 		-o -name TODO.md           \
 		\) -delete
-	rmdir $PKG/usr/share/doc/ruby $PKG/usr/share/doc
 }
