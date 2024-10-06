@@ -5,10 +5,9 @@ name=glibc
 version=2.40
 release=1
 
-# Kernel is in the "system" packages directory that may be disabled by
-# user through pkgman.conf configuration.  If it is available, use
-# packages' already downloaded source, otherwise download the hardcoded
-# one.
+# Kernel is in the pkgsrc-system collection that may be disabled by user
+# through pkgman.conf configuration.  If it is available, use packages' already
+# downloaded source, otherwise download the hardcoded one.
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 
 	https://www.kernel.org/pub/linux/kernel/v5.x/linux-$(
@@ -20,9 +19,9 @@ source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 
 build() {
 	# Install kernel headers.
-	# The headers require rsync for installation, which is
-	# redundant for core collection (rsync is placed in pkgsrc-system).
-	# The following "find" command simply does the same.
+	# The headers require rsync for installation, which is redundant for
+	# core collection (rsync is placed in pkgsrc-system).  The following
+	# "find" command simply does the same.
 	cd linux-*
 	make mrproper
 	#make headers_check
