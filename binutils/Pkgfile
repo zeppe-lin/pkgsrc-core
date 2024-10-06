@@ -1,6 +1,6 @@
 # Description: Tools necessary to build programs
 # URL:         https://www.gnu.org/software/binutils/
-# Depends on:  flex zlib
+# Depends on:  flex zstd
 
 name=binutils
 version=2.43.1
