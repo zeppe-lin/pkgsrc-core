@@ -2,7 +2,7 @@
 # URL:         https://www.gnu.org/software/libc/
 
 name=glibc
-version=2.36-10
+version=2.40
 release=1
 
 # Kernel is in the "system" packages directory that may be disabled by
@@ -10,18 +10,19 @@ release=1
 # packages' already downloaded source, otherwise download the hardcoded
 # one.
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
+
 	https://www.kernel.org/pub/linux/kernel/v5.x/linux-$(
 		pkgman printf %v --filter=linux || echo 5.4.273
 	).tar.xz
-	glibc-$version.patch
+
+	glibc-2.4x-fhs-1.patch
 	hosts resolv.conf nsswitch.conf host.conf ld.so.conf"
 
 build() {
 	# Install kernel headers.
 	# The headers require rsync for installation, which is
-	# redundant for core collection (it's placed in "system"
-	# packages directory).  The following "find" command simply
-	# does the same.
+	# redundant for core collection (rsync is placed in pkgsrc-system).
+	# The following "find" command simply does the same.
 	cd linux-*
 	make mrproper
 	#make headers_check
@@ -33,7 +34,7 @@ build() {
 	done
 	cd -
 
-	patch -d glibc-${version%-*} -p1 -i $SRC/glibc-$version.patch
+	patch -d glibc-${version%-*} -p1 -i $SRC/glibc-2.4x-fhs-1.patch
 
 	mkdir build; cd build
 
@@ -65,22 +66,22 @@ build() {
 		$SRC/host.conf                           \
 		$SRC/ld.so.conf                          \
 
-	install -d $PKG/var/db/nscd
+	mkdir -p $PKG/var/db/nscd
 
 	ln -sf ../usr/share/zoneinfo/UTC $PKG/etc/localtime
 
-	install -d $PKG/etc/ld.so.conf.d
+	mkdir -p $PKG/etc/ld.so.conf.d
 	touch $PKG/etc/ld.so.cache
 
 	# install required locales
-	install -d $PKG/usr/lib/locale
+	mkdir -p $PKG/usr/lib/locale
 	LC_ALL=C ./elf/ld.so --library-path . $PKG/usr/bin/localedef   \
 	  --force --quiet                                              \
 	  --inputfile=$SRC/glibc-${version%-*}/localedata/locales/C    \
 	  --charmap=$SRC/glibc-${version%-*}/localedata/charmaps/UTF-8 \
 	  $PKG/usr/lib/locale/C.UTF-8 || true
 
-	# remove junk
+	# remove junk and obsoletes
 	rm -rf $PKG/usr/share/locale $PKG/usr/share/info
 	rm $PKG/usr/bin/tzselect $PKG/usr/bin/zdump $PKG/usr/sbin/zic
 	find $PKG  -type f \(           \
