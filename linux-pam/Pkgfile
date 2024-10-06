@@ -1,6 +1,6 @@
 # Description: Pluggable Authentication Modules (PAM) for Linux
 # URL:         https://github.com/linux-pam/linux-pam
-# Depends on:  bash
+# Depends on:  bash libxcrypt
 
 name=linux-pam
 version=1.6.1
