@@ -3,7 +3,7 @@
 # Depends on:  flex zlib
 
 name=binutils
-version=2.42
+version=2.43.1
 release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
@@ -29,7 +29,7 @@ build() {
 	# disable texinfo dependency
 	sed -i -e '/^MAKEINFO/s|=.*|= true|' Makefile
 
-	make tooldir=/usr
+	make tooldir=/usr V=1
 	make tooldir=/usr DESTDIR=$PKG install
 
 	sed -i "s|-L$SRC[^ ]* ||g"            \
