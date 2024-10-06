@@ -7,7 +7,7 @@
 
 name=python3
 version=3.12.7
-release=1
+release=2
 source=https://github.com/python/cpython/archive/v$version/python-$version.tar.gz
 
 build() {
@@ -34,7 +34,7 @@ build() {
 		--with-system-expat                  \
 		--with-system-libmpdec               \
 		--with-tzpath=/usr/share/zoneinfo    \
-		--without-ensurepip                  \
+		--with-ensurepip=yes                 \
 
 	make EXTRA_CFLAGS="$CFLAGS" V=1
 	make -j1 EXTRA_CFLAGS="$CFLAGS" DESTDIR=$PKG altinstall maninstall
@@ -55,6 +55,15 @@ build() {
 		$PKG/usr/lib/python${version%.*}/Tools/i18n/
 	install -m 0755 -D Tools/scripts/*.py \
 		$PKG/usr/lib/python${version%.*}/Tools/scripts/
+
+	# Zeppe-Lin considers pip3 to be a part of Python 3, so remove annoying
+	# update messages.
+	mkdir -p $PKG/etc
+	cat >$PKG/etc/pip.conf <<EOF
+[global]
+root-user-action = ignore
+disable-pip-version-check = true
+EOF
 
 	# remove junk
 	rm $PKG/usr/lib/python${version%.*}/ctypes/macholib/README.ctypes
