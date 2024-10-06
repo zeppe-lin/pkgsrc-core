@@ -1,6 +1,6 @@
 # Description: Perl programming language
 # URL:         https://www.perl.org/
-# Depends on:  db gdbm libnsl
+# Depends on:  db gdbm libnsl libxcrypt
 
 # 5.38.x LTS (EOL 2026-07)
 
