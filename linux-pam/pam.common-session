@@ -5,7 +5,7 @@
 session required    pam_limits.so
 session required    pam_unix.so
 
-# requires "dumb_runtime_dir" package
-#session optional    pam_dumb_runtime_dir.so
+session optional    pam_dumb_runtime_dir.so
+session optional    pam_lastlog2.so
 
 # End of file.

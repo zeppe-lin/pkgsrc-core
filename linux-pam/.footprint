@@ -34,6 +34,8 @@ lrwxrwxrwx	root/root	lib/libpamc.so.0 -> libpamc.so.0.82.1
 drwxr-xr-x	root/root	lib/security/
 -rwxr-xr-x	root/root	lib/security/pam_access.la
 -rwxr-xr-x	root/root	lib/security/pam_access.so
+-rwxr-xr-x	root/root	lib/security/pam_canonicalize_user.la
+-rwxr-xr-x	root/root	lib/security/pam_canonicalize_user.so
 -rwxr-xr-x	root/root	lib/security/pam_debug.la
 -rwxr-xr-x	root/root	lib/security/pam_debug.so
 -rwxr-xr-x	root/root	lib/security/pam_deny.la
@@ -119,9 +121,7 @@ drwxr-xr-x	root/root	sbin/
 -rwxr-xr-x	root/root	sbin/mkhomedir_helper
 -rwxr-xr-x	root/root	sbin/pam_namespace_helper
 -rwxr-xr-x	root/root	sbin/pam_timestamp_check
--rwxr-xr-x	root/root	sbin/pwhistory_helper
 -rwsr-xr-x	root/root	sbin/unix_chkpwd
--rwxr-xr-x	root/root	sbin/unix_update
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/include/security/
@@ -203,6 +203,7 @@ drwxr-xr-x	root/root	usr/share/man/man8/
 -rw-r--r--	root/root	usr/share/man/man8/mkhomedir_helper.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/pam.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/pam_access.8.gz
+-rw-r--r--	root/root	usr/share/man/man8/pam_canonicalize_user.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/pam_debug.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/pam_deny.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/pam_echo.8.gz
@@ -244,6 +245,4 @@ drwxr-xr-x	root/root	usr/share/man/man8/
 -rw-r--r--	root/root	usr/share/man/man8/pam_warn.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/pam_wheel.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/pam_xauth.8.gz
--rw-r--r--	root/root	usr/share/man/man8/pwhistory_helper.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/unix_chkpwd.8.gz
--rw-r--r--	root/root	usr/share/man/man8/unix_update.8.gz

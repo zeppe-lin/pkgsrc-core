@@ -3,7 +3,7 @@
 # Depends on:  bash
 
 name=linux-pam
-version=1.5.3
+version=1.6.1
 release=1
 source="https://github.com/$name/$name/releases/download/v${version}/Linux-PAM-$version.tar.xz
 	pam.common-account
@@ -35,16 +35,10 @@ build() {
 
 	# pam
 	mkdir -p $PKG/etc/pam.d
-	install -o root -g root -m 0644 $SRC/pam.common-account  \
-		$PKG/etc/pam.d/common-account
-	install -o root -g root -m 0644 $SRC/pam.common-auth     \
-		$PKG/etc/pam.d/common-auth
-	install -o root -g root -m 0644 $SRC/pam.common-password \
-		$PKG/etc/pam.d/common-password
-	install -o root -g root -m 0644 $SRC/pam.common-session  \
-		$PKG/etc/pam.d/common-session
-	install -o root -g root -m 0644 $SRC/pam.other           \
-		$PKG/etc/pam.d/other
+	for f in common-account common-auth common-password common-session other
+	do
+		install -o root -g root -m 0644 $SRC/pam.$f $PKG/etc/pam.d/$f
+	done
 
 	# remove junk
 	rm -r $PKG/usr/lib/systemd $PKG/usr/share/doc
