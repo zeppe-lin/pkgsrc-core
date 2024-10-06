@@ -2,8 +2,10 @@
 # URL:         https://www.perl.org/
 # Depends on:  db gdbm libnsl
 
+# 5.38.x LTS (EOL 2026-07)
+
 name=perl
-version=5.34.3
+version=5.38.2
 release=1
 source=https://www.cpan.org/src/5.0/$name-$version.tar.xz
 
