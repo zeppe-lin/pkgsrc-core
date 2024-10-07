@@ -1,2 +1,2 @@
 #!/bin/sh
-exec cc -std=c99 "$@"
+exec /usr/bin/cc -std=c99 "$@"
