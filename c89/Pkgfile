@@ -1,0 +1,13 @@
+# Description: Shell wrapper script to ANSI (1989) C compiler
+# URL:         https://zeppe-lin.github.io/
+
+name=c89
+version=0.1
+release=1
+source="c89.sh c89.1"
+
+build() {
+	# Thanks to NetBSD for the manual page.
+	install -m 0755 -D $SRC/c89.sh $PKG/usr/bin/c89
+	install -m 0644 -D $SRC/c89.1  $PKG/usr/share/man/man1/c89.1
+}
