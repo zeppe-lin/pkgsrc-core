@@ -3,12 +3,22 @@
 
 name=db
 version=5.3.28
-release=1
+release=2
 source="https://download.oracle.com/berkeley-db/db-$version.tar.gz
+	db-5.3.21-memp_stat-upstream-fix.patch
+	db-5.3.21-mutex_leak.patch
+	db-5.3.28_cve-2019-2708.patch
+	db-5.3.28-lemon_hash.patch
+	db-5.3.28-mmap-high-cpu-usage.patch
 	help_building_with_clang.patch"
 
 build() {
-	patch -p1 -d db-$version -i $SRC/help_building_with_clang.patch
+	patch -d db-$version -p1 -i $SRC/db-5.3.21-memp_stat-upstream-fix.patch
+	patch -d db-$version -p1 -i $SRC/db-5.3.21-mutex_leak.patch
+	patch -d db-$version -p1 -i $SRC/db-5.3.28_cve-2019-2708.patch
+	patch -d db-$version -p1 -i $SRC/db-5.3.28-lemon_hash.patch
+	patch -d db-$version -p1 -i $SRC/db-5.3.28-mmap-high-cpu-usage.patch
+	patch -d db-$version -p1 -i $SRC/help_building_with_clang.patch
 
 	mkdir build; cd build
 
@@ -18,6 +28,7 @@ build() {
 		--enable-shared        \
 		--enable-static        \
 		--enable-cxx           \
+		--disable-mutexsupport \
 
 	make V=1
 	make DESTDIR=$PKG install
