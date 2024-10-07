@@ -8,8 +8,7 @@
 name=python3
 version=3.11.10
 release=1
-source="https://github.com/python/cpython/archive/v$version/python-$version.tar.gz
-	mpdecimal-2.5.1.patch"
+source=https://github.com/python/cpython/archive/v$version/python-$version.tar.gz
 
 build() {
 	cd cpython-$version
