@@ -3,7 +3,7 @@
 
 name=dash
 version=0.5.12
-release=2
+release=3
 source="http://gondor.apana.org.au/~herbert/dash/files/dash-$version.tar.gz
 	0004-SHELL-Disable-sh-c-command-sh-c-exec-command-optimiza.diff
 	0007-Don-t-execute-binary-files-if-execve-returned-ENOEXE.diff
@@ -27,6 +27,7 @@ build() {
 
 	mkdir build; cd build
 
+	autoreconf -fi ../dash-$version
 	../dash-$version/configure       \
 		--prefix=/               \
 		--mandir=/usr/share/man  \
