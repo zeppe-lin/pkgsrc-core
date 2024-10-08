@@ -1,0 +1,26 @@
+# Description: Python package builder and installer for non-pip-centric world
+# URL:         https://pypi.org/project/gpep517/
+# Depends on:  python3
+
+name=py3-gpep517
+version=16
+release=1
+source="https://github.com/mgorny/gpep517/archive/v16/gpep517-v$version.tar.gz
+	default-bytecode-levels.patch
+	gpep517.py"
+
+build() {
+	local _sitedir=$(/usr/bin/python3 -c 'import site; print(site.getsitepackages()[0])')
+
+	patch -d gpep517-$version -Np1 -i $SRC/default-bytecode-levels.patch
+
+	mkdir -p $PKG/$_sitedir
+
+	cp -pR gpep517-$version/gpep517 $PKG/$_sitedir/
+
+	/usr/bin/python3     -m compileall $PKG/$_sitedir
+	/usr/bin/python3 -O  -m compileall $PKG/$_sitedir
+	/usr/bin/python3 -OO -m compileall $PKG/$_sitedir
+
+	install -m 0755 -D $SRC/gpep517.py $PKG/usr/bin/gpep517
+}
