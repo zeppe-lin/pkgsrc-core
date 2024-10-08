@@ -1,0 +1,25 @@
+# Description: Installing from a Python wheel distribution
+# URL:         https://github.com/pypa/installer
+# Depends on:  python3
+
+name=py3-installer
+version=0.7.0
+release=1
+source="https://files.pythonhosted.org/packages/py3/i/installer/installer-$version-py3-none-any.whl
+	default-bytecode-levels.patch"
+
+build() {
+	local _sitedir=$(/usr/bin/python3 -c 'import site; print(site.getsitepackages()[0])')
+
+	mkdir build
+
+	bsdtar -C build -xf $SRC/installer-$version-py3-none-any.whl
+	patch -d build -Np1 -i $SRC/default-bytecode-levels.patch
+
+	mkdir -p $PKG/$_sitedir
+	cp -pR build/installer*  $PKG/$_sitedir
+
+	/usr/bin/python3     -m compileall $PKG/$_sitedir
+	/usr/bin/python3 -O  -m compileall $PKG/$_sitedir
+	/usr/bin/python3 -OO -m compileall $PKG/$_sitedir
+}
