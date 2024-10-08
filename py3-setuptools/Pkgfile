@@ -1,22 +1,19 @@
 # Description: Installing and managing Python packages
 # URL:         https://pypi.org/project/setuptools/
-# Depends on:  python3
-
-# XXX This is the last non-deprecated release.
-# See c1aaa522594346c01af25d7be9183ed71cf8d300 for more information.
+# Depends on:  py3-flit-core py3-gpep517
 
 name=py3-setuptools
-version=71.0.0
+version=75.1.0
 release=1
 source=https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-$version.tar.gz
 
 build() {
-	export TMPDIR="$PKGMK_WORK_DIR"
-	export SETUPTOOLS_INSTALL_WINDOWS_SPECIFIC_FILES=0
-
 	cd setuptools-$version
 
-	/usr/bin/python3 setup.py build
-	/usr/bin/python3 setup.py install \
-		--skip-build --prefix=/usr --root=$PKG --optimize=2
+	gpep517 build-wheel --wheel-dir .dist --output-fd 3 3>&1 >&2
+	/usr/bin/python3 -m installer -d $PKG .dist/*.whl
+
+	/usr/bin/python3     -m compileall $PKG
+	/usr/bin/python3 -O  -m compileall $PKG
+	/usr/bin/python3 -OO -m compileall $PKG
 }
