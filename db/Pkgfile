@@ -3,7 +3,7 @@
 
 name=db
 version=5.3.28
-release=2
+release=3
 source="https://download.oracle.com/berkeley-db/db-$version.tar.gz
 	db-5.3.21-memp_stat-upstream-fix.patch
 	db-5.3.21-mutex_leak.patch
@@ -22,13 +22,14 @@ build() {
 
 	mkdir build; cd build
 
+	CFLAGS="$CFLAGS -Wno-error=implicit-int"
+
 	../db-$version/dist/configure  \
 		--prefix=/usr          \
 		--enable-compat185     \
 		--enable-shared        \
 		--enable-static        \
 		--enable-cxx           \
-		--disable-mutexsupport \
 
 	make V=1
 	make DESTDIR=$PKG install
