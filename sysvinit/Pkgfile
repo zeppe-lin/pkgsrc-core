@@ -3,8 +3,9 @@
 
 name=sysvinit
 version=3.10
-release=1
-source=https://github.com/slicer69/$name/releases/download/$version/$name-$version.tar.xz
+release=2
+source="https://github.com/slicer69/$name/releases/download/$version/$name-$version.tar.xz
+	rc.bootlogd"
 
 build() {
 	# remove localized man pages
@@ -17,6 +18,9 @@ build() {
 	touch      $PKG/var/log/wtmp
 	touch      $PKG/var/log/btmp
 	chmod 0600 $PKG/var/log/btmp
+
+	# service
+	install -m 0755 -D $SRC/rc.bootlogd $PKG/etc/rc.d/bootlogd
 
 	# provided by util-linux
 	for f in last lastb mesg utmpdump wall; do

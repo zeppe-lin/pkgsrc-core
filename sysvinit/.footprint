@@ -1,6 +1,8 @@
 drwxr-xr-x	root/root	bin/
 drwxr-xr-x	root/root	etc/
 drwxr-xr-x	root/root	etc/inittab.d/
+drwxr-xr-x	root/root	etc/rc.d/
+-rwxr-xr-x	root/root	etc/rc.d/bootlogd
 drwxr-xr-x	root/root	sbin/
 -rwxr-xr-x	root/root	sbin/bootlogd
 -rwxr-xr-x	root/root	sbin/fstab-decode
