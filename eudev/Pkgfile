@@ -4,9 +4,9 @@
 
 name=eudev
 version=3.2.14
-release=1
+release=2
 source="https://github.com/eudev-project/eudev/releases/download/v$version/eudev-$version.tar.gz
-	81-fuse.rules start_udev"
+	81-fuse.rules"
 
 build() {
 	# needed for static linking, e.g. dmsetup.static
@@ -41,7 +41,6 @@ build() {
 	         $PKG/sbin                  \
 	         $PKG/run                   \
 
-	# distro-specific files
-	install -m 0755 $SRC/start_udev    $PKG/sbin/
+	# custom rules
 	install -m 0644 $SRC/81-fuse.rules $PKG/lib/udev/rules.d/
 }
