@@ -4,9 +4,10 @@
 
 name=eudev
 version=3.2.14
-release=3
+release=4
 source="https://github.com/eudev-project/eudev/releases/download/v$version/eudev-$version.tar.gz
 	no-sgx.patch
+	rc.udevd
 	81-fuse.rules"
 
 build() {
@@ -43,6 +44,9 @@ build() {
 	         $PKG/lib/udev/devices/shm  \
 	         $PKG/sbin                  \
 	         $PKG/run                   \
+
+	# service
+	install -m 0755 -D $SRC/rc.udevd $PKG/etc/rc.d/udevd
 
 	# custom rules
 	install -m 0644 $SRC/81-fuse.rules $PKG/lib/udev/rules.d/
