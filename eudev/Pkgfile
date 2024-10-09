@@ -4,11 +4,14 @@
 
 name=eudev
 version=3.2.14
-release=2
+release=3
 source="https://github.com/eudev-project/eudev/releases/download/v$version/eudev-$version.tar.gz
+	no-sgx.patch
 	81-fuse.rules"
 
 build() {
+	patch -d eudev-$version -Np1 -i $SRC/no-sgx.patch
+
 	# needed for static linking, e.g. dmsetup.static
 	sed -i '/^Libs:/s/-ludev/-ludev -lrt/' \
 		eudev-$version/src/libudev/libudev.pc.in
