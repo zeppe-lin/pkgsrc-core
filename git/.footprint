@@ -205,6 +205,7 @@ drwxr-xr-x	root/root	usr/lib/git-core/mergetools/
 -rw-r--r--	root/root	usr/lib/git-core/mergetools/tkdiff
 -rw-r--r--	root/root	usr/lib/git-core/mergetools/tortoisemerge
 -rw-r--r--	root/root	usr/lib/git-core/mergetools/vimdiff
+-rw-r--r--	root/root	usr/lib/git-core/mergetools/vscode
 -rw-r--r--	root/root	usr/lib/git-core/mergetools/winmerge
 -rw-r--r--	root/root	usr/lib/git-core/mergetools/xxdiff
 -rwxr-xr-x	root/root	usr/lib/git-core/scalar
