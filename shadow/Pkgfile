@@ -1,6 +1,6 @@
 # Description: Shadow password file utilities
 # URL:         https://github.com/shadow-maint/shadow/
-# Depends on:  acl linux-pam
+# Depends on:  acl libbsd linux-pam
 
 name=shadow
 version=4.16.0
