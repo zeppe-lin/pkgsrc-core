@@ -3,10 +3,10 @@
 # Depends on:  acl linux-pam
 
 name=shadow
-version=4.13
+version=4.16.0
 release=1
 source="https://github.com/shadow-maint/$name/releases/download/$version/$name-$version.tar.xz
-	cron.pwck login.defs
+	cron.pwck
 	pam.chfn pam.chsh pam.groupadd pam.groupdel pam.groupmems
 	pam.groupmod pam.login pam.passwd pam.su pam.useradd
 	pam.userdel pam.usermod"
@@ -19,17 +19,20 @@ build() {
 		--bindir=/usr/bin    \
 		--sbindir=/usr/sbin  \
 		--sysconfdir=/etc    \
-		--disable-shared     \
-		--disable-shadowgrp  \
+		--disable-logind     \
 		--disable-nls        \
-		--without-selinux    \
+		--disable-shadowgrp  \
+		--disable-shared     \
+		--enable-lastlog     \
 		--without-audit      \
+		--without-btrfs      \
+		--without-selinux    \
 
 	make V=1
 	make DESTDIR=$PKG install
 	make -C man DESTDIR=$PKG install
 
-	install -d $PKG/bin $PKG/sbin $PKG/etc/cron/daily $PKG/var/log
+	mkdir -p $PKG/bin $PKG/sbin $PKG/etc/cron/daily $PKG/var/log
 
 	mv $PKG/usr/bin/login    $PKG/bin/
 	mv $PKG/usr/sbin/nologin $PKG/sbin/
@@ -37,7 +40,6 @@ build() {
 	chmod -s $PKG/usr/sbin/*
 
 	# login.defs
-	#install -m 0644 -D $SRC/login.defs $PKG/etc/
 	install -m 0644 -D ../$name-$version/etc/login.defs $PKG/etc/
 
 	# cron
@@ -47,16 +49,15 @@ build() {
 	touch $PKG/var/log/faillog
 
 	# pam configs
-	local _FILE
-	for _FILE in pam.chfn pam.chsh pam.groupadd pam.groupdel  \
-		pam.groupmems pam.groupmod pam.login pam.passwd   \
+	for f in pam.chfn pam.chsh pam.groupadd pam.groupdel     \
+		pam.groupmems pam.groupmod pam.login pam.passwd  \
 		pam.su pam.useradd pam.userdel pam.usermod
 	do
 		install -o root -g root -m 0644 \
-			$SRC/$_FILE $PKG/etc/pam.d/${_FILE#pam.}
+			$SRC/$f $PKG/etc/pam.d/${f#pam.}
 	done
 
-	# remove junk & unused
+	# remove junk and unused stuff
 	rm -r $PKG/usr/bin/gpasswd                \
 	      $PKG/usr/share/man/man1/gpasswd.1   \
 	      $PKG/usr/sbin/chpasswd              \
