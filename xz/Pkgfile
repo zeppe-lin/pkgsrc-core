@@ -2,7 +2,7 @@
 # URL:         https://xz.tukaani.org/
 
 name=xz
-version=5.4.6
+version=5.6.3
 release=1
 source=https://github.com/tukaani-project/xz/releases/download/v$version/xz-$version.tar.xz
 
