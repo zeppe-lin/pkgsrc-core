@@ -1,5 +1,5 @@
 # Description: Compression utility using the lzma algorithm
-# URL:         https://xz.tukaani.org/
+# URL:         https://tukaani.org/xz/
 
 name=xz
 version=5.6.3
