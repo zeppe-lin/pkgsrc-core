@@ -1,15 +1,19 @@
 README iproute2
 
+---
+
 
 KERNEL MODULES
 ==============
 
-Add the following lines to /etc/rc.modules to autoload modules needed by
-/etc/rc.d/bridge:
+Add the following lines to `/etc/rc.modules` to autoload modules needed by
+`/etc/rc.d/bridge`:
 
-	/sbin/modprobe tun
-	/sbin/modprobe tap
-	/sbin/modprobe vhost
+    /sbin/modprobe tun
+    /sbin/modprobe tap
+    /sbin/modprobe vhost
 
+
+---
 
 End of file.
