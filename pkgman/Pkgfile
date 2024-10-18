@@ -2,7 +2,7 @@
 # URL:         https://github.com/zeppe-lin/pkgman
 
 name=pkgman
-version=6.0.4-ff10a4b
+version=6.0.4-7c272d8
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgman.conf"
