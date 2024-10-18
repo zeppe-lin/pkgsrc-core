@@ -15,7 +15,6 @@ drwxr-xr-x	root/root	usr/include/unistring/
 -rw-r--r--	root/root	usr/include/unistring/iconveh.h
 -rw-r--r--	root/root	usr/include/unistring/inline.h
 -rw-r--r--	root/root	usr/include/unistring/localcharset.h
--rw-r--r--	root/root	usr/include/unistring/stdbool.h
 -rw-r--r--	root/root	usr/include/unistring/stdint.h
 -rw-r--r--	root/root	usr/include/unistring/version.h
 -rw-r--r--	root/root	usr/include/unistring/woe32dll.h
@@ -25,7 +24,7 @@ drwxr-xr-x	root/root	usr/include/unistring/
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libunistring.a
 -rwxr-xr-x	root/root	usr/lib/libunistring.la
-lrwxrwxrwx	root/root	usr/lib/libunistring.so -> libunistring.so.5.1.0
-lrwxrwxrwx	root/root	usr/lib/libunistring.so.5 -> libunistring.so.5.1.0
--rwxr-xr-x	root/root	usr/lib/libunistring.so.5.1.0
+lrwxrwxrwx	root/root	usr/lib/libunistring.so -> libunistring.so.5.2.0
+lrwxrwxrwx	root/root	usr/lib/libunistring.so.5 -> libunistring.so.5.2.0
+-rwxr-xr-x	root/root	usr/lib/libunistring.so.5.2.0
 drwxr-xr-x	root/root	usr/share/
