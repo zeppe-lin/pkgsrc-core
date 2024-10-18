@@ -3,14 +3,17 @@
 
 name=ed
 version=1.20.2
-release=1
+release=2
 source=https://ftpmirror.gnu.org/gnu/ed/ed-$version.tar.lz
 
 build() {
 	mkdir build; cd build
 
-	../ed-$version/configure --prefix=/usr --exec-prefix=/ \
-		CFLAGS="$CFLAGS"
+	../ed-$version/configure    \
+		--prefix=/usr       \
+		--exec-prefix=/     \
+		CFLAGS="$CFLAGS"    \
+		LDFLAGS="$LDFLAGS"  \
 
 	make V=1
 	make DESTDIR=$PKG install-bin install-man
