@@ -3,7 +3,7 @@
 # Depends on:  bzip2 zstd
 
 name=elfutils
-version=0.191
+version=0.192
 release=1
 source=https://sourceware.org/$name/ftp/$version/$name-$version.tar.bz2
 
@@ -16,7 +16,12 @@ build() {
 		--disable-debuginfod     \
 		--disable-libdebuginfod  \
 		--disable-nls            \
+		--disable-valgrind       \
 
 	make V=1
 	make DESTDIR=$PKG install
+
+	# remove disabled debuginfod* manual pages
+	rm -r $PKG/usr/share/man/man*/debuginfod*.?
+	rmdir $PKG/usr/share/man/man7 $PKG/usr/share/man/man8
 }
