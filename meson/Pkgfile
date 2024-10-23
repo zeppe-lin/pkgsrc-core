@@ -3,8 +3,8 @@
 # Depends on:  py3-setuptools
 
 name=meson
-version=1.5.2
-release=3
+version=1.6.0
+release=1
 source=https://github.com/mesonbuild/meson/releases/download/$version/meson-$version.tar.gz
 
 build() {
@@ -22,9 +22,7 @@ build() {
 
 	# vim syntax highlight
 	mkdir -p $PKG/usr/share/vim/vimfiles
-	for d in data/syntax-highlighting/vim/*/; do
-		cp -r $d $PKG/usr/share/vim/vimfiles
-	done
+	cp -rt $PKG/usr/share/vim/vimfiles data/syntax-highlighting/vim/*/
 
 	# bash-completion
 	install -m 0644 -Dt $PKG/usr/share/bash-completion/completions \
