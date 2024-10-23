@@ -1,0 +1,55 @@
+diff --git a/man/lsusb.8 b/man/lsusb.8
+index b018343..c0da5fe 100644
+--- a/man/lsusb.8
++++ b/man/lsusb.8
+@@ -59,8 +59,7 @@ then exit successfully.
+ If the specified device is not found, a non-zero exit code is returned.
+ 
+ .SH SEE ALSO
+-.BR lspci (8),
+-.BR usbview (8).
++.BR lspci (8)
+ 
+ .SH AUTHOR
+ Thomas Sailer, <sailer@ife.ee.ethz.ch>.
+diff --git a/man/lsusb.py.1 b/man/lsusb.py.1
+index b99f80a..f11ad44 100644
+--- a/man/lsusb.py.1
++++ b/man/lsusb.py.1
+@@ -59,8 +59,7 @@ file.
+ 
+ .SH SEE ALSO
+ .BR lspci (8),
+-.BR lsusb (8),
+-.BR usbview (8).
++.BR lsusb (8)
+ 
+ .SH AUTHOR
+ Thomas Sailer, <sailer@ife.ee.ethz.ch>,
+diff --git a/man/usb-devices.1 b/man/usb-devices.1
+index 86bf460..861318e 100644
+--- a/man/usb-devices.1
++++ b/man/usb-devices.1
+@@ -44,8 +44,7 @@ Location where the \fIusb/devices\fP file can normally be found for
+ Linux kernel 2.6.31 and later, if debugfs is mounted.
+ 
+ .SH SEE ALSO
+-.BR lsusb (8),
+-.BR usbview (8).
++.BR lsusb (8)
+ 
+ .SH AUTHORS
+ Greg Kroah-Hartman <greg@kroah.com>
+diff --git a/man/usbreset.1 b/man/usbreset.1
+index e10bf6f..abd8e38 100644
+--- a/man/usbreset.1
++++ b/man/usbreset.1
+@@ -47,7 +47,7 @@ Reset device named USB2.0 Hub:
+ .B usbreset """USB2.0 Hub"""
+ 
+ .SH SEE ALSO
+-.BR lsusb (8).
++.BR lsusb (8)
+ 
+ .SH AUTHOR
+ Alan Stern <stern@rowland.harvard.edu>

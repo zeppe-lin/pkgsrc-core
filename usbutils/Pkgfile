@@ -6,9 +6,11 @@ name=usbutils
 version=018
 release=1
 source="https://github.com/gregkh/$name/archive/v$version/$name-$version.tar.gz
+	fix-mans-refs.patch
 	usbreset-install.patch"
 
 build() {
+	patch -d $name-$version -Np1 -i $SRC/fix-mans-refs.patch
 	patch -d $name-$version -Np1 -i $SRC/usbreset-install.patch
 
 	meson setup build $name-$version  \
