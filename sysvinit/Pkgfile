@@ -2,8 +2,8 @@
 # URL:         https://savannah.nongnu.org/projects/sysvinit/
 
 name=sysvinit
-version=3.10
-release=2
+version=3.11
+release=1
 source="https://github.com/slicer69/$name/releases/download/$version/$name-$version.tar.xz
 	rc.bootlogd"
 
