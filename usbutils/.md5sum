@@ -1,4 +1,2 @@
-7b8389bfc27a2527176b9e5ff9c13d14  01-add-a-manpage-for-lsusb.py.patch
-644d8669626b4b46a5f2c68e869c4a9e  02-add-lsusb.py.1-to-distcleanfiles.patch
-e339e0cc7fbad352ca01c5dbb8a036f3  03-add-a-manpage-for-usbreset.patch
-798cc56fcbc7ef36bd434d948af3a814  usbutils-017.tar.gz
+37e039ab11ffda1c25964769ee248743  usbreset-install.patch
+eb2f3895105ddd1858b5c6364af43979  usbutils-018.tar.gz
