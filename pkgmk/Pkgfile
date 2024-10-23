@@ -3,14 +3,12 @@
 # Depends on:  filesystem
 
 name=pkgmk
-version=5.43.1-14159fe
+version=5.43.1-07c525d
 release=1
 source="https://github.com/zeppe-lin/pkgmk/archive/${version#*-}/pkgmk-$version.tar.gz
 	pkgmk.conf"
 
 build() {
 	make -C pkgmk-* DESTDIR=$PKG install install_bashcomp
-
-	# config file
-	install -m 0644 -Dt $PKG/etc/ $SRC/pkgmk.conf
+	install -m 0644 -Dt $PKG/etc $SRC/pkgmk.conf
 }
