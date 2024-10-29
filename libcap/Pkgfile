@@ -3,7 +3,7 @@
 # Depends on:  linux-pam
 
 name=libcap
-version=2.70
+version=2.71
 release=1
 source=https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$name-$version.tar.xz
 
@@ -26,6 +26,5 @@ build() {
 	mv $PKG/lib/libcap.a $PKG/lib/libpsx.* $PKG/usr/lib/
 	rm $PKG/lib/libcap.so
 	ln -s ../../lib/libcap.so.$version $PKG/usr/lib/libcap.so
-
 	sed -i '/^libdir/s|/lib|/usr/lib|' $PKG/usr/lib/pkgconfig/*.pc
 }
