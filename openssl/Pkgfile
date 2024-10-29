@@ -2,7 +2,7 @@
 # URL:         https://www.openssl.org/
 
 name=openssl
-version=3.3.2
+version=3.4.0
 release=1
 source=https://www.openssl.org/source/$name-$version.tar.gz
 
@@ -27,7 +27,7 @@ build() {
 		zlib                        \
 
 	# pick up system flags
-	sed -i "s,-O3,$CFLAGS," Makefile
+	sed -i "s:-O3:$CFLAGS:" Makefile
 
 	make V=1 depend
 	make V=1
