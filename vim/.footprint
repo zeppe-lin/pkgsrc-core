@@ -74,7 +74,6 @@ drwxr-xr-x	root/root	usr/share/vim/autoload/dist/
 -rw-r--r--	root/root	usr/share/vim/autoload/javascriptcomplete.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/modula2.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/netrw.vim
--rw-r--r--	root/root	usr/share/vim/autoload/netrwFileHandlers.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/netrwSettings.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/netrw_gitignore.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/paste.vim
@@ -93,6 +92,7 @@ drwxr-xr-x	root/root	usr/share/vim/autoload/rust/
 -rw-r--r--	root/root	usr/share/vim/autoload/syntaxcomplete.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/tar.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/tohtml.vim
+-rw-r--r--	root/root	usr/share/vim/autoload/tutor.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/typeset.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/typst.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/vimball.vim
@@ -342,6 +342,7 @@ drwxr-xr-x	root/root	usr/share/vim/doc/
 -rw-r--r--	root/root	usr/share/vim/doc/pi_paren.txt
 -rw-r--r--	root/root	usr/share/vim/doc/pi_spec.txt
 -rw-r--r--	root/root	usr/share/vim/doc/pi_tar.txt
+-rw-r--r--	root/root	usr/share/vim/doc/pi_tutor.txt
 -rw-r--r--	root/root	usr/share/vim/doc/pi_vimball.txt
 -rw-r--r--	root/root	usr/share/vim/doc/pi_zip.txt
 -rw-r--r--	root/root	usr/share/vim/doc/popup.txt
@@ -478,6 +479,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/config.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/confini.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/context.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/cook.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/corn.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/cpp.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/crm.vim
@@ -540,6 +542,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gitignore.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gitrebase.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gitsendemail.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/gleam.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/go.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/goaccess.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gomod.vim
@@ -596,6 +599,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/lc.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/ld.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/ldapconf.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/leo.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/less.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/lex.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/lftp.vim
@@ -741,6 +745,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/sudoers.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/svelte.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/svg.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/sway.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/swayconfig.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/swift.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/swiftgyb.vim
@@ -762,6 +767,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/toml.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/treetop.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/tt2html.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/tutor.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/typescript.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/typescriptreact.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/typst.vim
@@ -1054,6 +1060,11 @@ drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/ftdetect/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/mkzip.sh
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/plugin/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/plugin/editorconfig.vim
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/helptoc/
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/helptoc/autoload/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/helptoc/autoload/helptoc.vim
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/helptoc/plugin/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/helptoc/plugin/helptoc.vim
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/justify/
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/justify/plugin/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/justify/plugin/justify.vim
@@ -1088,6 +1099,7 @@ drwxr-xr-x	root/root	usr/share/vim/plugin/
 -rw-r--r--	root/root	usr/share/vim/plugin/spellfile.vim
 -rw-r--r--	root/root	usr/share/vim/plugin/tarPlugin.vim
 -rw-r--r--	root/root	usr/share/vim/plugin/tohtml.vim
+-rw-r--r--	root/root	usr/share/vim/plugin/tutor.vim
 -rw-r--r--	root/root	usr/share/vim/plugin/vimballPlugin.vim
 -rw-r--r--	root/root	usr/share/vim/plugin/zipPlugin.vim
 drwxr-xr-x	root/root	usr/share/vim/print/
@@ -1389,6 +1401,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/hb.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/hcl.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/help.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/help_it.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/help_ru.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/hercules.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/hex.vim
@@ -1457,6 +1470,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/ldif.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/less.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/lex.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/lf.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/lftp.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/lhaskell.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/libao.vim
@@ -1544,6 +1558,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/modula2/opt/
 -rw-r--r--	root/root	usr/share/vim/syntax/nastran.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/natural.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/ncf.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/neomuttlog.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/neomuttrc.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/netrc.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/netrw.vim
@@ -1803,6 +1818,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/shared/
 -rw-r--r--	root/root	usr/share/vim/syntax/tt2.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/tt2html.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/tt2js.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/tutor.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/typescript.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/typescriptreact.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/typst.vim
@@ -1832,6 +1848,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/shared/
 -rw-r--r--	root/root	usr/share/vim/syntax/vhdl.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/vim.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/viminfo.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/vimnormal.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/virata.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/vmasm.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/voscm.vim
@@ -1902,5 +1919,10 @@ drwxr-xr-x	root/root	usr/share/vim/tools/
 -rw-r--r--	root/root	usr/share/vim/tools/vimspell.txt
 -rw-r--r--	root/root	usr/share/vim/tools/xcmdsrv_client.c
 drwxr-xr-x	root/root	usr/share/vim/tutor/
+drwxr-xr-x	root/root	usr/share/vim/tutor/en/
+-rw-r--r--	root/root	usr/share/vim/tutor/en/vim-01-beginner.tutor
+-rw-r--r--	root/root	usr/share/vim/tutor/en/vim-01-beginner.tutor.json
 -rw-r--r--	root/root	usr/share/vim/tutor/tutor
+-rw-r--r--	root/root	usr/share/vim/tutor/tutor2
+-rw-r--r--	root/root	usr/share/vim/tutor/tutor2.utf-8
 -rw-r--r--	root/root	usr/share/vim/vimrc
