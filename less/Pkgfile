@@ -3,7 +3,7 @@
 # Depends on:  libpcre2 ncurses
 
 name=less
-version=668
+version=669
 release=1
 source="https://www.greenwoodsoftware.com/less/less-$version-beta.tar.gz
 	filter"
@@ -19,5 +19,5 @@ build() {
 	make DESTDIR=$PKG install
 
 	# custom "input preprocessor"
-	install -m 0755 -D $SRC/filter $PKG/usr/lib/less/filter
+	install -m 0755 -Dt $PKG/usr/lib/less $SRC/filter
 }
