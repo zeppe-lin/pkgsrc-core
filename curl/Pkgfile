@@ -3,11 +3,14 @@
 # Depends on:  openssl zstd
 
 name=curl
-version=8.10.1
+version=8.11.0
 release=1
-source=https://curl.se/download/curl-$version.tar.xz
+source="https://curl.se/download/curl-$version.tar.xz
+	878bc429f26c27294787dc59d7b53345d9edc5aa.patch"
 
 build() {
+	patch -d curl-$version -Np1 -i $SRC/878bc429f26c27294787dc59d7b53345d9edc5aa.patch
+
 	mkdir build; cd build
 
 	../curl-$version/configure                  \
@@ -27,6 +30,5 @@ build() {
 
 	make V=1
 	make DESTDIR=$PKG install
-
 	make -C docs/libcurl DESTDIR=$PKG install
 }
