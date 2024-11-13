@@ -3,7 +3,7 @@
 # Depends on:  linux-pam
 
 name=libcap
-version=2.71
+version=2.72
 release=1
 source=https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$name-$version.tar.xz
 
@@ -11,7 +11,7 @@ build() {
 	cd $name-$version
 
 	# remove default optimization flag
-	sed -i "/^CFLAGS/s/-O2/$CFLAGS/" Make.Rules 
+	sed -i "/^CFLAGS/s/-O2/$CFLAGS/" Make.Rules
 
 	make BUILD_COPTS=                     \
 	     DEBUG=                           \
