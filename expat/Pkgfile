@@ -1,5 +1,6 @@
 # Description: XML parser library
 # URL:         https://libexpat.github.io/
+# Depends on:  libbsd
 
 name=expat
 version=2.6.4
