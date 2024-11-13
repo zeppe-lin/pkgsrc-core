@@ -2,7 +2,7 @@
 # URL:         https://libexpat.github.io/
 
 name=expat
-version=2.6.3
+version=2.6.4
 release=1
 source=https://download.sourceforge.net/expat/expat-$version.tar.lz
 
@@ -11,9 +11,11 @@ build() {
 
 	../expat-$version/configure  \
 		--prefix=/usr        \
+		--with-libbsd        \
+		--without-docbook    \
 		--without-examples   \
 		--without-tests      \
-		--without-docbook    \
+		#--without-xmlwf     \
 
 	make V=1
 	make DESTDIR=$PKG install
