@@ -3,7 +3,7 @@
 # Depends on:  curl expat libarchive libmd lz4 ncurses
 
 name=cmake
-version=3.30.5
+version=3.31.0
 release=1
 source=https://cmake.org/files/v${version%.*}/cmake-$version.tar.gz
 
@@ -48,8 +48,8 @@ build() {
 	ln -sf cmake $PKG/usr/share/cmake-${version%.*}
 
 	# remove junk
-	rm -r $PKG/usr/doc                              \
-	      $PKG/usr/share/cmake/Help                 \
-	      $PKG/usr/share/emacs                      \
+	rm -r $PKG/usr/doc                             \
+	      $PKG/usr/share/cmake/Help                \
+	      $PKG/usr/share/emacs                     \
 	      $PKG/usr/share/cmake/Modules/readme.txt
 }
