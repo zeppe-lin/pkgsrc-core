@@ -10,6 +10,7 @@ source=https://download.sourceforge.net/expat/expat-$version.tar.lz
 build() {
 	mkdir build; cd build
 
+	# --with-libbsd:  utilize libbsd (for arc4random_buf)
 	../expat-$version/configure  \
 		--prefix=/usr        \
 		--with-libbsd        \
