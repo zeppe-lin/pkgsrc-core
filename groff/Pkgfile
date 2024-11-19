@@ -3,10 +3,14 @@
 
 name=groff
 version=1.23.0
-release=1
-source=https://ftpmirror.gnu.org/gnu/groff/groff-$version.tar.gz
+release=2
+source="https://ftpmirror.gnu.org/gnu/groff/groff-$version.tar.gz
+	ff948a6239830e80e15c4e4b93d4324316d2f097.patch"
 
 build() {
+	# Recognize new POSIX.1-2024 standard.
+	patch -d $name-$version -Np1 -i $SRC/ff948a6239830e80e15c4e4b93d4324316d2f097.patch
+
 	mkdir build; cd build
 
 	../$name-$version/configure  \

@@ -1,0 +1,43 @@
+From ff948a6239830e80e15c4e4b93d4324316d2f097 Mon Sep 17 00:00:00 2001
+From: "G. Branden Robinson" <g.branden.robinson@gmail.com>
+Date: Fri, 21 Jun 2024 09:16:19 -0500
+Subject: [mdoc]: Recognize new POSIX.1-2024 standard.
+
+* tmac/mdoc/doc-syms: Do it.
+* tmac/groff_mdoc.7.man (Standards): Document it.
+
+Prompted by a similar change to mandoc(1).
+---
+ tmac/groff_mdoc.7.man | 2 ++
+ tmac/mdoc/doc-syms    | 2 ++
+ 3 files changed, 11 insertions(+)
+
+diff --git a/tmac/groff_mdoc.7.man b/tmac/groff_mdoc.7.man
+index b31358ad3..4eaaded23 100644
+--- a/tmac/groff_mdoc.7.man
++++ b/tmac/groff_mdoc.7.man
+@@ -2503,6 +2503,8 @@ Part 1: System API
+ .St -p1003.1-2004
+ .It Li \-p1003.1\-2008
+ .St -p1003.1-2008
++.It Li \-p1003.1\-2024
++.St -p1003.1-2024
+ .El
+ .Pp
+ .
+diff --git a/tmac/mdoc/doc-syms b/tmac/mdoc/doc-syms
+index 4db4373b3..c637fe242 100644
+--- a/tmac/mdoc/doc-syms
++++ b/tmac/mdoc/doc-syms
+@@ -657,6 +657,8 @@
+ .as doc-str-St--p1003.1-2004   " (\*[Lq]\)\*[Px]\*[doc-str-St].1\*[Rq])
+ .ds doc-str-St--p1003.1-2008   \%IEEE\*[doc-str-St] Std 1003.1-2008
+ .as doc-str-St--p1003.1-2008   " (\*[Lq]\)\*[Px]\*[doc-str-St].1\*[Rq])
++.ds doc-str-St--p1003.1-2024   \%IEEE\*[doc-str-St] Std 1003.1-2024
++.as doc-str-St--p1003.1-2024   " (\*[Lq]\)\*[Px]\*[doc-str-St].1\*[Rq])
+ .ec
+ .
+ .\" POSIX Part 2: Shell and Utilities
+-- 
+cgit v1.2.3-70-g09d2
+
