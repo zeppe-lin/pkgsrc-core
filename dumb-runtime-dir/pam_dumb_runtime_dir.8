@@ -1,0 +1,65 @@
+.\" pam_dumb_runtime_dir.so manual page
+.Dd November 19, 2024
+.Dt PAM_DUMB_RUNTIME_DIR 8
+.Os
+.\" ==================================================================
+.Sh NAME
+.Nm pam_dumb_runtime_dir.so
+.Nd PAM module that manages XDG_RUNTIME_DIR
+.\" ==================================================================
+.Sh SYNOPSIS
+.Nm
+.\" ==================================================================
+.Sh DESCRIPTION
+.Nm
+is a PAM module that manages creation of the
+.Ev XDG_RUNTIME_DIR
+directory on login per the
+.Lk https://specifications.\:freedesktop.\:org/basedir\-\:spec/\:basedir\-\:spec\-\:latest.html \
+"XDG Base Directory Specification 0.8" .
+.\" ==================================================================
+.Sh EXAMPLES
+In order to make use of this module, place the following in the
+.Ql session
+part of the control file of desire under
+.Pa /etc/pam.d ,
+on Linux it may be
+.Pa /etc/pam.d/common-session
+if that exists, on BSD's the files
+.Pa /etc/pam.d/system
+as well as
+.Pa /etc/pam.d/login ,
+.Pa /etc/pam.d/sshd
+and
+.Pa /etc/pam.d/su
+may be desirable, adjusting paths as necessary:
+.Bd -literal -offset indent
+session optional pam_dumb_runtime_dir.so
+.Ed
+.\" ==================================================================
+.Sh "SEE ALSO"
+.Xr pam 3 ,
+.Xr pam.conf 5
+.\" ==================================================================
+.Sh AUTHORS
+.An "Isaac Freund" Aq Mt mail@isaacfreund.com .
+.Pp
+This manual page was written for Zeppe-Lin System by
+.An "Alexandr Savca" Aq Mt alexandr.savca89@gmail.com .
+.\" ==================================================================
+.Sh CAVEATS
+.Pp
+When linked into the PAM session system the runtime directory will be
+created once and never removes it, even after last logout.
+This keeps things simple and predictable.
+.Pp
+The user is responsible for ensuring that the
+.Ev RUNTIME_DIR_PARENT
+directory
+.Po
+.Pa /run/user
+by default
+.Pc
+exists and is only writeable by root.
+.\" vim: cc=72 tw=70
+.\" End of file.
