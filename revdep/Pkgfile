@@ -1,9 +1,9 @@
-# Description: Check for missing libraries of installed packages
+# Description: Check for missing or wrong libraries of installed packages
 # URL:         https://github.com/zeppe-lin/revdep
 # Depends on:  elfutils
 
 name=revdep
-version=4.0-7e96208
+version=4.0-88e3d92
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
