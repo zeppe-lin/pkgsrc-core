@@ -14,9 +14,11 @@ command returns non-empty output, the option is supported:
 
     hdparm -I /dev/sda | grep NCQ
 
-**IMPORTANT!
+**IMPORTANT:**
 The Logical Volume Management (LVM) based partitions cannot use the barrier
-option.**
+option.
 
+
+---
 
 End of file.
