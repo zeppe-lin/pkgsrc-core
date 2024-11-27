@@ -4,10 +4,14 @@
 
 name=util-linux
 version=2.40.2
-release=2
-source=https://www.kernel.org/pub/linux/utils/$name/v${version%.*}/$name-$version.tar.xz
+release=3
+source="https://www.kernel.org/pub/linux/utils/$name/v${version%.*}/$name-$version.tar.xz
+	manpages-nosystemd-refs.patch"
 
 build() {
+	# clean up systemd(1) references from man pages
+	patch -d $name-$version -Np1 -i $SRC/manpages-nosystemd-refs.patch
+
 	mkdir build; cd build
 
 	# --disable-chfn-chsh: provided by shadow
