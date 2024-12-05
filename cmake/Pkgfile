@@ -3,7 +3,7 @@
 # Depends on:  curl expat libarchive libmd lz4 ncurses
 
 name=cmake
-version=3.31.1
+version=3.31.2
 release=1
 source=https://cmake.org/files/v${version%.*}/cmake-$version.tar.gz
 
@@ -39,7 +39,6 @@ build() {
 			-D BUILD_TESTING=OFF       \
 
 		cd -
-
 	fi
 
 	ninja -C build -j ${JOBS:-1} -v
