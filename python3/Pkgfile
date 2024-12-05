@@ -2,11 +2,13 @@
 # URL:         https://www.python.org/
 # Depends on:  bzip2 expat gdbm libffi libnsl mpdecimal openssl sqlite3 xz
 
+##############################################################################
 # 3.12.x LTS (EOL 2028-10)
 # https://devguide.python.org/versions/
+##############################################################################
 
 name=python3
-version=3.12.7
+version=3.12.8
 release=1
 source=https://github.com/python/cpython/archive/v$version/python-$version.tar.gz
 
