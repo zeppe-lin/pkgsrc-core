@@ -1,4 +1,4 @@
 65d544a533605ee8add405c6592dbba1  glibc-2.36-10.patch
 00e9b89e043340f688bc93ec03239b57  glibc-2.36.tar.xz
 a8f4549c716cd37244fbf1ed059497f8  lib32.conf
-a44378fb0c9571af5f3f26b7d50debbd  linux-5.4.274.tar.xz
+81aafa1fc3e9fb71c0b66fe0ecc32b3b  linux-5.4.284.tar.xz
