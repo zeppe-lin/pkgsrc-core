@@ -3,7 +3,7 @@
 
 name=rejmerge
 version=5.45.1-8f11379
-release=1
+release=2
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	rejmerge.conf
 	gnufind.patch"
