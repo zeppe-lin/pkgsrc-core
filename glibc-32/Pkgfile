@@ -55,6 +55,7 @@ build() {
 		--enable-stack-protector=strong   \
 		--without-gd                      \
 		i686-pc-linux-gnu                 \
+		MAKEINFO=missing                  \
 
 	make V=1
 	#make check
