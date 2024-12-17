@@ -52,6 +52,7 @@ build() {
 		--enable-multi-arch              \
 		--enable-stack-protector=strong  \
 		--without-gd                     \
+		MAKEINFO=missing                 \
 
 	make V=1
 	#make check
