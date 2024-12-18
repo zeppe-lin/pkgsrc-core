@@ -4,21 +4,23 @@
 
 name=gcc
 version=14.2.0
-release=1
+release=2
 source="ftp://gcc.gnu.org/pub/gcc/releases/gcc-$version/gcc-$version.tar.xz
-	gcc-nocheck-fixincludes.patch
-	gcc-4.7.3-multilib-dirs.patch"
+	gcc-4.7.3-multilib-dirs.patch
+	gcc-configure-texinfo.patch
+	gcc-nocheck-fixincludes.patch"
 
 build() {
-	patch -d gcc-$version -p1 -i $SRC/gcc-nocheck-fixincludes.patch
 	patch -d gcc-$version -p1 -i $SRC/gcc-4.7.3-multilib-dirs.patch
+	patch -d gcc-$version -p1 -i $SRC/gcc-configure-texinfo.patch
+	patch -d gcc-$version -p1 -i $SRC/gcc-nocheck-fixincludes.patch
 
 	# set the default directory name for 64-bit libraries to "lib"
 	sed -e '/m64=/s/lib64/lib/' -i.orig gcc-$version/gcc/config/i386/t-linux64
 
 	# -pipe flag fail tests
-	CFLAGS=$(echo $CFLAGS | sed 's/-pipe//')
-	CXXFLAGS=$(echo $CXXFLAGS | sed 's/-pipe//')
+	export CFLAGS=$(echo $CFLAGS | sed 's/-pipe//')
+	export CXXFLAGS=$(echo $CXXFLAGS | sed 's/-pipe//')
 
 	mkdir build; cd build
 
@@ -39,6 +41,7 @@ build() {
 		--enable-threads=posix    \
 		--with-system-zlib        \
 		--with-x=no               \
+		MAKEINFO=missing          \
 
 	make bootstrap
 	make -j1 DESTDIR=$PKG install
