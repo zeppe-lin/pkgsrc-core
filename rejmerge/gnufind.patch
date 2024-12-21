@@ -1,7 +1,7 @@
-diff --git a/rejmerge b/rejmerge
+diff --git a/src/rejmerge.in b/src/rejmerge.in
 index e875d09..e83af74 100755
---- a/rejmerge
-+++ b/rejmerge
+--- a/src/rejmerge.in
++++ b/src/rejmerge.in
 @@ -350,11 +350,7 @@ main() {
  	done
  
