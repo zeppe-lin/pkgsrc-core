@@ -3,7 +3,7 @@
 # Depends on:  elfutils
 
 name=revdep
-version=4.0-9ac0172
+version=4.0-0bdfb87
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
@@ -14,5 +14,6 @@ build() {
 	# it's safe to optimize
 	CXXFLAGS="$(echo $CXXFLAGS | sed 's/-O. /-Ofast /')"
 
-	make -C $name-* DESTDIR=$PKG install install_bashcomp
+	make -C $name-* LDFLAGS="-static `pkg-config --static --libs libelf`" \
+		DESTDIR=$PKG install
 }
