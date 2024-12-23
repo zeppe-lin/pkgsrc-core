@@ -3,7 +3,7 @@
 # Depends on:  libarchive
 
 name=pkgutils
-version=6.0.2-302cf0d
+version=6.0.2-fc92eaa
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
@@ -12,6 +12,8 @@ build() {
 	# pick up system flags
 	sed -ri '/^(CXX|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
 
-	make -C $name-* DESTDIR=$PKG install install_bashcomp install_vimfiles
-	install -m 0644 -Dt $PKG/etc  $SRC/pkgadd.conf
+	make -C $name-* \
+		LDFLAGS="-static `pkg-config --static --libs libarchive`" \
+		DESTDIR=$PKG install
+	install -m 0644 -Dt $PKG/etc $SRC/pkgadd.conf
 }
