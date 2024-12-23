@@ -4,13 +4,14 @@ drwxr-xr-x	root/root	bin/
 drwxr-xr-x	root/root	etc/
 -rw-r--r--	root/root	etc/sysctl.conf
 drwxr-xr-x	root/root	lib/
-lrwxrwxrwx	root/root	lib/libproc2.so.0 -> libproc2.so.0.0.2
--rwxr-xr-x	root/root	lib/libproc2.so.0.0.2
+lrwxrwxrwx	root/root	lib/libproc2.so.1 -> libproc2.so.1.0.0
+-rwxr-xr-x	root/root	lib/libproc2.so.1.0.0
 drwxr-xr-x	root/root	sbin/
 -rwxr-xr-x	root/root	sbin/sysctl
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/free
+-rwxr-xr-x	root/root	usr/bin/hugetop
 -rwxr-xr-x	root/root	usr/bin/pgrep
 -rwxr-xr-x	root/root	usr/bin/pidwait
 -rwxr-xr-x	root/root	usr/bin/pkill
@@ -36,13 +37,14 @@ drwxr-xr-x	root/root	usr/include/libproc2/
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libproc2.a
 -rwxr-xr-x	root/root	usr/lib/libproc2.la
-lrwxrwxrwx	root/root	usr/lib/libproc2.so -> ../../lib/libproc2.so.0.0.2
+lrwxrwxrwx	root/root	usr/lib/libproc2.so -> ../../lib/libproc2.so.1.0.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libproc2.pc
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/man/
 drwxr-xr-x	root/root	usr/share/man/man1/
 -rw-r--r--	root/root	usr/share/man/man1/free.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/hugetop.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/pgrep.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/pidof.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/pidwait.1.gz
