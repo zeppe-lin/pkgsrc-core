@@ -2,15 +2,13 @@
 # URL:         https://packages.debian.org/unstable/utils/fakeroot
 
 name=fakeroot
-version=1.36
+version=1.36.2
 release=1
 source="https://deb.debian.org/debian/pool/main/f/$name/${name}_$version.orig.tar.gz
-	faked.1.patch
-	fakeroot.1.patch"
+	manpages.patch"
 
 build() {
-	patch -d $name-$version -p1 -i $SRC/faked.1.patch
-	patch -d $name-$version -p1 -i $SRC/fakeroot.1.patch
+	patch -d $name-$version -Np1 -i $SRC/manpages.patch
 
 	sed -i '/^SUBDIRS/d' $name-$version/doc/Makefile.am
 
