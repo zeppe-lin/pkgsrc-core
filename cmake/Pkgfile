@@ -3,7 +3,7 @@
 # Depends on:  curl expat libarchive libmd lz4 ncurses
 
 name=cmake
-version=3.31.2
+version=3.31.3
 release=1
 source=https://cmake.org/files/v${version%.*}/cmake-$version.tar.gz
 
@@ -11,8 +11,8 @@ build() {
 	sed 's|share/cmake-${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}|share/cmake|' \
 		-i cmake-$version/Source/CMakeInstallDestinations.cmake
 
-	# Use cmake to build the package if cmake is installed and isn't broken.
-	# This leads to a much faster build.
+	# Use cmake to build the package if cmake is installed and isn't
+	# broken.  This leads to a much faster build.
 	if command -v cmake && cmake --version; then
 		cmake -S cmake-$version -B build -G Ninja       \
 			-D CMAKE_INSTALL_PREFIX=/usr            \
