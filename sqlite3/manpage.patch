@@ -1,0 +1,12 @@
+diff '--color=auto' -pruN sqlite-autoconf-3470200.orig/sqlite3.1 sqlite-autoconf-3470200/sqlite3.1
+--- sqlite-autoconf-3470200.orig/sqlite3.1	2024-12-23 06:41:35.726921845 +0200
++++ sqlite-autoconf-3470200/sqlite3.1	2024-12-23 06:42:19.448126381 +0200
+@@ -152,8 +152,6 @@ o All other command line options are pro
+ https://sqlite.org/cli.html
+ .br
+ https://sqlite.org/fiddle (a WebAssembly build of the CLI app)
+-.br
+-The sqlite3-doc package.
+ .SH AUTHOR
+ This manual page was originally written by Andreas Rottmann
+ <rotty@debian.org>, for the Debian GNU/Linux system (but may be used
