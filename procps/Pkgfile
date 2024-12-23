@@ -6,9 +6,12 @@ name=procps
 version=4.0.5
 release=1
 source="https://downloads.sourceforge.net/project/$name-ng/Production/$name-ng-$version.tar.xz
+	manpages.patch
 	sysctl.conf"
 
 build() {
+	patch -d $name-ng-$version -Np1 -i $SRC/manpages.patch
+
 	export LINGUAS=' '
 
 	mkdir build; cd build

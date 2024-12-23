@@ -1,0 +1,222 @@
+diff '--color=auto' -pruN procps-ng-4.0.5.orig/man/free.1 procps-ng-4.0.5/man/free.1
+--- procps-ng-4.0.5.orig/man/free.1	2024-12-23 06:07:01.952783460 +0200
++++ procps-ng-4.0.5/man/free.1	2024-12-23 06:10:48.244018237 +0200
+@@ -164,4 +164,4 @@ Please send bug reports to
+ .BR ps (1),
+ .BR slabtop (1),
+ .BR top "(1),
+-.BR vmstat (8).
++.BR vmstat (8)
+diff '--color=auto' -pruN procps-ng-4.0.5.orig/man/hugetop.1 procps-ng-4.0.5/man/hugetop.1
+--- procps-ng-4.0.5.orig/man/hugetop.1	2024-12-23 06:07:01.951783432 +0200
++++ procps-ng-4.0.5/man/hugetop.1	2024-12-23 06:10:24.919375597 +0200
+@@ -46,16 +46,10 @@ Display help text and exit.
+ \fB\-V\fR, \fB\-\-version\fR
+ Display version information and exit.
+ .SH "EXIT STATUS"
+-.PP
+-.RS
+-.PD 0
+-.TP
+ .B 0
+-Success.
+-.TP
+-.B Others
+-Errno.
+-.PD
++if success,
++.B errno
++otherwise.
+ .SH AUTHOR
+ zhenwei pi <pizhenwei@bytedance.com>
+ .SH "SEE ALSO"
+diff '--color=auto' -pruN procps-ng-4.0.5.orig/man/pgrep.1 procps-ng-4.0.5/man/pgrep.1
+--- procps-ng-4.0.5.orig/man/pgrep.1	2024-12-23 06:07:01.952783460 +0200
++++ procps-ng-4.0.5/man/pgrep.1	2024-12-23 06:11:21.361930705 +0200
+@@ -331,7 +331,7 @@ system call which first appeared in Linu
+ .BR skill (1),
+ .BR kill (1),
+ .BR kill (2),
+-.BR cgroups (8).
++.BR cgroups (8)
+ .SH AUTHOR
+ .MT kjetilho@ifi.uio.no
+ Kjetil Torgrim Homme
+diff '--color=auto' -pruN procps-ng-4.0.5.orig/man/pmap.1 procps-ng-4.0.5/man/pmap.1
+--- procps-ng-4.0.5.orig/man/pmap.1	2024-12-23 06:07:01.952783460 +0200
++++ procps-ng-4.0.5/man/pmap.1	2024-12-23 06:12:46.368272887 +0200
+@@ -74,8 +74,6 @@ Display help text and exit.
+ \fB\-V\fR, \fB\-\-version\fR
+ Display version information and exit.
+ .SH "EXIT STATUS"
+-.PP
+-.RS
+ .TP
+ .B 0
+ Success.
+@@ -85,7 +83,6 @@ Failure.
+ .TP
+ .B 42
+ Did not find all processes asked for.
+-.RE
+ .SH "SEE ALSO"
+ .BR ps (1),
+ .BR pgrep (1)
+diff '--color=auto' -pruN procps-ng-4.0.5.orig/man/procps.3 procps-ng-4.0.5/man/procps.3
+--- procps-ng-4.0.5.orig/man/procps.3	2024-12-23 06:07:01.952783460 +0200
++++ procps-ng-4.0.5/man/procps.3	2024-12-23 06:13:00.302656844 +0200
+@@ -173,4 +173,4 @@ for a production/release build.
+ .SH SEE ALSO
+ .BR procps_misc (3),
+ .BR procps_pids (3),
+-.BR proc (5).
++.BR proc (5)
+diff '--color=auto' -pruN procps-ng-4.0.5.orig/man/procps_misc.3 procps-ng-4.0.5/man/procps_misc.3
+--- procps-ng-4.0.5.orig/man/procps_misc.3	2024-12-23 06:07:01.951783432 +0200
++++ procps-ng-4.0.5/man/procps_misc.3	2024-12-23 06:14:33.124214531 +0200
+@@ -33,7 +33,7 @@ Runtime Particulars
+ .RI "int  \fB procps_container_uptime\fR (double *" uptime_secs ");"
+ .RI "int  \fB procps_loadavg\fR (double *" av1 ", double *" av5 ", double *" av15 ");"
+ .RI "int  \fB procps_uptime\fR (double *" uptime_secs ", double *" idle_secs ");"
+-.RI "int  \fB procps_uptime_snprint\fR ( char *restrict " str ", size_t " size ", double " uptime_secs ", const int " pretty ");"
++.RI "int  \fB procps_uptime_snprint\fR (char *restrict " str ", size_t " size ", double " uptime_secs ", const int " pretty ");"
+ .RB "char *" procps_uptime_sprint " (void);"
+ .RB "char *" procps_uptime_sprint_short " (void);"
+ .RB "int   " procps_users " (void);"
+@@ -50,8 +50,8 @@ Namespace Particulars
+ Mask Name Resolving
+ .PP
+ .RS 4
+-.RI "int \fBprocps_sigmask_names\fR (char *const " str ", size_t " size " , const char *" sigmask ");"
+-.RI "int \fBprocps_capmask_names\fR (char *const " str ", size_t " size ",  const char *" capmask ");"
++.RI "int \fBprocps_sigmask_names\fR (char *const " str ", size_t " size ", const char *" sigmask ");"
++.RI "int \fBprocps_capmask_names\fR (char *const " str ", size_t " size ", const char *" capmask ");"
+ .RE
+ .PP
+ .P
+@@ -217,4 +217,4 @@ contains the set of namespaces for a par
+ .BR sd_get_sessions (3),
+ .BR proc (5),
+ .BR capabilities (7),
+-.BR signal (7).
++.BR signal (7)
+diff '--color=auto' -pruN procps-ng-4.0.5.orig/man/procps_pids.3 procps-ng-4.0.5/man/procps_pids.3
+--- procps-ng-4.0.5.orig/man/procps_pids.3	2024-12-23 06:07:01.951783432 +0200
++++ procps-ng-4.0.5/man/procps_pids.3	2024-12-23 06:15:16.696415156 +0200
+@@ -197,4 +197,4 @@ call.
+ .SH SEE ALSO
+ .BR procps (3),
+ .BR procps_misc (3),
+-.BR proc (5).
++.BR proc (5)
+diff '--color=auto' -pruN procps-ng-4.0.5.orig/man/ps.1 procps-ng-4.0.5/man/ps.1
+--- procps-ng-4.0.5.orig/man/ps.1	2024-12-23 06:07:01.952783460 +0200
++++ procps-ng-4.0.5/man/ps.1	2024-12-23 06:15:45.562210545 +0200
+@@ -2098,7 +2098,7 @@ names across languages.
+ .BR top (1),
+ .BR strftime (3),
+ .BR proc (5),
+-.BR capabilities (7).
++.BR capabilities (7)
+ 
+ .SH STANDARDS
+ This
+diff '--color=auto' -pruN procps-ng-4.0.5.orig/man/sysctl.conf.5 procps-ng-4.0.5/man/sysctl.conf.5
+--- procps-ng-4.0.5.orig/man/sysctl.conf.5	2024-12-23 06:07:01.951783432 +0200
++++ procps-ng-4.0.5/man/sysctl.conf.5	2024-12-23 06:21:27.480632056 +0200
+@@ -19,16 +19,6 @@ is a set of configuration files that con
+ Linux kernel configuration parameters
+ to be read and set by
+ .BR sysctl (8).
+-.PP
+-This man page describes the configuration files for
+-.I procps
+-.BR sysctl .
+-If you are using
+-.BR systemd\-sysctl (8),
+-refer to
+-.BR sysctl.d (5)
+-and note that it won't use the file
+-.IR \%/etc/\:\%sysctl\:\%.conf .
+ .SS "Configuration Format"
+ Each line of a file read by
+ .I procps
+@@ -77,12 +67,6 @@ Finally,
+ .B sysctl
+ reads
+ .IR \%/etc/\:\%sysctl\:\%.conf .
+-This file is not used by
+-.BR systemd\-sysctl ,
+-which means that some kernel parameters are not set depending on the
+-implementation of
+-.B sysctl
+-that is installed.
+ .SH BUGS
+ The maximum supported length of
+ .I value
+@@ -98,6 +82,4 @@ kernel.domainname = example.com
+ kernel.modprobe = /sbin/mod probe
+ .EE
+ .SH "SEE ALSO"
+-.BR sysctl.d (5),
+-.BR sysctl (8),
+-.BR systemd\-sysctl (8)
++.BR sysctl (8)
+diff '--color=auto' -pruN procps-ng-4.0.5.orig/man/top.1 procps-ng-4.0.5/man/top.1
+--- procps-ng-4.0.5.orig/man/top.1	2024-12-23 06:07:01.952783460 +0200
++++ procps-ng-4.0.5/man/top.1	2024-12-23 06:30:05.448904438 +0200
+@@ -139,7 +139,8 @@ The remaining Table of Contents
+        b. Bouncing Windows
+        c. The Big Bird Window
+        d. The Ol' Switcheroo
+-    9. BUGS, 10. SEE Also
++    9. BUGS
++    10. SEE ALSO
+ .fi
+ 
+ .\" ......................................................................
+@@ -2814,7 +2815,7 @@ So plan on starting him with a nice valu
+ the authority.
+ 
+ .\" ......................................................................
+-.SS 7a. Kernel Magic
++.SS 8a. Kernel Magic
+ .\" ----------------------------------------------------------------------
+ .\" sorry, just can't help it -- don't ya love the sound of this?
+ For these stupid tricks, \*(We needs \*(FM.
+@@ -2867,7 +2868,7 @@ As \*(We climbs the TIME ladder, be as p
+ on whether or not \*(We will ever reach the \*(We.
+ 
+ .\" ......................................................................
+-.SS 7b. Bouncing Windows
++.SS 8b. Bouncing Windows
+ .\" ----------------------------------------------------------------------
+ For these stupid tricks, \*(We needs \*(AM.
+ 
+@@ -2893,7 +2894,7 @@ the \[oq]i\[cq] \*(CT.
+ You've just entered the "extreme bounce" zone.
+ 
+ .\" ......................................................................
+-.SS 7c. The Big Bird Window
++.SS 8c. The Big Bird Window
+ .\" ----------------------------------------------------------------------
+ This stupid trick also requires \*(AM.
+ 
+@@ -2909,7 +2910,7 @@ Then ponder this:
+    is \*(We fibbing or telling honestly your imposed truth?
+ 
+ .\" ......................................................................
+-.SS 7d. The Ol' Switcheroo
++.SS 8d. The Ol' Switcheroo
+ .\" ----------------------------------------------------------------------
+ This stupid trick works best without \*(AM, since justification is active
+ on a per window basis.
+@@ -2944,7 +2945,7 @@ Please send bug reports to
+ .ME .
+ 
+  \" ----------------------------------------------------------------------
+-.SH 10. SEE Also
++.SH 10. SEE ALSO
+ .\" ----------------------------------------------------------------------
+ .BR free (1),
+ .BR ps (1),
