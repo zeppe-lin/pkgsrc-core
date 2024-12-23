@@ -2,10 +2,10 @@
 # URL:         https://www.iana.org/
 
 name=iana-etc
-version=20240923
+version=20241220
 release=1
 source='protocols services'
 
 build() {
-	install -m 0644 -Dt $PKG/etc/  $SRC/protocols $SRC/services
+	install -m 0644 -Dt $PKG/etc $SRC/protocols $SRC/services
 }
