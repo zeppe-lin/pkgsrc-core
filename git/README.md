@@ -10,16 +10,18 @@ The following instructions will install a git server.  It will be set up to
 use OpenSSH as the secure remote access method.
 
 
-1. Set Up Users, Groups, and Permissions.
------------------------------------------
+Set Up Users, Groups, and Permissions
+-------------------------------------
 
 You will need to be user root for the initial portion of configuration.
 Create the git user and group and set an unusable password hash with the
 following commands:
 
-    groupadd -g 58 git
-    useradd -m -g git -s /usr/bin/git-shell -u 58 git
-    sed -i '/^git:/s/^git:[^:]:/git:NP:/' /etc/shadow
+```sh
+groupadd -g 58 git
+useradd -m -g git -s /usr/bin/git-shell -u 58 git
+sed -i '/^git:/s/^git:[^:]:/git:NP:/' /etc/shadow
+```
 
 Putting in an unusable password hash (replacing the ! by NP) unlocks the
 account but it cannot be used to login via password authentication.  That is
@@ -27,33 +29,40 @@ required by `sshd` to work properly.  Next, create some files and directories in
 the home directory of the git user allowing access to the git repository using
 ssh keys.
 
-    install -o git -g git -m 0700 -d /home/git/.ssh
-    install -o git -g git -m 0600 /dev/null /home/git/.ssh/authorized_keys
+```sh
+install -o git -g git -m 0700 -d /home/git/.ssh
+install -o git -g git -m 0600 /dev/null /home/git/.ssh/authorized_keys
+```
 
 For any developer who should have access to the repository add his/her public
 ssh key to `/home/git/.ssh/authorized_keys`.  First, prepend some options to
 prevent users from using the connection to git for port forwarding to other
 machines the git server might reach.
 
-    cat <<EOF | sudo tee -a /home/git/.ssh/authorized_keys
-    no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty
-    EOF
-    cat <user-ssh-key> | sudo tee -a /home/git/.ssh/authorized_keys
+```sh
+cat <<EOF | sudo tee -a /home/git/.ssh/authorized_keys
+no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty
+EOF
+cat <user-ssh-key> | sudo tee -a /home/git/.ssh/authorized_keys
+```
 
 It is also useful to set the default name of the initial branch of new
 repositories by modifying the git configuration.  As the root user, run:
 
-    git config --system init.defaultBranch master
+```sh
+git config --system init.defaultBranch master
+```
 
 Finally add the `/usr/bin/git-shell` entry to the `/etc/shells` configuration
 file.  This shell has been set in the git user profile and is to make sure
 that only git related actions can be executed:
 
-    vim /etc/shells
+```sh
+vim /etc/shells
+```
 
-
-2. Create a git repository.
----------------------------
+Create a git repository
+-----------------------
 
 The repository can be anywhere on the filesystem. It is important that the git
 user has read/write access to that location.  We use `/srv/git` as base
@@ -64,21 +73,24 @@ root user):
 repository name.  You should name your repository as a short descriptive name
 for your specific project.**
 
-    install -o git -g git -m 0755 -d /srv/git/project1.git
-    cd /srv/git/project1.git
-    git init --bare
-    chown -R git:git .
+```sh
+install -o git -g git -m 0755 -d /srv/git/project1.git
+cd /srv/git/project1.git
+git init --bare
+chown -R git:git .
+```
 
 You may clone existing repository from other machine:
 
-    mkdir /srv/git
-    cd /srv/git
-    git clone --bare git@gitserver/project1.git
-    chown -R git:git .
+```sh
+mkdir /srv/git
+cd /srv/git
+git clone --bare git@gitserver/project1.git
+chown -R git:git .
+```
 
-
-3. Populate the repository from a client system.
-------------------------------------------------
+Populate the repository from a client system
+--------------------------------------------
 
 **IMPORTANT:  All the instructions in this section and the next should be done
 on a user system, not the server system.**
@@ -91,11 +103,13 @@ A minimal configuration should be available on the developer's system
 specifying its user name and the email address.  Create this minimal
 configuration file on client side:
 
-    cat > ~/.gitconfig <<EOF
-    [user]
-    name = <users-name>
-    email = <users-email-address>
-    EOF
+```sh
+cat > ~/.gitconfig <<EOF
+[user]
+name = <users-name>
+email = <users-email-address>
+EOF
+```
 
 On the developer's machine, set up some files to be pushed to the repository
 as the initial content:
@@ -103,32 +117,38 @@ as the initial content:
 **IMPORTANT:  The gitserver term used below should be the host name (or IP
 address) of the git server.**
 
-    mkdir myproject
-    cd myproject
-    git init --initial-branch=master
-    git remote add origin ssh://git@gitserver:/srv/git/project1.git
-    cat >README <<EOF
-    This is the README file
-    EOF
-    git add README
-    git commit -m 'Initial creation of README'
-    git push --set-upstream origin master
+```sh
+mkdir myproject
+cd myproject
+git init --initial-branch=master
+git remote add origin ssh://git@gitserver:/srv/git/project1.git
+cat >README <<EOF
+This is the README file
+EOF
+git add README
+git commit -m 'Initial creation of README'
+git push --set-upstream origin master
+```
 
 The initial content is now pushed to the server and is available for other
 users.  On the current machine, the argument `--set-upstream origin master` is
 now no longer required as the local repository is now connected to the remote
 repository.  Subsequent pushes can be performed as
 
-    git push
+```sh
+git push
+```
 
 Other developers can now clone the repository and do modifications to the
 content (as long as their ssh keys has been installed):
 
-    git clone git@gitserver:/srv/git/project1.git
-    cd project1
-    vi README
-    git commit -am 'Fix for README file'
-    git push
+```sh
+git clone git@gitserver:/srv/git/project1.git
+cd project1
+vi README
+git commit -am 'Fix for README file'
+git push
+```
 
 **NOTE: This is a very basic server setup based on OpenSSH access.  All
 developers are using the git user to perform actions on the repository and the
@@ -146,15 +166,18 @@ home directory but in `/srv/git`.  To get rid of the need to expose the
 structure of the server installation, a symlink can be added in git's home
 directory for each project like this:
 
-    ln -svf /srv/git/project1.git /home/git/
+```sh
+ln -svf /srv/git/project1.git /home/git/
+```
 
 Now, the repository can be cloned using:
 
-    git clone git@gitserver:project1.git
+```sh
+git clone git@gitserver:project1.git
+```
 
-
-4. Configure the Server.
-------------------------
+Configure the Server
+--------------------
 
 The setup described above makes a repository available for authenticated users
 (via providing the ssh public key file).  There is also a simple way to
@@ -173,12 +196,16 @@ git-daemon-export-ok  is required in each repository directory on the server.
 The file needs no content, just its existence enables, its absence disables
 the export of that repository.
 
-    touch /srv/git/project1.git/git-daemon-export-ok
+```sh
+touch /srv/git/project1.git/git-daemon-export-ok
+```
 
 To start the server, edit the git-daemon RC script included in the git
 package: 
 
-    vim /etc/rc.d/gitd
+```sh
+vim /etc/rc.d/gitd
+```
 
 The script to start the git daemon uses some default values internally.  Most
 important is the path to the repository directory which is set to `/srv/git`.
@@ -190,12 +217,16 @@ After modifying some defaults in `/etc/rc.d/gitd`, you need to prevent the loss
 of your data upon update.  Make sure you edited `/etc/pkgadd.conf` and added
 the following line:
 
-    UPGRADE    ^/etc/rc.d/gitd$    NO
+```
+UPGRADE    ^/etc/rc.d/gitd$    NO
+```
 
 To start the server at boot time, add the `gitd` into the `SERVICE` variable in
 `/etc/rc.conf`:
 
-    SERVICE='... gitd'
+```sh
+SERVICE='... gitd'
+```
 
 
 GITWEB
@@ -204,93 +235,95 @@ GITWEB
 The following instructions will configure the gitweb service using `gitweb(1)`
 and `lighttpd(8)`.
 
-
-Configure gitweb.
------------------
+Configure gitweb
+----------------
 
 First, we need to make a gitweb configuration file.  Open `/etc/gitweb.conf` or
 create if it doesn't exist) with the following content:
 
-    #
-    # /etc/gitweb.conf: Gitweb configuration file
-    #
+```perl
+#
+# /etc/gitweb.conf: Gitweb configuration file
+#
 
-    # The directories where your projects are.  Must not end with
-    # a slash.
-    our $projectroot = "/path/to/your/repos";
+# The directories where your projects are.  Must not end with
+# a slash.
+our $projectroot = "/path/to/your/repos";
 
-    # Base URLs for links displayed in the web interface.
-    our @git_base_url_list = qw(
-        git://<your server>
-        ssh://git@<your server>/srv/git
-        );
+# Base URLs for links displayed in the web interface.
+our @git_base_url_list = qw(
+    git://<your server>
+    ssh://git@<your server>/srv/git
+    );
 
-    # vim: ft=perl
-    # End of file.
+# vim: ft=perl
+# End of file.
+```
 
-
-Configure lighttpd.
--------------------
+Configure lighttpd
+------------------
 
 Adjust your `/etc/lighttpd.conf` to the following setup:
 
-    #
-    # /etc/lighttpd.conf: lighttpd(8) configuration
-    #
+```perl
+#
+# /etc/lighttpd.conf: lighttpd(8) configuration
+#
 
-    # to use mod_rewrite you have to compile lighttpd with libpcre
-    # installed
-    server.modules = ("mod_accesslog")
-    server.modules += (
-        "mod_alias", "mod_cgi", "mod_redirect", "mod_setenv"
+# to use mod_rewrite you have to compile lighttpd with libpcre
+# installed
+server.modules = ("mod_accesslog")
+server.modules += (
+    "mod_alias", "mod_cgi", "mod_redirect", "mod_setenv"
+)
+url.redirect += ("^/gitweb$" => "/gitweb/")
+alias.url += ("/gitweb/" => "/usr/share/gitweb/")
+
+server.port = 80
+server.username = "www"
+server.groupname = "www"
+server.pid-file = "/run/lighttpd.pid"
+
+# ssl support
+#server.port = 443
+#ssl.engine = "enable"
+#ssl.pemfile = "/etc/ssl/certs/lighttpd.pem"
+
+# chrooted operation
+#server.chroot = "/var/www/lighttpd"
+#server.document-root = "/htdocs"
+#server.errorlog = "/logs/error_log"
+#server.upload-dirs = ( "/tmp" )
+#accesslog.filename = "/logs/access_log"
+
+# non-chrooted operation
+server.document-root = "/usr/src/zeppe-lin.github.io"
+server.errorlog = "/var/www/lighttpd/logs/error_log"
+accesslog.filename = "/var/www/lighttpd/logs/access_log"
+
+server.dir-listing = "enable"
+server.indexfiles = (
+    "index.html", "index.htm", "default.htm", "gitweb.cgi"
+)
+
+mimetype.assign = (
+    ...
+
+    # Needed for Gitweb to display properly.
+    ".css" => "text/css",
+)
+
+$HTTP["url"] =~ "^/gitweb/" {
+    setenv.add-environment = (
+        "GITWEB_CONFIG" => "/etc/gitweb.conf",
+        "PATH" => env.PATH
     )
-    url.redirect += ("^/gitweb$" => "/gitweb/")
-    alias.url += ("/gitweb/" => "/usr/share/gitweb/")
+    cgi.assign = (".cgi" => "")
+    server.indexfiles = ("gitweb.cgi")
+}
 
-    server.port = 80
-    server.username = "www"
-    server.groupname = "www"
-    server.pid-file = "/run/lighttpd.pid"
-
-    # ssl support
-    #server.port = 443
-    #ssl.engine = "enable"
-    #ssl.pemfile = "/etc/ssl/certs/lighttpd.pem"
-
-    # chrooted operation
-    #server.chroot = "/var/www/lighttpd"
-    #server.document-root = "/htdocs"
-    #server.errorlog = "/logs/error_log"
-    #server.upload-dirs = ( "/tmp" )
-    #accesslog.filename = "/logs/access_log"
-
-    # non-chrooted operation
-    server.document-root = "/usr/src/zeppe-lin.github.io"
-    server.errorlog = "/var/www/lighttpd/logs/error_log"
-    accesslog.filename = "/var/www/lighttpd/logs/access_log"
-
-    server.dir-listing = "enable"
-    server.indexfiles = (
-        "index.html", "index.htm", "default.htm", "gitweb.cgi"
-    )
-
-    mimetype.assign = (
-        ...
-
-        # Needed for Gitweb to display properly.
-        ".css" => "text/css",
-    )
-
-    $HTTP["url"] =~ "^/gitweb/" {
-        setenv.add-environment = (
-            "GITWEB_CONFIG" => "/etc/gitweb.conf",
-            "PATH" => env.PATH
-        )
-        cgi.assign = (".cgi" => "")
-        server.indexfiles = ("gitweb.cgi")
-    }
-
-    # End of file.
+# End of file.
+```
 
 
 ---
