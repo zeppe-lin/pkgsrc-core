@@ -4,11 +4,12 @@
 
 name=dumb-runtime-dir
 version=1.0.4
-release=2
+release=3
 source="https://github.com/ifreund/dumb_runtime_dir/releases/download/v$version/dumb_runtime_dir-$version.tar.gz
 	pam_dumb_runtime_dir.8"
 
 build() {
-	make -C dumb_runtime_dir-$version DESTDIR=$PKG PAMDIR=/lib/security install
+	make -C dumb_runtime_dir-$version \
+		DESTDIR=$PKG PAMDIR=/lib/security install
 	install -m 0644 -Dt $PKG/usr/share/man/man8 pam_dumb_runtime_dir.8
 }
