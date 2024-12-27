@@ -1,0 +1,12 @@
+diff '--color=auto' -pruN sysklogd-2.6.2.orig/man/syslogd.8 sysklogd-2.6.2/man/syslogd.8
+--- sysklogd-2.6.2.orig/man/syslogd.8	2024-12-27 12:46:08.940887199 +0200
++++ sysklogd-2.6.2/man/syslogd.8	2024-12-27 12:50:38.862292320 +0200
+@@ -620,7 +620,7 @@ The ability to log messages received in
+ unauthenticated remote disk-filling service, and should probably be
+ disabled
+ .Fl ( s )
+-by default.  (The shipped systemd unit file disables this by default.)
++by default.
+ See also
+ .Sx SECURITY
+ for more information on this.  A future version of

@@ -3,14 +3,18 @@
 
 name=sysklogd
 version=2.6.2
-release=1
+release=2
 source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
-	rotatelog rotatelog.8 cron.syslog syslog.conf rc.sysklogd"
+	syslogd.8.patch
+	cron.syslog
+	rc.sysklogd
+	rotatelog.8
+	rotatelog.sh
+	syslog.conf"
 
 build() {
-	# Remove irrelevant note from the man page.
-	sed 's/(The shipped systemd unit file disables this by default.)//' \
-		-i $name-$version/man/syslogd.8
+	# remove irrelevant systemd note from the man page
+	patch -d $name-$version -Np1 -i $SRC/syslogd.8.patch
 
 	mkdir build; cd build
 
@@ -26,18 +30,18 @@ build() {
 	make DESTDIR=$PKG install
 
 	# logrotate helper
-	install -m 0755 -Dt $PKG/usr/sbin/            $SRC/rotatelog
-	install -m 0644 -Dt $PKG/usr/share/man/man8/  $SRC/rotatelog.8
+	install -m 0755 -D $SRC/rotatelog.sh $PKG/usr/sbin/rotatelog
+	install -m 0644 -Dt $PKG/usr/share/man/man8 $SRC/rotatelog.8
 
 	install -m 0755 -D $SRC/cron.syslog $PKG/etc/cron/weekly/syslog
 	install -m 0755 -D $SRC/rc.sysklogd $PKG/etc/rc.d/sysklogd
 	install -m 0644 -D $SRC/syslog.conf $PKG/etc/syslog.conf
 
-	install -d $PKG/var/log $PKG/etc/syslog.d
+	mkdir -p $PKG/var/log $PKG/etc/syslog.d
 
 	for f in auth cron debug kernel mail messages; do
-		touch     $PKG/var/log/$f
-		chmod 640 $PKG/var/log/$f
+		touch      $PKG/var/log/$f
+		chmod 0640 $PKG/var/log/$f
 	done
 
 	# remove junk
