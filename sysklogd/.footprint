@@ -13,9 +13,9 @@ drwxr-xr-x	root/root	usr/include/syslog/
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libsyslog.a
 -rwxr-xr-x	root/root	usr/lib/libsyslog.la
-lrwxrwxrwx	root/root	usr/lib/libsyslog.so -> libsyslog.so.0.1.0
-lrwxrwxrwx	root/root	usr/lib/libsyslog.so.0 -> libsyslog.so.0.1.0
--rwxr-xr-x	root/root	usr/lib/libsyslog.so.0.1.0
+lrwxrwxrwx	root/root	usr/lib/libsyslog.so -> libsyslog.so.0.2.0
+lrwxrwxrwx	root/root	usr/lib/libsyslog.so.0 -> libsyslog.so.0.2.0
+-rwxr-xr-x	root/root	usr/lib/libsyslog.so.0.2.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libsyslog.pc
 drwxr-xr-x	root/root	usr/sbin/
