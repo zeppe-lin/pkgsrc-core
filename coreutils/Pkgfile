@@ -4,11 +4,11 @@
 
 name=coreutils
 version=9.5
-release=1
+release=2
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
 build() {
-	local _DISABLED_PROGS=uptime,kill,chcon,runcon,groups
+	local _DISABLED_PROGS=uptime,kill,chcon,runcon
 	local _FILE
 
 	mkdir build; cd build
@@ -17,7 +17,6 @@ build() {
 	# kill   - provided by util-linux
 	# chcon  - unused
 	# runcon - unused
-	# groups - provided by shadow
 	FORCE_UNSAFE_CONFIGURE=1 ../$name-$version/configure  \
 		--prefix=/usr                                 \
 		--libexecdir=/usr/lib                         \
