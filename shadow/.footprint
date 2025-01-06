@@ -33,7 +33,6 @@ drwxr-xr-x	root/root	usr/bin/
 -rwsr-xr-x	root/root	usr/bin/expiry
 -rwxr-xr-x	root/root	usr/bin/faillog
 -rwxr-xr-x	root/root	usr/bin/getsubids
--rwxr-xr-x	root/root	usr/bin/groups
 -rwxr-xr-x	root/root	usr/bin/lastlog
 -rwsr-xr-x	root/root	usr/bin/newgidmap
 -rwsr-xr-x	root/root	usr/bin/newgrp
@@ -65,7 +64,6 @@ drwxr-xr-x	root/root	usr/share/man/man1/
 -rw-r--r--	root/root	usr/share/man/man1/chsh.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/expiry.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/getsubids.1.gz
--rw-r--r--	root/root	usr/share/man/man1/groups.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/login.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/newgidmap.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/newgrp.1.gz
