@@ -4,7 +4,7 @@
 
 name=openssh
 version=9.9p1
-release=1
+release=2
 source="https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
 	rc.sshd pam.sshd"
 
@@ -42,8 +42,8 @@ build() {
 
 	# ssh-copy-id
 	cd ../$name-$version/contrib
-	install -m 0755 -Dt $PKG/usr/bin/            ssh-copy-id
-	install -m 0644 -Dt $PKG/usr/share/man/man1/ ssh-copy-id.1
+	install -m 0755 -Dt $PKG/usr/bin            ssh-copy-id
+	install -m 0644 -Dt $PKG/usr/share/man/man1 ssh-copy-id.1
 
 	# remove junk
 	rm -r $PKG/var
