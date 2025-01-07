@@ -3,19 +3,21 @@
 # Depends on:  flex readline
 
 name=bc
-version=1.07.1
+version=1.08.1
 release=1
 source=https://ftpmirror.gnu.org/gnu/bc/bc-$version.tar.gz
 
 build() {
+	# do not regen docs
+	touch bc-$version/doc/*.info  \
+	      bc-$version/doc/*.1     \
+	      bc-$version/doc/Makefile
+
 	mkdir build; cd build
 
 	../bc-$version/configure  \
 		--prefix=/usr     \
 		--with-readline   \
-
-	# do not regen docs
-	(cd ../bc-$version; touch doc/*.info doc/*.1 doc/Makefile)
 
 	make V=1
 	make DESTDIR=$PKG install
