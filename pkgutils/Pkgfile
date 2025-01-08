@@ -3,7 +3,7 @@
 # Depends on:  libarchive
 
 name=pkgutils
-version=6.0.2-2ae1a76
+version=6.0.2-455cde3
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
@@ -11,6 +11,9 @@ source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.
 build() {
 	# pick up system flags
 	sed -ri '/^(CXX|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
+
+	# enable preserving packages' xattrs(7)
+	sed -ri '/^#XATTR/s/^#//' $name-*/config.mk
 
 	make -C $name-* \
 		LDFLAGS="-static `pkg-config --static --libs libarchive`" \
