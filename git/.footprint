@@ -244,7 +244,6 @@ drwxr-xr-x	root/root	usr/share/bash-completion/completions/
 -rw-r--r--	root/root	usr/share/bash-completion/completions/git
 drwxr-xr-x	root/root	usr/share/git-core/
 drwxr-xr-x	root/root	usr/share/git-core/templates/
-drwxr-xr-x	root/root	usr/share/git-core/templates/branches/
 -rw-r--r--	root/root	usr/share/git-core/templates/description
 drwxr-xr-x	root/root	usr/share/git-core/templates/hooks/
 -rwxr-xr-x	root/root	usr/share/git-core/templates/hooks/applypatch-msg.sample
