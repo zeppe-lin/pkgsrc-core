@@ -1,7 +1,7 @@
 OVERVIEW
 ========
 
-This directory contains **core** pkgsrc collection: build scripts and
+This repository contains **core** pkgsrc collection: build scripts and
 files for the packages required to create a basic Zeppe-Lin system.
 
 This distribution was originally forked from CRUX ports as of version
