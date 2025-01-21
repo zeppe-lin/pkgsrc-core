@@ -3,13 +3,14 @@
 # Depends on:  acl libcap libgmp
 
 name=coreutils
-version=9.5
-release=2
+version=9.6
+release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
 build() {
+	local _BIN_PROGS="cat chgrp chmod chown cp date dd df echo false ln ls
+	  mkdir sleep mknod mv pwd readlink rm rmdir stty sync touch true uname"
 	local _DISABLED_PROGS=uptime,kill,chcon,runcon
-	local _FILE
 
 	mkdir build; cd build
 
@@ -27,14 +28,10 @@ build() {
 	make V=1
 	make DESTDIR=$PKG install
 
-	install -d $PKG/bin
-	for _FILE in cat chgrp chmod chown cp date dd df echo false \
-		ln ls mkdir sleep mknod mv pwd readlink rm rmdir    \
-		stty sync touch true uname
-	do
-		mv $PKG/usr/bin/$_FILE $PKG/bin/
-	done
+	# move some utils from /usr/bin to /bin
+	mkdir -p $PKG/bin
+	cd $PKG/usr/bin && mv $_BIN_PROGS $PKG/bin
 
 	# remove junk
-	rm -r $PKG/usr/share/info/
+	rm -r $PKG/usr/share/info
 }
