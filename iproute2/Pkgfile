@@ -1,6 +1,6 @@
 # Description: IP Routing Utilities
 # URL:         https://wiki.linuxfoundation.org/networking/iproute2
-# Depends on:  db elfutils iptables libbsd libcap libtirpc
+# Depends on:  db elfutils iptables libcap libtirpc
 
 name=iproute2
 version=6.13.0
