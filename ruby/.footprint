@@ -224,9 +224,9 @@ drwxr-xr-x	root/root	usr/include/ruby-3.3/x86_64-linux/
 drwxr-xr-x	root/root	usr/include/ruby-3.3/x86_64-linux/ruby/
 -rw-r--r--	root/root	usr/include/ruby-3.3/x86_64-linux/ruby/config.h
 drwxr-xr-x	root/root	usr/lib/
-lrwxrwxrwx	root/root	usr/lib/libruby.so -> libruby.so.3.3.6
-lrwxrwxrwx	root/root	usr/lib/libruby.so.3.3 -> libruby.so.3.3.6
--rwxr-xr-x	root/root	usr/lib/libruby.so.3.3.6
+lrwxrwxrwx	root/root	usr/lib/libruby.so -> libruby.so.3.3.7
+lrwxrwxrwx	root/root	usr/lib/libruby.so.3.3 -> libruby.so.3.3.7
+-rwxr-xr-x	root/root	usr/lib/libruby.so.3.3.7
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/ruby-3.3.pc
 drwxr-xr-x	root/root	usr/lib/ruby/
