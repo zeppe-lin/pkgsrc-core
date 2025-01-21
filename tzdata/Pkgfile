@@ -2,16 +2,13 @@
 # URL:         https://www.iana.org/time-zones
 
 name=tzdata
-version=2024b
-release=2
+version=2025a
+release=1
 source="https://data.iana.org/time-zones/releases/tzdb-$version.tar.lz
 	0001-Apr-not-April.patch"
 
 build() {
 	cd tzdb-$version
-
-	# https://github.com/HowardHinnant/date/issues/836
-	patch -p1 -i $SRC/0001-Apr-not-April.patch
 
 	make V=1 CFLAGS="$CFLAGS"
 	make DESTDIR=$PKG install
