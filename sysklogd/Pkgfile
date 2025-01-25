@@ -3,8 +3,10 @@
 
 name=sysklogd
 version=2.7.0
-release=1
+release=2
 source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
+	13c8071821ad27247061dbf4efe5a34505520bc1.patch
+	8e230d3f2e1e33691998862e99ab4e13410527b9.patch
 	syslogd.8.patch
 	cron.syslog
 	rc.sysklogd
@@ -13,9 +15,10 @@ source="https://github.com/troglobit/$name/releases/download/v$version/$name-$ve
 	syslog.conf"
 
 build() {
-	# remove irrelevant systemd note from the man page
-	patch -d $name-$version -Np1 -i $SRC/syslogd.8.patch
-
+	for f in $SRC/*.patch; do
+		patch -d $name-$version -Np1 -i $f
+	done
+	
 	mkdir build; cd build
 
 	# --without-logger: logger(1) is provided by util-linux/sbase package
