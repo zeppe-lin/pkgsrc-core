@@ -1,6 +1,6 @@
-diff '--color=auto' -pruN fakeroot-1.36.2.orig/doc/faked.1 fakeroot-1.36.2/doc/faked.1
---- fakeroot-1.36.2.orig/doc/faked.1	2024-12-23 05:40:37.203120680 +0200
-+++ fakeroot-1.36.2/doc/faked.1	2024-12-23 05:41:09.185001841 +0200
+diff '--color=auto' -pruN fakeroot-1.37.orig/doc/faked.1 fakeroot-1.37/doc/faked.1
+--- fakeroot-1.37.orig/doc/faked.1	2025-01-25 23:54:37.966964279 +0200
++++ fakeroot-1.37/doc/faked.1	2025-01-25 23:57:30.703735674 +0200
 @@ -97,7 +97,4 @@ mostly by J.H.M.\& Dassen
  .RI < jdassen@debian.org >
  mods/additions by joost and Clint.
@@ -10,16 +10,15 @@ diff '--color=auto' -pruN fakeroot-1.36.2.orig/doc/faked.1 fakeroot-1.36.2/doc/f
 -.BR debuild (1),
 -.B /usr/share/doc/fakeroot/DEBUG
 +.BR fakeroot (1)
-diff '--color=auto' -pruN fakeroot-1.36.2.orig/doc/fakeroot.1 fakeroot-1.36.2/doc/fakeroot.1
---- fakeroot-1.36.2.orig/doc/fakeroot.1	2024-12-23 05:40:37.203120680 +0200
-+++ fakeroot-1.36.2/doc/fakeroot.1	2024-12-23 05:41:32.229636760 +0200
-@@ -297,8 +297,4 @@ mostly by J.H.M.\& Dassen
- .RI <jdassen@debian.org>,
- with rather a lot of modifications and additions by joost and Clint.
+diff '--color=auto' -pruN fakeroot-1.37.orig/doc/fakeroot.1 fakeroot-1.37/doc/fakeroot.1
+--- fakeroot-1.37.orig/doc/fakeroot.1	2025-01-25 23:54:37.966964279 +0200
++++ fakeroot-1.37/doc/fakeroot.1	2025-01-25 23:58:01.032573428 +0200
+@@ -297,7 +297,4 @@ mostly by J.H.M. Dassen
+ .BI < jdassen@debian.org >
+ with rather a lot of modsifications and additions by joost and Clint.
  .SH "SEE ALSO"
 -.BR debuild (1),
 -.BR dpkg\-buildpackage (1),
 -.BR faked (1),
 -.BR /usr/share/doc/fakeroot/DEBUG
--
 +.BR faked (1)
