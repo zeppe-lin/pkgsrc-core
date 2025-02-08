@@ -2,19 +2,12 @@
 # URL:         https://sourceware.org/libffi/
 
 name=libffi
-version=3.4.6
+version=3.4.7
 release=1
 source="https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.gz
 	pax-dlmmap.patch"
 
 build() {
-	sed -e '/^includesdir/ s/$(libdir).*$/$(includedir)/'  \
-	    -i $name-$version/include/Makefile.in
-
-	sed -e '/^includedir/ s/=.*$/=@includedir@/'           \
-	    -e 's/^Cflags: -I${includedir}/Cflags:/'           \
-	    -i $name-$version/libffi.pc.in
-
 	mkdir build; cd build
 
 	../$name-$version/configure          \
