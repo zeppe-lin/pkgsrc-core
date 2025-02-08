@@ -2,7 +2,7 @@
 # URL:         https://savannah.nongnu.org/projects/sysvinit/
 
 name=sysvinit
-version=3.13
+version=3.14
 release=1
 source="https://github.com/slicer69/$name/releases/download/$version/$name-$version.tar.xz
 	manpages.patch
@@ -15,7 +15,7 @@ build() {
 	find $name-$version/man -type d -name '??' -exec rm -rv {} +
 
 	make -C $name-$version V=1
-	make -C $name-$version ROOT=$PKG install
+	make -C $name-$version DESTDIR=$PKG install
 
 	mkdir -p   $PKG/var/log
 	touch      $PKG/var/log/wtmp
