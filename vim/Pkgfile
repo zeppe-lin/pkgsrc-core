@@ -3,7 +3,7 @@
 # Depends on:  acl ncurses
 
 name=vim
-version=9.1.0889
+version=9.1.1086
 release=1
 source="https://github.com/vim/vim/archive/v$version/vim-$version.tar.gz
 	vimrc_Pkgfile.patch"
@@ -12,10 +12,10 @@ build() {
 	# build in separate dir is broken
 	cd vim-$version/src
 
-	# remove custom cflags
+	# remove custom flags
 	sed -i '/^CFLAGS/d' Makefile
 
-	# automatically use sh syntax highlighting for Pkgfiles
+	# use sh syntax highlighting for Pkgfiles
 	patch -d .. -Np1 -i $SRC/vimrc_Pkgfile.patch
 
 	./configure                       \
@@ -66,11 +66,17 @@ build() {
 
 	# remove junk
 	rm -r $PKG/usr/share/man/man?/vimtutor* \
-	      $PKG/usr/share/vim/tutor/tutor.*  \
+	      $PKG/usr/share/vim/tutor/it/      \
+	      $PKG/usr/share/vim/tutor/sr/      \
+	      $PKG/usr/share/vim/tutor/tutor1.* \
+	      $PKG/usr/share/vim/tutor/tutor2.* \
 	      $PKG/usr/share/vim/tutor/README*  \
 	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/CONTRIBUTORS \
 	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/LICENSE*     \
 	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/README*      \
+	      $PKG/usr/share/vim/pack/dist/opt/netrw/README.md           \
+	      $PKG/usr/share/vim/pack/dist/opt/netrw/LICENSE.txt         \
+	      $PKG/usr/share/vim/LICENSE                                 \
 	      $PKG/usr/share/applications/gvim.desktop                   \
 	      #$PKG/usr/share/icons
 	find $PKG -type f -name README.txt -delete
