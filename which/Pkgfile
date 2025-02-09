@@ -2,13 +2,14 @@
 # URL:         https://carlowood.github.io/which/
 
 name=which
-version=2.21
+version=2.23
 release=1
 source=https://ftpmirror.gnu.org/gnu/which/which-$version.tar.gz
 
 build() {
 	mkdir build; cd build
 
+	CONFIG_SHELL=/bin/bash       \
 	../which-$version/configure  \
 		--prefix=/usr        \
 
