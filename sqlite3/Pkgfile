@@ -5,7 +5,7 @@
 name=sqlite3
 version=3.49.0
 _version=$(printf "%i%.2i%.2i%.2i" $(echo $version | tr . ' '))
-release=1
+release=2
 source="https://www.sqlite.org/2025/sqlite-autoconf-$_version.tar.gz
 	manpage.patch"
 
@@ -19,13 +19,19 @@ build() {
 		-DSQLITE_SECURE_DELETE=1          \
 		-DSQLITE_ENABLE_COLUMN_METADATA=1 \
 		-DSQLITE_ENABLE_UNLOCK_NOTIFY=1   \
-		-DSQLITE_ENABLE_DBSTAT_VTAB=1     \
-		-DSQLITE_ENABLE_FTS3=1"           \
+		-DSQLITE_ENABLE_DBSTAT_VTAB=1"
+
 	CONFIG_SHELL=/bin/bash                    \
 	./configure                               \
 		--prefix=/usr                     \
 		--enable-readline                 \
 		--enable-fts3                     \
+		--enable-fts4                     \
+		--enable-fts5                     \
+		--enable-geopoly                  \
+		--enable-rtree                    \
+		--enable-session                  \
+		--update-limit                    \
 
 	make V=1
 	make DESTDIR=$PKG install
