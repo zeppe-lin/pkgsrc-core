@@ -2,7 +2,7 @@
 # URL:         https://zeppe-lin.github.io/
 
 name=c89
-version=0.1
+version=0.2
 release=1
 source="c89.sh c89.1"
 
