@@ -2,12 +2,12 @@
 # URL:         https://zeppe-lin.github.io/
 
 name=c99
-version=0.1
+version=0.2
 release=1
 source="c99.sh c99.1"
 
 build() {
-	# Thanks to NetBSD for manual page.
+	# Thanks to NetBSD for the manual page.
 	install -m 0755 -D $SRC/c99.sh $PKG/usr/bin/c99
 	install -m 0644 -D $SRC/c99.1  $PKG/usr/share/man/man1/c99.1
 }
