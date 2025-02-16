@@ -5,7 +5,7 @@
 # 5.38.x LTS (EOL 2026-07)
 
 name=perl
-version=5.38.2
+version=5.38.3
 release=1
 source=https://www.cpan.org/src/5.0/$name-$version.tar.xz
 
