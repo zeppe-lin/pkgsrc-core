@@ -3,10 +3,11 @@
 # Depends on:  libmd linux-pam openssl zlib
 
 name=openssh
-version=9.9p1
-release=2
+version=9.9p2
+release=1
 source="https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
-	rc.sshd pam.sshd"
+	pam.sshd
+	rc.sshd"
 
 build() {
 	sed -i 's/OSSH_CHECK_CFLAG_COMPILE(\[-pipe\])//' \
