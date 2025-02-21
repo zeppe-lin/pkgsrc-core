@@ -3,7 +3,7 @@
 # Depends on:  lz4 xz zlib
 
 name=zstd
-version=1.5.6
+version=1.5.7
 release=1
 source=https://github.com/facebook/zstd/releases/download/v$version/zstd-$version.tar.gz
 
@@ -31,5 +31,8 @@ build() {
 
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
-	ln -s zstd.1 $PKG/usr/share/man/man1/zstdmt.1
+
+	if [ ! -f $PKG/usr/share/man/man1/zstdmt.1 ]; then
+		echo '.so man1/zstd.1' > $PKG/usr/share/man/man1/zstdmt.1
+	fi
 }

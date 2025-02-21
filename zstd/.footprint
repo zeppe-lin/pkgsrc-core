@@ -19,8 +19,8 @@ drwxr-xr-x	root/root	usr/lib/cmake/zstd/
 -rw-r--r--	root/root	usr/lib/cmake/zstd/zstdTargets.cmake
 -rw-r--r--	root/root	usr/lib/libzstd.a
 lrwxrwxrwx	root/root	usr/lib/libzstd.so -> libzstd.so.1
-lrwxrwxrwx	root/root	usr/lib/libzstd.so.1 -> libzstd.so.1.5.6
--rwxr-xr-x	root/root	usr/lib/libzstd.so.1.5.6
+lrwxrwxrwx	root/root	usr/lib/libzstd.so.1 -> libzstd.so.1.5.7
+-rwxr-xr-x	root/root	usr/lib/libzstd.so.1.5.7
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libzstd.pc
 drwxr-xr-x	root/root	usr/share/
@@ -31,4 +31,4 @@ lrwxrwxrwx	root/root	usr/share/man/man1/unzstd.1.gz -> zstd.1.gz
 lrwxrwxrwx	root/root	usr/share/man/man1/zstdcat.1.gz -> zstd.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/zstdgrep.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/zstdless.1.gz
-lrwxrwxrwx	root/root	usr/share/man/man1/zstdmt.1.gz -> zstd.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/zstdmt.1.gz
