@@ -1,33 +1,41 @@
 # Description: Kernel module utilities and library
 # URL:         https://git.kernel.org/?p=utils/kernel/kmod/kmod.git
+# Depends on:  openssl scdoc zstd
 
 name=kmod
-version=33
+version=34
 release=1
 source=https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-$version.tar.xz
 
 build() {
-	mkdir build; cd build
+	# -D manpages=true:        requires scdoc
+	# -D fishcompletiondir=no: disable fish completion
+	# -D zshcompletiondir=no:  disable zsh  completion
+	meson setup build kmod-$version   \
+		--prefix=/usr             \
+		--bindir=/sbin            \
+		--sbindir=/sbin           \
+		--buildtype=plain         \
+		--wrap-mode=nodownload    \
+		-D b_lto=true             \
+		-D b_pie=true             \
+		-D fishcompletiondir=no   \
+		-D zshcompletiondir=no    \
+		-D build-tests=false      \
+		-D manpages=true          \
+		-D docs=false             \
 
-	../kmod-$version/configure      \
-		--prefix=/usr           \
-		--bindir=/sbin          \
-		--sysconfdir=/etc       \
-		--disable-manpages      \
-		--with-rootlibdir=/lib  \
+	ninja -C build -j ${JOBS:-1} -v
+	DESTDIR=$PKG ninja -C build install
 
-	make V=1
-	make DESTDIR=$PKG install
+	mkdir -p $PKG/lib
+	mv $PKG/usr/lib/libkmod.so.* $PKG/lib
+	ln -sf ../../lib/$(readlink $PKG/lib/libkmod.so.2) \
+		$PKG/usr/lib/libkmod.so
 
-	mkdir -p $PKG/etc/modprobe.d      \
-	         $PKG/etc/depmod.d        \
-		 $PKG/usr/share/man/man5  \
-		 $PKG/usr/share/man/man8  \
-		 $PKG/bin                 \
-
-	cd ../kmod-$version/man
-	install -m 0644 *.5 $PKG/usr/share/man/man5/
-	install -m 0644 *.8 $PKG/usr/share/man/man8/
-
+	mkdir -p $PKG/bin
 	ln -s ../sbin/kmod $PKG/bin/lsmod
+
+	# remove junk dirs, use /etc/{depmod,modprobe}.d instead
+	cd $PKG/usr/lib; rmdir depmod.d modprobe.d
 }
