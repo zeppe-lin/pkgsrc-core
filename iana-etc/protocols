@@ -4,7 +4,7 @@
 # See protocols(5) for more information.
 #
 
-# Last updated: 2024-12-06
+# Last updated: 2025-01-08
 # Source:       https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xml
 
 hopopt         0 HOPOPT
@@ -143,6 +143,7 @@ ethernet     143 Ethernet
 aggfrag      144 AGGFRAG
 nsh          145 NSH
 homa         146 Homa
+bit-emu      147 BIT-EMU
 reserved     255 Reserved
 
 # End of file.

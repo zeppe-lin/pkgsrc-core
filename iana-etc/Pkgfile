@@ -2,7 +2,7 @@
 # URL:         https://www.iana.org/
 
 name=iana-etc
-version=20241220
+version=20250213
 release=1
 source='protocols services'
 
