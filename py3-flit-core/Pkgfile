@@ -3,7 +3,7 @@
 # Depends on:  py3-installer
 
 name=py3-flit-core
-version=3.10.1
+version=3.11.0
 release=1
 source=https://github.com/takluyver/flit/archive/$version/flit-$version.tar.gz
 
@@ -16,4 +16,5 @@ build() {
 
 	# remove junk
 	rm $PKG/usr/lib/python*/site-packages/flit_core/vendor/README
+	rm -r $PKG/usr/lib/python*/site-packages/flit_core*/licenses/
 }
