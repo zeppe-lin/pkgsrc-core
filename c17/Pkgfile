@@ -7,7 +7,7 @@ release=1
 source="c17.sh c17.1"
 
 build() {
-	# Thanks to NetBSD for manual page.
+	# Thanks to NetBSD for the manual page.
 	install -m 0755 -D $SRC/c17.sh $PKG/usr/bin/c17
 	install -m 0644 -D $SRC/c17.1  $PKG/usr/share/man/man1/c17.1
 }
