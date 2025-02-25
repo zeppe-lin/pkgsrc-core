@@ -76,7 +76,6 @@ drwxr-xr-x	root/root	usr/share/man/man5/
 -rw-r--r--	root/root	usr/share/man/man5/login.defs.5.gz
 -rw-r--r--	root/root	usr/share/man/man5/passwd.5.gz
 -rw-r--r--	root/root	usr/share/man/man5/shadow.5.gz
--rw-r--r--	root/root	usr/share/man/man5/suauth.5.gz
 -rw-r--r--	root/root	usr/share/man/man5/subgid.5.gz
 -rw-r--r--	root/root	usr/share/man/man5/subuid.5.gz
 drwxr-xr-x	root/root	usr/share/man/man8/

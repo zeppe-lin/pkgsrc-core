@@ -3,7 +3,7 @@
 # Depends on:  acl libbsd linux-pam
 
 name=shadow
-version=4.17.2
+version=4.17.3
 release=1
 source="https://github.com/shadow-maint/$name/releases/download/$version/$name-$version.tar.xz
 	cron.pwck
@@ -49,12 +49,10 @@ build() {
 	touch $PKG/var/log/faillog
 
 	# pam configs
-	for f in pam.chfn pam.chsh pam.groupadd pam.groupdel     \
-		pam.groupmems pam.groupmod pam.login pam.passwd  \
-		pam.su pam.useradd pam.userdel pam.usermod
+	for f in chfn chsh groupadd groupdel groupmems groupmod login passwd \
+		su useradd userdel usermod
 	do
-		install -o root -g root -m 0644 \
-			$SRC/$f $PKG/etc/pam.d/${f#pam.}
+		install -m 0644 $SRC/pam.$f $PKG/etc/pam.d/$f
 	done
 
 	# remove junk and unused stuff
