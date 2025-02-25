@@ -1083,6 +1083,7 @@ drwxr-xr-x	root/root	usr/share/cmake/Modules/Platform/Linker/
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Apple-AppleClang-Fortran.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Apple-AppleClang-OBJC.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Apple-AppleClang-OBJCXX.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Apple-AppleClang-Swift.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Apple-AppleClang.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Apple-C.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Apple-CUDA.cmake
@@ -1098,6 +1099,7 @@ drwxr-xr-x	root/root	usr/share/cmake/Modules/Platform/Linker/
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Apple-MOLD-OBJCXX.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Apple-OBJC.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Apple-OBJCXX.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Apple-Swift.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/BSD-Linker-Initialize.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/CYGWIN-ASM.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/CYGWIN-C.cmake
@@ -1149,6 +1151,15 @@ drwxr-xr-x	root/root	usr/share/cmake/Modules/Platform/Linker/
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/GNU-GNU-Fortran.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/GNU-GNU.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/GNU.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Haiku-ASM.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Haiku-C.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Haiku-CXX.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Haiku-GNU-ASM.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Haiku-GNU-C.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Haiku-GNU-CXX.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Haiku-LLD-ASM.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Haiku-LLD-C.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Haiku-LLD-CXX.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-ASM.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-C.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-CUDA.cmake
@@ -1160,6 +1171,7 @@ drwxr-xr-x	root/root	usr/share/cmake/Modules/Platform/Linker/
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-GNU-CXX.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-GNU-Fortran.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-GNU-HIP.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-GNU-Swift.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-GNU.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-GNUgold-ASM.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-GNUgold-C.cmake
@@ -1167,6 +1179,7 @@ drwxr-xr-x	root/root	usr/share/cmake/Modules/Platform/Linker/
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-GNUgold-CXX.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-GNUgold-Fortran.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-GNUgold-HIP.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-GNUgold-Swift.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-HIP.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-LLD-ASM.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-LLD-C.cmake
@@ -1174,6 +1187,7 @@ drwxr-xr-x	root/root	usr/share/cmake/Modules/Platform/Linker/
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-LLD-CXX.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-LLD-Fortran.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-LLD-HIP.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-LLD-Swift.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-LLD.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-MOLD-ASM.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-MOLD-C.cmake
@@ -1182,6 +1196,7 @@ drwxr-xr-x	root/root	usr/share/cmake/Modules/Platform/Linker/
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-MOLD-Fortran.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-MOLD-HIP.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-MOLD.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Linux-Swift.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/MSYS-ASM.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/MSYS-C.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/MSYS-CXX.cmake
@@ -1273,7 +1288,9 @@ drwxr-xr-x	root/root	usr/share/cmake/Modules/Platform/Linker/
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Windows-MSVC-CXX.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Windows-MSVC-Fortran.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Windows-MSVC-HIP.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Windows-MSVC-Swift.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Windows-MSVC.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/Windows-Swift.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsCE-C.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsCE-CXX.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsCE-MSVC-C.cmake
@@ -1294,6 +1311,8 @@ drwxr-xr-x	root/root	usr/share/cmake/Modules/Platform/Linker/
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsPhone-MSVC-ASM.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsPhone-MSVC-C.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsPhone-MSVC-CXX.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsPhone-MSVC-Swift.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsPhone-Swift.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsStore-ASM.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsStore-C.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsStore-CXX.cmake
@@ -1306,6 +1325,8 @@ drwxr-xr-x	root/root	usr/share/cmake/Modules/Platform/Linker/
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsStore-MSVC-ASM.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsStore-MSVC-C.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsStore-MSVC-CXX.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsStore-MSVC-Swift.cmake
+-rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linker/WindowsStore-Swift.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linux-Absoft-Fortran.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linux-Apple-Swift.cmake
 -rw-r--r--	root/root	usr/share/cmake/Modules/Platform/Linux-CCur-Fortran.cmake
