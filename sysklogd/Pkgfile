@@ -2,11 +2,9 @@
 # URL:         https://github.com/troglobit/sysklogd
 
 name=sysklogd
-version=2.7.0
-release=2
+version=2.7.1
+release=1
 source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
-	13c8071821ad27247061dbf4efe5a34505520bc1.patch
-	8e230d3f2e1e33691998862e99ab4e13410527b9.patch
 	syslogd.8.patch
 	cron.syslog
 	rc.sysklogd
@@ -21,7 +19,9 @@ build() {
 	
 	mkdir build; cd build
 
-	# --without-logger: logger(1) is provided by util-linux/sbase package
+	# --without-logger:
+	# The logger(1) utility is provided by the util-linux package;
+	# if you're using suckless sbase, it also ships the logger(1) utility.
 	../$name-$version/configure   \
 		--prefix=/usr         \
 		--sysconfdir=/etc     \
