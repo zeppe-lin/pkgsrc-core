@@ -3,7 +3,7 @@
 # Depends on:  linux-pam
 
 name=libcap
-version=2.73
+version=2.74
 release=1
 source=https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/$name-$version.tar.xz
 
@@ -13,13 +13,8 @@ build() {
 	# remove default optimization flag
 	sed -i "/^CFLAGS/s/-O2/$CFLAGS/" Make.Rules
 
-	make BUILD_COPTS=                     \
-	     DEBUG=                           \
-	     GOLANG=no                        \
-	     RAISE_SETFCAP=no                 \
-	     PKGCONFIGDIR=/usr/lib/pkgconfig  \
-	     DESTDIR=$PKG                     \
-	     install
+	make BUILD_COPTS= DEBUG= GOLANG=no RAISE_SETFCAP=no \
+		PKGCONFIGDIR=/usr/lib/pkgconfig DESTDIR=$PKG install
 
 	# move libs from /usr/lib to /lib
 	mkdir -p $PKG/usr/lib
