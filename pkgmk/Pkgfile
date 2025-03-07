@@ -3,7 +3,7 @@
 # Depends on:  filesystem
 
 name=pkgmk
-version=5.44-872d4eb
+version=5.44-bec7014
 release=1
 source="https://github.com/zeppe-lin/pkgmk/archive/${version#*-}/pkgmk-$version.tar.gz
 	pkgmk.conf"
