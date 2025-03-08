@@ -3,8 +3,8 @@
 # Depends on:  readline
 
 name=inetutils
-version=2.5
-release=2
+version=2.6
+release=1
 source="http://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
 	inetd.conf rc.inetd"
 
@@ -12,10 +12,9 @@ build() {
 	mkdir build; cd build
 
 	# fix build with gcc 14.2
-	CFLAGS="$CFLAGS -Wno-error=implicit-function-declaration"
+	export CFLAGS="$CFLAGS -Wno-error=implicit-function-declaration"
 
-	# --disable-traceroute: better traceroute(8) utility is
-	#   provided by traceroute package
+	# --disable-traceroute: traceroute package provides a better utility
 	../$name-$version/configure      \
 		--prefix=/usr            \
 		--libexecdir=/usr/sbin   \
