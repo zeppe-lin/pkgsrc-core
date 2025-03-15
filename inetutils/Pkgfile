@@ -4,7 +4,7 @@
 
 name=inetutils
 version=2.6
-release=1
+release=2
 source="http://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
 	inetd.conf rc.inetd"
 
@@ -36,7 +36,7 @@ build() {
 	mv $PKG/usr/bin/hostname $PKG/bin/
 	mv $PKG/usr/bin/ifconfig $PKG/sbin/
 
-	mkdir -p $PKG/etc/rc.d
+	mkdir -p $PKG/etc/rc.d $PKG/etc/inetd.d
 	install -m 0644 $SRC/inetd.conf $PKG/etc/inetd.conf
 	install -m 0755 $SRC/rc.inetd   $PKG/etc/rc.d/inetd
 

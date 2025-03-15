@@ -2,6 +2,7 @@ drwxr-xr-x	root/root	bin/
 -rwxr-xr-x	root/root	bin/hostname
 drwxr-xr-x	root/root	etc/
 -rw-r--r--	root/root	etc/inetd.conf
+drwxr-xr-x	root/root	etc/inetd.d/
 drwxr-xr-x	root/root	etc/rc.d/
 -rwxr-xr-x	root/root	etc/rc.d/inetd
 drwxr-xr-x	root/root	sbin/
