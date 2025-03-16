@@ -2,7 +2,7 @@
 # URL:         https://packages.debian.org/unstable/utils/fakeroot
 
 name=fakeroot
-version=1.37
+version=1.37.1
 release=1
 source="https://deb.debian.org/debian/pool/main/f/$name/${name}_$version.orig.tar.gz
 	manpages.patch"
@@ -10,6 +10,7 @@ source="https://deb.debian.org/debian/pool/main/f/$name/${name}_$version.orig.ta
 build() {
 	patch -d $name-$version -Np1 -i $SRC/manpages.patch
 
+	# disable docs
 	sed -i '/^SUBDIRS/d' $name-$version/doc/Makefile.am
 
 	mkdir build; cd build
