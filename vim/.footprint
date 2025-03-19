@@ -1690,6 +1690,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/modula2/opt/
 -rw-r--r--	root/root	usr/share/vim/syntax/promela.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/proto.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/protocols.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/prql.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/ps1.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/ps1xml.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/psf.vim

@@ -3,7 +3,7 @@
 # Depends on:  acl ncurses
 
 name=vim
-version=9.1.1199
+version=9.1.1224
 release=1
 source="https://github.com/vim/vim/archive/v$version/vim-$version.tar.gz
 	vimrc_Pkgfile.patch"
@@ -68,6 +68,7 @@ build() {
 	rm -r $PKG/usr/share/man/man?/vimtutor* \
 	      $PKG/usr/share/vim/tutor/it/      \
 	      $PKG/usr/share/vim/tutor/sr/      \
+	      $PKG/usr/share/vim/tutor/ru/      \
 	      $PKG/usr/share/vim/tutor/tutor1.* \
 	      $PKG/usr/share/vim/tutor/tutor2.* \
 	      $PKG/usr/share/vim/tutor/README*  \
