@@ -3,7 +3,7 @@
 # Depends on:  libgmp
 
 name=libmpfr
-version=4.2.1
+version=4.2.2
 release=1
 source=https://www.mpfr.org/mpfr-${version%-*}/mpfr-${version%-*}.tar.xz
 
