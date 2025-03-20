@@ -1,0 +1,26 @@
+diff '--color=auto' -pruN util-linux-2.41.orig/sys-utils/ctrlaltdel.8.adoc util-linux-2.41/sys-utils/ctrlaltdel.8.adoc
+--- util-linux-2.41.orig/sys-utils/ctrlaltdel.8.adoc	2025-03-19 11:43:36.309406374 +0200
++++ util-linux-2.41/sys-utils/ctrlaltdel.8.adoc	2025-03-19 11:45:45.244906201 +0200
+@@ -46,8 +46,7 @@ mailto:poe@daimi.aau.dk[Peter Orbaek]
+ 
+ == SEE ALSO
+ 
+-*init*(8),
+-*systemd*(1)
++*init*(8)
+ 
+ include::man-common/bugreports.adoc[]
+ 
+diff '--color=auto' -pruN util-linux-2.41.orig/sys-utils/rfkill.8.adoc util-linux-2.41/sys-utils/rfkill.8.adoc
+--- util-linux-2.41.orig/sys-utils/rfkill.8.adoc	2025-03-19 11:43:36.316406564 +0200
++++ util-linux-2.41/sys-utils/rfkill.8.adoc	2025-03-19 11:48:44.057759885 +0200
+@@ -77,8 +77,7 @@ This manual page was written by mailto:l
+ 
+ == SEE ALSO
+ 
+-*powertop*(8),
+-*systemd-rfkill*(8),
++*powertop*(8)
+ https://docs.kernel.org/driver-api/rfkill.html[Linux kernel documentation]
+ 
+ include::man-common/bugreports.adoc[]

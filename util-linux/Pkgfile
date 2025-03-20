@@ -3,14 +3,17 @@
 # Depends on:  eudev file libcap-ng linux-pam sqlite3
 
 name=util-linux
-version=2.40.4
+version=2.41
 release=1
-source="https://www.kernel.org/pub/linux/utils/$name/v${version%.*}/$name-$version.tar.xz
-	manpages-nosystemd-refs.patch"
+source="https://www.kernel.org/pub/linux/utils/$name/v$(
+		echo $version | cut -d. -f1-2
+	)/$name-$version.tar.xz
+
+	adoc-nosystemd-refs.patch"
 
 build() {
 	# clean up systemd(1) references from man pages
-	patch -d $name-$version -Np1 -i $SRC/manpages-nosystemd-refs.patch
+	patch -d $name-$version -Np1 -i $SRC/adoc-nosystemd-refs.patch
 
 	mkdir build; cd build
 
