@@ -3,15 +3,14 @@
 # Depends on:  eudev
 
 name=libusb
-version=1.0.27
+version=1.0.28
 release=1
 source=https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.bz2
 
 build() {
 	mkdir build; cd build
 
-	# --enable-udev:
-	#	use udev for device enumeration and hotplug support
+	# --enable-udev: use udev for device enumeration and hotplug support
 	../$name-$version/configure  \
 		--prefix=/usr        \
 		--enable-udev
@@ -20,7 +19,7 @@ build() {
 	make DESTDIR=$PKG install
 
 	# move libs from /usr/lib to /lib
-	install -d $PKG/lib
+	mkdir -p $PKG/lib
 	mv $PKG/usr/lib/libusb-1.0.so.* $PKG/lib
 	ln -sf ../../lib/$(readlink $PKG/lib/libusb-1.0.so.0) \
 		$PKG/usr/lib/libusb-1.0.so
