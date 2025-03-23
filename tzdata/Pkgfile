@@ -2,10 +2,9 @@
 # URL:         https://www.iana.org/time-zones
 
 name=tzdata
-version=2025a
+version=2025b
 release=1
-source="https://data.iana.org/time-zones/releases/tzdb-$version.tar.lz
-	0001-Apr-not-April.patch"
+source=https://data.iana.org/time-zones/releases/tzdb-$version.tar.lz
 
 build() {
 	cd tzdb-$version
