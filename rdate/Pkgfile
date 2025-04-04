@@ -3,14 +3,15 @@
 
 name=rdate
 version=0.13
-release=1
+release=2
 source="https://github.com/leahneukirchen/outils/archive/v$version/outils-$version.tar.gz 
 	ntpleaps.patch
-	cron.rdate"
+	cron.rdate.disabled"
 
 build() {
 	# https://crux.nu/bugs/index.php?do=details&task_id=1462
-	patch -d outils-$version/src/usr.sbin/rdate -p0 -i $SRC/ntpleaps.patch
+	patch -d outils-$version/src/usr.sbin/rdate -p0  \
+		-i $SRC/ntpleaps.patch
 
 	make -C outils-$version PREFIX=/usr src/usr.sbin/rdate/rdate
 
@@ -20,5 +21,6 @@ build() {
 		outils-$version/src/usr.sbin/rdate/rdate.8
 
 	# cron
-	install -m 0755 -D $SRC/cron.rdate $PKG/etc/cron/daily/rdate
+	install -m 0755 -D $SRC/cron.rdate.disabled \
+		$PKG/etc/cron/daily/rdate
 }
