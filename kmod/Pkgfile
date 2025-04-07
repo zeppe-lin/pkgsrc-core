@@ -3,7 +3,7 @@
 # Depends on:  openssl scdoc zstd
 
 name=kmod
-version=34.1
+version=34.2
 release=1
 source=https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-$version.tar.xz
 
