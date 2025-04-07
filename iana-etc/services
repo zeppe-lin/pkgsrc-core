@@ -4,7 +4,7 @@
 # See services(5) for more information.
 #
 
-# Last updated: 2025-02-13
+# Last updated: 2025-04-03
 # Source:       https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
 
 tcpmux              1/tcp
@@ -9678,6 +9678,7 @@ cuseeme          7648/tcp
 cuseeme          7648/udp
 rome             7663/tcp
 rome             7663/udp
+authoritygate    7668/tcp
 imqstomp         7672/tcp
 imqstomps        7673/tcp
 imqtunnels       7674/tcp
@@ -11469,6 +11470,8 @@ rs-status       45002/tcp
 synctest        45045/tcp
 invision-ag     45054/tcp
 invision-ag     45054/udp
+witsnet         45185/tcp
+witsnet         45185/udp
 cloudcheck      45514/tcp
 cloudcheck-ping 45514/udp
 eba             45678/tcp
