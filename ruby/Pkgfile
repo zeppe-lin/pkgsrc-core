@@ -3,7 +3,7 @@
 # Depends on:  gdbm libffi libgmp libyaml openssl zlib
 
 name=ruby
-version=3.3.7
+version=3.3.8
 release=1
 source=https://cache.ruby-lang.org/pub/ruby/${version%.*}/ruby-$version.tar.xz
 
