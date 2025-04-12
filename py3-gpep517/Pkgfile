@@ -3,9 +3,9 @@
 # Depends on:  python3
 
 name=py3-gpep517
-version=16
+version=17
 release=1
-source="https://github.com/mgorny/gpep517/archive/v16/gpep517-v$version.tar.gz
+source="https://github.com/mgorny/gpep517/archive/v$version/gpep517-v$version.tar.gz
 	default-bytecode-levels.patch
 	gpep517.py"
 
