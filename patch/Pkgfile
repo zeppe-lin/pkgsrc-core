@@ -3,9 +3,9 @@
 # Depends on:  attr
 
 name=patch
-version=2.7.6.17-9c98
+version=2.8
 release=1
-source=https://crux.nu/files/distfiles/patch-$version.tar.xz
+source=https://ftpmirror.gnu.org/patch/patch-$version.tar.xz
 
 build() {
 	mkdir build; cd build
