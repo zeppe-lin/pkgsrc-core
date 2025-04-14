@@ -2,7 +2,7 @@
 # URL:         https://www.gnu.org/software/gperf/
 
 name=gperf
-version=3.2
+version=3.2.1
 release=1
 source=https://ftpmirror.gnu.org/gnu/gperf/gperf-$version.tar.gz
 
