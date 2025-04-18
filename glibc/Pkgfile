@@ -3,16 +3,16 @@
 
 name=glibc
 version=2.40
-release=1
+release=2
 
 # Kernel is in the pkgsrc-system collection that may be disabled by user
 # through pkgman.conf configuration.  If it is available, use packages' already
 # downloaded source, otherwise download the hardcoded one.
+_kernelver=$(pkgman printf %v --filter=linux || echo 5.4.292)
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 
-	https://www.kernel.org/pub/linux/kernel/v5.x/linux-$(
-		pkgman printf %v --filter=linux || echo 5.4.273
-	).tar.xz
+	https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${_kernelver%.*}.tar.xz
+	https://www.kernel.org/pub/linux/kernel/v5.x/patch-$_kernelver.xz
 
 	glibc-2.4x-fhs-1.patch
 	hosts resolv.conf nsswitch.conf host.conf ld.so.conf"
@@ -22,18 +22,19 @@ build() {
 	# The headers require rsync for installation, which is redundant for
 	# core collection (rsync is placed in pkgsrc-system).  The following
 	# "find" command simply does the same.
-	cd linux-*
+	cd linux-${_kernelver%.*}
+	xzcat $SRC/patch-$_kernelver.xz | patch -sNp1 -F0
 	make mrproper
 	#make headers_check
 	#make INSTALL_HDR_PATH=$PKG/usr headers_install
 	#chown root:root $PKG/usr
 	make headers
-	find usr/include -name \*.h -type f | while read -r _HDR; do
-		install -g root -o root -m 0644 -D $_HDR $PKG/$_HDR
+	find usr/include -name \*.h -type f | while read -r _hdr; do
+		install -g root -o root -m 0644 -D $_hdr $PKG/$_hdr
 	done
 	cd -
 
-	patch -d glibc-${version%-*} -p1 -i $SRC/glibc-2.4x-fhs-1.patch
+	patch -d glibc-${version%-*} -Np1 -i $SRC/glibc-2.4x-fhs-1.patch
 
 	mkdir build; cd build
 
