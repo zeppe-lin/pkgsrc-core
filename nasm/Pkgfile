@@ -4,7 +4,8 @@
 name=nasm
 version=2.16.03
 release=1
-source=https://www.nasm.us/pub/nasm/releasebuilds/$version/nasm-$version.tar.xz
+#source=https://www.nasm.us/pub/nasm/releasebuilds/$version/nasm-$version.tar.xz
+source=https://mirror.sobukus.de/files/src/nasm/nasm-$version.tar.xz
 
 build() {
 	# build in separate dir is broken
