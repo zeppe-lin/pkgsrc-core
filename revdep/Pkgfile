@@ -1,9 +1,9 @@
 # Description: Check for missing or wrong libraries of installed packages
 # URL:         https://github.com/zeppe-lin/revdep
-# Depends on:  elfutils
+# Depends on:  elfutils scdoc
 
 name=revdep
-version=4.1-d64f382
+version=4.1-03bef4a
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
