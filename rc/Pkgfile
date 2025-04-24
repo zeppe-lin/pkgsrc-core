@@ -1,8 +1,9 @@
 # Description: Init scripts for sysvinit
 # URL:         https://github.com/zeppe-lin/rc
+# Depends on:  scdoc
 
 name=rc
-version=4.0-2023fc4
+version=4.0-2f20346
 release=1
 source="https://github.com/zeppe-lin/rc/archive/${version#*-}/rc-$version.tar.gz
 	inittab
