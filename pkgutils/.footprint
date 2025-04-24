@@ -2,10 +2,10 @@ drwxr-xr-x	root/root	etc/
 -rw-r--r--	root/root	etc/pkgadd.conf
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
-lrwxrwxrwx	root/root	usr/bin/pkginfo -> ../sbin/pkgadd
+-rwxr-xr-x	root/root	usr/bin/pkginfo
 drwxr-xr-x	root/root	usr/sbin/
 -rwxr-xr-x	root/root	usr/sbin/pkgadd
-lrwxrwxrwx	root/root	usr/sbin/pkgrm -> pkgadd
+-rwxr-xr-x	root/root	usr/sbin/pkgrm
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/bash-completion/
 drwxr-xr-x	root/root	usr/share/bash-completion/completions/
