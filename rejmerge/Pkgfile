@@ -1,8 +1,9 @@
 # Description: Merge files that were rejected during package upgrades
 # URL:         https://github.com/zeppe-lin/rejmerge
+# Depends on:  scdoc
 
 name=rejmerge
-version=5.46-f54a375
+version=5.46-e445c74
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	rejmerge.conf
