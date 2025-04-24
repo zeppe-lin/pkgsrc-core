@@ -1,8 +1,9 @@
 # Description: Seed the Linux kernel random number generator from seed files
 # URL:         https://github.com/zeppe-lin/seedrng
+# Depends on:  scdoc
 
 name=seedrng
-version=0.2.2-5d29ee2
+version=0.2.2-f409c3a
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
