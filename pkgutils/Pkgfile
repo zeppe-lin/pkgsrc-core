@@ -3,7 +3,7 @@
 # Depends on:  libarchive scdoc
 
 name=pkgutils
-version=6.1-6ff0b4b
+version=6.1-aaf25e2
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
@@ -16,7 +16,7 @@ build() {
 	sed -ri '/^#XATTR/s/^#//' $name-*/config.mk
 
 	make -C $name-* \
-		LDFLAGS="-static `pkg-config --static --libs libarchive`" \
+		LDFLAGS="-static $(pkg-config --static --libs libarchive)" \
 		DESTDIR=$PKG install
 	install -m 0644 -Dt $PKG/etc $SRC/pkgadd.conf
 }
