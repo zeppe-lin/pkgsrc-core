@@ -3,8 +3,8 @@
 # Depends on:  bzip2 zstd
 
 name=elfutils
-version=0.192
-release=2
+version=0.193
+release=1
 source="https://sourceware.org/$name/ftp/$version/$name-$version.tar.bz2
 	elfutils-0.192-libelf-static.patch"
 
