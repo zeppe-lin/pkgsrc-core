@@ -212,7 +212,6 @@ drwxr-xr-x	root/root	usr/share/bash-completion/completions/
 -rw-r--r--	root/root	usr/share/bash-completion/completions/flock
 -rw-r--r--	root/root	usr/share/bash-completion/completions/fsck
 -rw-r--r--	root/root	usr/share/bash-completion/completions/fsck.cramfs
--rw-r--r--	root/root	usr/share/bash-completion/completions/fsck.minix
 -rw-r--r--	root/root	usr/share/bash-completion/completions/fsfreeze
 -rw-r--r--	root/root	usr/share/bash-completion/completions/fstrim
 -rw-r--r--	root/root	usr/share/bash-completion/completions/getopt
@@ -244,9 +243,7 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lastb -> last
 -rw-r--r--	root/root	usr/share/bash-completion/completions/mcookie
 -rw-r--r--	root/root	usr/share/bash-completion/completions/mesg
 -rw-r--r--	root/root	usr/share/bash-completion/completions/mkfs
--rw-r--r--	root/root	usr/share/bash-completion/completions/mkfs.bfs
 -rw-r--r--	root/root	usr/share/bash-completion/completions/mkfs.cramfs
--rw-r--r--	root/root	usr/share/bash-completion/completions/mkfs.minix
 -rw-r--r--	root/root	usr/share/bash-completion/completions/mkswap
 -rw-r--r--	root/root	usr/share/bash-completion/completions/more
 -rw-r--r--	root/root	usr/share/bash-completion/completions/mount

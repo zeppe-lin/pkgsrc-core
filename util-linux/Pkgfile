@@ -4,7 +4,7 @@
 
 name=util-linux
 version=2.41
-release=1
+release=2
 source="https://www.kernel.org/pub/linux/utils/$name/v$(
 		echo $version | cut -d. -f1-2
 	)/$name-$version.tar.xz
@@ -25,6 +25,8 @@ build() {
 	# --disable-nologin:   provided by shadow
 	# --enable-asciidoc:   generate man pages, requires asciidoctor
 	# --disable-poman:     do not generate translated man pages
+	# --disable-bfs:       obsolete
+	# --disable-minix:     obsolete
 	../$name-$version/configure   \
 		--prefix=/usr         \
 		--disable-chfn-chsh   \
@@ -40,6 +42,11 @@ build() {
 		--enable-write        \
 		--without-python      \
 		--disable-poman       \
+		--disable-bfs         \
+		--disable-minix       \
+
+	# fix overlinking
+	sed -i 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
 
 	make V=1
 	make DESTDIR=$PKG install
@@ -51,11 +58,5 @@ build() {
 	touch $PKG/etc/adjtime
 
 	# remove junk and obsolete files
-	rm -r $PKG/usr/share/doc/                   \
-	      $PKG/sbin/mkfs.bfs                    \
-	      $PKG/sbin/mkfs.minix                  \
-	      $PKG/sbin/fsck.minix                  \
-	      $PKG/usr/share/man/man8/mkfs.bfs.8    \
-	      $PKG/usr/share/man/man8/mkfs.minix.8  \
-	      $PKG/usr/share/man/man8/fsck.minix.8
+	rm -r $PKG/usr/share/doc
 }
