@@ -3,7 +3,7 @@
 # Depends on:  scdoc
 
 name=pkgman
-version=6.1-3f58565
+version=6.1-90e8714
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgman.conf"
