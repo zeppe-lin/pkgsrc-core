@@ -71,14 +71,12 @@ drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/pkg_resources/tests/data/m
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/pkg_resources/tests/test_pkg_resources.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/pkg_resources/tests/test_resources.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/pkg_resources/tests/test_working_set.py
-drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools-80.1.0.dist-info/
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools-80.1.0.dist-info/METADATA
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools-80.1.0.dist-info/RECORD
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools-80.1.0.dist-info/WHEEL
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools-80.1.0.dist-info/entry_points.txt
-drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools-80.1.0.dist-info/licenses/
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools-80.1.0.dist-info/licenses/LICENSE
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools-80.1.0.dist-info/top_level.txt
+drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools-80.3.0.dist-info/
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools-80.3.0.dist-info/METADATA
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools-80.3.0.dist-info/RECORD
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools-80.3.0.dist-info/WHEEL
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools-80.3.0.dist-info/entry_points.txt
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools-80.3.0.dist-info/top_level.txt
 drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__init__.py
 drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/
@@ -109,6 +107,9 @@ drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/_reqs.cpython-312.opt-1.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/_reqs.cpython-312.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/_reqs.cpython-312.pyc
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/_scripts.cpython-312.opt-1.pyc
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/_scripts.cpython-312.opt-2.pyc
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/_scripts.cpython-312.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/_shutil.cpython-312.opt-1.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/_shutil.cpython-312.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/_shutil.cpython-312.pyc
@@ -160,9 +161,6 @@ drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/namespaces.cpython-312.opt-1.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/namespaces.cpython-312.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/namespaces.cpython-312.pyc
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/package_index.cpython-312.opt-1.pyc
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/package_index.cpython-312.opt-2.pyc
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/package_index.cpython-312.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/unicode_utils.cpython-312.opt-1.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/unicode_utils.cpython-312.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/__pycache__/unicode_utils.cpython-312.pyc
@@ -601,6 +599,7 @@ drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/_distutils/test
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/_normalization.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/_path.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/_reqs.py
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/_scripts.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/_shutil.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/_static.py
 drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/_vendor/
@@ -1436,7 +1435,6 @@ drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/config/_validat
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/monkey.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/msvc.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/namespaces.py
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/package_index.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/script (dev).tmpl
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/script.tmpl
 drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/tests/
@@ -1511,9 +1509,6 @@ drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_distutils_adoption.cpython-312.opt-1.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_distutils_adoption.cpython-312.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_distutils_adoption.cpython-312.pyc
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_easy_install.cpython-312.opt-1.pyc
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_easy_install.cpython-312.opt-2.pyc
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_easy_install.cpython-312.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_editable_install.cpython-312.opt-1.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_editable_install.cpython-312.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_editable_install.cpython-312.pyc
@@ -1544,9 +1539,9 @@ drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_namespaces.cpython-312.opt-1.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_namespaces.cpython-312.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_namespaces.cpython-312.pyc
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_packageindex.cpython-312.opt-1.pyc
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_packageindex.cpython-312.opt-2.pyc
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_packageindex.cpython-312.pyc
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_scripts.cpython-312.opt-1.pyc
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_scripts.cpython-312.opt-2.pyc
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_scripts.cpython-312.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_sdist.cpython-312.opt-1.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_sdist.cpython-312.opt-2.pyc
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/__pycache__/test_sdist.cpython-312.pyc
@@ -1669,7 +1664,6 @@ drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/tests/integrati
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_dist.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_dist_info.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_distutils_adoption.py
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_easy_install.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_editable_install.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_egg_info.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_extern.py
@@ -1680,7 +1674,7 @@ drwxr-xr-x	root/root	usr/lib/python3.12/site-packages/setuptools/tests/integrati
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_logging.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_manifest.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_namespaces.py
--rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_packageindex.py
+-rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_scripts.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_sdist.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_setopt.py
 -rw-r--r--	root/root	usr/lib/python3.12/site-packages/setuptools/tests/test_setuptools.py
