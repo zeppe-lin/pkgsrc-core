@@ -3,7 +3,7 @@
 # Depends on:  gdbm groff libpipeline zlib
 
 name=man-db
-version=2.13.0
+version=2.13.1
 release=1
 source="https://download.savannah.gnu.org/releases/$name/$name-$version.tar.xz
 	cron.mandb"
