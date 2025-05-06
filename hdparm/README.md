@@ -12,9 +12,7 @@ appropriate entry in `/etc/fstab`.  To check if the disk drive supports this
 option, run hdparm on the applicable disk drive.  For example, if the following
 command returns non-empty output, the option is supported:
 
-```sh
-hdparm -I /dev/sda | grep NCQ
-```
+    hdparm -I /dev/sda | grep NCQ
 
 **IMPORTANT:**
 The Logical Volume Management (LVM) based partitions cannot use the barrier
