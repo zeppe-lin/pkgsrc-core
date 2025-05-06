@@ -6,23 +6,21 @@ README iproute2
 KERNEL MODULES
 ==============
 
-Add the following lines to `/etc/rc.modules` to autoload modules needed by
-`/etc/rc.d/bridge`:
+To autoload modules required by `/etc/rc.d/bridge`, add these lines to
+`/etc/rc.modules`:
 
-```sh
-# Universal TUN/TAP device drivers.
-/sbin/modprobe tun
-/sbin/modprobe tap
+    # Universal TUN/TAP device drivers.
+    /sbin/modprobe tun
+    /sbin/modprobe tap
 
-# Host kernel accelerator for virtio.
-/sbin/modprobe vhost
-```
+    # Host kernel accelerator for virtio.
+    /sbin/modprobe vhost
 
 
-ONLINE DOCUMENTATION
-====================
+REFERENCES
+==========
 
-* Task-centered iproute2 user guide:
+* Task-centered `iproute2` user guide:
   https://baturin.org/docs/iproute2/
 
 
