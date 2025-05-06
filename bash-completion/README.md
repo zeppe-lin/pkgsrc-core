@@ -10,9 +10,7 @@ The easiest way to use bash-completion is to source it from either
 `/etc/bashrc` or `~/.bashrc` (or any other file sourcing those).  You can do
 this by simply adding the following line:
 
-```sh
-. /etc/bash_completion
-```
+    . /etc/bash_completion
 
 You can also put additional init code into `~/.bash_completion`.
 
