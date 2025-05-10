@@ -3,7 +3,7 @@
 # Depends on:  scdoc
 
 name=pkgmk
-version=5.44-ecad876
+version=5.44-0c3934a
 release=1
 source="https://github.com/zeppe-lin/pkgmk/archive/${version#*-}/pkgmk-$version.tar.gz
 	pkgmk.conf"
