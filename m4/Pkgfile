@@ -2,7 +2,7 @@
 # URL:         https://www.gnu.org/software/m4/
 
 name=m4
-version=1.4.19
+version=1.4.20
 release=1
 source=https://ftp.gnu.org/gnu/m4/m4-$version.tar.xz
 
