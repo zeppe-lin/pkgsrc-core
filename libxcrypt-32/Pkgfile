@@ -1,0 +1,35 @@
+# Description: Modern library for one-way hashing of passwords
+# URL:         https://github.com/besser82/libxcrypt
+
+# keep in sync with:
+#   * libxcrypt
+#   * libxcrypt-compat
+#   * libxcrypt-compat-32
+
+name=libxcrypt-32
+version=4.4.38
+release=1
+source=https://github.com/besser82/libxcrypt/releases/download/v$version/libxcrypt-$version.tar.xz
+
+build() {
+	mkdir build; cd build
+
+	../libxcrypt-$version/configure                   \
+		--prefix=/usr                             \
+		--libdir=/usr/lib32                       \
+		--disable-failure-tokens                  \
+		--disable-silent-rules                    \
+		--disable-valgrind                        \
+		--enable-hashes=strong,glibc              \
+		--enable-obsolete-api=no                  \
+		--enable-shared                           \
+		--enable-static                           \
+		--with-pkgconfigdir=/usr/lib32/pkgconfig  \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# remove junk
+	rm -r $PKG/usr/include $PKG/usr/share
+	rm $PKG/usr/lib32/libcrypt.la
+}
