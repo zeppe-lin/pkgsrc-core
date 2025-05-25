@@ -1,2 +1,5 @@
 12e517cac2b57a0121cda351570f1e63  intltool-0.51.0.tar.gz
-4ec4b1ecccf34e255ea895b08ff34686  intltool-perl-5.22.patch
+24f40e8589d8f129df6736c1f13d88a7  intltool-fixrace.patch
+e389bd73abae808381a1745a121fc2c9  intltool-merge-Create-cache-file-atomically.patch
+ee2d36b6aad9333085c77fdb8384cb96  intltool-perl-5.22.patch
+0b9b4169b792442c18bf5fc49439050e  intltool_distcheck-fix.patch

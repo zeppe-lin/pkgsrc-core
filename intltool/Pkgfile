@@ -4,13 +4,19 @@
 
 name=intltool
 version=0.51.0
-release=1
-source="https://edge.launchpad.net/$name/trunk/$version/+download/$name-$version.tar.gz
+release=2
+#source="https://edge.launchpad.net/$name/trunk/$version/+download/$name-$version.tar.gz
+source="https://mirror.yandex.ru/gentoo-distfiles/distfiles/40/$name-$version.tar.gz
+	intltool_distcheck-fix.patch
+	intltool-fixrace.patch
+	intltool-merge-Create-cache-file-atomically.patch
 	intltool-perl-5.22.patch"
 
-
 build() {
-	patch -d $name-$version -p0 -i $SRC/intltool-perl-5.22.patch
+	patch -d $name-$version -Np1 -i $SRC/intltool-perl-5.22.patch
+	patch -d $name-$version -Np1 -i $SRC/intltool-merge-Create-cache-file-atomically.patch
+	patch -d $name-$version -Np1 -i $SRC/intltool_distcheck-fix.patch
+	patch -d $name-$version -Np1 -i $SRC/intltool-fixrace.patch
 
 	mkdir build; cd build
 
