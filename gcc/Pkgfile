@@ -3,8 +3,8 @@
 # Depends on:  glibc-32 libmpc zstd
 
 name=gcc
-version=14.2.0
-release=2
+version=14.3.0
+release=1
 source="ftp://gcc.gnu.org/pub/gcc/releases/gcc-$version/gcc-$version.tar.xz
 	gcc-4.7.3-multilib-dirs.patch
 	gcc-configure-texinfo.patch
