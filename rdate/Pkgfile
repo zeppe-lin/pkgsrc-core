@@ -2,8 +2,8 @@
 # URL:         https://github.com/leahneukirchen/outils
 
 name=rdate
-version=0.13
-release=2
+version=0.14
+release=1
 source="https://github.com/leahneukirchen/outils/archive/v$version/outils-$version.tar.gz 
 	ntpleaps.patch
 	cron.rdate.disabled"
