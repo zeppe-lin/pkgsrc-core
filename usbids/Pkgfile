@@ -2,10 +2,10 @@
 # URL:         http://www.linux-usb.org/usb-ids.html
 
 name=usbids
-version=20250114
+version=20250401
 release=1
 source=usb.ids
 
 build() {
-	install -m 0644 -Dt $PKG/usr/share/  $SRC/usb.ids
+	install -m 0644 -Dt $PKG/usr/share $SRC/usb.ids
 }
