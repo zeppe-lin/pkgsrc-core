@@ -4,10 +4,13 @@
 
 name=curl
 version=8.14.1
-release=1
-source=https://curl.se/download/curl-$version.tar.xz
+release=2
+source="https://curl.se/download/curl-$version.tar.xz
+	5f805eec1149c218145097ec2a24ac7fb7d46f25.patch"
 
 build() {
+	patch -d curl-$version -Np1 -i $SRC/5f805eec1149c218145097ec2a24ac7fb7d46f25.patch
+
 	mkdir build; cd build
 
 	../curl-$version/configure                  \
