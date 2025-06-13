@@ -3,16 +3,20 @@
 # Depends on:  curl expat libarchive libidn2 libmd lz4 ncurses
 
 name=cmake
-version=3.31.7
+version=3.31.8
 release=1
 source=https://cmake.org/files/v${version%.*}/cmake-$version.tar.gz
 
 build() {
+	# Adjust installation path for CMake modules to remove version-specific
+	# directory.  This ensures modules are installed to a generic
+	# 'share/cmake' path.
 	sed 's|share/cmake-${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}|share/cmake|' \
 		-i cmake-$version/Source/CMakeInstallDestinations.cmake
 
-	# Use cmake to build the package if cmake is installed and isn't
-	# broken.  This leads to a much faster build.
+	# Check if an existing, functional CMake installation is available.
+	# If so, use it for a faster build; otherwise, bootstrap a new CMake
+	# instance.
 	if command -v cmake && cmake --version; then
 		cmake -S cmake-$version -B build -G Ninja       \
 			-D CMAKE_INSTALL_PREFIX=/usr            \
