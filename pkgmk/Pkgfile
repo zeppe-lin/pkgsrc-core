@@ -3,7 +3,7 @@
 # Depends on:  scdoc
 
 name=pkgmk
-version=5.44-828a393
+version=5.44-d7017e1
 release=1
 source="https://github.com/zeppe-lin/pkgmk/archive/${version#*-}/pkgmk-$version.tar.gz
 	pkgmk.conf"
