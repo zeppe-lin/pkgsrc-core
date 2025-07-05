@@ -1,0 +1,70 @@
+diff --git a/libkmod/libkmod.c b/libkmod/libkmod.c
+index a62946d..856cd60 100644
+--- a/libkmod/libkmod.c
++++ b/libkmod/libkmod.c
+@@ -45,8 +45,6 @@ static const char *const default_config_paths[] = {
+ 	// clang-format off
+ 	SYSCONFDIR "/modprobe.d",
+ 	"/run/modprobe.d",
+-	"/usr/local/lib/modprobe.d",
+-	DISTCONFDIR "/modprobe.d",
+ 	"/lib/modprobe.d",
+ 	NULL,
+ 	// clang-format on
+diff --git a/libkmod/libkmod.h b/libkmod/libkmod.h
+index 1c0d118..c6e27b2 100644
+--- a/libkmod/libkmod.h
++++ b/libkmod/libkmod.h
+@@ -40,8 +40,7 @@ struct kmod_ctx;
+  * @config_paths: ordered array of paths (directories or files) where
+  *                to load from user-defined configuration parameters such as
+  *                alias, blacklists, commands (install, remove). If NULL
+- *                defaults to /etc/modprobe.d, /run/modprobe.d,
+- *                /usr/local/lib/modprobe.d, DISTCONFDIR/modprobe.d, and
++ *                defaults to /etc/modprobe.d, /run/modprobe.d, and
+  *                /lib/modprobe.d. Give an empty vector if configuration should
+  *                not be read. This array must be null terminated.
+  *
+diff --git a/man/depmod.d.5.scd b/man/depmod.d.5.scd
+index cb8de4d..cb893a9 100644
+--- a/man/depmod.d.5.scd
++++ b/man/depmod.d.5.scd
+@@ -10,10 +10,6 @@ depmod.d - Configuration directory for depmod
+ 
+ /run/depmod.d/\*.conf
+ 
+-/usr/local/lib/depmod.d/\*.conf
+-
+-@DISTCONFDIR@/depmod.d/\*.conf
+-
+ /lib/depmod.d/\*.conf
+ 
+ # DESCRIPTION
+diff --git a/man/modprobe.d.5.scd b/man/modprobe.d.5.scd
+index 5d028e2..9e6c8b8 100644
+--- a/man/modprobe.d.5.scd
++++ b/man/modprobe.d.5.scd
+@@ -10,10 +10,6 @@ modprobe.d - Configuration directory for modprobe
+ 
+ /run/modprobe.d/\*.conf
+ 
+-/usr/local/lib/modprobe.d/\*.conf
+-
+-@DISTCONFDIR@/modprobe.d/\*.conf
+-
+ /lib/modprobe.d/\*.conf
+ 
+ # DESCRIPTION
+diff --git a/tools/depmod.c b/tools/depmod.c
+index 355483a..dcccc5c 100644
+--- a/tools/depmod.c
++++ b/tools/depmod.c
+@@ -43,8 +43,6 @@ static const char *const default_cfg_paths[] = {
+ 	// clang-format off
+ 	SYSCONFDIR "/depmod.d",
+ 	"/run/depmod.d",
+-	"/usr/local/lib/depmod.d",
+-	DISTCONFDIR "/depmod.d",
+ 	"/lib/depmod.d",
+ 	NULL,
+ 	// clang-format on

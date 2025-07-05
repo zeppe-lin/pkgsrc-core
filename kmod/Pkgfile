@@ -4,10 +4,14 @@
 
 name=kmod
 version=34.2
-release=1
-source=https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-$version.tar.xz
+release=2
+source="https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-$version.tar.xz
+	config_paths.patch"
 
 build() {
+	# adjust configuration directory paths for depmod and modprobe
+	patch -d kmod-$version -Np1 -i $SRC/config_paths.patch
+
 	# -D manpages=true:        requires scdoc
 	# -D fishcompletiondir=no: disable fish completion
 	# -D zshcompletiondir=no:  disable zsh  completion
