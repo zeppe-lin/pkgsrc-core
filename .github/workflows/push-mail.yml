@@ -1,0 +1,58 @@
+name: Email Commits to Mailing List
+
+on: push
+
+jobs:
+  mail:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        commit: ${{ github.event.commits }}
+
+    steps:
+      - name: Extract info
+        id: ext
+        run: |
+          sha=${{ matrix.commit.id }}
+          short=${sha:0:7}
+          title=$(printf '%s\n' "${{ matrix.commit.message }}" | head -n1)
+          date=$(date -d "${{ matrix.commit.timestamp }}" '+%Y-%m-%d (%a, %d %b %Y)')
+          files=""
+          for f in ${{ matrix.commit.added }};    do files+="A $f\n"; done
+          for f in ${{ matrix.commit.modified }}; do files+="M $f\n"; done
+          for f in ${{ matrix.commit.removed }};  do files+="D $f\n"; done
+
+          echo "short_sha=$short"            >> $GITHUB_OUTPUT
+          echo "commit_title=$title"         >> $GITHUB_OUTPUT
+          echo "commit_date=$date"           >> $GITHUB_OUTPUT
+          echo -e "files<<EOF\n$files\nEOF"  >> $GITHUB_OUTPUT
+
+      - name: Send email
+        uses: dawidd6/action-send-mail@v6
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+
+          from: ${{ secrets.GMAIL_USERNAME }}
+          to:   zeppe-lin-dev@freelists.org
+
+          subject: "[${{ github.repository }}] ${{ steps.ext.outputs.short_sha }}: ${{ steps.ext.outputs.commit_title }}"
+
+          body: |
+            Branch: refs/heads/${{ github.ref#refs/heads/ }}
+            Home:   https://github.com/${{ github.repository }}
+            Commit: ${{ matrix.commit.id }}
+              https://github.com/${{ github.repository }}/commit/${{ matrix.commit.id }}
+            Author: ${{ matrix.commit.author.name }} <${{ matrix.commit.author.email }}>
+            Date:   ${{ steps.ext.outputs.commit_date }}
+
+            Changed paths:
+            ${{ steps.ext.outputs.files }}
+
+            Log Message:
+            -----------
+            ${{ matrix.commit.message }}
+
