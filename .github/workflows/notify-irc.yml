@@ -4,7 +4,7 @@ on: push
 
 jobs:
   irc:
-    uses: zeppe-lin/gh-shared-workflows/.github/workflows/notify-irc.yml@master
+    uses: zeppe-lin/.github-shared-workflows/.github/workflows/notify-irc.yml@master
     with:
       irc_user: zeppe-lin
       irc_pass: ${{ secrets.LIBERACHAT_PASSWORD }}

@@ -4,7 +4,7 @@ on: push
 
 jobs:
   mail-dev:
-    uses: zeppe-lin/gh-shared-workflows/.github/workflows/notify-mail-dev.yml@master
+    uses: zeppe-lin/.github-shared-workflows/.github/workflows/notify-mail-dev.yml@master
     with:
       smtp_user: ${{ secrets.GMAIL_USERNAME }}
       smtp_pass: ${{ secrets.GMAIL_APP_PASSWORD }}
