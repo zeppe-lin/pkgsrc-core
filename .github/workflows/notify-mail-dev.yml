@@ -1,4 +1,4 @@
-name: Email Commits to Mailing List
+name: Mail Notify (dev-list)
 
 on: push
 

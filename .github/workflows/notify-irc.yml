@@ -1,4 +1,4 @@
-name: IRC Notification CI
+name: IRC Notify
 on: [push, pull_request]
 
 jobs:

@@ -1,4 +1,4 @@
-name: Email Commits with "[notify]" tag to Users Mailing List
+name: Mail Notify ([notify] commits)
 
 on: push
 
