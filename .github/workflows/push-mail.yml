@@ -10,6 +10,11 @@ jobs:
         commit: ${{ github.event.commits }}
 
     steps:
+      - name: Checkout full history
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - name: Extract commit info
         id: info
         run: |
