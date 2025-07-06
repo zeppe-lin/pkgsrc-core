@@ -1,12 +1,11 @@
 name: Mail Notify (dev-list)
-
 on: push
-
 jobs:
   mail-dev:
     uses: zeppe-lin/.github-shared-workflows/.github/workflows/notify-mail-dev.yml@master
     with:
+      mail_to: zeppe-lin-dev@freelists.org
+    secrets:
       smtp_user: ${{ secrets.GMAIL_USERNAME }}
       smtp_pass: ${{ secrets.GMAIL_APP_PASSWORD }}
-      mail_to: zeppe-lin-dev@freelists.org
 
