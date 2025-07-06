@@ -10,26 +10,15 @@ jobs:
         commit: ${{ github.event.commits }}
 
     steps:
-      - name: Extract info
-        id: ext
+      - name: Extract commit info
+        id: info
         run: |
-          branch=${GITHUB_REF#refs/heads/}
           sha=${{ matrix.commit.id }}
-          short=${sha:0:7}
-          title=$(printf '%s\n' "${{ matrix.commit.message }}" | head -n1)
-          date=$(date -d "${{ matrix.commit.timestamp }}" '+%Y-%m-%d (%a, %d %b %Y)')
-          files=""
-          for f in ${{ matrix.commit.added }};    do files+="  A $f\n"; done
-          for f in ${{ matrix.commit.modified }}; do files+="  M $f\n"; done
-          for f in ${{ matrix.commit.removed }};  do files+="  D $f\n"; done
 
-          echo "branch=$branch"              >> $GITHUB_OUTPUT
-          echo "short_sha=$short"            >> $GITHUB_OUTPUT
-          echo "commit_title=$title"         >> $GITHUB_OUTPUT
-          echo "commit_date=$date"           >> $GITHUB_OUTPUT
+          diffstat=$(git show --stat "$sha")
 
-          echo "changed_paths<<EOF"          >> $GITHUB_OUTPUT
-          echo -e "$files"                   >> $GITHUB_OUTPUT
+          echo "commit_body<<EOF"            >> $GITHUB_OUTPUT
+          echo "$diffstat"                   >> $GITHUB_OUTPUT
           echo "EOF"                         >> $GITHUB_OUTPUT
 
       - name: Send email
@@ -44,20 +33,11 @@ jobs:
           from: ${{ secrets.GMAIL_USERNAME }}
           to:   zeppe-lin-dev@freelists.org
 
-          subject: "[${{ github.repository }}] ${{ steps.ext.outputs.short_sha }}: ${{ steps.ext.outputs.commit_title }}"
+          subject: "[${{ github.event.repository.name }}:${{ github.ref_name || github.event.ref }}] ${{ matrix.commit.id:0:7 }}: ${{ matrix.commit.message.split('\n')[0] }}"
 
           body: |
-            Branch: refs/heads/${{ steps.ext.outputs.branch }}
-            Home:   https://github.com/${{ github.repository }}
-            Commit: ${{ matrix.commit.id }}
-              https://github.com/${{ github.repository }}/commit/${{ matrix.commit.id }}
-            Author: ${{ matrix.commit.author.name }} <${{ matrix.commit.author.email }}>
-            Date:   ${{ steps.ext.outputs.commit_date }}
+            ${{ steps.info.outputs.commit_body }}
 
-            Changed paths:
-            ${{ steps.ext.outputs.changed_paths }}
+            https://github.com/${{ github.repository }}/commit/${{ matrix.commit.id }}
 
-            Log Message:
-            -----------
-            ${{ matrix.commit.message }}
-
+# End of file.
