@@ -13,6 +13,7 @@ jobs:
       - name: Extract info
         id: ext
         run: |
+          branch=${GITHUB_REF#refs/heads/}
           sha=${{ matrix.commit.id }}
           short=${sha:0:7}
           title=$(printf '%s\n' "${{ matrix.commit.message }}" | head -n1)
@@ -22,6 +23,7 @@ jobs:
           for f in ${{ matrix.commit.modified }}; do files+="M $f\n"; done
           for f in ${{ matrix.commit.removed }};  do files+="D $f\n"; done
 
+          echo "branch=$branch"              >> $GITHUB_OUTPUT
           echo "short_sha=$short"            >> $GITHUB_OUTPUT
           echo "commit_title=$title"         >> $GITHUB_OUTPUT
           echo "commit_date=$date"           >> $GITHUB_OUTPUT
@@ -42,7 +44,7 @@ jobs:
           subject: "[${{ github.repository }}] ${{ steps.ext.outputs.short_sha }}: ${{ steps.ext.outputs.commit_title }}"
 
           body: |
-            Branch: refs/heads/${{ github.ref#refs/heads/ }}
+            Branch: refs/heads/${{ steps.ext.outputs.branch }}
             Home:   https://github.com/${{ github.repository }}
             Commit: ${{ matrix.commit.id }}
               https://github.com/${{ github.repository }}/commit/${{ matrix.commit.id }}
