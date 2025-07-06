@@ -1,0 +1,12 @@
+name: Mail Notify ([notify] commits)
+
+on: push
+
+jobs:
+  mail-tag:
+    uses: zeppe-lin/gh-shared-workflows/.github/workflows/notify-mail-tag.yml@master
+    with:
+      smtp_user: ${{ secrets.GMAIL_USERNAME }}
+      smtp_pass: ${{ secrets.GMAIL_APP_PASSWORD }}
+      mail_to: zeppe-lin@freelists.org
+
