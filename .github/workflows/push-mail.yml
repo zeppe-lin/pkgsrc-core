@@ -19,15 +19,18 @@ jobs:
           title=$(printf '%s\n' "${{ matrix.commit.message }}" | head -n1)
           date=$(date -d "${{ matrix.commit.timestamp }}" '+%Y-%m-%d (%a, %d %b %Y)')
           files=""
-          for f in ${{ matrix.commit.added }};    do files+="A $f\n"; done
-          for f in ${{ matrix.commit.modified }}; do files+="M $f\n"; done
-          for f in ${{ matrix.commit.removed }};  do files+="D $f\n"; done
+          for f in ${{ matrix.commit.added }};    do files+="  A $f\n"; done
+          for f in ${{ matrix.commit.modified }}; do files+="  M $f\n"; done
+          for f in ${{ matrix.commit.removed }};  do files+="  D $f\n"; done
 
           echo "branch=$branch"              >> $GITHUB_OUTPUT
           echo "short_sha=$short"            >> $GITHUB_OUTPUT
           echo "commit_title=$title"         >> $GITHUB_OUTPUT
           echo "commit_date=$date"           >> $GITHUB_OUTPUT
-          echo -e "files<<EOF\n$files\nEOF"  >> $GITHUB_OUTPUT
+
+          echo "changed_paths<<EOF"          >> $GITHUB_OUTPUT
+          echo -e "$files"                   >> $GITHUB_OUTPUT
+          echo "EOF"                         >> $GITHUB_OUTPUT
 
       - name: Send email
         uses: dawidd6/action-send-mail@v6
@@ -52,7 +55,7 @@ jobs:
             Date:   ${{ steps.ext.outputs.commit_date }}
 
             Changed paths:
-            ${{ steps.ext.outputs.files }}
+            ${{ steps.ext.outputs.changed_paths }}
 
             Log Message:
             -----------
