@@ -43,7 +43,7 @@ jobs:
           from: ${{ secrets.GMAIL_USERNAME }}
           to:   zeppe-lin@freelists.org
 
-          subject: "[${{ github.event.repository.name }}] ${{ steps.info.outputs.short_sha }}: ${{ steps.info.outputs.commit_title }}"
+          subject: "[${{ github.event.repository.name }}:${{ github.ref_name || github.event.ref }}] ${{ steps.info.outputs.short_sha }}: ${{ steps.info.outputs.commit_title }}"
 
           body: |
             ${{ steps.info.outputs.commit_body }}
