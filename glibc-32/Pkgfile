@@ -2,18 +2,19 @@
 # URL:         https://www.gnu.org/software/libc/
 
 name=glibc-32
-version=2.40
-release=2
+version=2.40-1
+release=1
 
 # Kernel is in the pkgsrc-system collection that may be disabled by user
 # through pkgmk.conf configuration.  If it's available, use packages' already
 # downloaded source, otherwise download the hardcoded one.
-_kernelver=$(pkgman printf %v --filter=linux || echo 5.4.292)
+_kernelver=$(pkgman printf %v --filter=linux || echo 5.4.295)
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 
 	https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${_kernelver%.*}.tar.xz
 	https://cdn.kernel.org/pub/linux/kernel/v5.x/patch-$_kernelver.xz
 
+	../glibc/glibc-$version.patch
 	../glibc/glibc-2.4x-fhs-1.patch
 	lib32.conf"
 
@@ -34,6 +35,7 @@ build() {
 	done
 	cd -
 
+	patch -d glibc-${version%-*} -Np1 -i $SRC/glibc-$version.patch
 	patch -d glibc-${version%-*} -Np1 -i $SRC/glibc-2.4x-fhs-1.patch
 
 	mkdir build; cd build
