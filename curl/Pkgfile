@@ -3,16 +3,11 @@
 # Depends on:  openssl zstd
 
 name=curl
-version=8.14.1
-release=3
-source="https://curl.se/download/curl-$version.tar.xz
-	5f805eec1149c218145097ec2a24ac7fb7d46f25.patch
-	b42776b4f4a6e9c9f5e3ff49d7bf610ad99c45c9.patch"
+version=8.15.0
+release=1
+source=https://curl.se/download/curl-$version.tar.xz
 
 build() {
-	patch -d curl-$version -Np1 -i $SRC/5f805eec1149c218145097ec2a24ac7fb7d46f25.patch
-	patch -d curl-$version -Np1 -i $SRC/b42776b4f4a6e9c9f5e3ff49d7bf610ad99c45c9.patch
-
 	mkdir build; cd build
 
 	../curl-$version/configure                  \
