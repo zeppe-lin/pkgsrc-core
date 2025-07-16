@@ -430,6 +430,7 @@ drwxr-xr-x	root/root	usr/share/vim/doc/
 -rw-r--r--	root/root	usr/share/vim/doc/vim9.txt
 -rw-r--r--	root/root	usr/share/vim/doc/vim9class.txt
 -rw-r--r--	root/root	usr/share/vim/doc/visual.txt
+-rw-r--r--	root/root	usr/share/vim/doc/wayland.txt
 -rw-r--r--	root/root	usr/share/vim/doc/windows.txt
 -rw-r--r--	root/root	usr/share/vim/doc/workshop.txt
 -rw-r--r--	root/root	usr/share/vim/evim.vim
@@ -458,6 +459,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/asy.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/autohotkey.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/automake.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/autopkgtest.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/awk.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/bash.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/basic.vim
@@ -465,6 +467,8 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/bindzone.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/bitbake.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/bp.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/brighterscript.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/brightscript.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/bst.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/btm.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/bzl.vim
@@ -535,6 +539,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/falcon.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/fennel.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/fetchmail.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/fga.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/fish.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/flexwiki.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/forth.vim
@@ -699,6 +704,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/perl.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/php.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/pinfo.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/pkl.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/plaintex.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/plsql.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/pod.vim
@@ -805,6 +811,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/treetop.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/tt2html.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/tutor.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/twig.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/typescript.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/typescriptreact.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/typst.vim
@@ -1131,7 +1138,6 @@ drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/netrw/autoload/netrw/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/netrw/autoload/netrw/fs.vim
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/netrw/autoload/netrw/msg.vim
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/netrw/autoload/netrw/os.vim
--rw-r--r--	root/root	usr/share/vim/pack/dist/opt/netrw/autoload/netrwSettings.vim
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/netrw/autoload/netrw_gitignore.vim
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/netrw/doc/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/netrw/doc/netrw.txt
@@ -1261,6 +1267,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/autohotkey.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/autoit.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/automake.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/autopkgtest.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/ave.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/avra.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/awk.vim
@@ -1796,6 +1803,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/shared/
 -rw-r--r--	root/root	usr/share/vim/syntax/shared/context-data-interfaces.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/shared/context-data-metafun.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/shared/context-data-tex.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/shared/debarchitectures.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/shared/debversions.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/shared/hgcommitDiff.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/shared/typescriptcommon.vim
