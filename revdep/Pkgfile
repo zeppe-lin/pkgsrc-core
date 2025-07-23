@@ -3,7 +3,7 @@
 # Depends on:  elfutils scdoc
 
 name=revdep
-version=4.1-0fad99b
+version=4.1-75037f9
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
