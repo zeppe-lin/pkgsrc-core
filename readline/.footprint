@@ -1,10 +1,10 @@
 drwxr-xr-x	root/root	etc/
 -rw-r--r--	root/root	etc/inputrc
 drwxr-xr-x	root/root	lib/
-lrwxrwxrwx	root/root	lib/libhistory.so.8 -> libhistory.so.8.2
--rwxr-xr-x	root/root	lib/libhistory.so.8.2
-lrwxrwxrwx	root/root	lib/libreadline.so.8 -> libreadline.so.8.2
--rwxr-xr-x	root/root	lib/libreadline.so.8.2
+lrwxrwxrwx	root/root	lib/libhistory.so.8 -> libhistory.so.8.3
+-rwxr-xr-x	root/root	lib/libhistory.so.8.3
+lrwxrwxrwx	root/root	lib/libreadline.so.8 -> libreadline.so.8.3
+-rwxr-xr-x	root/root	lib/libreadline.so.8.3
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
 drwxr-xr-x	root/root	usr/include/
@@ -19,9 +19,9 @@ drwxr-xr-x	root/root	usr/include/readline/
 -rw-r--r--	root/root	usr/include/readline/tilde.h
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libhistory.a
-lrwxrwxrwx	root/root	usr/lib/libhistory.so -> ../../lib/libhistory.so.8.2
+lrwxrwxrwx	root/root	usr/lib/libhistory.so -> ../../lib/libhistory.so.8.3
 -rw-r--r--	root/root	usr/lib/libreadline.a
-lrwxrwxrwx	root/root	usr/lib/libreadline.so -> ../../lib/libreadline.so.8.2
+lrwxrwxrwx	root/root	usr/lib/libreadline.so -> ../../lib/libreadline.so.8.3
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/history.pc
 -rw-r--r--	root/root	usr/lib/pkgconfig/readline.pc

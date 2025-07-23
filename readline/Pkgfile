@@ -3,16 +3,18 @@
 # Depends on:  ncurses
 
 name=readline
-version=8.2.13
+version=8.3.1
+_majmin=$(echo $version | cut -d . -f 1,2 | tr -d .)
 release=1
 source="https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}.tar.gz
 	inputrc
-	$(for _PV in $(seq 1 ${version##*.}); do printf \
-	"https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}-patches/${name}82-%03d\n" $_PV
+
+	$(for _PV in $(seq 1 ${version##*.}); do
+		printf "https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}-patches/${name}${_majmin}-%03d\n" $_PV
 	done)"
 
 build() {
-	for p in $SRC/${name}8?-???; do
+	for p in $SRC/${name}${_majmin}-???; do
 		patch -d $name-${version%.*} -p0 -i $p
 	done
 
