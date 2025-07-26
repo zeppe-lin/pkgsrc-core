@@ -3,7 +3,7 @@
 # Depends on:  flex zstd
 
 name=binutils
-version=2.43.1
+version=2.44
 release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
@@ -39,5 +39,5 @@ build() {
 		$PKG/usr/lib/libopcodes.la    \
 
 	# remove junk
-	rm -r $PKG/usr/share/info
+	cd $PKG/usr/share; rm -r doc info
 }

@@ -4,18 +4,21 @@ drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/ar
 -rwxr-xr-x	root/root	usr/bin/as
 -rwxr-xr-x	root/root	usr/bin/c++filt
--rwxr-xr-x	root/root	usr/bin/dwp
 -rwxr-xr-x	root/root	usr/bin/elfedit
--rwxr-xr-x	root/root	usr/bin/gp-archive
--rwxr-xr-x	root/root	usr/bin/gp-collect-app
--rwxr-xr-x	root/root	usr/bin/gp-display-html
--rwxr-xr-x	root/root	usr/bin/gp-display-src
--rwxr-xr-x	root/root	usr/bin/gp-display-text
+lrwxrwxrwx	root/root	usr/bin/gp-archive -> gprofng-archive
+lrwxrwxrwx	root/root	usr/bin/gp-collect-app -> gprofng-collect-app
+lrwxrwxrwx	root/root	usr/bin/gp-display-html -> gprofng-display-html
+lrwxrwxrwx	root/root	usr/bin/gp-display-src -> gprofng-display-src
+lrwxrwxrwx	root/root	usr/bin/gp-display-text -> gprofng-display-text
 -rwxr-xr-x	root/root	usr/bin/gprof
 -rwxr-xr-x	root/root	usr/bin/gprofng
+-rwxr-xr-x	root/root	usr/bin/gprofng-archive
+-rwxr-xr-x	root/root	usr/bin/gprofng-collect-app
+-rwxr-xr-x	root/root	usr/bin/gprofng-display-html
+-rwxr-xr-x	root/root	usr/bin/gprofng-display-src
+-rwxr-xr-x	root/root	usr/bin/gprofng-display-text
 -rwxr-xr-x	root/root	usr/bin/ld
 -rwxr-xr-x	root/root	usr/bin/ld.bfd
--rwxr-xr-x	root/root	usr/bin/ld.gold
 -rwxr-xr-x	root/root	usr/bin/nm
 -rwxr-xr-x	root/root	usr/bin/objcopy
 -rwxr-xr-x	root/root	usr/bin/objdump
@@ -192,10 +195,10 @@ drwxr-xr-x	root/root	usr/lib/ldscripts/
 -rw-r--r--	root/root	usr/lib/ldscripts/elf_x86_64.xwe
 -rw-r--r--	root/root	usr/lib/ldscripts/elf_x86_64.xwer
 -rw-r--r--	root/root	usr/lib/ldscripts/stamp (EMPTY)
--rwxr-xr-x	root/root	usr/lib/libbfd-2.43.1.so
+-rwxr-xr-x	root/root	usr/lib/libbfd-2.44.so
 -rw-r--r--	root/root	usr/lib/libbfd.a
 -rwxr-xr-x	root/root	usr/lib/libbfd.la
-lrwxrwxrwx	root/root	usr/lib/libbfd.so -> libbfd-2.43.1.so
+lrwxrwxrwx	root/root	usr/lib/libbfd.so -> libbfd-2.44.so
 -rw-r--r--	root/root	usr/lib/libctf-nobfd.a
 -rwxr-xr-x	root/root	usr/lib/libctf-nobfd.la
 lrwxrwxrwx	root/root	usr/lib/libctf-nobfd.so -> libctf-nobfd.so.0.0.0
@@ -212,10 +215,10 @@ lrwxrwxrwx	root/root	usr/lib/libgprofng.so -> libgprofng.so.0.0.0
 lrwxrwxrwx	root/root	usr/lib/libgprofng.so.0 -> libgprofng.so.0.0.0
 -rwxr-xr-x	root/root	usr/lib/libgprofng.so.0.0.0
 -rw-r--r--	root/root	usr/lib/libiberty.a
--rwxr-xr-x	root/root	usr/lib/libopcodes-2.43.1.so
+-rwxr-xr-x	root/root	usr/lib/libopcodes-2.44.so
 -rw-r--r--	root/root	usr/lib/libopcodes.a
 -rwxr-xr-x	root/root	usr/lib/libopcodes.la
-lrwxrwxrwx	root/root	usr/lib/libopcodes.so -> libopcodes-2.43.1.so
+lrwxrwxrwx	root/root	usr/lib/libopcodes.so -> libopcodes-2.44.so
 -rw-r--r--	root/root	usr/lib/libsframe.a
 -rwxr-xr-x	root/root	usr/lib/libsframe.la
 lrwxrwxrwx	root/root	usr/lib/libsframe.so -> libsframe.so.1.0.0
@@ -230,12 +233,12 @@ drwxr-xr-x	root/root	usr/share/man/man1/
 -rw-r--r--	root/root	usr/share/man/man1/c++filt.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/dlltool.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/elfedit.1.gz
--rw-r--r--	root/root	usr/share/man/man1/gp-archive.1.gz
--rw-r--r--	root/root	usr/share/man/man1/gp-collect-app.1.gz
--rw-r--r--	root/root	usr/share/man/man1/gp-display-html.1.gz
--rw-r--r--	root/root	usr/share/man/man1/gp-display-src.1.gz
--rw-r--r--	root/root	usr/share/man/man1/gp-display-text.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/gprof.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/gprofng-archive.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/gprofng-collect-app.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/gprofng-display-html.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/gprofng-display-src.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/gprofng-display-text.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/gprofng.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/ld.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/nm.1.gz
