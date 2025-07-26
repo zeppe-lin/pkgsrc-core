@@ -3,19 +3,16 @@
 
 name=glibc-32
 version=2.40-1
-release=1
-
-# Kernel is in the pkgsrc-system collection that may be disabled by user
-# through pkgmk.conf configuration.  If it's available, use packages' already
-# downloaded source, otherwise download the hardcoded one.
-_kernelver=$(pkgman printf %v --filter=linux || echo 5.4.295)
+release=2
+_kernelver=6.1.147
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 
-	https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-${_kernelver%.*}.tar.xz
-	https://cdn.kernel.org/pub/linux/kernel/v5.x/patch-$_kernelver.xz
+	https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_kernelver%.*}.tar.xz
+	https://cdn.kernel.org/pub/linux/kernel/v6.x/patch-$_kernelver.xz
 
 	../glibc/glibc-$version.patch
 	../glibc/glibc-2.4x-fhs-1.patch
+
 	lib32.conf"
 
 build() {
@@ -53,7 +50,7 @@ build() {
 		--disable-werror                  \
 		--enable-add-ons                  \
 		--enable-bind-now                 \
-		--enable-kernel=4.9               \
+		--enable-kernel=6.1               \
 		--enable-multi-arch               \
 		--enable-stack-protector=strong   \
 		--without-gd                      \
