@@ -1,5 +1,5 @@
 drwxr-xr-x	root/root	bin/
-lrwxrwxrwx	root/root	bin/ip -> /sbin/ip
+lrwxrwxrwx	root/root	bin/ip -> ../sbin/ip
 drwxr-xr-x	root/root	etc/
 drwxr-xr-x	root/root	etc/rc.d/
 -rwxr-xr-x	root/root	etc/rc.d/bridge

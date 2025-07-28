@@ -3,7 +3,7 @@
 # Depends on:  db elfutils iptables libcap libtirpc
 
 name=iproute2
-version=6.15.0
+version=6.16.0
 release=1
 source="https://www.kernel.org/pub/linux/utils/net/$name/$name-$version.tar.xz
 	rc.lo
@@ -28,5 +28,5 @@ build() {
 
 	# add ip to user path via symlink
 	mkdir -p $PKG/bin
-	ln -s /sbin/ip $PKG/bin/ip
+	ln -s ../sbin/ip $PKG/bin/ip
 }
