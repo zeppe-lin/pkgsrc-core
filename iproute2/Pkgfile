@@ -5,7 +5,8 @@
 name=iproute2
 version=6.16.0
 release=1
-source="https://www.kernel.org/pub/linux/utils/net/$name/$name-$version.tar.xz
+#source="https://www.kernel.org/pub/linux/utils/net/$name/$name-$version.tar.xz
+source="https://git.kernel.org/pub/scm/network/$name/$name.git/snapshot/$name-$version.tar.gz
 	rc.lo
 	rc.net
 	rc.bridge"
