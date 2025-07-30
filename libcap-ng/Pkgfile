@@ -1,19 +1,22 @@
 # Description: Alternate POSIX capabilities library
-# URL:         https://people.redhat.com/sgrubb/libcap-ng/
+# URL:         https://github.com/stevegrubb/libcap-ng
 
 name=libcap-ng
 version=0.8.5
-release=1
-source=https://people.redhat.com/sgrubb/$name/$name-$version.tar.gz
+release=2
+source=$name-$version.tar.gz::https://github.com/stevegrubb/$name/archive/refs/tags/v$version.tar.gz
 
 build() {
+	# fix build
+	touch $name-$version/NEWS
+
 	mkdir build; cd build
 
-	# --without-python: disable python bindings
-	autoreconf -fi ../$name-$version
+	# --without-python3: disable python bindings
+	autoreconf -fiv ../$name-$version
 	../$name-$version/configure  \
 		--prefix=/usr        \
-		--without-python
+		--without-python3    \
 
 	make V=1
 	make DESTDIR=$PKG install
