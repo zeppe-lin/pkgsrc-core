@@ -4,7 +4,7 @@
 
 name=util-linux
 version=2.41.1
-release=1
+release=2
 source="https://www.kernel.org/pub/linux/utils/$name/v$(
 		echo $version | cut -d. -f1-2
 	)/$name-$version.tar.xz
@@ -17,33 +17,34 @@ build() {
 
 	mkdir build; cd build
 
+	# --disable-bfs:       obsolete
 	# --disable-chfn-chsh: provided by shadow
 	# --disable-login:     provided by shadow
+	# --disable-minix:     obsolete
+	# --disable-nologin:   provided by shadow
+	# --disable-poman:     do not generate translated man pages
+	# --disable-raw:       obsolete
 	# --disable-runuser:   unused
 	# --disable-su:        provided by shadow
 	# --disable-sulogin:   provided by sysvinit
-	# --disable-nologin:   provided by shadow
 	# --enable-asciidoc:   generate man pages, requires asciidoctor
-	# --disable-poman:     do not generate translated man pages
-	# --disable-bfs:       obsolete
-	# --disable-minix:     obsolete
 	../$name-$version/configure   \
 		--prefix=/usr         \
+		--disable-bfs         \
 		--disable-chfn-chsh   \
 		--disable-login       \
+		--disable-minix       \
 		--disable-nls         \
+		--disable-nologin     \
+		--disable-poman       \
+		--disable-raw         \
 		--disable-runuser     \
 		--disable-su          \
 		--disable-sulogin     \
-		--disable-nologin     \
 		--enable-asciidoc     \
 		--enable-kill         \
-		--enable-raw          \
 		--enable-write        \
 		--without-python      \
-		--disable-poman       \
-		--disable-bfs         \
-		--disable-minix       \
 
 	# fix overlinking
 	sed -i 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool

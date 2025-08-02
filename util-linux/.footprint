@@ -50,7 +50,6 @@ drwxr-xr-x	root/root	sbin/
 -rwxr-xr-x	root/root	sbin/mkfs.cramfs
 -rwxr-xr-x	root/root	sbin/mkswap
 -rwxr-xr-x	root/root	sbin/pivot_root
--rwxr-xr-x	root/root	sbin/raw
 -rwxr-xr-x	root/root	sbin/sfdisk
 -rwxr-xr-x	root/root	sbin/swaplabel
 -rwxr-xr-x	root/root	sbin/swapoff
@@ -254,7 +253,6 @@ lrwxrwxrwx	root/root	usr/share/bash-completion/completions/lastb -> last
 -rw-r--r--	root/root	usr/share/bash-completion/completions/pipesz
 -rw-r--r--	root/root	usr/share/bash-completion/completions/pivot_root
 -rw-r--r--	root/root	usr/share/bash-completion/completions/prlimit
--rw-r--r--	root/root	usr/share/bash-completion/completions/raw
 -rw-r--r--	root/root	usr/share/bash-completion/completions/readprofile
 -rw-r--r--	root/root	usr/share/bash-completion/completions/rename
 -rw-r--r--	root/root	usr/share/bash-completion/completions/renice
@@ -423,7 +421,6 @@ drwxr-xr-x	root/root	usr/share/man/man8/
 -rw-r--r--	root/root	usr/share/man/man8/pam_lastlog2.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/partx.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/pivot_root.8.gz
--rw-r--r--	root/root	usr/share/man/man8/raw.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/readprofile.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/resizepart.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/rfkill.8.gz
