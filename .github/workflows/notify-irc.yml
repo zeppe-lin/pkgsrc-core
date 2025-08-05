@@ -1,5 +1,12 @@
 name: IRC Notify
-on: push
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*'
+
 jobs:
   irc:
     uses: zeppe-lin/.github-shared-workflows/.github/workflows/notify-irc.yml@master

@@ -1,5 +1,12 @@
 name: Mail Notify (dev-list)
-on: push
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*'
+
 jobs:
   mail-dev:
     uses: zeppe-lin/.github-shared-workflows/.github/workflows/notify-mail-dev.yml@master

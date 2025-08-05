@@ -1,5 +1,12 @@
 name: Mail Notify ([notify] commits)
-on: push
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*'
+
 jobs:
   mail-tag:
     uses: zeppe-lin/.github-shared-workflows/.github/workflows/notify-mail-tag.yml@master
