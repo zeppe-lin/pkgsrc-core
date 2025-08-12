@@ -2,7 +2,7 @@
 # URL:         https://curl.haxx.se/ca/
 
 name=ca-certificates
-version=20241231
+version=20250812
 release=1
 source=cacert.pem
 
