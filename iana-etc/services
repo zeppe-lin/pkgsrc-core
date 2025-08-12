@@ -4,7 +4,7 @@
 # See services(5) for more information.
 #
 
-# Last updated: 2025-06-16
+# Last updated: 2025-08-07
 # Source:       https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
 
 tcpmux              1/tcp
@@ -462,6 +462,7 @@ fxp               286/tcp
 fxp               286/udp
 k-block           287/tcp
 k-block           287/udp
+tacacss           300/tcp
 novastorbakcup    308/tcp
 novastorbakcup    308/udp
 entrusttime       309/tcp
@@ -8102,6 +8103,7 @@ vxlan-gpe        4790/udp
 roce             4791/udp
 unified-bus      4792/tcp
 unified-bus      4792/udp
+uet              4793/udp
 iims             4800/tcp
 iims             4800/udp
 iwec             4801/tcp
