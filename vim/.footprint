@@ -95,6 +95,8 @@ drwxr-xr-x	root/root	usr/share/vim/autoload/rust/
 -rw-r--r--	root/root	usr/share/vim/autoload/typeset.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/typst.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/vimball.vim
+-rw-r--r--	root/root	usr/share/vim/autoload/vimcomplete.vim
+-rw-r--r--	root/root	usr/share/vim/autoload/vimgoto.vim
 drwxr-xr-x	root/root	usr/share/vim/autoload/xml/
 -rw-r--r--	root/root	usr/share/vim/autoload/xml/html32.vim
 -rw-r--r--	root/root	usr/share/vim/autoload/xml/html401f.vim
@@ -223,6 +225,7 @@ drwxr-xr-x	root/root	usr/share/vim/compiler/
 -rw-r--r--	root/root	usr/share/vim/compiler/perl.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/perlcritic.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/php.vim
+-rw-r--r--	root/root	usr/share/vim/compiler/phpstan.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/pip_compile.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/podchecker.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/powershell.vim
@@ -694,6 +697,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/odin.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/ondir.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/opencl.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/openscad.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/openvpn.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/org.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/pamconf.vim
@@ -815,6 +819,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/typescript.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/typescriptreact.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/typst.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/uc.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/uci.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/udevconf.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/udevperm.vim
@@ -1106,7 +1111,6 @@ drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/doc/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/doc/tags
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/ftdetect/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/ftdetect/editorconfig.vim
--rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/mkzip.sh
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/plugin/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/plugin/editorconfig.vim
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/helptoc/
