@@ -3,7 +3,7 @@
 # Depends on:  scdoc
 
 name=start-stop-daemon
-version=1.22.2-e2ad7d7
+version=1.22.2-d9ad511
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
