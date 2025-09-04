@@ -2,11 +2,16 @@
 # URL:         https://kbd-project.org/
 
 name=kbd
-version=2.8.0
+version=2.9.0
 release=1
 source=https://www.kernel.org/pub/linux/utils/kbd/kbd-$version.tar.xz
 
 build() {
+	# fix cp: failed to preserve ownership for ../sr-latin.map.gz:
+	# Operation not supported
+	(cd kbd-$version/data/keymaps/i386/qwertz;
+	cp --remove-destination slovene.map sr-latin.map)
+
 	mkdir build; cd build
 
 	../kbd-$version/configure         \
