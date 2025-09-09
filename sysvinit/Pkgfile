@@ -1,21 +1,23 @@
 # Description: System V Init
-# URL:         https://savannah.nongnu.org/projects/sysvinit/
+# URL:         https://codeberg.org/thejessesmith/sysvinit
 
 name=sysvinit
-version=3.14
+version=3.15
 release=1
-source="https://github.com/slicer69/$name/releases/download/$version/$name-$version.tar.xz
+source="$name-$version.tar.gz::https://codeberg.org/thejessesmith/$name/archive/$version.tar.gz
 	manpages.patch
 	rc.bootlogd"
 
 build() {
-	patch -d $name-$version -Np1 -i $SRC/manpages.patch
+	cd sysvinit
+
+	patch -Np1 -i $SRC/manpages.patch
 
 	# remove localized man pages
-	find $name-$version/man -type d -name '??' -exec rm -rv {} +
+	find man -type d -name '??' -exec rm -rv {} +
 
-	make -C $name-$version V=1
-	make -C $name-$version DESTDIR=$PKG install
+	make V=1
+	make DESTDIR=$PKG install
 
 	mkdir -p   $PKG/var/log
 	touch      $PKG/var/log/wtmp
