@@ -4,7 +4,7 @@
 
 name=openssh
 version=10.0p1
-release=1
+release=2
 source="https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
 	pam.sshd
 	rc.sshd"
