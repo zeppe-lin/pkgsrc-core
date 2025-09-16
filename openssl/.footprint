@@ -4628,10 +4628,12 @@ lrwxrwxrwx	root/root	usr/share/man/man3/SSL_OP_BIT.3ssl.gz -> OSSL_CORE_MAKE_FUN
 lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_E.3ssl.gz -> SSL_poll.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_EC.3ssl.gz -> SSL_poll.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_ECD.3ssl.gz -> SSL_poll.3ssl.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_EL.3ssl.gz -> SSL_poll.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_ER.3ssl.gz -> SSL_poll.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_EW.3ssl.gz -> SSL_poll.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_F.3ssl.gz -> SSL_poll.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_I.3ssl.gz -> SSL_poll.3ssl.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_IC.3ssl.gz -> SSL_poll.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_IS.3ssl.gz -> SSL_poll.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_ISB.3ssl.gz -> SSL_poll.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/SSL_POLL_EVENT_ISE.3ssl.gz -> SSL_poll.3ssl.gz
