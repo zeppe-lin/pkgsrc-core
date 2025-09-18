@@ -4,10 +4,14 @@
 
 name=cmake
 version=3.31.8
-release=1
-source=https://cmake.org/files/v${version%.*}/cmake-$version.tar.gz
+release=2
+source="https://cmake.org/files/v${version%.*}/cmake-$version.tar.gz
+	curl.patch"
 
 build() {
+	# https://git.crux.nu/ports/core/issues/22
+	patch -d cmake-$version -Np1 -i $SRC/curl.patch
+
 	# Adjust installation path for CMake modules to remove version-specific
 	# directory.  This ensures modules are installed to a generic
 	# 'share/cmake' path.
