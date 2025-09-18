@@ -3,7 +3,7 @@
 # Depends on:  libarchive scdoc
 
 name=pkgutils
-version=6.1-08a2553
+version=6.1-57eb505
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
