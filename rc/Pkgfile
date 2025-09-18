@@ -3,7 +3,7 @@
 # Depends on:  scdoc
 
 name=rc
-version=4.0-e743db7
+version=4.0-ec85ad4
 release=1
 source="https://github.com/zeppe-lin/rc/archive/${version#*-}/rc-$version.tar.gz
 	inittab
