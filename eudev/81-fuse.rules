@@ -1,7 +1,2 @@
-#
-# /lib/udev/rules.d/81-fuse.rules
-# 
-
+# /lib/udev/rules.d/81-fuse.rules: mount fusectl when fuse module loads
 KERNEL=="fuse", ACTION=="add", RUN+="/bin/mount -t fusectl fusectl /sys/fs/fuse/connections"
-
-# End of file.

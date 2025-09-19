@@ -1,0 +1,58 @@
+diff '--color=auto' -pruN eudev-3.2.14.orig/man/hwdb.7 eudev-3.2.14/man/hwdb.7
+--- eudev-3.2.14.orig/man/hwdb.7	2025-09-19 12:24:54.569046700 +0300
++++ eudev-3.2.14/man/hwdb.7	2025-09-19 12:50:51.019542133 +0300
+@@ -1,5 +1,5 @@
+ '\" t
+-.TH "HWDB" "7" "" "systemd" "hwdb"
++.TH "HWDB" "7" "" "eudev" "hwdb"
+ .\" -----------------------------------------------------------------
+ .\" * Define some portability stuff
+ .\" -----------------------------------------------------------------
+@@ -97,11 +97,17 @@ are ignored\&.
+ In case multiple records match a given lookup string, the key\-value pairs from all records are combined\&. If a key is specified multiple times, the value from the record with the highest priority is used (each key can have only a single value)\&. The priority is higher when the record is in a file that sorts later lexicographically, and in case of records in the same file, later records have higher priority\&.
+ .PP
+ The content of all hwdb files is read by
+-\fBsystemd-hwdb\fR(8)
++\fBudevadm hwdb \-\-update\fR
+ and compiled to a binary database located at
+-/etc/udev/hwdb\&.bin, or alternatively
+-/usr/lib/udev/hwdb\&.bin
+-if you want ship the compiled database in an immutable image\&. During runtime, only the binary database is used\&.
++/etc/udev/hwdb\&.bin\&.
++Alternatively, the \fB\-\-usr\fR
++option can be used to ship the compiled database
++in an immutable image at
++/usr/lib/udev/hwdb\&.bin\&.
++During runtime, only the binary database is used\&.
++The compiled database must be updated manually
++after any changes to the source files;
++this process is not automatic\&.
+ .SH "EXAMPLES"
+ .PP
+ \fBExample\ \&1.\ \&General syntax of hwdb files\fR
+@@ -182,4 +188,4 @@ PROPERTY_WITH_SPACES=some string
+ .\}
+ .SH "SEE ALSO"
+ .PP
+-\fBsystemd-hwdb\fR(8)
++\fBudevadm\fR(8)
+diff '--color=auto' -pruN eudev-3.2.14.orig/man/udev.7 eudev-3.2.14/man/udev.7
+--- eudev-3.2.14.orig/man/udev.7	2025-09-19 12:24:54.569131490 +0300
++++ eudev-3.2.14/man/udev.7	2025-09-19 12:51:06.472957473 +0300
+@@ -1,5 +1,5 @@
+ '\" t
+-.TH "UDEV" "7" "" "udev" "udev"
++.TH "UDEV" "7" "" "eudev" "udev"
+ .\" -----------------------------------------------------------------
+ .\" * Define some portability stuff
+ .\" -----------------------------------------------------------------
+diff '--color=auto' -pruN eudev-3.2.14.orig/man/udevadm.8 eudev-3.2.14/man/udevadm.8
+--- eudev-3.2.14.orig/man/udevadm.8	2025-09-19 12:24:54.569090589 +0300
++++ eudev-3.2.14/man/udevadm.8	2025-09-19 12:48:33.350837423 +0300
+@@ -428,5 +428,4 @@ Print help text\&.
+ .RE
+ .SH "SEE ALSO"
+ .PP
+-\fBudev\fR(7),
+-\fBudevd.service\fR(8)
++\fBudev\fR(7)

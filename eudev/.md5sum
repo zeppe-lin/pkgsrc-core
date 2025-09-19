@@ -1,4 +1,5 @@
-353342134b7863f97a708da43c1d9efa  81-fuse.rules
+e140896d747f8f501d50958fdc2c6181  81-fuse.rules
 ee1789b524304dfe6d4775b4b39f6d3c  eudev-3.2.14.tar.gz
+16fbe0b6b6aea585d296cf3d085189e1  manpages.patch
 ab23833d22f29e9e5fe2ebdf0d667310  no-sgx.patch
-ccb037b3fbdc80dea6cfd895d76b11b1  rc.udevd
+5e9debede5767329ac751cad9c025727  rc.udevd

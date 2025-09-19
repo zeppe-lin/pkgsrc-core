@@ -9,13 +9,7 @@ OPTS="--daemon"
 
 case $1 in
 start)
-	# Copy devices from /lib/udev/devices.
-	/bin/cp -ar /lib/udev/devices/* /dev
-
-	# Launch udevd, make sure it's not running first.
 	$SSD --start --oknodo --exec $PROG -- $OPTS
-
-	# Coldplug devices and wait for the queue to be processed.
 	/sbin/udevadm trigger --type=subsystems --action=add
 	/sbin/udevadm trigger --type=devices    --action=add
 	/sbin/udevadm settle
@@ -35,12 +29,12 @@ status)
 	case $? in
 	0) echo "$PROG is running with pid $(pidof $PROG)" ;;
 	3) echo "$PROG is not running" ;;
-	4) echo "Unable to determine the program status" ;;
+	4) echo "Unable to determine program status" ;;
 	esac
 	;;
 *)
-        echo "usage: $0 [start|stop|restart|reload|status]"
-        ;;
+	echo "usage: $0 [start|stop|restart|reload|status]"
+	;;
 esac
 
 # End of file.

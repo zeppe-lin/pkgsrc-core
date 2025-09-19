@@ -4,13 +4,18 @@
 
 name=eudev
 version=3.2.14
-release=4
+release=5
 source="https://github.com/eudev-project/eudev/releases/download/v$version/eudev-$version.tar.gz
+	manpages.patch
 	no-sgx.patch
 	rc.udevd
 	81-fuse.rules"
 
 build() {
+	# cleanup systemd references in manual pages
+	patch -d eudev-$version -Np1 -i $SRC/manpages.patch
+
+	# we don't ship SGX-enabled kernel
 	patch -d eudev-$version -Np1 -i $SRC/no-sgx.patch
 
 	# needed for static linking, e.g. dmsetup.static
@@ -31,8 +36,8 @@ build() {
 		--enable-split-usr       \
 
 	make CFLAGS="$CFLAGS -D_GNU_SOURCE" V=1
-	make install DESTDIR=$PKG
-	make -C man install DESTDIR=$PKG
+	make DESTDIR=$PKG install
+	make -C man DESTDIR=$PKG install
 
 	# create binary hwdb
 	LD_LIBRARY_PATH=$PKG/lib \
