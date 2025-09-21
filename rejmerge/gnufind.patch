@@ -1,11 +1,11 @@
 diff --git a/src/rejmerge.in b/src/rejmerge.in
-index e875d09..e83af74 100755
+index 80047ec..a804dd3 100644
 --- a/src/rejmerge.in
 +++ b/src/rejmerge.in
-@@ -350,11 +350,7 @@ main() {
- 	done
+@@ -489,11 +489,7 @@ main() {
  
- 	# Remove empty directories.
+ 	# Remove empty directories after all files have been
+ 	# processed.
 -	find "$_rejected_dir" -depth -type d | while read -r _dir; do
 -		if [ "$_dir" != "$_rejected_dir" ]; then
 -			rmdir "$_dir" >/dev/null 2>&1
@@ -13,5 +13,5 @@ index e875d09..e83af74 100755
 -	done
 +	find "$_rejected_dir" -depth -mindepth 1 -empty -type d -delete >/dev/null 2>&1
  
- 	if [ "$REJECTED_FILES_FOUND" = "no" ]; then
- 		echo "Nothing to merge"
+ 	# If no rejected files were found or processed, print a
+ 	# message.
