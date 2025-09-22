@@ -3,8 +3,8 @@
 # Depends on:  eudev file libcap-ng linux-pam sqlite3
 
 name=util-linux
-version=2.41.1
-release=2
+version=2.41.2
+release=1
 source="https://www.kernel.org/pub/linux/utils/$name/v$(
 		echo $version | cut -d. -f1-2
 	)/$name-$version.tar.xz
