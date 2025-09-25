@@ -3,24 +3,16 @@
 # Depends on:  curl expat libarchive libidn2 libmd lz4 ncurses
 
 name=cmake
-version=3.31.8
-release=2
-source="https://cmake.org/files/v${version%.*}/cmake-$version.tar.gz
-	curl.patch"
+version=3.31.9
+release=1
+source=https://cmake.org/files/v${version%.*}/cmake-$version.tar.gz
 
 build() {
-	# https://git.crux.nu/ports/core/issues/22
-	patch -d cmake-$version -Np1 -i $SRC/curl.patch
-
-	# Adjust installation path for CMake modules to remove version-specific
-	# directory.  This ensures modules are installed to a generic
-	# 'share/cmake' path.
+	# install modules into a version-independent directory
 	sed 's|share/cmake-${CMake_VERSION_MAJOR}.${CMake_VERSION_MINOR}|share/cmake|' \
 		-i cmake-$version/Source/CMakeInstallDestinations.cmake
 
-	# Check if an existing, functional CMake installation is available.
-	# If so, use it for a faster build; otherwise, bootstrap a new CMake
-	# instance.
+	# prefer system cmake if available, otherwise bootstrap
 	if command -v cmake && cmake --version; then
 		cmake -S cmake-$version -B build -G Ninja       \
 			-D CMAKE_INSTALL_PREFIX=/usr            \
@@ -40,7 +32,7 @@ build() {
 			--generator=Ninja          \
 			--prefix=/usr              \
 			--datadir=/share/cmake     \
-			--parallel="$(nproc)"      \
+			--parallel="${JOBS:-1}"    \
 			--                         \
 			-D CMake_BUILD_LTO=ON      \
 			-D BUILD_CursesDialog=OFF  \
@@ -52,6 +44,7 @@ build() {
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
 
+	# symlink versioned cmake dir for compatibility
 	ln -sf cmake $PKG/usr/share/cmake-${version%.*}
 
 	# remove junk
