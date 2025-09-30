@@ -3,7 +3,7 @@
 
 name=libffi
 version=3.5.2
-release=1
+release=2
 source=https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.gz
 
 build() {
@@ -14,10 +14,11 @@ build() {
 		--enable-pax_emutramp        \
 		--enable-portable-binary     \
 		--disable-exec-static-tramp  \
+		--disable-static             \
 
 	make V=1
 	make DESTDIR=$PKG install
 
 	# remove junk
-	rm -r $PKG/usr/share/info
+	rm -r $PKG/usr/share/info $PKG/usr/lib/*.la
 }
