@@ -4,7 +4,7 @@
 
 name=openssh
 version=10.0p1
-release=2
+release=3
 source="https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
 	pam.sshd
 	rc.sshd"
@@ -15,7 +15,7 @@ build() {
 
 	mkdir build; cd build
 
-	autoreconf -fi ../$name-$version
+	autoreconf -fiv ../$name-$version
 	../$name-$version/configure             \
 		--prefix=/usr                   \
 		--libexecdir=/usr/lib/ssh       \
