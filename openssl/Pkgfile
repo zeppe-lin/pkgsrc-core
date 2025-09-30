@@ -1,8 +1,8 @@
-# Description: Secure Sockets Layer and Transport Layer Security tools
+# Description: SSL/TLS cryptography toolkit
 # URL:         https://www.openssl.org/
 
 name=openssl
-version=3.5.3
+version=3.5.4
 release=1
 source=https://www.openssl.org/source/$name-$version.tar.gz
 
@@ -26,7 +26,7 @@ build() {
 		threads                     \
 		zlib                        \
 
-	# pick up system flags
+	# Honor system CFLAGS
 	sed -i "s:-O3:$CFLAGS:" Makefile
 
 	make V=1 depend
@@ -34,6 +34,6 @@ build() {
 	make V=1 MANSUFFIX=ssl DESTDIR=$PKG \
 		install_sw install_ssldirs install_man_docs
 
-	# remove junk
-	find $PKG -name "*fips*" | xargs rm -rf
+	# Prune FIPS-related artefacts
+	find $PKG -name "*fips*" -exec rm -rf {} +
 }
