@@ -1,11 +1,11 @@
-# Description: Low-level netlink API to the in-kernel nf_tables subsystem
+# Description: Netlink API for in-kernel nf_tables subsystem
 # URL:         https://netfilter.org/projects/libnftnl
 # Depends on:  libmnl
 
-# NOTE: version 1.3.0+ requires linux 6.16+
+# NOTE: v1.3.0+ requires linux v6.16+
 
 name=libnftnl
-version=1.2.9
+version=1.3.0
 release=1
 source=https://www.netfilter.org/pub/$name/$name-$version.tar.xz
 
