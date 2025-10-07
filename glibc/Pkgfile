@@ -3,23 +3,22 @@
 
 name=glibc
 version=2.40-1
-release=2
-_kernelver=6.1.147
-source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
+release=3
 
+# Kernel version for headers
+_kernelver=6.1.155
+
+source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 	https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_kernelver%.*}.tar.xz
 	https://www.kernel.org/pub/linux/kernel/v6.x/patch-$_kernelver.xz
-
 	glibc-$version.patch
 	glibc-2.4x-fhs-1.patch
-
 	hosts resolv.conf nsswitch.conf host.conf ld.so.conf"
 
 build() {
-	# Install kernel headers.
-	# The headers require rsync for installation, which is redundant for
-	# core collection (rsync is placed in pkgsrc-system).  The following
-	# "find" command simply does the same.
+	# 1. Install required kernel headers.
+	# The 'make headers' followed by 'find/install' is used to avoid
+	# external dependencies like rsync.
 	cd linux-${_kernelver%.*}
 	xzcat $SRC/patch-$_kernelver.xz | patch -sNp1 -F0
 	make mrproper
@@ -32,9 +31,12 @@ build() {
 	done
 	cd -
 
-	patch -d glibc-${version%-*} -Np1 -i $SRC/glibc-$version.patch
-	patch -d glibc-${version%-*} -Np1 -i $SRC/glibc-2.4x-fhs-1.patch
+	# 2. Apply glibc specific patches.
+	for p in glibc-$version.patch glibc-2.4x-fhs-1.patch; do
+		patch -d glibc-${version%-*} -Np1 -i $SRC/${p}
+	done
 
+	# 3. Configure, build and install glibc.
 	mkdir build; cd build
 
 	export libc_cv_slibdir=/lib
@@ -58,6 +60,7 @@ build() {
 	#make check
 	make install_root=$PKG install
 
+	# 4. Install configuration files.
 	install -m 0644 -Dt $PKG/etc/                    \
 		$SRC/glibc-${version%-*}/nscd/nscd.conf  \
 		$SRC/hosts                               \
@@ -66,26 +69,23 @@ build() {
 		$SRC/host.conf                           \
 		$SRC/ld.so.conf                          \
 
-	mkdir -p $PKG/var/db/nscd
-
-	ln -sf ../usr/share/zoneinfo/UTC $PKG/etc/localtime
-
-	mkdir -p $PKG/etc/ld.so.conf.d
+	# 5. Create directories and cache files.
+	mkdir -p $PKG/var/db/nscd $PKG/etc/ld.so.conf.d
 	touch $PKG/etc/ld.so.cache
 
-	# install required locales
-	mkdir -p $PKG/usr/lib/locale
-	LC_ALL=C ./elf/ld.so --library-path . $PKG/usr/bin/localedef   \
-	  --force --quiet                                              \
-	  --inputfile=$SRC/glibc-${version%-*}/localedata/locales/C    \
-	  --charmap=$SRC/glibc-${version%-*}/localedata/charmaps/UTF-8 \
-	  $PKG/usr/lib/locale/C.UTF-8 || true
+	# 6. Set localtime to UTC by default.
+	ln -sf ../usr/share/zoneinfo/UTC $PKG/etc/localtime
 
-	# remove junk and obsoletes
+	# 7. Install required locales (C.UTF-8).
+	mkdir -p $PKG/usr/lib/locale
+	LC_ALL=C ./elf/ld.so --library-path . \
+	$PKG/usr/bin/localedef -c --quiet \
+	-i $SRC/glibc-${version%-*}/localedata/locales/C \
+	-f $SRC/glibc-${version%-*}/localedata/charmaps/UTF-8 \
+	$PKG/usr/lib/locale/C.UTF-8 || echo "localedef failed (non-fatal)"
+
+	# 8. Clean up junk files and obsoletes.
 	rm -rf $PKG/usr/share/locale $PKG/usr/share/info
 	rm $PKG/usr/bin/tzselect $PKG/usr/bin/zdump $PKG/usr/sbin/zic
-	find $PKG  -type f \(           \
-		   -name \*install.cmd  \
-		-o -name ".\install"    \
-		\) -delete
+	find $PKG -type f \( -name \*install.cmd -o -name ".\install" \) -delete
 }
