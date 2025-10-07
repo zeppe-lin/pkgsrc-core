@@ -3,23 +3,22 @@
 
 name=glibc-32
 version=2.40-1
-release=2
-_kernelver=6.1.147
-source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
+release=3
 
+# Kernel version for headers
+_kernelver=6.1.155
+
+source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 	https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_kernelver%.*}.tar.xz
 	https://cdn.kernel.org/pub/linux/kernel/v6.x/patch-$_kernelver.xz
-
 	../glibc/glibc-$version.patch
 	../glibc/glibc-2.4x-fhs-1.patch
-
 	lib32.conf"
 
 build() {
-	# Install kernel headers.
-	# The headers require rsync for installation, which is redundant for
-	# core collection (rsync is placed in pkgsrc-system).  The following
-	# "find" command simply does the same.
+	# 1. Install required kernel headers.
+	# The 'make headers' followed by 'find/install' is used to avoid
+	# external dependencies like rsync.
 	cd linux-${_kernelver%.*}
 	xzcat $SRC/patch-$_kernelver.xz | patch -sNp1 -F0
 	make mrproper
@@ -32,15 +31,19 @@ build() {
 	done
 	cd -
 
+	# 2. Apply glibc specific patches.
 	patch -d glibc-${version%-*} -Np1 -i $SRC/glibc-$version.patch
 	patch -d glibc-${version%-*} -Np1 -i $SRC/glibc-2.4x-fhs-1.patch
 
 	mkdir build; cd build
 
-	export libc_cv_slibdir=/lib32
+	# 3. Set cross-compilation environment variables.
+	# The CC variable ensures the 32-bit target architecture is used.
 	export CC="${CC:-gcc} -m32 -mstackrealign"
 	export CFLAGS="$CFLAGS -Wno-error=parentheses"
+	export libc_cv_slibdir=/lib32
 
+	# 4. Configure, build and install glibc (32-bit).
 	../glibc-${version%-*}/configure          \
 		--prefix=/usr                     \
 		--libdir=/usr/lib32               \
@@ -61,15 +64,24 @@ build() {
 	#make check
 	make install_root=$PKG install
 
+	# 5. Clean up unnecessary files (binaries, docs, etc).
+	# The 32-bit package should only contain libraries and ld.so.
 	rm -r $PKG/usr/bin/ $PKG/usr/sbin/ $PKG/usr/share/ \
 		$PKG/etc/ $PKG/sbin/ $PKG/var/
 
+	# 6. Correct the stubs-32.h header installation.
+	# The main glibc package needs the primary headers; this package
+	# only needs stubs.
 	mv $PKG/usr/include/gnu/stubs-32.h $SRC/
 	rm -r $PKG/usr/include
 	install -D $SRC/stubs-32.h $PKG/usr/include/gnu/stubs-32.h
 
+	# 7. Install 32-bit dynamic linker config and create symlink.
+	# This enables the system to find the 32-bit shared objects.
 	install -D $SRC/lib32.conf $PKG/etc/ld.so.conf.d/lib32.conf
 
+	# Create /lib/ld-linux.so.2 symlink
+	# (FHS compliant for 32-bit dynamic linker).
 	mkdir -p $PKG/lib
 	ln -s /lib32/ld-linux.so.2 $PKG/lib/ld-linux.so.2
 }
