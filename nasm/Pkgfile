@@ -1,22 +1,24 @@
-# Description: 80x86 assembler
+# Description: Assembler and disassembler for Intel x86
 # URL:         https://www.nasm.us/
+# Depends on:  zlib
 
 name=nasm
-version=2.16.03
+version=3.01
 release=1
-#source=https://www.nasm.us/pub/nasm/releasebuilds/$version/nasm-$version.tar.xz
-source=https://mirror.sobukus.de/files/src/nasm/nasm-$version.tar.xz
+source=https://www.nasm.us/pub/nasm/releasebuilds/$version/nasm-$version.tar.xz
+#source=https://mirror.sobukus.de/files/src/nasm/nasm-$version.tar.xz
 
 build() {
-	# build in separate dir is broken
-	cd $name-$version
+	if pkgman isinst ccache >/dev/null 2>&1; then
+		autotools_flags="--enable-ccache"
+	fi
 
-	./configure            \
-		--prefix=/usr  \
-		--enable-lto   \
-		$(if pkgman isinst ccache 2>/dev/null; then
-			echo "--enable-ccache"
-		fi)
+	mkdir build; cd build
+
+	../$name-$version/configure \
+		--prefix=/usr \
+		--enable-lto \
+		${autotools_flags:+$autotools_flags} \
 
 	make V=1
 	make DESTDIR=$PKG install
