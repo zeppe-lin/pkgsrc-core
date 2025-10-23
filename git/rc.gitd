@@ -13,8 +13,6 @@ OPTS="--syslog --export-all --base-path=$REPOS $REPOS"
 
 case $1 in
 start)
-	# Intentional.
-	# shellcheck disable=2086
 	$SSD --start --chuid $USER --background --make-pidfile \
 		--pidfile $PID --exec $PROG -- $OPTS
 	;;
