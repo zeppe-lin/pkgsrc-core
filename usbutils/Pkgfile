@@ -3,7 +3,7 @@
 # Depends on:  eudev libusb usbids
 
 name=usbutils
-version=018
+version=019
 release=1
 source="https://github.com/gregkh/$name/archive/v$version/$name-$version.tar.gz
 	fix-mans-refs.patch
@@ -13,12 +13,12 @@ build() {
 	patch -d $name-$version -Np1 -i $SRC/fix-mans-refs.patch
 	patch -d $name-$version -Np1 -i $SRC/usbreset-install.patch
 
-	meson setup build $name-$version  \
-		--prefix=/usr             \
-		--buildtype=plain         \
-		--wrap-mode=nodownload    \
-		-D b_lto=true             \
-		-D b_pie=true             \
+	meson setup build $name-$version \
+		--prefix=/usr \
+		--buildtype=plain \
+		--wrap-mode=nodownload \
+		-D b_lto=true \
+		-D b_pie=true \
 
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
