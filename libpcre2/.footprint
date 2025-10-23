@@ -9,24 +9,24 @@ drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libpcre2-16.a
 -rwxr-xr-x	root/root	usr/lib/libpcre2-16.la
-lrwxrwxrwx	root/root	usr/lib/libpcre2-16.so -> libpcre2-16.so.0.14.0
-lrwxrwxrwx	root/root	usr/lib/libpcre2-16.so.0 -> libpcre2-16.so.0.14.0
--rwxr-xr-x	root/root	usr/lib/libpcre2-16.so.0.14.0
+lrwxrwxrwx	root/root	usr/lib/libpcre2-16.so -> libpcre2-16.so.0.15.0
+lrwxrwxrwx	root/root	usr/lib/libpcre2-16.so.0 -> libpcre2-16.so.0.15.0
+-rwxr-xr-x	root/root	usr/lib/libpcre2-16.so.0.15.0
 -rw-r--r--	root/root	usr/lib/libpcre2-32.a
 -rwxr-xr-x	root/root	usr/lib/libpcre2-32.la
-lrwxrwxrwx	root/root	usr/lib/libpcre2-32.so -> libpcre2-32.so.0.14.0
-lrwxrwxrwx	root/root	usr/lib/libpcre2-32.so.0 -> libpcre2-32.so.0.14.0
--rwxr-xr-x	root/root	usr/lib/libpcre2-32.so.0.14.0
+lrwxrwxrwx	root/root	usr/lib/libpcre2-32.so -> libpcre2-32.so.0.15.0
+lrwxrwxrwx	root/root	usr/lib/libpcre2-32.so.0 -> libpcre2-32.so.0.15.0
+-rwxr-xr-x	root/root	usr/lib/libpcre2-32.so.0.15.0
 -rw-r--r--	root/root	usr/lib/libpcre2-8.a
 -rwxr-xr-x	root/root	usr/lib/libpcre2-8.la
-lrwxrwxrwx	root/root	usr/lib/libpcre2-8.so -> libpcre2-8.so.0.14.0
-lrwxrwxrwx	root/root	usr/lib/libpcre2-8.so.0 -> libpcre2-8.so.0.14.0
--rwxr-xr-x	root/root	usr/lib/libpcre2-8.so.0.14.0
+lrwxrwxrwx	root/root	usr/lib/libpcre2-8.so -> libpcre2-8.so.0.15.0
+lrwxrwxrwx	root/root	usr/lib/libpcre2-8.so.0 -> libpcre2-8.so.0.15.0
+-rwxr-xr-x	root/root	usr/lib/libpcre2-8.so.0.15.0
 -rw-r--r--	root/root	usr/lib/libpcre2-posix.a
 -rwxr-xr-x	root/root	usr/lib/libpcre2-posix.la
-lrwxrwxrwx	root/root	usr/lib/libpcre2-posix.so -> libpcre2-posix.so.3.0.6
-lrwxrwxrwx	root/root	usr/lib/libpcre2-posix.so.3 -> libpcre2-posix.so.3.0.6
--rwxr-xr-x	root/root	usr/lib/libpcre2-posix.so.3.0.6
+lrwxrwxrwx	root/root	usr/lib/libpcre2-posix.so -> libpcre2-posix.so.3.0.7
+lrwxrwxrwx	root/root	usr/lib/libpcre2-posix.so.3 -> libpcre2-posix.so.3.0.7
+-rwxr-xr-x	root/root	usr/lib/libpcre2-posix.so.3.0.7
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libpcre2-16.pc
 -rw-r--r--	root/root	usr/lib/pkgconfig/libpcre2-32.pc
@@ -79,6 +79,7 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -rw-r--r--	root/root	usr/share/man/man3/pcre2_match_data_create.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/pcre2_match_data_create_from_pattern.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/pcre2_match_data_free.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pcre2_next_match.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/pcre2_pattern_convert.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/pcre2_pattern_info.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/pcre2_serialize_decode.3.gz

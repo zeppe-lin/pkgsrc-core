@@ -2,18 +2,18 @@
 # URL:         http://www.pcre.org/
 
 name=libpcre2
-version=10.46
+version=10.47
 release=1
 source=https://github.com/PhilipHazel/pcre2/releases/download/pcre2-$version/pcre2-$version.tar.bz2
 
 build() {
 	mkdir build; cd build
 
-	../pcre2-$version/configure  \
-		--prefix=/usr        \
-		--enable-jit         \
-		--enable-pcre2-16    \
-		--enable-pcre2-32    \
+	../pcre2-$version/configure \
+		--prefix=/usr \
+		--enable-jit \
+		--enable-pcre2-16 \
+		--enable-pcre2-32 \
 
 	make V=1
 	make DESTDIR=$PKG install
