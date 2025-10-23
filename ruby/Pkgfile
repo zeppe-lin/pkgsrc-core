@@ -2,31 +2,36 @@
 # URL:         https://www.ruby-lang.org/
 # Depends on:  gdbm libffi libgmp libyaml openssl zlib
 
+# EOL 2027-03-31: https://www.ruby-lang.org/en/downloads/branches/
+
 name=ruby
-version=3.3.9
+version=3.3.10
 release=1
 source=https://cache.ruby-lang.org/pub/ruby/${version%.*}/ruby-$version.tar.xz
 
 build() {
 	mkdir build; cd build
 
-	../ruby-$version/configure         \
-		--prefix=/usr              \
-		--enable-shared            \
-		--disable-install-doc      \
-		--with-ruby-version=minor  \
+	../ruby-$version/configure \
+		--prefix=/usr \
+		--enable-shared \
+		--disable-install-doc \
+		--with-ruby-version=minor \
 
 	make V=1
 	make DESTDIR=$PKG install
 
 	# remove junk
-	find $PKG -type f \(               \
-		   -name COPYING           \
-		-o -name ChangeLog         \
-		-o -name LICENSE           \
-		-o -name LICENSE.txt       \
-		-o -name README.md         \
-		-o -name TODO              \
-		-o -name TODO.md           \
-		\) -delete
+	find $PKG/usr/lib -type f \
+		   -name COPYING \
+		-o -name CHANGELOG.md \
+		-o -name CONTRIBUTING.md \
+		-o -name ChangeLog \
+		-o -name LICENSE \
+		-o -name LICENSE.txt \
+		-o -name NEWS.md \
+		-o -name README.md \
+		-o -name TODO \
+		-o -name TODO.md \
+		| xargs -r rm -f
 }
