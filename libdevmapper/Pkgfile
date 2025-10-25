@@ -2,8 +2,10 @@
 # URL:         https://sourceware.org/lvm2/
 # Depends on:  util-linux
 
+# Keep version in sync with lvm2!
+
 name=libdevmapper
-version=2.03.35
+version=2.03.36
 release=1
 source=https://mirrors.kernel.org/sourceware/lvm2/LVM2.$version.tgz
 
@@ -13,31 +15,30 @@ build() {
 
 	mkdir build; cd build
 
-	CONFIG_SHELL=/bin/bash                   \
-	../LVM2.$version/configure               \
-		--prefix=/usr                    \
-		--exec-prefix=                   \
-		--datarootdir=/usr               \
-		--with-libexecdir=/usr/lib/lvm2  \
-		--with-udev-prefix=              \
-		--mandir=/usr/share/man          \
-		--disable-readline               \
-		--disable-selinux                \
-		--enable-pkgconfig               \
-		--enable-static_link             \
-		--enable-udev_sync               \
-		--enable-udev_rules              \
-		--with-user=root                 \
-		--with-group=root                \
+	CONFIG_SHELL=/bin/bash \
+	../LVM2.$version/configure \
+		--prefix=/usr \
+		--exec-prefix= \
+		--datarootdir=/usr \
+		--with-libexecdir=/usr/lib/lvm2 \
+		--with-udev-prefix= \
+		--mandir=/usr/share/man \
+		--disable-readline \
+		--disable-selinux \
+		--enable-pkgconfig \
+		--enable-static_link \
+		--enable-udev_sync \
+		--enable-udev_rules \
+		--with-user=root \
+		--with-group=root \
 
 	make V=1 device-mapper
 	make -j1 DESTDIR=$PKG install_device-mapper
 
-	# udev rules
 	install -m 0644 -D ../LVM2.$version/udev/12-dm-permissions.rules \
 		$PKG/etc/udev/rules.d/12-dm-permissions.rules.example
 
-	# symlink dmsetup to dmstats and not dmsetup.static
+	# dmstats should point to dynamic dmsetup, not static variant
 	ln -sf dmsetup $PKG/sbin/dmstats
 
 	# pkgconfig insists on /lib one or the other way...
