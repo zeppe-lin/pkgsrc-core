@@ -114,7 +114,11 @@ drwxr-xr-x	root/root	usr/share/man/man2/
 -rw-r--r--	root/root	usr/share/man/man2/fork.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/free_hugepages.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/fremovexattr.2.gz
+-rw-r--r--	root/root	usr/share/man/man2/fsconfig.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/fsetxattr.2.gz
+-rw-r--r--	root/root	usr/share/man/man2/fsmount.2.gz
+-rw-r--r--	root/root	usr/share/man/man2/fsopen.2.gz
+-rw-r--r--	root/root	usr/share/man/man2/fspick.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/fstat.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/fstat64.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/fstatat.2.gz
@@ -255,6 +259,7 @@ drwxr-xr-x	root/root	usr/share/man/man2/
 -rw-r--r--	root/root	usr/share/man/man2/modify_ldt.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/mount.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/mount_setattr.2.gz
+-rw-r--r--	root/root	usr/share/man/man2/move_mount.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/move_pages.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/mprotect.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/mpx.2.gz
@@ -286,6 +291,8 @@ drwxr-xr-x	root/root	usr/share/man/man2/
 -rw-r--r--	root/root	usr/share/man/man2/olduname.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/open.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/open_by_handle_at.2.gz
+-rw-r--r--	root/root	usr/share/man/man2/open_tree.2.gz
+-rw-r--r--	root/root	usr/share/man/man2/open_tree_attr.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/openat.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/openat2.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/outb.2.gz
@@ -339,6 +346,7 @@ drwxr-xr-x	root/root	usr/share/man/man2/
 -rw-r--r--	root/root	usr/share/man/man2/pwritev2.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/query_module.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/quotactl.2.gz
+-rw-r--r--	root/root	usr/share/man/man2/quotactl_fd.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/read.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/readahead.2.gz
 -rw-r--r--	root/root	usr/share/man/man2/readdir.2.gz
@@ -665,6 +673,8 @@ drwxr-xr-x	root/root	usr/share/man/man2const/
 -rw-r--r--	root/root	usr/share/man/man2const/PR_CAP_AMBIENT_LOWER.2const.gz
 -rw-r--r--	root/root	usr/share/man/man2const/PR_CAP_AMBIENT_RAISE.2const.gz
 -rw-r--r--	root/root	usr/share/man/man2const/PR_FUTEX_HASH.2const.gz
+-rw-r--r--	root/root	usr/share/man/man2const/PR_FUTEX_HASH_GET_SLOTS.2const.gz
+-rw-r--r--	root/root	usr/share/man/man2const/PR_FUTEX_HASH_SET_SLOTS.2const.gz
 -rw-r--r--	root/root	usr/share/man/man2const/PR_GET_AUXV.2const.gz
 -rw-r--r--	root/root	usr/share/man/man2const/PR_GET_CHILD_SUBREAPER.2const.gz
 -rw-r--r--	root/root	usr/share/man/man2const/PR_GET_DUMPABLE.2const.gz
@@ -816,6 +826,7 @@ drwxr-xr-x	root/root	usr/share/man/man2const/
 -rw-r--r--	root/root	usr/share/man/man2const/VT_SETMODE.2const.gz
 -rw-r--r--	root/root	usr/share/man/man2const/VT_WAITACTIVE.2const.gz
 drwxr-xr-x	root/root	usr/share/man/man2type/
+-rw-r--r--	root/root	usr/share/man/man2type/mount_attr.2type.gz
 -rw-r--r--	root/root	usr/share/man/man2type/open_how.2type.gz
 drwxr-xr-x	root/root	usr/share/man/man3/
 -rw-r--r--	root/root	usr/share/man/man3/CIRCLEQ_EMPTY.3.gz
@@ -955,6 +966,7 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -rw-r--r--	root/root	usr/share/man/man3/TAILQ_SWAP.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/TIMESPEC_TO_TIMEVAL.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/TIMEVAL_TO_TIMESPEC.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/_Fork.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/_Generic.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/_Static_assert.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/__after_morecore_hook.3.gz
@@ -1182,6 +1194,7 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -rw-r--r--	root/root	usr/share/man/man3/coshf.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/coshl.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/cosl.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/countof.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/cpow.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/cpowf.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/cpowl.3.gz
@@ -1810,6 +1823,7 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -rw-r--r--	root/root	usr/share/man/man3/memchr.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/memcmp.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/memcpy.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/memeq.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/memfrob.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/memmem.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/memmove.3.gz
@@ -2248,6 +2262,7 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -rw-r--r--	root/root	usr/share/man/man3/strcspn.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/strdup.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/strdupa.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/streq.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/strerror.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/strerror_l.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/strerror_r.3.gz
@@ -2390,6 +2405,7 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -rw-r--r--	root/root	usr/share/man/man3/ulckpwdf.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/ulimit.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/ullabs.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/umaxabs.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/undocumented.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/ungetc.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/ungetwc.3.gz
