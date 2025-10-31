@@ -261,6 +261,7 @@ drwxr-xr-x	root/root	usr/share/vim/compiler/
 -rw-r--r--	root/root	usr/share/vim/compiler/tcl.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/tex.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/tidy.vim
+-rw-r--r--	root/root	usr/share/vim/compiler/tombi.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/ts-node.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/tsc.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/typedoc.vim
@@ -491,6 +492,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/cmake.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/cmakecache.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/cobol.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/codeowners.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/conf.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/config.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/confini.vim
@@ -619,6 +621,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/karel.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kconfig.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kdl.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/kerml.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kivy.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kotlin.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kwt.vim
@@ -779,6 +782,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/snakemake.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/solidity.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/solution.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/soy.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/spajson.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/spec.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/sql.vim
@@ -796,6 +800,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/swiftgyb.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/swig.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/sysctl.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/sysml.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/systemd.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/systemverilog.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/tap.vim
@@ -1163,7 +1168,6 @@ drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/termdebug/
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/termdebug/plugin/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/termdebug/plugin/termdebug.vim
 drwxr-xr-x	root/root	usr/share/vim/plugin/
--rw-r--r--	root/root	usr/share/vim/plugin/colorresp.vim
 -rw-r--r--	root/root	usr/share/vim/plugin/getscriptPlugin.vim
 -rw-r--r--	root/root	usr/share/vim/plugin/gzip.vim
 -rw-r--r--	root/root	usr/share/vim/plugin/logiPat.vim
@@ -1328,6 +1332,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/cmusrc.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/cobol.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/coco.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/codeowners.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/colortest.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/conaryrecipe.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/conf.vim
@@ -1546,6 +1551,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/karel.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/kconfig.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/kdl.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/kitty.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/kivy.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/kix.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/kotlin.vim
@@ -1575,6 +1581,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/livebook.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/lnk.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/lnkmap.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/log.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/loginaccess.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/logindefs.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/logtalk.vim
@@ -1703,6 +1710,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/modula2/opt/
 -rw-r--r--	root/root	usr/share/vim/syntax/pilrc.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/pine.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/pinfo.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/pkl.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/plaintex.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/pli.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/plm.vim

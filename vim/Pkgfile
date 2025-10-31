@@ -3,7 +3,7 @@
 # Depends on:  acl ncurses
 
 name=vim
-version=9.1.1744
+version=9.1.1888
 release=1
 source="https://github.com/vim/vim/archive/v$version/vim-$version.tar.gz
 	vimrc_Pkgfile.patch"
@@ -12,45 +12,47 @@ build() {
 	# build in separate dir is broken
 	cd vim-$version/src
 
-	# remove custom flags
+	# Remove custom flags
 	sed -i '/^CFLAGS/d' Makefile
 
-	# use sh syntax highlighting for Pkgfiles
+	# Use sh syntax highlighting for Pkgfiles
 	patch -d .. -Np1 -i $SRC/vimrc_Pkgfile.patch
 
-	./configure                       \
-		--prefix=/usr             \
-		--disable-canberra        \
-		--disable-libsodium       \
-		--disable-gpm             \
-		--disable-gui             \
-		--disable-nls             \
-		--enable-cscope           \
-		--enable-multibyte        \
-		--with-vim-name=vim       \
-		--without-x               \
+	# Build full vim
+	./configure \
+		--prefix=/usr \
+		--disable-canberra \
+		--disable-libsodium \
+		--disable-gpm \
+		--disable-gui \
+		--disable-nls \
+		--enable-cscope \
+		--enable-multibyte \
+		--with-vim-name=vim \
+		--without-x \
 
 	make V=1 VIMRTDIR= 
 	make -j1 VIMRTDIR= DESTDIR=$PKG install
 
-	./configure                       \
-		--prefix=/                \
-		--datarootdir=/usr/share  \
-		--with-vim-name=vi        \
-		--without-x               \
-		--disable-gui             \
-		--enable-multibyte        \
-		--disable-gpm             \
-		--disable-nls             \
-		--with-features=tiny      \
+	# Build minimal vim
+	./configure \
+		--prefix=/ \
+		--datarootdir=/usr/share \
+		--with-vim-name=vi \
+		--without-x \
+		--disable-gui \
+		--enable-multibyte \
+		--disable-gpm \
+		--disable-nls \
+		--with-features=tiny \
 
 	make V=1 VIMRTDIR=
 	make -j1 VIMRTDIR= DESTDIR=$PKG installvimbin
 
-	# config
+	# Install default config
 	mv $PKG/usr/share/vim/vimrc_example.vim $PKG/usr/share/vim/vimrc
 
-	# symlinks
+	# Create symlinks
 	ln -sf vim       $PKG/usr/bin/evim
 	ln -sf /bin/vi   $PKG/usr/bin/vi
 	ln -sf vim.1.gz  $PKG/usr/share/man/man1/ex.1.gz
@@ -60,25 +62,25 @@ build() {
 	ln -sf vim.1.gz  $PKG/usr/share/man/man1/rview.1.gz
 	ln -sf vim.1.gz  $PKG/usr/share/man/man1/gvim.1.gz
 
-	# remove i18n entries and comments
+	# Clean up .desktop files: remove i18n entries and comments
 	sed -r -e '/\[.+\]=/d' -e '/^#/d' \
 	    -i $PKG/usr/share/applications/*.desktop
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/man/man?/vimtutor* \
-	      $PKG/usr/share/vim/tutor/it/      \
-	      $PKG/usr/share/vim/tutor/sr/      \
-	      $PKG/usr/share/vim/tutor/ru/      \
+	      $PKG/usr/share/vim/tutor/it/ \
+	      $PKG/usr/share/vim/tutor/sr/ \
+	      $PKG/usr/share/vim/tutor/ru/ \
 	      $PKG/usr/share/vim/tutor/tutor1.* \
 	      $PKG/usr/share/vim/tutor/tutor2.* \
-	      $PKG/usr/share/vim/tutor/README*  \
+	      $PKG/usr/share/vim/tutor/README* \
 	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/CONTRIBUTORS \
-	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/LICENSE*     \
-	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/README*      \
-	      $PKG/usr/share/vim/pack/dist/opt/netrw/README.md           \
-	      $PKG/usr/share/vim/pack/dist/opt/netrw/LICENSE.txt         \
-	      $PKG/usr/share/vim/LICENSE                                 \
-	      $PKG/usr/share/applications/gvim.desktop                   \
+	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/LICENSE* \
+	      $PKG/usr/share/vim/pack/dist/opt/editorconfig/README* \
+	      $PKG/usr/share/vim/pack/dist/opt/netrw/README.md \
+	      $PKG/usr/share/vim/pack/dist/opt/netrw/LICENSE.txt \
+	      $PKG/usr/share/vim/LICENSE \
+	      $PKG/usr/share/applications/gvim.desktop \
 	      #$PKG/usr/share/icons
 	find $PKG -type f -name README.txt -delete
 }
