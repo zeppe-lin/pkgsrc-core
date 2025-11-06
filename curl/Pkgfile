@@ -3,27 +3,27 @@
 # Depends on:  openssl zstd
 
 name=curl
-version=8.16.0
+version=8.17.0
 release=1
 source=https://curl.se/download/curl-$version.tar.xz
 
 build() {
 	mkdir build; cd build
 
-	../curl-$version/configure                  \
-		--prefix=/usr                       \
-		--disable-ldap                      \
-		--disable-ldaps                     \
-		--disable-static                    \
-		--enable-ipv6                       \
-		--enable-threaded-resolver          \
-		--with-ca-bundle=/etc/ssl/cert.pem  \
-		--with-openssl                      \
-		--without-brotli                    \
-		--without-libidn2                   \
-		--without-libpsl                    \
-		--without-librtmp                   \
-		--without-nghttp2                   \
+	../curl-$version/configure \
+		--prefix=/usr \
+		--disable-ldap \
+		--disable-ldaps \
+		--disable-static \
+		--enable-ipv6 \
+		--enable-threaded-resolver \
+		--with-ca-bundle=/etc/ssl/cert.pem \
+		--with-openssl \
+		--without-brotli \
+		--without-libidn2 \
+		--without-libpsl \
+		--without-librtmp \
+		--without-nghttp2 \
 
 	make V=1
 	make DESTDIR=$PKG install
