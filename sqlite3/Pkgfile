@@ -3,7 +3,7 @@
 # Depends on:  readline zlib
 
 name=sqlite3
-version=3.50.4
+version=3.51.0
 _version=$(printf "%i%.2i%.2i%.2i" $(echo $version | tr . ' '))
 release=1
 source="https://www.sqlite.org/2025/sqlite-autoconf-$_version.tar.gz
@@ -15,23 +15,23 @@ build() {
 
 	patch -Np1 -i $SRC/manpage.patch
 
-	CFLAGS="-DSQLITE_SECURE_DELETE=1          \
+	CFLAGS="-DSQLITE_SECURE_DELETE=1 \
 		-DSQLITE_ENABLE_COLUMN_METADATA=1 \
-		-DSQLITE_ENABLE_UNLOCK_NOTIFY=1   \
-		-DSQLITE_ENABLE_DBSTAT_VTAB=1     \
+		-DSQLITE_ENABLE_UNLOCK_NOTIFY=1 \
+		-DSQLITE_ENABLE_DBSTAT_VTAB=1 \
 		$CFLAGS"
 
-	CONFIG_SHELL=/bin/bash                    \
-	./configure                               \
-		--prefix=/usr                     \
-		--enable-readline                 \
-		--enable-fts3                     \
-		--enable-fts4                     \
-		--enable-fts5                     \
-		--enable-geopoly                  \
-		--enable-rtree                    \
-		--enable-session                  \
-		--update-limit                    \
+	CONFIG_SHELL=/bin/bash \
+	./configure \
+		--prefix=/usr \
+		--enable-readline \
+		--enable-fts3 \
+		--enable-fts4 \
+		--enable-fts5 \
+		--enable-geopoly \
+		--enable-rtree \
+		--enable-session \
+		--update-limit \
 
 	make V=1
 	make DESTDIR=$PKG install
