@@ -1,9 +1,8 @@
 # Description: Modern library for one-way hashing of passwords
 # URL:         https://github.com/besser82/libxcrypt
 
-# XXX keep in sync with libxcrypt
 name=libxcrypt-32
-version=4.5.1
+version=4.5.1 # XXX keep in sync with libxcrypt
 release=1
 source=https://github.com/besser82/libxcrypt/releases/download/v$version/libxcrypt-$version.tar.xz
 
