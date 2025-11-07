@@ -4,7 +4,7 @@
 # Keep in sync with libxcrypt-32!
 
 name=libxcrypt
-version=4.5.0
+version=4.5.1
 release=1
 source=https://github.com/besser82/$name/releases/download/v$version/$name-$version.tar.xz
 
@@ -28,7 +28,7 @@ build() {
 	# move /usr/lib to /lib
 	mkdir -p $PKG/lib
 	mv $PKG/usr/lib/libcrypt.so.* $PKG/lib
-	ln -fs ../../lib/$(readlink $PKG/usr/lib/libcrypt.so) \
+	ln -fns ../../lib/$(readlink $PKG/usr/lib/libcrypt.so) \
 		$PKG/usr/lib/libcrypt.so
 
 	# remove junk
