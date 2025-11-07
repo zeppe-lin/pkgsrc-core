@@ -1,10 +1,9 @@
 # Description: Modern library for one-way hashing of passwords
 # URL:         https://github.com/besser82/libxcrypt
 
-# Keep in sync with libxcrypt!
-
+# XXX keep in sync with libxcrypt
 name=libxcrypt-32
-version=4.5.0
+version=4.5.1
 release=1
 source=https://github.com/besser82/libxcrypt/releases/download/v$version/libxcrypt-$version.tar.xz
 
@@ -27,6 +26,6 @@ build() {
 	make DESTDIR=$PKG install
 
 	# remove junk
-	rm -r $PKG/usr/include $PKG/usr/share
+	rm -r $PKG/usr/include $PKG/usr/share # provided by libxcrypt
 	rm $PKG/usr/lib32/libcrypt.la
 }
