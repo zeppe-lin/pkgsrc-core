@@ -3,35 +3,36 @@
 # Depends on:  acl libcap libgmp
 
 name=coreutils
-version=9.8
+version=9.9
 release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
 build() {
-	local _BIN_PROGS="cat chgrp chmod chown cp date dd df echo false ln ls
-	  mkdir sleep mknod mv pwd readlink rm rmdir stty sync touch true uname"
-	local _DISABLED_PROGS=uptime,kill,chcon,runcon
-
 	mkdir build; cd build
 
-	# uptime - provided by procps
-	# kill   - provided by util-linux
-	# chcon  - unused
-	# runcon - unused
-	FORCE_UNSAFE_CONFIGURE=1 ../$name-$version/configure  \
-		--prefix=/usr                                 \
-		--libexecdir=/usr/lib                         \
-		--disable-assert                              \
-		--disable-nls                                 \
-		--enable-no-install-program=$_DISABLED_PROGS
+	# Disabled utilities:
+	#   uptime  ->  provided by procps
+	#   kill    ->  provided by util-linux
+	#   chcon   ->  unused
+	#   runcon  ->  unused
+	FORCE_UNSAFE_CONFIGURE=1 \
+	../$name-$version/configure \
+		--prefix=/usr \
+		--libexecdir=/usr/lib \
+		--disable-assert \
+		--disable-nls \
+		--enable-no-install-program=uptime,kill,chcon,runcon
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# move some utils from /usr/bin to /bin
+	# Relocate essential utilities to /bin
 	mkdir -p $PKG/bin
-	cd $PKG/usr/bin && mv $_BIN_PROGS $PKG/bin
+	cd $PKG/usr/bin
+	mv cat chgrp chmod chown cp date dd df echo false ln ls mkdir sleep \
+	   mknod mv pwd readlink rm rmdir stty sync touch true uname \
+	   $PKG/bin/
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }
