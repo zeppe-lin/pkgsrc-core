@@ -2,7 +2,7 @@
 # URL:         https://git.sr.ht/~sircmpwn/scdoc
 
 name=scdoc
-version=1.11.3
+version=1.11.4
 release=1
 source=scdoc-$version.tar.gz::https://git.sr.ht/~sircmpwn/scdoc/archive/$version.tar.gz
 
