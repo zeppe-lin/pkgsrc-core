@@ -4,7 +4,7 @@
 # See services(5) for more information.
 #
 
-# Last updated: 2025-11-14
+# Last updated: 2025-11-20
 # Source:       https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
 
 tcpmux              1/tcp
@@ -3291,8 +3291,8 @@ unisql           1978/tcp
 unisql           1978/udp
 unisql-java      1979/tcp
 unisql-java      1979/udp
-pearldoc-xact    1980/tcp
-pearldoc-xact    1980/udp
+panquest-xact    1980/tcp
+panquest-xact    1980/udp
 p2pq             1981/tcp
 p2pq             1981/udp
 estamp           1982/tcp
