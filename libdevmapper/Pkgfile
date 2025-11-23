@@ -2,10 +2,8 @@
 # URL:         https://sourceware.org/lvm2/
 # Depends on:  util-linux
 
-# Keep version in sync with lvm2!
-
 name=libdevmapper
-version=2.03.36
+version=2.03.37 # keep in sync with lvm2
 release=1
 source=https://mirrors.kernel.org/sourceware/lvm2/LVM2.$version.tgz
 
