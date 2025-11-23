@@ -152,6 +152,7 @@ drwxr-xr-x	root/root	usr/share/vim/compiler/
 -rw-r--r--	root/root	usr/share/vim/compiler/bash.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/bcc.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/bdf.vim
+-rw-r--r--	root/root	usr/share/vim/compiler/biome.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/cargo.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/checkstyle.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/cm3.vim
@@ -779,6 +780,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slpconf.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slpreg.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slpspi.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/sml.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/snakemake.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/solidity.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/solution.vim
