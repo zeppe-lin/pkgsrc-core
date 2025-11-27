@@ -3,9 +3,9 @@
 # Depends on:  readline
 
 name=bash
-version=5.3.3
-_majmin=$(echo $version | cut -d . -f 1,2 | tr -d .)
+version=5.3.8
 release=1
+_majmin=$(echo $version | cut -d . -f 1,2 | tr -d .)
 source="https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}.tar.gz
 	profile
 	$(for _PV in $(seq 1 ${version##*.}); do
@@ -19,13 +19,13 @@ build() {
 		patch -p0 -d ../bash-${version%.*} -i $p
 	done
 
-	../bash-${version%.*}/configure    \
-		--prefix=/usr              \
-		--exec-prefix=             \
-		--disable-nls              \
-		--with-curses              \
-		--with-installed-readline  \
-		--without-bash-malloc      \
+	../bash-${version%.*}/configure \
+		--prefix=/usr \
+		--exec-prefix= \
+		--disable-nls \
+		--with-curses \
+		--with-installed-readline \
+		--without-bash-malloc \
 
 	make V=1 -j1
 
