@@ -3,7 +3,7 @@
 # Depends on:  readline zlib
 
 name=sqlite3
-version=3.51.0
+version=3.51.1
 _version=$(printf "%i%.2i%.2i%.2i" $(echo $version | tr . ' '))
 release=1
 source="https://www.sqlite.org/2025/sqlite-autoconf-$_version.tar.gz
@@ -21,8 +21,7 @@ build() {
 		-DSQLITE_ENABLE_DBSTAT_VTAB=1 \
 		$CFLAGS"
 
-	CONFIG_SHELL=/bin/bash \
-	./configure \
+	CONFIG_SHELL=/bin/bash ./configure \
 		--prefix=/usr \
 		--enable-readline \
 		--enable-fts3 \
