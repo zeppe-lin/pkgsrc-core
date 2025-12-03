@@ -28,10 +28,10 @@ restart)
 	$0 start
 	;;
 status)
-	echo "status unavailable"
+	echo "Status unavailable"
 	;;
 *)
-	echo "usage: $0 [start|stop|restart|status]"
+	echo "Usage: $0 [start|stop|restart|status]"
 	;;
 esac
 
