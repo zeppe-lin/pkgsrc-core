@@ -629,6 +629,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/lc.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/ld.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/ldapconf.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/leex.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/leo.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/less.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/lex.vim
@@ -953,6 +954,7 @@ drwxr-xr-x	root/root	usr/share/vim/indent/
 -rw-r--r--	root/root	usr/share/vim/indent/krl.vim
 -rw-r--r--	root/root	usr/share/vim/indent/ld.vim
 -rw-r--r--	root/root	usr/share/vim/indent/less.vim
+-rw-r--r--	root/root	usr/share/vim/indent/lf.vim
 -rw-r--r--	root/root	usr/share/vim/indent/lifelines.vim
 -rw-r--r--	root/root	usr/share/vim/indent/liquid.vim
 -rw-r--r--	root/root	usr/share/vim/indent/lisp.vim
@@ -1121,6 +1123,14 @@ drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/ftdetect/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/ftdetect/editorconfig.vim
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/editorconfig/plugin/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/editorconfig/plugin/editorconfig.vim
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/helpcurwin/
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/helpcurwin/autoload/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/helpcurwin/autoload/helpcurwin.vim
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/helpcurwin/doc/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/helpcurwin/doc/helpcurwin.txt
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/helpcurwin/doc/tags
+drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/helpcurwin/plugin/
+-rw-r--r--	root/root	usr/share/vim/pack/dist/opt/helpcurwin/plugin/helpcurwin.vim
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/helptoc/
 drwxr-xr-x	root/root	usr/share/vim/pack/dist/opt/helptoc/autoload/
 -rw-r--r--	root/root	usr/share/vim/pack/dist/opt/helptoc/autoload/helptoc.vim
@@ -1566,6 +1576,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/ld.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/ldapconf.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/ldif.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/leex.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/less.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/lex.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/lf.vim
