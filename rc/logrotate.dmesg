@@ -1,0 +1,10 @@
+#
+# /etc/logrotate.d/dmesg: rotation policy for kernel boot log
+#
+
+/var/log/dmesg {
+	monthly
+	olddir /var/log/old
+}
+
+# End of file.

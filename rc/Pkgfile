@@ -3,13 +3,15 @@
 # Depends on:  scdoc
 
 name=rc
-version=4.0-d7341bd
+version=4.0-8b14505
 release=1
 source="https://github.com/zeppe-lin/rc/archive/${version#*-}/rc-$version.tar.gz
 	inittab
-	rc.conf"
+	rc.conf
+	logrotate.dmesg"
 
 build() {
 	make -C rc-* DESTDIR=$PKG install
 	install -m 0644 -Dt $PKG/etc $SRC/inittab $SRC/rc.conf
+	install -m 0644 -D $SRC/logrotate.dmesg $PKG/etc/logrotate.d/dmesg
 }
