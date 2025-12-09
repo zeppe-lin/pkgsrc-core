@@ -1,0 +1,32 @@
+# Description: Tool to rotate logfiles
+# URL:         https://github.com/logrotate/logrotate
+# Depends on:  acl popt
+
+name=logrotate
+version=3.22.0
+release=1
+source="https://github.com/$name/$name/releases/download/$version/$name-$version.tar.xz
+	logrotate.conf
+	cron.logrotate"
+
+build() {
+	mkdir build; cd build
+
+	autoreconf -fiv ../$name-$version
+	../$name-$version/configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--mandir=/usr/share/man \
+		--localstatedir=/var \
+		--with-acl \
+
+	make V=1
+	make DESTDIR=$PKG install
+
+	# Install global configuration and per-service config directory
+	mkdir -p $PKG/etc/logrotate.d
+	install -m 0644 -D $SRC/logrotate.conf $PKG/etc/logrotate.conf
+
+	# Install daily cron job for logrotate
+	install -m 0755 -D $SRC/cron.logrotate $PKG/etc/cron/daily/logrotate
+}
