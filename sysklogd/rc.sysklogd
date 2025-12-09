@@ -32,7 +32,7 @@ status)
 	esac
 	;;
 *)
-	echo "usage: $0 [start|stop|restart|reload|status]"
+	echo "Usage: $0 [start|stop|restart|reload|status]"
 	;;
 esac
 

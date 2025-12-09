@@ -1,0 +1,18 @@
+#
+# /etc/logrotate.d/syslog: rotation policy for syslogd logs
+#
+
+/var/log/auth
+/var/log/cron
+/var/log/debug
+/var/log/kernel
+/var/log/mail
+/var/log/messages {
+	olddir /var/log/old
+	postrotate
+		# Signal syslogd to reopen logs
+		/etc/rc.d/sysklogd reload
+	endscript
+}
+
+# End of file.

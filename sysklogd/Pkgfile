@@ -3,14 +3,12 @@
 
 name=sysklogd
 version=2.7.2
-release=1
+release=2
 source="https://github.com/troglobit/$name/releases/download/v$version/$name-$version.tar.gz
 	syslogd.8.patch
-	cron.syslog
-	rc.sysklogd
-	rotatelog.8
-	rotatelog.sh
-	syslog.conf"
+	syslog.conf
+	logrotate.syslog
+	rc.sysklogd"
 
 build() {
 	for f in $SRC/*.patch; do
@@ -19,24 +17,19 @@ build() {
 	
 	mkdir build; cd build
 
-	# --without-logger:
-	# The logger(1) utility is provided by the util-linux package;
-	# if you're using suckless sbase, it also ships the logger(1) utility.
-	../$name-$version/configure   \
-		--prefix=/usr         \
-		--sysconfdir=/etc     \
-		--localstatedir=/var  \
-		--runstatedir=/run    \
-		--without-logger      \
+	# --without-logger: logger(1) is provided by util-linux or sbase
+	../$name-$version/configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--runstatedir=/run \
+		--disable-static \
+		--without-logger \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# logrotate helper
-	install -m 0755 -D $SRC/rotatelog.sh $PKG/usr/sbin/rotatelog
-	install -m 0644 -Dt $PKG/usr/share/man/man8 $SRC/rotatelog.8
-
-	install -m 0755 -D $SRC/cron.syslog $PKG/etc/cron/weekly/syslog
+	install -m 0644 -D $SRC/logrotate.syslog $PKG/etc/logrotate.d/syslog
 	install -m 0755 -D $SRC/rc.sysklogd $PKG/etc/rc.d/sysklogd
 	install -m 0644 -D $SRC/syslog.conf $PKG/etc/syslog.conf
 
@@ -47,6 +40,7 @@ build() {
 		chmod 0640 $PKG/var/log/$f
 	done
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/doc
+	rm $PKG/usr/lib/*.la
 }

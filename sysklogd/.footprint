@@ -1,7 +1,6 @@
 drwxr-xr-x	root/root	etc/
-drwxr-xr-x	root/root	etc/cron/
-drwxr-xr-x	root/root	etc/cron/weekly/
--rwxr-xr-x	root/root	etc/cron/weekly/syslog
+drwxr-xr-x	root/root	etc/logrotate.d/
+-rw-r--r--	root/root	etc/logrotate.d/syslog
 drwxr-xr-x	root/root	etc/rc.d/
 -rwxr-xr-x	root/root	etc/rc.d/sysklogd
 -rw-r--r--	root/root	etc/syslog.conf
@@ -11,15 +10,12 @@ drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/include/syslog/
 -rw-r--r--	root/root	usr/include/syslog/syslog.h
 drwxr-xr-x	root/root	usr/lib/
--rw-r--r--	root/root	usr/lib/libsyslog.a
--rwxr-xr-x	root/root	usr/lib/libsyslog.la
 lrwxrwxrwx	root/root	usr/lib/libsyslog.so -> libsyslog.so.0.2.0
 lrwxrwxrwx	root/root	usr/lib/libsyslog.so.0 -> libsyslog.so.0.2.0
 -rwxr-xr-x	root/root	usr/lib/libsyslog.so.0.2.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libsyslog.pc
 drwxr-xr-x	root/root	usr/sbin/
--rwxr-xr-x	root/root	usr/sbin/rotatelog
 -rwxr-xr-x	root/root	usr/sbin/syslogd
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/man/
@@ -28,7 +24,6 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 drwxr-xr-x	root/root	usr/share/man/man5/
 -rw-r--r--	root/root	usr/share/man/man5/syslog.conf.5.gz
 drwxr-xr-x	root/root	usr/share/man/man8/
--rw-r--r--	root/root	usr/share/man/man8/rotatelog.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/syslogd.8.gz
 drwxr-xr-x	root/root	var/
 drwxr-xr-x	root/root	var/log/
