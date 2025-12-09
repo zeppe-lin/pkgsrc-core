@@ -1,0 +1,20 @@
+# Description: Run scripts or programs in a directory
+# URL:         https://salsa.debian.org/debian/debianutils
+
+name=run-parts
+version=5.23.2
+release=1
+source=https://salsa.debian.org/debian/debianutils/-/archive/debian/$version/debianutils-debian-$version.tar.gz
+
+build() {
+	mkdir build; cd build
+
+	autoreconf -fiv ../debianutils-debian-$version
+	../debianutils-debian-$version/configure --prefix=/usr
+
+	make V=1 run-parts
+
+	install -m 0755 -D run-parts $PKG/usr/sbin/run-parts
+	install -m 0644 -D ../debianutils-debian-$version/run-parts.8 \
+		$PKG/usr/share/man/man8/run-parts.8
+}
