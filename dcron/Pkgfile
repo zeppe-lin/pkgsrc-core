@@ -1,11 +1,16 @@
 # Description: Multi-user cron daemon
 # URL:         https://github.com/ptchinster/dcron
+# Depends on:  run-parts
+
+# Maintainer notes on dependencies:
+#   run-parts: defined in /etc/crontab as jobs executioner
 
 name=dcron
 version=4.6
-release=1
+release=2
 source="https://github.com/ptchinster/dcron/archive/refs/tags/v$version/$name-$version.tar.gz
-	crontab rc.crond runjobs"
+	crontab
+	rc.crond"
 
 build() {
 	cd $name-$version
@@ -17,8 +22,8 @@ build() {
 	ln -s ../var/spool/cron/crontabs/root $PKG/etc/crontab
 
 	install -m 0755 -D $SRC/rc.crond $PKG/etc/rc.d/crond
-	install -m 0755 -D $SRC/runjobs  $PKG/usr/bin/runjobs
 
-	install -d $PKG/etc/cron/hourly $PKG/etc/cron/daily \
-	           $PKG/etc/cron/weekly $PKG/etc/cron/monthly
+	for d in hourly daily weekly monthly; do
+		mkdir -p $PKG/etc/cron/$d
+	done
 }

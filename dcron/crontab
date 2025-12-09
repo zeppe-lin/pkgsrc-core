@@ -1,12 +1,13 @@
 #
-# /etc/crontab: crond(8) configuration
+# /etc/crontab: crond(8) system job configuration
 #
 # See crontab(1) for more information.
 #
 
-@hourly   ID=sys.hourly   /usr/bin/runjobs /etc/cron/hourly
-@daily    ID=sys.daily    /usr/bin/runjobs /etc/cron/daily
-@weekly   ID=sys.weekly   /usr/bin/runjobs /etc/cron/weekly
-@monthly  ID=sys.monthly  /usr/bin/runjobs /etc/cron/monthly
+# run-parts jobs, wrapped with ionice(3)/nice(19) for low I/O/CPU priority
+@hourly  ID=sys.hourly  ionice -c3 nice -n 19 run-parts /etc/cron/hourly
+@daily   ID=sys.daily   ionice -c3 nice -n 19 run-parts /etc/cron/daily
+@weekly  ID=sys.weekly  ionice -c3 nice -n 19 run-parts /etc/cron/weekly
+@monthly ID=sys.monthly ionice -c3 nice -n 19 run-parts /etc/cron/monthly
 
 # End of file.
