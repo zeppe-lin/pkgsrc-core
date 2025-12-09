@@ -1,6 +1,8 @@
 drwxr-xr-x	root/root	bin/
 drwxr-xr-x	root/root	etc/
 drwxr-xr-x	root/root	etc/inittab.d/
+drwxr-xr-x	root/root	etc/logrotate.d/
+-rw-r--r--	root/root	etc/logrotate.d/boot
 drwxr-xr-x	root/root	etc/rc.d/
 -rwxr-xr-x	root/root	etc/rc.d/bootlogd
 drwxr-xr-x	root/root	sbin/
@@ -42,5 +44,6 @@ drwxr-xr-x	root/root	usr/share/man/man8/
 -rw-r--r--	root/root	usr/share/man/man8/telinit.8.gz
 drwxr-xr-x	root/root	var/
 drwxr-xr-x	root/root	var/log/
+-rw-r-----	root/root	var/log/boot (EMPTY)
 -rw-------	root/root	var/log/btmp (EMPTY)
 -rw-r--r--	root/root	var/log/wtmp (EMPTY)

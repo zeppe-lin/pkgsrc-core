@@ -4,37 +4,42 @@
 
 name=sysvinit
 version=3.15
-release=1
+release=2
 source="$name-$version.tar.gz::https://codeberg.org/thejessesmith/$name/archive/$version.tar.gz
 	manpages.patch
-	rc.bootlogd"
+	rc.bootlogd
+	logrotate.boot"
 
 build() {
 	cd sysvinit
 
 	patch -Np1 -i $SRC/manpages.patch
 
-	# remove localized man pages
+	# Remove localized man pages (two-letter dirs)
 	find man -type d -name '??' -exec rm -rv {} +
 
 	make V=1
 	make DESTDIR=$PKG install
 
+	# Create log files with sane permissions
 	mkdir -p   $PKG/var/log
 	touch      $PKG/var/log/wtmp
 	touch      $PKG/var/log/btmp
 	chmod 0600 $PKG/var/log/btmp
+	touch      $PKG/var/log/boot
+	chmod 0640 $PKG/var/log/boot
 
-	# service
+	# Install service script and logrotate policy
 	install -m 0755 -D $SRC/rc.bootlogd $PKG/etc/rc.d/bootlogd
+	install -m 0644 -D $SRC/logrotate.boot $PKG/etc/logrotate.d/boot
 
-	# provided by util-linux
+	# Remove binaries and man pages provided by util-linux
 	for f in last lastb mesg utmpdump wall; do
 		rm -v $PKG/usr/bin/$f
 		rm -v $PKG/usr/share/man/man1/$f.1
 	done
 
-	# provided by procps
+	# Remove binaries and man pages provided by procps
 	rm $PKG/bin/pidof    $PKG/usr/share/man/man8/pidof.8
 	rm $PKG/sbin/logsave $PKG/usr/share/man/man8/logsave.8
 }
