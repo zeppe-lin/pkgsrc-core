@@ -3,24 +3,24 @@
 # Depends on:  libunistring
 
 name=libidn2
-version=2.3.7
+version=2.3.8
 release=1
 source=https://ftp.gnu.org/gnu/libidn/$name-$version.tar.gz
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure       \
-		--prefix=/usr             \
-		--disable-gtk-doc         \
-		--disable-gtk-doc-html    \
-		--disable-gtk-doc-pdf     \
-		--disable-nls             \
-		--disable-valgrind-tests  \
+	../$name-$version/configure \
+		--prefix=/usr \
+		--disable-gtk-doc \
+		--disable-gtk-doc-html \
+		--disable-gtk-doc-pdf \
+		--disable-nls \
+		--disable-valgrind-tests \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }
