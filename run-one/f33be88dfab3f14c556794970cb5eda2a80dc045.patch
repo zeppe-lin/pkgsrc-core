@@ -1,0 +1,31 @@
+From f33be88dfab3f14c556794970cb5eda2a80dc045 Mon Sep 17 00:00:00 2001
+From: Bri Hatch <bri@ifokr.org>
+Date: Thu, 19 Sep 2024 11:34:35 -0700
+Subject: [PATCH] Make sure we don't kill ourselves if pgrep matches
+
+pgrep could get confused when the command contains regular
+expressions that match the run-* command itself, e.g. an argument
+like `foo 'a|b'`
+
+* exclude our own pid from kill (check $$)
+* exclude the pgrep process which was found bit is gone (ps before kill)
+---
+ run-one | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/run-one b/run-one
+index bf0d704..c23e100 100755
+--- a/run-one
++++ b/run-one
+@@ -71,7 +71,10 @@ case "$base" in
+ 		# Loop through matching pids
+ 		for p in $(pgrep -u "$USER" -f "^$ps$" || true); do
+ 			# Try to kill pid
+-			kill $p
++			if [ "$p" = "$$" ] ; then
++				continue
++			fi
++			ps $p >/dev/null && kill $p
+ 			# And then block until killed
+ 			while ps $p >/dev/null 2>&1; do
+ 				kill $p

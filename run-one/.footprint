@@ -1,0 +1,17 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+lrwxrwxrwx	root/root	usr/bin/keep-one-running -> run-one
+-rwxr-xr-x	root/root	usr/bin/run-one
+lrwxrwxrwx	root/root	usr/bin/run-one-constantly -> run-one
+lrwxrwxrwx	root/root	usr/bin/run-one-until-failure -> run-one
+lrwxrwxrwx	root/root	usr/bin/run-one-until-success -> run-one
+lrwxrwxrwx	root/root	usr/bin/run-this-one -> run-one
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man1/
+-rw-r--r--	root/root	usr/share/man/man1/keep-one-running.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/run-one-constantly.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/run-one-until-failure.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/run-one-until-success.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/run-one.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/run-this-one.1.gz
