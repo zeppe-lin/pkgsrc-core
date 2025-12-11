@@ -2,7 +2,7 @@
 # URL:         https://www.iana.org/time-zones
 
 name=tzdata
-version=2025b
+version=2025c
 release=1
 source=https://data.iana.org/time-zones/releases/tzdb-$version.tar.lz
 
@@ -12,9 +12,9 @@ build() {
 	make V=1 CFLAGS="$CFLAGS"
 	make DESTDIR=$PKG install
 
-	# provided by man-pages package
+	# Provided by man-pages package
 	rm -r $PKG/usr/share/man/man5 $PKG/usr/share/man/man8
 
-	# conflicts with glibc package
+	# Conflicts with glibc package
 	rm $PKG/etc/localtime && rmdir $PKG/etc
 }
