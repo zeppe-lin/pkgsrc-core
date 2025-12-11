@@ -3,39 +3,38 @@
 # Depends on:  ncurses
 
 name=readline
-version=8.3.1
-_majmin=$(echo $version | cut -d . -f 1,2 | tr -d .)
+version=8.3.3
 release=1
 source="https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}.tar.gz
-	inputrc
-
-	$(for _PV in $(seq 1 ${version##*.}); do
-		printf "https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}-patches/${name}${_majmin}-%03d\n" $_PV
-	done)"
+https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}-patches/readline83-001
+https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}-patches/readline83-002
+https://ftpmirror.gnu.org/gnu/$name/$name-${version%.*}-patches/readline83-003
+	inputrc"
 
 build() {
-	for p in $SRC/${name}${_majmin}-???; do
+	# Apply upstream patches
+	for p in $SRC/readline83-???; do
 		patch -d $name-${version%.*} -p0 -i $p
 	done
 
-	# remove RPATH from shared objects (FS#14366)
+	# Drop RPATH from shared objects (FS#14366)
 	sed -i 's|-Wl,-rpath,$(libdir) ||g' \
 		$name-${version%.*}/support/shobj-conf
 
-	# build with -fPIC for x86_64
+	# Build with -fPIC for x86_64
 	# FS#15634: https://bugs.archlinux.org/task/15634
 	CFLAGS="$CFLAGS -fPIC"
 
 	mkdir build; cd build
 
-	../$name-${version%.*}/configure    \
-		--prefix=/usr               \
-		--disable-install-examples  \
+	../$name-${version%.*}/configure \
+		--prefix=/usr \
+		--disable-install-examples \
 
 	make -j1 V=1 SHLIB_LIBS=-lncurses
 	make -j1 DESTDIR=$PKG install
 
-	# move libs from /usr/lib to /lib
+	# Move libs from /usr/lib to /lib
 	mkdir -p $PKG/lib
 	mv $PKG/usr/lib/lib*.so.* $PKG/lib/
 	ln -sf ../../lib/libhistory.so.${version%.*} \
@@ -43,9 +42,9 @@ build() {
 	ln -sf ../../lib/libreadline.so.${version%.*} \
 		$PKG/usr/lib/libreadline.so
 
-	# config
+	# Install default config
 	install -m 0644 -D $SRC/inputrc $PKG/etc/inputrc
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/doc $PKG/usr/share/info
 }
