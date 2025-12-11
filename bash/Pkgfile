@@ -3,7 +3,7 @@
 # Depends on:  readline
 
 name=bash
-version=5.3.8
+version=5.3.9
 release=1
 _majmin=$(echo $version | cut -d . -f 1,2 | tr -d .)
 source="https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}.tar.gz
