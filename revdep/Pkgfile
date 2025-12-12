@@ -3,15 +3,15 @@
 # Depends on:  elfutils scdoc
 
 name=revdep
-version=4.1-76a5bbc
+version=4.2-f25f7ee
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
-	# pick up system flags
+	# Pick up system flags
 	sed -ri '/^(CXX|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
 
-	# it's safe to optimize
+	# It's safe to optimize
 	CXXFLAGS="`echo $CXXFLAGS | sed 's/-O. /-Ofast /'`"
 
 	make -C $name-* \
