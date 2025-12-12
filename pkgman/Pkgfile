@@ -3,16 +3,16 @@
 # Depends on:  scdoc
 
 name=pkgman
-version=6.1-3ce1b9b
+version=6.2-67866dc
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgman.conf"
 
 build() {
-	# pick up system flags
+	# Pick up system flags
 	sed -ri '/^(CXX|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
 
-	# it's safe to optimize
+	# It's safe to optimize
 	CXXFLAGS="$(echo "$CXXFLAGS" | sed 's/-O. /-Ofast /')"
 
 	make -C $name-* LDFLAGS="-static -lstdc++fs" DESTDIR=$PKG install
