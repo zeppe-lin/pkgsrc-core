@@ -3,16 +3,16 @@
 # Depends on:  libarchive scdoc
 
 name=pkgutils
-version=6.1-4f1f7d5
+version=6.2-3190908
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
 
 build() {
-	# pick up system flags
+	# Pick up system flags
 	sed -ri '/^(CXX|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
 
-	# enable preserving packages' xattrs(7)
+	# Enable preserving packages' xattrs(7)
 	sed -ri '/^#XATTR/s/^#//' $name-*/config.mk
 
 	make -C $name-* \
