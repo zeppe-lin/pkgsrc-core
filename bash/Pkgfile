@@ -5,17 +5,22 @@
 name=bash
 version=5.3.9
 release=1
-_majmin=$(echo $version | cut -d . -f 1,2 | tr -d .)
 source="https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}.tar.gz
-	profile
-	$(for _PV in $(seq 1 ${version##*.}); do
-		printf "https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash${_majmin}-%03d\n" $_PV
-	done)"
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-001
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-002
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-003
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-004
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-005
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-006
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-007
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-008
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-009
+	profile"
 
 build() {
 	mkdir build; cd build
 
-	for p in $SRC/bash${_majmin}-???; do
+	for p in $SRC/bash53-???; do
 		patch -p0 -d ../bash-${version%.*} -i $p
 	done
 
