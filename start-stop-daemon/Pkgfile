@@ -3,12 +3,12 @@
 # Depends on:  scdoc
 
 name=start-stop-daemon
-version=1.22.2-d9ad511
+version=1.23.0-a6edb4f
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
-	# pick up system flags
+	# Pick up system flags
 	sed -ri '/^(C|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
 
 	make -C $name-* PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG install
