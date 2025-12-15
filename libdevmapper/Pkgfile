@@ -3,7 +3,7 @@
 # Depends on:  util-linux
 
 name=libdevmapper
-version=2.03.37 # keep in sync with lvm2
+version=2.03.38 # keep in sync with lvm2
 release=1
 source=https://mirrors.kernel.org/sourceware/lvm2/LVM2.$version.tgz
 
