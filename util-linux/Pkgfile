@@ -2,8 +2,11 @@
 # URL:         https://github.com/util-linux/util-linux
 # Depends on:  eudev file libcap-ng linux-pam sqlite3
 
+# Maintainer notes on dependencies:
+#   --enable-asciidoc: Generate man pages, requires asciidoctor (enabled)
+
 name=util-linux
-version=2.41.2
+version=2.41.3
 release=1
 source="https://www.kernel.org/pub/linux/utils/$name/v$(
 		echo $version | cut -d. -f1-2
@@ -12,7 +15,7 @@ source="https://www.kernel.org/pub/linux/utils/$name/v$(
 	adoc-nosystemd-refs.patch"
 
 build() {
-	# clean up systemd(1) references from man pages
+	# Clean up systemd(1) references from man pages
 	patch -d $name-$version -Np1 -i $SRC/adoc-nosystemd-refs.patch
 
 	mkdir build; cd build
@@ -27,37 +30,36 @@ build() {
 	# --disable-runuser:   unused
 	# --disable-su:        provided by shadow
 	# --disable-sulogin:   provided by sysvinit
-	# --enable-asciidoc:   generate man pages, requires asciidoctor
-	../$name-$version/configure   \
-		--prefix=/usr         \
-		--disable-bfs         \
-		--disable-chfn-chsh   \
-		--disable-login       \
-		--disable-minix       \
-		--disable-nls         \
-		--disable-nologin     \
-		--disable-poman       \
-		--disable-raw         \
-		--disable-runuser     \
-		--disable-su          \
-		--disable-sulogin     \
-		--enable-asciidoc     \
-		--enable-kill         \
-		--enable-write        \
-		--without-python      \
+	../$name-$version/configure \
+		--prefix=/usr \
+		--disable-bfs \
+		--disable-chfn-chsh \
+		--disable-login \
+		--disable-minix \
+		--disable-nls \
+		--disable-nologin \
+		--disable-poman \
+		--disable-raw \
+		--disable-runuser \
+		--disable-su \
+		--disable-sulogin \
+		--enable-asciidoc \
+		--enable-kill \
+		--enable-write \
+		--without-python \
 
-	# fix overlinking
+	# Fix overlinking
 	sed -i 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# move pam libs to /lib
+	# Move pam libs to /lib
 	#mv $PKG/usr/lib/security $PKG/lib/
 
 	mkdir -p $PKG/etc $PKG/var/lib/libuuid $PKG/var/lib/lastlog
 	touch $PKG/etc/adjtime
 
-	# remove junk and obsolete files
+	# Remove junk and obsolete files
 	rm -r $PKG/usr/share/doc
 }
