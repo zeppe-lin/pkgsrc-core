@@ -3,43 +3,46 @@
 # Depends on:  readline
 
 name=inetutils
-version=2.6
-release=2
+version=2.7
+release=1
 source="http://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
-	inetd.conf rc.inetd"
+	inetd.conf
+	rc.inetd"
 
 build() {
 	mkdir build; cd build
 
-	# fix build with gcc 14.2
+	# Allow implicit declarations (gcc 14+)
 	export CFLAGS="$CFLAGS -Wno-error=implicit-function-declaration"
 
-	# --disable-traceroute: traceroute package provides a better utility
-	../$name-$version/configure      \
-		--prefix=/usr            \
-		--libexecdir=/usr/sbin   \
-		--localstatedir=/var     \
-		--sysconfdir=/etc        \
-		--disable-clients        \
-		--disable-servers        \
-		--enable-ftp             \
-		--enable-hostname        \
-		--enable-ifconfig        \
-		--enable-inetd           \
-		--enable-telnet          \
-		--disable-traceroute     \
+	# --disable-traceroute: intentionally, provided by a dedicated package
+	../$name-$version/configure \
+		--prefix=/usr \
+		--libexecdir=/usr/sbin \
+		--localstatedir=/var \
+		--sysconfdir=/etc \
+		--disable-clients \
+		--disable-servers \
+		--enable-ftp \
+		--enable-hostname \
+		--enable-ifconfig \
+		--enable-inetd \
+		--enable-telnet \
+		--disable-traceroute \
 
 	make V=1
 	make DESTDIR=$PKG install
 
+	# Move hostname and ifconfig to canonical locations
 	mkdir -p $PKG/bin $PKG/sbin
 	mv $PKG/usr/bin/hostname $PKG/bin/
 	mv $PKG/usr/bin/ifconfig $PKG/sbin/
 
-	mkdir -p $PKG/etc/rc.d $PKG/etc/inetd.d
-	install -m 0644 $SRC/inetd.conf $PKG/etc/inetd.conf
-	install -m 0755 $SRC/rc.inetd   $PKG/etc/rc.d/inetd
+	# Install configuration and init script
+	mkdir -p $PKG/etc/inetd.d
+	install -m 0644 -D $SRC/inetd.conf $PKG/etc/inetd.conf
+	install -m 0755 -D $SRC/rc.inetd   $PKG/etc/rc.d/inetd
 
-	# remove junk
-	rm -r $PKG/usr/share/info/
+	# Remove junk
+	rm -r $PKG/usr/share/info
 }
