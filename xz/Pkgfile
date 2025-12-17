@@ -2,17 +2,17 @@
 # URL:         https://tukaani.org/xz/
 
 name=xz
-version=5.8.1
+version=5.8.2
 release=1
 source=https://github.com/tukaani-project/xz/releases/download/v$version/xz-$version.tar.xz
 
 build() {
 	mkdir build; cd build
 
-	../xz-$version/configure  \
-		--prefix=/usr     \
-		--disable-doc     \
-		--disable-nls     \
+	../xz-$version/configure \
+		--prefix=/usr \
+		--disable-doc \
+		--disable-nls \
 
 	make V=1
 	make DESTDIR=$PKG install
