@@ -3,16 +3,17 @@
 
 name=popt
 version=1.19
-release=1
+release=2
 source=http://ftp.rpm.org/popt/releases/popt-1.x/$name-$version.tar.gz
 
 build() {
 	mkdir build; cd build
 
+	# --enable-static: required for cryptsetup static build
 	../$name-$version/configure \
 		--prefix=/usr \
 		--disable-nls \
-		--disable-static \
+		--enable-static \
 
 	make V=1
 	make DESTDIR=$PKG install
