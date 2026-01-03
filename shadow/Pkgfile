@@ -3,10 +3,11 @@
 # Depends on:  acl libbsd linux-pam
 
 name=shadow
-version=4.18.0
+version=4.19.0
 release=1
 source="https://github.com/shadow-maint/$name/releases/download/$version/$name-$version.tar.xz
 	cron.pwck
+	logrotate.shadow
 	pam.chfn pam.chsh pam.groupadd pam.groupdel pam.groupmems
 	pam.groupmod pam.login pam.passwd pam.su pam.useradd
 	pam.userdel pam.usermod"
@@ -14,19 +15,19 @@ source="https://github.com/shadow-maint/$name/releases/download/$version/$name-$
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure  \
-		--prefix=/usr        \
-		--bindir=/usr/bin    \
-		--sbindir=/usr/sbin  \
-		--sysconfdir=/etc    \
-		--disable-logind     \
-		--disable-nls        \
-		--disable-shadowgrp  \
-		--disable-shared     \
-		--enable-lastlog     \
-		--without-audit      \
-		--without-btrfs      \
-		--without-selinux    \
+	../$name-$version/configure \
+		--prefix=/usr \
+		--bindir=/usr/bin \
+		--sbindir=/usr/sbin \
+		--sysconfdir=/etc \
+		--disable-logind \
+		--disable-nls \
+		--disable-shadowgrp \
+		--disable-shared \
+		--enable-lastlog \
+		--without-audit \
+		--without-btrfs \
+		--without-selinux \
 
 	make V=1
 	make DESTDIR=$PKG install
@@ -39,23 +40,23 @@ build() {
 
 	chmod -s $PKG/usr/sbin/*
 
-	# login.defs
+	# Configs: login.defs, cron, logrotate
 	install -m 0644 -D ../$name-$version/etc/login.defs $PKG/etc/
-
-	# cron
 	install -m 0755 -D $SRC/cron.pwck $PKG/etc/cron/daily/pwck
+	install -m 0644 -D $SRC/logrotate.shadow $PKG/etc/logrotate.d/shadow
 
+	# Logs
 	touch $PKG/var/log/lastlog
 	touch $PKG/var/log/faillog
 
-	# pam configs
+	# PAM configs
 	for f in chfn chsh groupadd groupdel groupmems groupmod login passwd \
 		su useradd userdel usermod
 	do
 		install -m 0644 $SRC/pam.$f $PKG/etc/pam.d/$f
 	done
 
-	# remove junk and unused stuff
+	# Remove junk and unused stuff
 	rm -r $PKG/usr/bin/gpasswd                \
 	      $PKG/usr/share/man/man1/gpasswd.1   \
 	      $PKG/usr/sbin/chpasswd              \

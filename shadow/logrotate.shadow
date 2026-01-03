@@ -1,0 +1,10 @@
+#
+# /etc/logrotate.d/shadow: rotation policy for shadow logs
+#
+
+/var/log/faillog
+/var/log/lastlog {
+	olddir /var/log/old
+}
+
+# End of file.
