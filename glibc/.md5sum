@@ -1,4 +1,4 @@
-4f53b69be125f2f714cb2744867f890b  glibc-2.40-1.patch
+a9011a417fb56a4a70c5b49224056b9b  glibc-2.40-1.patch
 b390feef233022114950317f10c4fa97  glibc-2.40.tar.xz
 ffd59b0f7c8b5d66cdc3a5f33fa50e57  glibc-2.4x-fhs-1.patch
 54af1c896f6bcae1c924c89a541d8963  host.conf
@@ -6,5 +6,5 @@ ffd59b0f7c8b5d66cdc3a5f33fa50e57  glibc-2.4x-fhs-1.patch
 a8f293bf6841a8afeb531cdf9ceaf5d4  ld.so.conf
 475320de08f16c9fa486fc4edfe98b30  linux-6.1.tar.xz
 15d8c1ad194306ebddf52cefe8315ba3  nsswitch.conf
-ade1c7467d1157d109e1136c8f281512  patch-6.1.155.xz
+776189644a55021abab7884b8005c6f5  patch-6.1.159.xz
 647d4648991ec18948005f8d64494f24  resolv.conf

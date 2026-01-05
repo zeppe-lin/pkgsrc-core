@@ -3,10 +3,10 @@
 
 name=glibc
 version=2.40-1
-release=3
+release=4
 
 # Kernel version for headers
-_kernelver=6.1.155
+_kernelver=6.1.159
 
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 	https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_kernelver%.*}.tar.xz
