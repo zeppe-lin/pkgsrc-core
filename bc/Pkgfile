@@ -4,24 +4,29 @@
 
 name=bc
 version=1.08.2
-release=1
-source=https://ftpmirror.gnu.org/gnu/bc/bc-$version.tar.gz
+release=2
+source="https://ftpmirror.gnu.org/gnu/bc/bc-$version.tar.gz
+	0001-bc-use-MAKEINFO-variable-for-docs.patch"
 
 build() {
-	# do not regen docs
-	touch bc-$version/doc/*.info  \
-	      bc-$version/doc/*.1     \
+	patch -d bc-$version -Np1 -i $SRC/0001-bc-use-MAKEINFO-variable-for-docs.patch
+
+	# Do not regen docs
+	touch bc-$version/doc/*.info \
+	      bc-$version/doc/*.1 \
 	      bc-$version/doc/Makefile
 
 	mkdir build; cd build
 
-	../bc-$version/configure  \
-		--prefix=/usr     \
-		--with-readline   \
+	autoreconf -fiv ../bc-$version
+	../bc-$version/configure \
+		--prefix=/usr \
+		--with-readline \
+		MAKEINFO=true \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }
