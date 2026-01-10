@@ -3,16 +3,17 @@
 # Depends on:  readline zlib
 
 name=sqlite3
-version=3.51.1
+version=3.51.2
 _version=$(printf "%i%.2i%.2i%.2i" $(echo $version | tr . ' '))
 release=1
-source="https://www.sqlite.org/2025/sqlite-autoconf-$_version.tar.gz
+source="https://www.sqlite.org/2026/sqlite-autoconf-$_version.tar.gz
 	manpage.patch"
 
 build() {
 	# build in separate dir is broken
 	cd sqlite-autoconf-$_version
 
+	# Cleanup debian-specific sqlite3-doc reference
 	patch -Np1 -i $SRC/manpage.patch
 
 	CFLAGS="-DSQLITE_SECURE_DELETE=1 \
