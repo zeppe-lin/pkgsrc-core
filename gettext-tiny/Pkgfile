@@ -2,23 +2,21 @@
 # URL:         https://github.com/sabotage-linux/gettext-tiny
 
 name=gettext-tiny
-version=0.3.2
+version=0.3.3
 release=1
 source="http://ftp.barfooze.de/pub/sabotage/tarballs/$name-$version.tar.xz
 	flip-macro-logic.patch
-	line-length.patch
-	respect-cflags.patch"
+	line-length.patch"
 
 build() {
 	cd $name-$version
 
-	patch -p1 -i $SRC/line-length.patch
-	patch -p1 -i $SRC/respect-cflags.patch
-	patch -p1 -i $SRC/flip-macro-logic.patch
+	patch -Np1 -i $SRC/line-length.patch
+	patch -Np1 -i $SRC/flip-macro-logic.patch
 
 	make prefix=/usr
 	make prefix=/usr DESTDIR=$PKG install
 
-	# already provided by glibc package
+	# Already provided by glibc
 	rm $PKG/usr/include/libintl.h
 }
