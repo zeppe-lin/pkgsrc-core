@@ -2,7 +2,7 @@
 # URL:         https://zeppe-lin.github.io/
 
 name=filesystem
-version=0.5
+version=0.6
 release=1
 source='fstab group issue mime.types motd passwd securetty shadow
 	shells os-release'
@@ -47,11 +47,11 @@ build() {
 	mkdir $PKG/var/cache
 
 	# pkgmk stuff
-	install -o pkgmk -g pkgmk -m 0755 -d   \
-		$PKG/var/cache/pkgmk           \
-		$PKG/var/cache/pkgmk/packages  \
-		$PKG/var/cache/pkgmk/sources   \
-		$PKG/var/cache/pkgmk/work      \
+	mkdir -p $PKG/var/cache/pkgmk
+	mkdir -p $PKG/var/cache/pkgmk/packages
+	mkdir -p $PKG/var/cache/pkgmk/sources
+	mkdir -p $PKG/var/cache/pkgmk/work
+	chown -R pkgmk:pkgmk $PKG/var/cache/pkgmk
 
 	mkdir $PKG/var/lib
 	mkdir $PKG/var/lib/pkg
