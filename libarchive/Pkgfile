@@ -3,7 +3,7 @@
 # Depends on:  acl bzip2 expat zstd
 
 name=libarchive
-version=3.8.4
+version=3.8.5
 release=1
 source=https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.xz
 
