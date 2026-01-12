@@ -2,21 +2,21 @@
 # URL:         https://github.com/stevegrubb/libcap-ng
 
 name=libcap-ng
-version=0.8.5
-release=2
+version=0.9
+release=1
 source=$name-$version.tar.gz::https://github.com/stevegrubb/$name/archive/refs/tags/v$version.tar.gz
 
 build() {
-	# fix build
+	# Fix build
 	touch $name-$version/NEWS
 
 	mkdir build; cd build
 
 	# --without-python3: disable python bindings
 	autoreconf -fiv ../$name-$version
-	../$name-$version/configure  \
-		--prefix=/usr        \
-		--without-python3    \
+	../$name-$version/configure \
+		--prefix=/usr \
+		--without-python3 \
 
 	make V=1
 	make DESTDIR=$PKG install
