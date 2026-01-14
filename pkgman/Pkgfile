@@ -1,9 +1,9 @@
-# Description: Advanced package management tool
+# Description: Unified interface for package management
 # URL:         https://github.com/zeppe-lin/pkgman
 # Depends on:  scdoc
 
 name=pkgman
-version=6.2-67866dc
+version=6.2-58fa972
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgman.conf"
@@ -11,9 +11,6 @@ source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.
 build() {
 	# Pick up system flags
 	sed -ri '/^(CXX|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
-
-	# It's safe to optimize
-	CXXFLAGS="$(echo "$CXXFLAGS" | sed 's/-O. /-Ofast /')"
 
 	make -C $name-* LDFLAGS="-static -lstdc++fs" DESTDIR=$PKG install
 	install -m 0644 -Dt $PKG/etc $SRC/pkgman.conf
