@@ -1,0 +1,40 @@
+MKSSLCERT(1)
+
+# NAME
+
+mksslcert - create self‐signed openssl certificate
+
+# SYNOPSIS
+
+*mksslcert* _key_ _crt_ [_hostname_]
+
+# DESCRIPTION
+
+*mksslcert* creates self‐signed *openssl*(1) certificates based on the
+local hostname or the given one.
+Fallback to _localhost_ if not set.
+
+The options are as follows:
+
+_key_
+	Full path to openssl private key.
+
+_crt_
+	Full path to openssl certificate.
+
+_hostname_
+	Host name of certificate.
+
+# AVAILABILITY
+
+This file is *not* part of *openssl*(1) distribution.
+
+# AUTHORS
+
+The original *mksslcert* script was written by
+Juergen Daubert <jue@crux.nu> as part of *core/openssl* port for CRUX.
+
+This implementation was re‐worked for Zeppe‐Lin by Alexandr Savca
+<alexandr.savca89@gmail.com>.
+
+; vim: ft=scdoc cc=72 tw=70
