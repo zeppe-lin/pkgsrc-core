@@ -3,7 +3,7 @@
 # Depends on:  py3-setuptools
 
 name=meson
-version=1.9.2
+version=1.10.1
 release=1
 source=https://github.com/mesonbuild/meson/releases/download/$version/meson-$version.tar.gz
 
@@ -17,21 +17,21 @@ build() {
 	/usr/bin/python3 -O  -m compileall $PKG
 	/usr/bin/python3 -OO -m compileall $PKG
 
-	# fix man perm
+	# Fix man permission
 	chmod 0644 $PKG/usr/share/man/man1/meson.1
 
-	# vim syntax highlight
+	# Vim syntax highlight
 	mkdir -p $PKG/usr/share/vim/vimfiles
 	cp -rt $PKG/usr/share/vim/vimfiles data/syntax-highlighting/vim/*/
 
-	# bash-completion
+	# bash completion
 	install -m 0644 -Dt $PKG/usr/share/bash-completion/completions \
 		data/shell-completions/bash/*
 
-	# zsh-completion
+	# zsh completion
 	#install -m 0644 -Dt $PKG/usr/share/zsh/site-functions \
 	#	data/shell-completions/zsh/*
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/polkit-1
 }
