@@ -3,7 +3,7 @@
 # Depends on:  acl libbsd linux-pam
 
 name=shadow
-version=4.19.0
+version=4.19.2
 release=1
 source="https://github.com/shadow-maint/$name/releases/download/$version/$name-$version.tar.xz
 	cron.pwck
@@ -57,22 +57,22 @@ build() {
 	done
 
 	# Remove junk and unused stuff
-	rm -r $PKG/usr/bin/gpasswd                \
-	      $PKG/usr/share/man/man1/gpasswd.1   \
-	      $PKG/usr/sbin/chpasswd              \
-	      $PKG/usr/share/man/man8/chpasswd.8  \
-	      $PKG/usr/sbin/grpconv               \
-	      $PKG/usr/share/man/man8/grpconv.8   \
-	      $PKG/usr/sbin/grpunconv             \
+	rm -r $PKG/usr/bin/gpasswd \
+	      $PKG/usr/share/man/man1/gpasswd.1 \
+	      $PKG/usr/sbin/chpasswd \
+	      $PKG/usr/share/man/man8/chpasswd.8 \
+	      $PKG/usr/sbin/grpconv \
+	      $PKG/usr/share/man/man8/grpconv.8 \
+	      $PKG/usr/sbin/grpunconv \
 	      $PKG/usr/share/man/man8/grpunconv.8 \
-	      $PKG/usr/sbin/logoutd               \
-	      $PKG/usr/share/man/man8/logoutd.8   \
-	      $PKG/usr/sbin/newusers              \
-	      $PKG/usr/share/man/man8/newusers.8  \
-	      $PKG/usr/sbin/pwconv                \
-	      $PKG/usr/share/man/man8/pwconv.8    \
-	      $PKG/usr/sbin/pwunconv              \
-	      $PKG/usr/share/man/man8/pwunconv.8  \
-	      $PKG/usr/share/man/man5/gshadow.5   \
+	      $PKG/usr/sbin/logoutd \
+	      $PKG/usr/share/man/man8/logoutd.8 \
+	      $PKG/usr/sbin/newusers \
+	      $PKG/usr/share/man/man8/newusers.8 \
+	      $PKG/usr/sbin/pwconv \
+	      $PKG/usr/share/man/man8/pwconv.8 \
+	      $PKG/usr/sbin/pwunconv \
+	      $PKG/usr/share/man/man8/pwunconv.8 \
+	      $PKG/usr/share/man/man5/gshadow.5 \
 	      $PKG/usr/share/man/man3
 }
