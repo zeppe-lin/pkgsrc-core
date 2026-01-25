@@ -1,0 +1,51 @@
+From 468d4e66da9fcd955f850d54edccf96067f22df7 Mon Sep 17 00:00:00 2001
+From: Trond Myklebust <trond.myklebust@hammerspace.com>
+Date: Fri, 23 Jan 2026 09:33:29 -0500
+Subject: [PATCH] Add missing exports for rpc_gss_getcred + authdes_getucred
+
+Both functions are listed as part of the official API in the libtirpc
+manpages. However they are not listed as being exported, and therefore
+do not turn up in the shared library.
+
+Signed-off-by: Trond Myklebust <trond.myklebust@hammerspace.com>
+Signed-off-by: Steve Dickson <steved@redhat.com>
+---
+ src/libtirpc.map    | 5 +++++
+ src/libtirpc.map.in | 5 +++++
+ 2 files changed, 10 insertions(+)
+
+diff --git a/src/libtirpc.map b/src/libtirpc.map
+index 479b4ff..0d0f2f4 100644
+--- a/src/libtirpc.map
++++ b/src/libtirpc.map
+@@ -295,6 +295,11 @@ TIRPC_0.3.3 {
+     svc_max_pollfd;
+ } TIRPC_0.3.2;
+ 
++TIRPC_1.3.7 {
++    authdes_getucred;
++    rpc_gss_getcred;
++} TIRPC_0.3.3;
++
+ TIRPC_PRIVATE {
+   global:
+     __libc_clntudp_bufcreate;
+diff --git a/src/libtirpc.map.in b/src/libtirpc.map.in
+index 6cf563b..6c0b9b2 100644
+--- a/src/libtirpc.map.in
++++ b/src/libtirpc.map.in
+@@ -295,6 +295,11 @@ TIRPC_0.3.3 {
+     svc_max_pollfd;
+ } TIRPC_0.3.2;
+ 
++TIRPC_1.3.7 {
++    authdes_getucred;
++    rpc_gss_getcred;
++} TIRPC_0.3.3;
++
+ TIRPC_PRIVATE {
+   global:
+     __libc_clntudp_bufcreate;
+-- 
+1.8.3.1
+
