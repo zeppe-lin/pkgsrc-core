@@ -3,7 +3,7 @@
 # Depends on:  py3-flit-core py3-gpep517
 
 name=py3-setuptools
-version=80.10.1
+version=80.10.2
 release=1
 source=https://files.pythonhosted.org/packages/source/s/setuptools/setuptools-$version.tar.gz
 
