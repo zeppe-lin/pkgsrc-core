@@ -1,0 +1,11 @@
+# Description: Load kernel modules from configuration files
+# URL:         https://github.com/zeppe-lin/modules-load
+# Depends on:  kmod
+
+name=modules-load
+version=0.1-771783e
+release=1
+source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+build() {
+	make -C $name-* PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG install
+}
