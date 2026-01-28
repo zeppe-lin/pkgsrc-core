@@ -1,9 +1,9 @@
 # Description: Init scripts for sysvinit
 # URL:         https://github.com/zeppe-lin/rc
-# Depends on:  scdoc
+# Depends on:  modules-load scdoc
 
 name=rc
-version=4.1-ea4937f
+version=4.2-9c4a01a
 release=1
 source="https://github.com/zeppe-lin/rc/archive/${version#*-}/rc-$version.tar.gz
 	inittab
@@ -14,4 +14,8 @@ build() {
 	make -C rc-* DESTDIR=$PKG install
 	install -m 0644 -Dt $PKG/etc $SRC/inittab $SRC/rc.conf
 	install -m 0644 -D $SRC/logrotate.dmesg $PKG/etc/logrotate.d/dmesg
+
+	mkdir -p $PKG/var/log
+	touch $PKG/var/log/dmesg
+	chmod 0640 $PKG/var/log/dmesg
 }
