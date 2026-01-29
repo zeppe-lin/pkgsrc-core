@@ -3,14 +3,14 @@
 # Depends on:  scdoc
 
 name=rejmerge
-version=5.47-88e09f3
+version=5.47-16bfdf5
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	rejmerge.conf
 	gnufind.patch"
 
 build() {
-	# https://github.com/zeppe-lin/rejmerge/issues/8
+	# Optimization: https://github.com/zeppe-lin/rejmerge/issues/8
 	patch -d $name-* -Np1 -i $SRC/gnufind.patch
 
 	make -C $name-* DESTDIR=$PKG install
