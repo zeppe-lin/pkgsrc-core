@@ -2,29 +2,29 @@
 # URL:         https://www.openssl.org/
 
 name=openssl
-version=3.5.4
+version=3.6.1
 release=1
 source=https://www.openssl.org/source/$name-$version.tar.gz
 
 build() {
 	mkdir build; cd build
 
-	../$name-$version/config            \
-		--prefix=/usr               \
-		--libdir=lib                \
-		--openssldir=/etc/ssl       \
-		disable-tests               \
-		enable-camellia             \
-		enable-ec_nistp_64_gcc_128  \
-		enable-rfc3779              \
-		enable-seed                 \
-		no-ec2m                     \
-		no-mdc2                     \
-		no-sm2                      \
-		no-sm4                      \
-		shared                      \
-		threads                     \
-		zlib                        \
+	../$name-$version/config \
+		--prefix=/usr \
+		--libdir=lib \
+		--openssldir=/etc/ssl \
+		disable-tests \
+		enable-camellia \
+		enable-ec_nistp_64_gcc_128 \
+		enable-rfc3779 \
+		enable-seed \
+		no-ec2m \
+		no-mdc2 \
+		no-sm2 \
+		no-sm4 \
+		shared \
+		threads \
+		zlib \
 
 	# Honor system CFLAGS
 	sed -i "s:-O3:$CFLAGS:" Makefile
