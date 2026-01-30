@@ -3,14 +3,14 @@
 # Depends on:  ncurses
 
 name=procps
-version=4.0.5
+version=4.0.6
 release=1
 source="https://downloads.sourceforge.net/project/$name-ng/Production/$name-ng-$version.tar.xz
 	manpages.patch
 	sysctl.conf"
 
 build() {
-	patch -d $name-ng-$version -Np1 -i $SRC/manpages.patch
+	#patch -d $name-ng-$version -p1 -i $SRC/manpages.patch
 
 	export LINGUAS=' '
 
@@ -18,14 +18,14 @@ build() {
 
 	# --disable-kill: /bin/kill is already provided by util-linux
 	# --disable-modern-top: "modern" top is messy
-	../$name-ng-$version/configure  \
-		--prefix=/usr           \
-		--sbindir=/sbin         \
-		--libdir=/usr/lib       \
-		--sysconfdir=/etc       \
-		--disable-nls           \
-		--disable-kill          \
-		--disable-modern-top    \
+	../$name-ng-$version/configure \
+		--prefix=/usr \
+		--sbindir=/sbin \
+		--libdir=/usr/lib \
+		--sysconfdir=/etc \
+		--disable-nls \
+		--disable-kill \
+		--disable-modern-top \
 
 	make V=1
 	make DESTDIR=$PKG install
@@ -39,6 +39,6 @@ build() {
 	# sysctl config file
 	install -m 0644 $SRC/sysctl.conf $PKG/etc/sysctl.conf
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/doc
 }
