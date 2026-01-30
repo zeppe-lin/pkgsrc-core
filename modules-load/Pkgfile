@@ -3,9 +3,11 @@
 # Depends on:  kmod
 
 name=modules-load
-version=0.1-0275928
+version=0.2-fdfef02
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 build() {
-	make -C $name-* PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG install
+	make -C $name-* PREFIX=/ MANPREFIX=/usr/share/man \
+		BASHCOMPDIR=/usr/share/bash-completion/completions \
+		DESTDIR=$PKG install
 }
