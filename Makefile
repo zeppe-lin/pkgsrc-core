@@ -41,9 +41,9 @@ check-urls:
 # and/or outside of collections that this collection depends on or are
 # completely missing.
 check-deps-core:
-	@${PKGMAN} --root= --no-std-config                           \
-		--config-append="pkgsrcdir ${CURDIR}"                \
-		list-orphans -v | grep '(required by .*)' >&2 || :
+	@${PKGMAN} --root= --no-std-config \
+		--config-append="pkgsrcdir ${CURDIR}" \
+		list-orphans --dependents | grep '(required by .*)' >&2 || :
 
 ######################################################################
 %: %-core
