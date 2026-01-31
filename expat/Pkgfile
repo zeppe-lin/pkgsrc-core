@@ -1,27 +1,24 @@
 # Description: XML parser library
 # URL:         https://libexpat.github.io/
-# Depends on:  libbsd
 
 name=expat
-version=2.7.3
+version=2.7.4
 release=1
 source=https://download.sourceforge.net/expat/expat-$version.tar.lz
 
 build() {
 	mkdir build; cd build
 
-	# --with-libbsd: use libbsd for arc4random_buf
-	../expat-$version/configure  \
-		--prefix=/usr        \
-		--with-libbsd        \
-		--without-docbook    \
-		--without-examples   \
-		--without-tests      \
-		#--without-xmlwf     \
+	../expat-$version/configure \
+		--prefix=/usr \
+		--without-docbook \
+		--without-examples \
+		--without-tests \
+		#--without-xmlwf \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/doc
 }
