@@ -1,14 +1,12 @@
-README linux-pam
+README for linux-pam
 
 ---
-
 
 POST-INSTALL
 ============
 
-After installing and configuring Linux-PAM, reinstall and reconfigure
-the `shadow` package.
-
+After installing and configuring `linux-pam`, reinstall and
+reconfigure the `shadow` package.
 
 ---
 

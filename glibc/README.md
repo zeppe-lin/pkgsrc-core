@@ -1,7 +1,6 @@
-README glibc
+README for glibc
 
 ---
-
 
 LOCALES
 =======
@@ -10,10 +9,12 @@ LOCALES
 to generate the locales you need/use.  The following example is a
 typical setup:
 
-    localedef -i en_US -f UTF-8 en_US.UTF-8
+```sh
+# as root
+localedef -i en_US -f UTF-8 en_US.UTF-8
+```
 
 After that, add `export LANG=en_US.UTF-8` to `/etc/profile`.
-
 
 ---
 

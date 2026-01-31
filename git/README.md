@@ -1,14 +1,12 @@
-README git
+README for git
 
 ---
-
 
 GIT SERVER
 ==========
 
 The following instructions will install a git server.  It will be set
 up to use OpenSSH as the secure remote access method.
-
 
 Set Up Users, Groups, and Permissions
 -------------------------------------
@@ -232,6 +230,7 @@ variable in `/etc/rc.conf`:
 SERVICE='... gitd'
 ```
 
+---
 
 GITWEB
 ======
@@ -329,7 +328,6 @@ $HTTP["url"] =~ "^/gitweb/" {
 
 # End of file.
 ```
-
 
 ---
 

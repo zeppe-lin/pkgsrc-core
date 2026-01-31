@@ -1,21 +1,24 @@
-README libusb
+README for libusb
 
 ---
 
+REQUIREMENTS
+============
 
-KERNEL CONFIGURATION
-====================
+Kernel Configuration
+--------------------
 
 To access raw USB devices (those not treated as a disk by the
 mass-storage driver), appropriate support must be available in the
-kernel.  Check your kernel configuration:
+kernel:
 
-    Device Drivers --->
-      [*] USB support --->                       [CONFIG_USB_SUPPORT]
-        <*/M> Support for Host-side USB                  [CONFIG_USB]
+```
+Device Drivers --->
+  [*] USB support --->                           [CONFIG_USB_SUPPORT]
+    <*/M> Support for Host-side USB                      [CONFIG_USB]
+```
 
 **Select any USB hardware device drivers you may need.**
-
 
 ---
 

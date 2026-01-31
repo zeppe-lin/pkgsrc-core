@@ -1,7 +1,6 @@
-README groff
+README for groff
 
 ---
-
 
 PAPERSIZE
 =========
@@ -12,7 +11,6 @@ like 'letter' or 'a4' here, default is 'letter'.
 
 See the following URL for more information:
 http://www.gnu.org/software/groff/manual/html_node/DESC-File-Format.html
-
 
 ---
 
