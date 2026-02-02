@@ -1,5 +1,5 @@
 19388ed315beedf546ef59f5533b6adb  logrotate.syslog
-7886912d6aee5a95cccd5e4d32e9c8b3  rc.sysklogd
+324a9f7b9ff2b280d27416f0c61821be  rc.sysklogd
 af60786956a2dc84054fbf46652e515e  sysklogd-2.7.2.tar.gz
 cb3228a3a295dd08ae8b7340bc718c75  syslog.conf
 d9cc6c4c4bc72e107ae1f3f81d09e915  syslogd.8.patch

@@ -20,19 +20,13 @@ restart)
 	$0 start
 	;;
 reload)
-	/bin/kill -HUP $PID
+	$SSD --stop --signal HUP --pidfile $PID
 	;;
 status)
-	$SSD --status --pidfile $PID
-	case $? in
-	0) echo "$PROG is running with pid $(cat $PID)" ;;
-	1) echo "$PROG is not running but the pid file $PID exists" ;;
-	3) echo "$PROG is not running" ;;
-	4) echo "Unable to determine the program status" ;;
-	esac
+	$SSD --status --verbose --pidfile $PID --exec $PROG
 	;;
 *)
-	echo "Usage: $0 [start|stop|restart|reload|status]"
+	echo "Usage: $0 {start|stop|restart|reload|status}"
 	;;
 esac
 
