@@ -3,7 +3,7 @@
 # Depends on:  curl expat libpcre2 perl
 
 name=git
-version=2.52.0
+version=2.53.0
 release=1
 source="https://www.kernel.org/pub/software/scm/git/git-$version.tar.xz
 	https://www.kernel.org/pub/software/scm/git/git-manpages-$version.tar.xz
@@ -32,15 +32,15 @@ build() {
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
 
-	# manual pages
+	# Install manual pages
 	for d in man*; do
 		mkdir -p $PKG/usr/share/man/$d
 		install -m 0644 $d/* $PKG/usr/share/man/$d
 	done
 
-	# service
+	# Install service file
 	install -m 0755 -D $SRC/rc.gitd $PKG/etc/rc.d/gitd
 
-	# remove junk
+	# Remove junk
 	find $PKG \( -name perllocal.pod -o -name .packlist \) -delete
 }
