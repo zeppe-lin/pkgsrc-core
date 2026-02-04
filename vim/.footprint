@@ -117,6 +117,7 @@ drwxr-xr-x	root/root	usr/share/vim/autoload/xml/
 -rw-r--r--	root/root	usr/share/vim/bugreport.vim
 drwxr-xr-x	root/root	usr/share/vim/colors/
 -rw-r--r--	root/root	usr/share/vim/colors/blue.vim
+-rw-r--r--	root/root	usr/share/vim/colors/catppuccin.vim
 -rw-r--r--	root/root	usr/share/vim/colors/darkblue.vim
 -rw-r--r--	root/root	usr/share/vim/colors/default.vim
 -rw-r--r--	root/root	usr/share/vim/colors/delek.vim
@@ -313,6 +314,7 @@ drwxr-xr-x	root/root	usr/share/vim/doc/
 -rw-r--r--	root/root	usr/share/vim/doc/gui_x11.txt
 -rw-r--r--	root/root	usr/share/vim/doc/hangulin.txt
 -rw-r--r--	root/root	usr/share/vim/doc/hebrew.txt
+-rw-r--r--	root/root	usr/share/vim/doc/help.svx
 -rw-r--r--	root/root	usr/share/vim/doc/help.txt
 -rw-r--r--	root/root	usr/share/vim/doc/helphelp.txt
 -rw-r--r--	root/root	usr/share/vim/doc/howto.txt
@@ -379,6 +381,7 @@ drwxr-xr-x	root/root	usr/share/vim/doc/
 -rw-r--r--	root/root	usr/share/vim/doc/syntax.txt
 -rw-r--r--	root/root	usr/share/vim/doc/tabpage.txt
 -rw-r--r--	root/root	usr/share/vim/doc/tags
+-rw-r--r--	root/root	usr/share/vim/doc/tags-sv
 -rw-r--r--	root/root	usr/share/vim/doc/tagsrch.txt
 -rw-r--r--	root/root	usr/share/vim/doc/term.txt
 -rw-r--r--	root/root	usr/share/vim/doc/terminal.txt
@@ -629,6 +632,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kconfig.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kdl.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kerml.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/kitty.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kivy.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kotlin.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/kwt.vim
@@ -783,6 +787,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/sh.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/shaderslang.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/sieve.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/skhd.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slint.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slpconf.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/slpreg.vim
@@ -1856,6 +1861,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/shared/
 -rw-r--r--	root/root	usr/share/vim/syntax/sindacmp.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/sindaout.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/sisu.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/skhd.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/skill.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/sl.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/slang.vim
@@ -2064,6 +2070,11 @@ drwxr-xr-x	root/root	usr/share/vim/tutor/en/
 -rw-r--r--	root/root	usr/share/vim/tutor/en/vim-01-beginner.tutor.json
 -rw-r--r--	root/root	usr/share/vim/tutor/en/vim-02-beginner.tutor
 -rw-r--r--	root/root	usr/share/vim/tutor/en/vim-02-beginner.tutor.json
+drwxr-xr-x	root/root	usr/share/vim/tutor/sv/
+-rw-r--r--	root/root	usr/share/vim/tutor/sv/vim-01-beginner.tutor
+-rw-r--r--	root/root	usr/share/vim/tutor/sv/vim-01-beginner.tutor.json
+-rw-r--r--	root/root	usr/share/vim/tutor/sv/vim-02-beginner.tutor
+-rw-r--r--	root/root	usr/share/vim/tutor/sv/vim-02-beginner.tutor.json
 -rw-r--r--	root/root	usr/share/vim/tutor/tutor.tutor
 -rw-r--r--	root/root	usr/share/vim/tutor/tutor.tutor.json
 -rw-r--r--	root/root	usr/share/vim/tutor/tutor.vim
