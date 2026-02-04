@@ -3,7 +3,7 @@
 # Depends on:  modules-load scdoc
 
 name=rc
-version=4.2-c657b7f
+version=4.2.1-6eccc12
 release=1
 source="https://github.com/zeppe-lin/rc/archive/${version#*-}/rc-$version.tar.gz
 	inittab
