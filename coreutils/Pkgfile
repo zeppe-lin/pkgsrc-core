@@ -3,7 +3,7 @@
 # Depends on:  acl libcap libgmp
 
 name=coreutils
-version=9.9
+version=9.10
 release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
@@ -11,10 +11,10 @@ build() {
 	mkdir build; cd build
 
 	# Disabled utilities:
-	#   uptime  ->  provided by procps
-	#   kill    ->  provided by util-linux
-	#   chcon   ->  unused
-	#   runcon  ->  unused
+	# - uptime provided by procps
+	# - kill provided by util-linux
+	# - chcon unused
+	# - runcon unused
 	FORCE_UNSAFE_CONFIGURE=1 \
 	../$name-$version/configure \
 		--prefix=/usr \
