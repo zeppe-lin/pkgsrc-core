@@ -3,7 +3,7 @@
 # Depends on:  scdoc
 
 name=seedrng
-version=0.3.0-c8170df
+version=0.4.0-710b4b5
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
