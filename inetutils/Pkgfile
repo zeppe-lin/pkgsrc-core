@@ -4,7 +4,7 @@
 
 name=inetutils
 version=2.7
-release=1
+release=2
 source="http://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
 	inetd.conf
 	rc.inetd"
@@ -12,7 +12,7 @@ source="http://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
 build() {
 	mkdir build; cd build
 
-	# Allow implicit declarations (gcc 14+)
+	# Silence implicit-function-declaration errors (gcc 14+)
 	export CFLAGS="$CFLAGS -Wno-error=implicit-function-declaration"
 
 	# --disable-traceroute: intentionally, provided by a dedicated package
