@@ -9,21 +9,21 @@ source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure  \
-		--prefix=/usr        \
-		--disable-nls        \
-		--without-selinux    \
+	../$name-$version/configure \
+		--prefix=/usr \
+		--disable-nls \
+		--without-selinux \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# provided by mlocate package
-	rm $PKG/usr/bin/updatedb               \
-	   $PKG/usr/bin/locate                 \
-	   $PKG/usr/share/man/man1/updatedb.1  \
-	   $PKG/usr/share/man/man1/locate.1    \
+	# Provided by mlocate package
+	rm $PKG/usr/bin/updatedb \
+	   $PKG/usr/bin/locate \
+	   $PKG/usr/share/man/man1/updatedb.1 \
+	   $PKG/usr/share/man/man1/locate.1 \
 
-	# remove junk
+	# Remove junk
 	rm $PKG/usr/libexec/frcode
 	rm $PKG/usr/share/man/man5/locatedb.5
 	rm -r $PKG/usr/share/info

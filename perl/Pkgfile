@@ -12,21 +12,21 @@ source=https://www.cpan.org/src/5.0/$name-$version.tar.xz
 build() {
 	cd perl-$version
 
-	./Configure                                                \
-		-des                                               \
-		-Dprefix=/usr                                      \
-		-Dvendorprefix=/usr                                \
-		-Dprivlib=/usr/lib/perl5/${version%.*}             \
-		-Dsitelib=/usr/lib/perl5/site_perl/${version%.*}   \
+	./Configure \
+		-des \
+		-Dprefix=/usr \
+		-Dvendorprefix=/usr \
+		-Dprivlib=/usr/lib/perl5/${version%.*} \
+		-Dsitelib=/usr/lib/perl5/site_perl/${version%.*} \
 		-Dvendorlib=/usr/lib/perl5/site_perl/${version%.*} \
-		-Darchname=linux                                   \
-		-Dman1ext=1pm                                      \
-		-Dman3ext=3pm                                      \
-		-Di_gdbm                                           \
-		-Di_db                                             \
-		-Duseshrplib                                       \
-		-Dusethreads                                       \
-		-Doptimize="$CFLAGS"                               \
+		-Darchname=linux \
+		-Dman1ext=1pm \
+		-Dman3ext=3pm \
+		-Di_gdbm \
+		-Di_db \
+		-Duseshrplib \
+		-Dusethreads \
+		-Doptimize="$CFLAGS" \
 
 	make
 	make DESTDIR=$PKG install
@@ -34,17 +34,17 @@ build() {
 	ln -sf perl${version%-*} $PKG/usr/bin/perl
 	ln -sf perlbug.1pm       $PKG/usr/share/man/man1/perlthanks.1pm
 
-	# remove junk and empty dirs
+	# Remove junk and empty dirs
 	find $PKG -depth \
-		-type f \( -name perllocal.pod  \
-			-o -name \*.bs          \
-			-o -name .packlist      \
-			-o -iname TODO\*        \
-			-o -iname Change\*      \
-			-o -iname README\*      \
-			\) -delete ,            \
-		-type d -empty -delete
+		\( -type f -name perllocal.pod \
+			-o -name '*.bs' \
+			-o -name .packlist \
+			-o -iname 'TODO*' \
+			-o -iname 'Change*' \
+			-o -iname 'README*' \
+		\) -delete \
+		-o -type d -empty -delete
 
-	# fix perms
+	# Fix permissions
 	chmod -R +w $PKG
 }

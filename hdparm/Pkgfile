@@ -7,8 +7,10 @@ release=1
 source=https://downloads.sourceforge.net/project/$name/$name/$name-$version.tar.gz
 
 build() {
-	# remove default optimization flag and hardcoded jobs
-	sed -e '/^CFLAGS :=/s/-O2//' -e "s/-j4/-j$JOBS/" -i $name-*/Makefile
+	# Remove default optimization flag and hardcoded jobs
+	sed -e '/^CFLAGS :=/s/-O2//' \
+	    -e "s/-j4/-j$JOBS/" \
+	    -i $name-*/Makefile
 
 	make -C $name-* V=1 STRIP=: all
 	make -C $name-* DESTDIR=$PKG install

@@ -9,9 +9,9 @@ source=https://www.zlib.net/zlib-$version.tar.gz
 build() {
 	mkdir build; cd build
 
-	../zlib-$version/configure   \
-		--prefix=/usr        \
-		--sharedlibdir=/lib  \
+	../zlib-$version/configure \
+		--prefix=/usr \
+		--sharedlibdir=/lib \
 
 	make V=1
 	make DESTDIR=$PKG install

@@ -9,16 +9,16 @@ source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure  \
-		--prefix=/usr        \
+	../$name-$version/configure \
+		--prefix=/usr \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# don't remove these files, they're need by libtoolize
-	#rm $PKG/usr/share/libtool/README
-	#rm $PKG/usr/share/libtool/COPYING.LIB
+	# Keep these files: required by libtoolize(1)
+	# rm $PKG/usr/share/libtool/README
+	# rm $PKG/usr/share/libtool/COPYING.LIB
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }

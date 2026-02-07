@@ -11,9 +11,9 @@ build() {
 
 	mkdir build; cd build
 
-	../flex-$version/configure  \
-		--prefix=/usr       \
-		--disable-nls       \
+	../flex-$version/configure \
+		--prefix=/usr \
+		--disable-nls \
 
 	make V=1
 	make DESTDIR=$PKG install
@@ -21,6 +21,6 @@ build() {
 	ln -sf flex       $PKG/usr/bin/lex
 	ln -sf flex.1.gz  $PKG/usr/share/man/man1/lex.1.gz
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info $PKG/usr/share/doc
 }

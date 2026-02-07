@@ -10,10 +10,10 @@ source="https://gmplib.org/download/gmp/gmp-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	../gmp-$version/configure  \
-		--prefix=/usr      \
-		--enable-cxx       \
-		--build=x86_64-unknown-linux-gnu
+	../gmp-$version/configure \
+		--prefix=/usr \
+		--enable-cxx \
+		--build=x86_64-unknown-linux-gnu \
 
 	make V=1
 	make DESTDIR=$PKG install
@@ -21,6 +21,6 @@ build() {
 	mv $PKG/usr/include/gmp.h  $PKG/usr/include/gmp-64.h
 	install -m 0644 $SRC/gmp.h $PKG/usr/include/
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share
 }

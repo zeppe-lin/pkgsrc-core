@@ -10,13 +10,13 @@ source=https://www.netfilter.org/projects/$name/files/$name-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure    \
-		--prefix=/usr          \
-		--libexecdir=/usr/lib  \
-		--sysconfdir=/etc      \
-		--enable-libipq        \
-		--enable-nftables      \
-		--enable-shared        \
+	../$name-$version/configure \
+		--prefix=/usr \
+		--libexecdir=/usr/lib \
+		--sysconfdir=/etc \
+		--enable-libipq \
+		--enable-nftables \
+		--enable-shared \
 
 	make V=1
 	make DESTDIR=$PKG install

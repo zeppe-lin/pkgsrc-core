@@ -10,8 +10,8 @@ source=https://ftpmirror.gnu.org/patch/patch-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	../patch-$version/configure  \
-		--prefix=/usr        \
+	../patch-$version/configure \
+		--prefix=/usr \
 
 	make V=1
 	make DESTDIR=$PKG install

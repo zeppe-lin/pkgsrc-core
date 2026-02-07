@@ -9,15 +9,15 @@ source=https://github.com/linux-ras/$name/archive/v$version/$name-$version.tar.g
 build() {
 	mkdir build; cd build
 
-	autoreconf -fi ../$name-$version
-	../$name-$version/configure                \
-		--prefix=/usr                      \
-		--mandir=/usr/share/man            \
-		--with-pci.ids=/usr/share/pci.ids  \
+	autoreconf -fiv ../$name-$version
+	../$name-$version/configure \
+		--prefix=/usr \
+		--mandir=/usr/share/man \
+		--with-pci.ids=/usr/share/pci.ids \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove obsolete
+	# Remove obsolete utility
 	rm -f $PKG/usr/bin/dlist_test
 }

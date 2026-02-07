@@ -14,7 +14,7 @@ build() {
 	make V=1
 	make DESTDIR=$PKG install
 
-	install -d $PKG/bin
+	mkdir -p $PKG/bin
 	mv $PKG/usr/bin/gzip   $PKG/bin/
 	mv $PKG/usr/bin/gunzip $PKG/bin/
 	mv $PKG/usr/bin/zcat   $PKG/bin/
@@ -28,10 +28,10 @@ build() {
 	ln -s zdiff.1.gz $PKG/usr/share/man/man1/zcmp.1.gz
 
 	# Make uncompress a symlink to gunzip, since the hardlink
-	# will not work if / and /usr are on different file systems.
+	# will not work if / and /usr are on different file systems
 	rm $PKG/usr/bin/uncompress
 	ln -s /bin/gunzip $PKG/usr/bin/uncompress
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }

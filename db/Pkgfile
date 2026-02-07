@@ -24,19 +24,19 @@ build() {
 
 	CFLAGS="$CFLAGS -Wno-error=implicit-int"
 
-	../db-$version/dist/configure  \
-		--prefix=/usr          \
-		--enable-compat185     \
-		--enable-shared        \
-		--enable-static        \
-		--enable-cxx           \
+	../db-$version/dist/configure \
+		--prefix=/usr \
+		--enable-compat185 \
+		--enable-shared \
+		--enable-static \
+		--enable-cxx \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/docs
 
-	# fix perms
+	# Fix permissions
 	chmod -R +w $PKG
 }

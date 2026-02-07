@@ -9,19 +9,17 @@ source=https://pkgconfig.freedesktop.org/releases/$name-$version.tar.gz
 build() {
 	mkdir build; cd build
 
-	# --disable-host-tool: disable creation of an undesired hard
-	#   link to the pkg-config
-	# --with-internal-glib: allow pkg-config to use its internal
-	#   version of Glib because an internal version is not available
-	#   in core
-	../$name-$version/configure   \
-		--prefix=/usr         \
-		--disable-host-tool   \
-		--with-internal-glib  \
+	# --disable-host-tool: prevent creation of unwanted hard link
+	# --with-internal-glib: use internal Glib, pkgsrc-core does not
+	#   provide external
+	../$name-$version/configure \
+		--prefix=/usr \
+		--disable-host-tool \
+		--with-internal-glib \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/doc
 }

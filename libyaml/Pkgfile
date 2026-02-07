@@ -9,8 +9,8 @@ source=https://pyyaml.org/download/$name/yaml-$version.tar.gz
 build() {
 	mkdir build; cd build
 
-	../yaml-$version/configure  \
-		--prefix=/usr       \
+	../yaml-$version/configure \
+		--prefix=/usr \
 
 	make V=1
 	make DESTDIR=$PKG install

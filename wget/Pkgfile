@@ -2,43 +2,48 @@
 # URL:         https://www.gnu.org/software/wget/
 # Depends on:  libpcre2 libunistring openssl zlib
 
+# Maintainer notes on dependencies:
+#   --disable-iri:     disable IDN/IRIs support, requires libidn
+#   --without-cares:   disable C-Ares DNS lookup, requires c-ares
+#   --without-libpsl:  disable libpsl cookie checking, requires libpsl
+#   --without-libuuid: skip UUID generation for WARC, requires util-linux
+#
+# These optional dependencies (libidn, c-ares, libpsl) are not provided in
+# pkgsrc-core, so support is disabled.
+
 name=wget
 version=1.25.0
 release=1
 source="https://ftp.gnu.org/gnu/wget/wget-$version.tar.lz
-        wgetrc"
+	wgetrc"
 
 build() {
 	export PYTHON=/usr/bin/python3
 
 	mkdir build; cd build
 
-	# --disable-iri:     disable IDN/IRIs support (non-core dep)
-	# --without-cares:   disable support for C-Ares DNS lookup (non-core dep)
-	# --without-libpsl:  disable support for libpsl cookie checking (non-core dep)
-	# --without-libuuid: don't generate UUIDs for WARC files (util-linux' libuuid)
-	../wget-$version/configure  \
-		--prefix=/usr       \
-		--sysconfdir=/etc   \
-		--disable-debug     \
-		--disable-iri       \
-		--disable-pcre      \
-		--disable-nls       \
-		--with-ssl=openssl  \
-		--without-cares     \
-		--without-libpsl    \
-		--without-libuuid   \
+	../wget-$version/configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--disable-debug \
+		--disable-iri \
+		--disable-pcre \
+		--disable-nls \
+		--with-ssl=openssl \
+		--without-cares \
+		--without-libpsl \
+		--without-libuuid \
 
 	make V=1
 	make DESTDIR=$PKG install 
 
-	# fix the config file reference on the manual page
+	# Fix config file reference in manual page
 	sed -i 's|/usr/local/etc/wgetrc|/etc/wgetrc|g' \
 		$PKG/usr/share/man/man1/wget.1
 
-	# config file
+	# Install our config file
 	install -m 0644 -Dt $PKG/etc $SRC/wgetrc
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }

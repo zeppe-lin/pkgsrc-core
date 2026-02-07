@@ -9,15 +9,15 @@ source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure  \
-		--prefix=/usr        \
+	../$name-$version/configure \
+		--prefix=/usr \
 
 	make V=1
 	make prefix=$PKG/usr install
 
-	# don't remove this file, it's need by autoreconf
-	#rm $PKG/usr/share/$name/INSTALL
+	# Keep INSTALL file: required by autoreconf(1)
+	# rm $PKG/usr/share/$name/INSTALL
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }

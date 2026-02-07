@@ -12,7 +12,7 @@ build() {
 
 	cd $name-$version
 
-	# parallel build is broken
+	# Parallel build is broken
 	make -j1 $_CONF OPT="$CFLAGS" SHARED=yes install install-lib
 	make clean
 	make -j1 $_CONF OPT="$CFLAGS" SHARED=no  install install-lib

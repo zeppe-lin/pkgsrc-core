@@ -7,17 +7,17 @@ release=1
 source=https://www.bytereef.org/software/$name/releases/$name-$version.tar.gz
 
 build() {
-	# build in separate dir is broken
+	# Build in separate dir is broken
 	cd $name-$version
 
-	autoreconf -fi
-	./configure            \
-		--prefix=/usr  \
+	autoreconf -fiv
+	./configure \
+		--prefix=/usr \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/doc
 	rmdir $PKG/usr/share
 }

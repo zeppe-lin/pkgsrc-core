@@ -10,14 +10,14 @@ source=https://ftpmirror.gnu.org/gnu/grep/grep-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	../grep-$version/configure    \
-		--prefix=/usr         \
-		--disable-nls         \
-		--without-libsigsegv  \
+	../grep-$version/configure \
+		--prefix=/usr \
+		--disable-nls \
+		--without-libsigsegv \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }

@@ -9,13 +9,13 @@ source=https://ftpmirror.gnu.org/gnu/make/make-$version.tar.lz
 build() {
 	mkdir build; cd build
 
-	../make-$version/configure  \
-		--prefix=/usr       \
-		--disable-nls       \
+	../make-$version/configure \
+		--prefix=/usr \
+		--disable-nls \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }

@@ -19,8 +19,8 @@ build() {
 
 	mkdir build; cd build
 
-	../$name-$version/configure  \
-		--prefix=/usr        \
+	../$name-$version/configure \
+		--prefix=/usr \
 
 	make V=1
 	make DESTDIR=$PKG install

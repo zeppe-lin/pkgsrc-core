@@ -10,13 +10,13 @@ source=https://www.mpfr.org/mpfr-${version%-*}/mpfr-${version%-*}.tar.xz
 build() {
 	mkdir build; cd build
 
-	../mpfr-${version%-*}/configure  \
-		--prefix=/usr            \
+	../mpfr-${version%-*}/configure \
+		--prefix=/usr \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info $PKG/usr/share/doc
 	rmdir $PKG/usr/share
 }

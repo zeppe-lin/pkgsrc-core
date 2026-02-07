@@ -10,17 +10,18 @@ source=https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-$version.tar.g
 build() {
 	cd XML-Parser-$version
 
+	command -v finddepsdistmeta >/dev/null 2>&1 && finddepsdistmeta
 	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
 
 	make OPTIMIZE="$CFLAGS"
 	make DESTDIR=$PKG install
 
-        # remove junk and empty dirs
-        find $PKG -depth \
-                -type f \( -name perllocal.pod  \
-                        -o -name \*.bs          \
-                        -o -name .packlist      \
-			-o -name README         \
-                        \) -delete ,            \
-                -type d -empty -delete
+	# Remove junk and empty dirs
+	find $PKG -depth \
+		\( -type f -name perllocal.pod \
+			-o -name '*.bs' \
+			-o -name .packlist \
+			-o -name README \
+		\) -delete \
+		-o -type d -empty -delete
 }

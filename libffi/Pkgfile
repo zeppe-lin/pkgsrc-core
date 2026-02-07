@@ -9,16 +9,16 @@ source=https://github.com/$name/$name/releases/download/v$version/$name-$version
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure          \
-		--prefix=/usr                \
-		--enable-pax_emutramp        \
-		--enable-portable-binary     \
-		--disable-exec-static-tramp  \
-		--disable-static             \
+	../$name-$version/configure \
+		--prefix=/usr \
+		--enable-pax_emutramp \
+		--enable-portable-binary \
+		--disable-exec-static-tramp \
+		--disable-static \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info $PKG/usr/lib/*.la
 }

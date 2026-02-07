@@ -15,15 +15,15 @@ source="https://github.com/$name/$name/releases/download/v${version}/Linux-PAM-$
 build() {
 	mkdir build; cd build
 
-	CONFIG_SHELL=/bin/bash           \
-	../Linux-PAM-$version/configure  \
-		--prefix=/usr            \
-		--libdir=/lib            \
-		--disable-nis            \
-		--disable-nls            \
-		--disable-prelude        \
-		--enable-db=no           \
-		--enable-lastlog         \
+	CONFIG_SHELL=/bin/bash \
+	../Linux-PAM-$version/configure \
+		--prefix=/usr \
+		--libdir=/lib \
+		--disable-nis \
+		--disable-nls \
+		--disable-prelude \
+		--enable-db=no \
+		--enable-lastlog \
 
 	make V=1
 	make DESTDIR=$PKG install
@@ -33,13 +33,11 @@ build() {
 	# unix_chkpwd needs to be setuid root
 	chmod u+s $PKG/sbin/unix_chkpwd
 
-	# pam
-	mkdir -p $PKG/etc/pam.d
-	for f in common-account common-auth common-password common-session other
-	do
-		install -o root -g root -m 0644 $SRC/pam.$f $PKG/etc/pam.d/$f
+	# PAM
+	for f in $SRC/pam.*; do
+		install -m 0644 -D $f $PKG/etc/pam.d/${f#*.}
 	done
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/lib/systemd $PKG/usr/share/doc
 }

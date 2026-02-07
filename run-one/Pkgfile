@@ -15,9 +15,14 @@ build() {
 	install -m 0755 -D run-one   $PKG/usr/bin/run-one
 	install -m 0644 -D run-one.1 $PKG/usr/share/man/man1/run-one.1
 
-	for l in keep-one-running run-one-constantly run-one-until-failure \
-		run-one-until-success run-this-one; do
-		ln -s run-one $PKG/usr/bin/$l
-		echo '.so man1/run-one.1' > $PKG/usr/share/man/man1/$l.1
-	done
+	while read -r L; do
+		ln -s run-one $PKG/usr/bin/$L
+		echo '.so man1/run-one.1' > $PKG/usr/share/man/man1/$L.1
+	done <<EOF
+keep-one-running
+run-one-constantly
+run-one-until-failure
+run-one-until-success
+run-this-one
+EOF
 }

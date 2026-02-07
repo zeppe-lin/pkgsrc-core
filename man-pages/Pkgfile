@@ -7,15 +7,16 @@ release=1
 source=https://www.kernel.org/pub/linux/docs/$name/$name-$version.tar.xz
 
 build() {
-	# make -R is required until GNU Make 4.5.x will be released
-	# export version var to suppress multiple git commands execution failures
+	# - make -R is required until GNU Make 4.5.x will be released
+	# - export version var to suppress multiple git commands execution
+	#   failures
 	make -R -C $name-$version VERSION=$version prefix=/usr DESTDIR=$PKG \
 		install
 
-	# provided by shadow package
+	# Provided by shadow package
 	rm $PKG/usr/share/man/man5/passwd.5
 
-	# provided by libxcrypt package
+	# Provided by libxcrypt package
 	rm $PKG/usr/share/man/man3/crypt.3
 	rm $PKG/usr/share/man/man3/crypt_r.3
 }

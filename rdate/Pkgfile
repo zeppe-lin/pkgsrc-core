@@ -10,14 +10,13 @@ source="https://github.com/leahneukirchen/outils/archive/v$version/outils-$versi
 
 build() {
 	# https://crux.nu/bugs/index.php?do=details&task_id=1462
-	patch -d outils-$version/src/usr.sbin/rdate -p0  \
-		-i $SRC/ntpleaps.patch
+	patch -d outils-$version/src/usr.sbin/rdate -p0 -i $SRC/ntpleaps.patch
 
 	make -C outils-$version PREFIX=/usr src/usr.sbin/rdate/rdate
 
-	install -m 0755 -Dt $PKG/usr/sbin/               \
+	install -m 0755 -Dt $PKG/usr/sbin \
 		outils-$version/src/usr.sbin/rdate/rdate
-	install -m 0644 -Dt $PKG/usr/share/man/man8/     \
+	install -m 0644 -Dt $PKG/usr/share/man/man8 \
 		outils-$version/src/usr.sbin/rdate/rdate.8
 
 	# cron

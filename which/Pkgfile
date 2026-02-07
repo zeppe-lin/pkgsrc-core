@@ -9,13 +9,13 @@ source=https://ftpmirror.gnu.org/gnu/which/which-$version.tar.gz
 build() {
 	mkdir build; cd build
 
-	CONFIG_SHELL=/bin/bash       \
-	../which-$version/configure  \
-		--prefix=/usr        \
+	CONFIG_SHELL=/bin/bash \
+	../which-$version/configure \
+		--prefix=/usr \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info/
 }

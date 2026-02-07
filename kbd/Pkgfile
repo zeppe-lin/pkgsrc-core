@@ -7,19 +7,19 @@ release=1
 source=https://www.kernel.org/pub/linux/utils/kbd/kbd-$version.tar.xz
 
 build() {
-	# fix cp: failed to preserve ownership for ../sr-latin.map.gz:
+	# Fix cp: failed to preserve ownership for ../sr-latin.map.gz:
 	# Operation not supported
 	(cd kbd-$version/data/keymaps/i386/qwertz;
 	cp --remove-destination slovene.map sr-latin.map)
 
 	mkdir build; cd build
 
-	../kbd-$version/configure         \
-		--prefix=/usr             \
-		--datadir=/usr/share/kbd  \
-		--disable-vlock           \
-		--disable-nls             \
-		--disable-tests           \
+	../kbd-$version/configure \
+		--prefix=/usr \
+		--datadir=/usr/share/kbd \
+		--disable-vlock \
+		--disable-nls \
+		--disable-tests \
 
 	make V=1
 	make DESTDIR=$PKG install
@@ -27,7 +27,7 @@ build() {
 	ln -sf default8x16.psfu.gz \
 		$PKG/usr/share/kbd/consolefonts/default.gz
 
-	# remove junk and obsolete files
+	# Remove junk and obsolete files
 	cd $PKG/usr/share/kbd/keymaps && rm -r ppc mac atari amiga sun pine
 	cd $PKG/usr/bin               && rm loadunimap   mapscrn   resizecons
 	cd $PKG/usr/share/man/man8    && rm loadunimap.8 mapscrn.8 resizecons.8

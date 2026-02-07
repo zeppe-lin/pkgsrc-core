@@ -10,14 +10,14 @@ source=https://github.com/thkukuk/$name/releases/download/v$version/$name-$versi
 build() {
 	mkdir build; cd build
 
-	autoreconf -fi ../$name-$version
-	../$name-$version/configure  \
-		--prefix=/usr        \
-		--disable-nls        \
+	autoreconf -fiv ../$name-$version
+	../$name-$version/configure \
+		--prefix=/usr \
+		--disable-nls \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# link for backwards compatibility, so as not to break perl
+	# Link for backwards compatibility, so as not to break perl
 	ln -s /usr/lib/libnsl.so $PKG/usr/lib/libnsl.so.2
 }

@@ -2,6 +2,9 @@
 # URL:         https://libusb.info/
 # Depends on:  eudev
 
+# Maintainer notes on dependencies:
+#   --enable-udev: device enumeration and hotplug support, requires eudev
+
 name=libusb
 version=1.0.29
 release=1
@@ -10,15 +13,14 @@ source=https://github.com/$name/$name/releases/download/v$version/$name-$version
 build() {
 	mkdir build; cd build
 
-	# --enable-udev: use udev for device enumeration and hotplug support
-	../$name-$version/configure  \
-		--prefix=/usr        \
-		--enable-udev
+	../$name-$version/configure \
+		--prefix=/usr \
+		--enable-udev \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# move libs from /usr/lib to /lib
+	# Move libs from /usr/lib to /lib
 	mkdir -p $PKG/lib
 	mv $PKG/usr/lib/libusb-1.0.so.* $PKG/lib
 	ln -sf ../../lib/$(readlink $PKG/lib/libusb-1.0.so.0) \

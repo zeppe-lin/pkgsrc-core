@@ -1,6 +1,9 @@
 # Description: Alternate POSIX capabilities library
 # URL:         https://github.com/stevegrubb/libcap-ng
 
+# Maintainer notes on dependencies:
+#   --without-python3: disable python bindings, otherwise requires python3
+
 name=libcap-ng
 version=0.9
 release=1
@@ -12,7 +15,6 @@ build() {
 
 	mkdir build; cd build
 
-	# --without-python3: disable python bindings
 	autoreconf -fiv ../$name-$version
 	../$name-$version/configure \
 		--prefix=/usr \

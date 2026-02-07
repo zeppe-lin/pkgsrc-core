@@ -10,13 +10,13 @@ source=https://ftp.gnu.org/gnu/mpc/mpc-$version.tar.gz
 build() {
 	mkdir build; cd build
 
-	../mpc-$version/configure  \
-		--prefix=/usr      \
+	../mpc-$version/configure \
+		--prefix=/usr \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 	rmdir $PKG/usr/share
 }

@@ -10,20 +10,20 @@ source=https://download-mirror.savannah.gnu.org/releases/acl/acl-$version.tar.gz
 build() {
 	mkdir build; cd build
 
-	../acl-$version/configure  \
-		--prefix=/usr      \
-		--bindir=/bin      \
-		--disable-nls      \
+	../acl-$version/configure \
+		--prefix=/usr \
+		--bindir=/bin \
+		--disable-nls \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# move libs from /usr/lib to /lib
+	# Move libs from /usr/lib to /lib
 	mkdir -p $PKG/lib
 	mv $PKG/usr/lib/libacl.so.* $PKG/lib
 	ln -sf ../../lib/$(readlink $PKG/usr/lib/libacl.so) \
 		$PKG/usr/lib/libacl.so
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/doc
 }

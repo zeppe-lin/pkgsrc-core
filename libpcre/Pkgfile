@@ -9,25 +9,25 @@ source=https://downloads.sourceforge.net/project/pcre/pcre/$version/pcre-$versio
 build() {
 	mkdir build; cd build
 
-	../pcre-$version/configure           \
-		--prefix=/usr                \
-		--enable-jit                 \
-		--enable-unicode-properties  \
-		--enable-utf8                \
+	../pcre-$version/configure \
+		--prefix=/usr \
+		--enable-jit \
+		--enable-unicode-properties \
+		--enable-utf8 \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# move libs from /usr/lib to /lib
-	install -d $PKG/lib
+	# Move libs from /usr/lib to /lib
+	mkdir -p $PKG/lib
 	mv $PKG/usr/lib/libpcre.so.* $PKG/lib/
 	ln -sf ../../lib/$(readlink $PKG/usr/lib/libpcre.so) \
 		$PKG/usr/lib/libpcre.so
 
-	# remove junk
-	rm -r $PKG/usr/share/doc                   \
-	      $PKG/usr/share/man/man3/pcre16*      \
-	      $PKG/usr/share/man/man3/pcre32*      \
-	      $PKG/usr/share/man/man3/pcre_utf16*  \
+	# Remove junk
+	rm -r $PKG/usr/share/doc \
+	      $PKG/usr/share/man/man3/pcre16* \
+	      $PKG/usr/share/man/man3/pcre32* \
+	      $PKG/usr/share/man/man3/pcre_utf16* \
 	      $PKG/usr/share/man/man3/pcre_utf32*
 }

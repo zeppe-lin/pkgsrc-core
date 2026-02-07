@@ -9,13 +9,14 @@ source=https://ftpmirror.gnu.org/gnu/bison/bison-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	../bison-$version/configure  \
-		--prefix=/usr        \
-		--disable-nls        \
+	../bison-$version/configure \
+		--prefix=/usr \
+		--disable-nls \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
-	cd $PKG/usr/share; rm -r doc/ info/ bison/README.md
+	# Remove junk
+	cd $PKG/usr/share
+	rm -r doc info bison/README.md
 }

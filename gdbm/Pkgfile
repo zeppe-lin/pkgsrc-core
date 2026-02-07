@@ -10,13 +10,13 @@ source=https://ftpmirror.gnu.org/gnu/gdbm/gdbm-$version.tar.gz
 build() {
 	mkdir build; cd build
 
-	../gdbm-$version/configure       \
-		--prefix=/usr            \
-		--enable-libgdbm-compat  \
+	../gdbm-$version/configure \
+		--prefix=/usr \
+		--enable-libgdbm-compat \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
-	cd $PKG/usr/share; rm -r info locale
+	# Remove junk
+	rm -r $PKG/usr/share/info $PKG/usr/share/locale
 }

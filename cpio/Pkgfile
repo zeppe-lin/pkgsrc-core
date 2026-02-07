@@ -9,17 +9,18 @@ source=https://ftpmirror.gnu.org/gnu/cpio/cpio-$version.tar.bz2
 build() {
 	mkdir build; cd build
 
-	../cpio-$version/configure     \
-		--prefix=/usr          \
-		--libexecdir=/usr/lib  \
-		--disable-nls          \
+	../cpio-$version/configure \
+		--prefix=/usr \
+		--libexecdir=/usr/lib \
+		--disable-nls \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove obsolete /usr/lib/rmt and /usr/share/man/man8/rmt.8
-	rm -r $PKG/usr/lib $PKG/usr/share/man/man8
+	# Remove obsoleted utility
+	rm -r $PKG/usr/lib/rmt $PKG/usr/share/man/man8/rmt.8
+	rmdir $PKG/usr/lib $PKG/usr/share/man/man8
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }

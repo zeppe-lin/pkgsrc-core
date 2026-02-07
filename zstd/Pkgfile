@@ -12,22 +12,22 @@ build() {
 	export CXXFLAGS="$CXXFLAGS -ffat-lto-objects"
 
 	# -D ZSTD_BUILD_CONTRIB=OFF:
-	#  * disable building pzstd utility which has no man page
+	#  * disable building pzstd utility which has no manual page
 	#  * disable building /usr/share/doc files
-	cmake -S $name-$version/build/cmake -B build -G Ninja  \
-		-D CMAKE_BUILD_TYPE=Release                    \
-		-D CMAKE_INSTALL_PREFIX=/usr                   \
-		-D CMAKE_INSTALL_LIBDIR=/usr/lib               \
-		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS"             \
-		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS"         \
-		-D ZSTD_ZLIB_SUPPORT=ON                        \
-		-D ZSTD_LZMA_SUPPORT=ON                        \
-		-D ZSTD_LZ4_SUPPORT=ON                         \
-		-D ZSTD_MULTITHREAD_SUPPORT=ON                 \
-		-D ZSTD_BUILD_STATIC=ON                        \
-		-D ZSTD_BUILD_CONTRIB=OFF                      \
-		-D ZSTD_BUILD_TESTS=OFF                        \
-		-D ZSTD_PROGRAMS_LINK_SHARED=ON                \
+	cmake -S $name-$version/build/cmake -B build -G Ninja \
+		-D CMAKE_BUILD_TYPE=Release \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_INSTALL_LIBDIR=/usr/lib \
+		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-D CMAKE_CXX_FLAGS_RELEASE="$CXXFLAGS" \
+		-D ZSTD_ZLIB_SUPPORT=ON \
+		-D ZSTD_LZMA_SUPPORT=ON \
+		-D ZSTD_LZ4_SUPPORT=ON \
+		-D ZSTD_MULTITHREAD_SUPPORT=ON \
+		-D ZSTD_BUILD_STATIC=ON \
+		-D ZSTD_BUILD_CONTRIB=OFF \
+		-D ZSTD_BUILD_TESTS=OFF \
+		-D ZSTD_PROGRAMS_LINK_SHARED=ON \
 
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install

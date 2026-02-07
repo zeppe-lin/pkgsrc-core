@@ -10,16 +10,16 @@ source=https://ftpmirror.gnu.org/gnu/sed/sed-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	../sed-$version/configure         \
-		--prefix=/usr             \
-		--exec-prefix=/           \
-		--disable-i18n            \
-		--disable-nls             \
-		--without-included-regex  \
+	../sed-$version/configure \
+		--prefix=/usr \
+		--exec-prefix=/ \
+		--disable-i18n \
+		--disable-nls \
+		--without-included-regex \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }

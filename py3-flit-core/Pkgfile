@@ -14,7 +14,7 @@ build() {
 	/usr/bin/python3 -m installer -d $PKG  \
 		dist/flit_core-$version-py3-none-any.whl
 
-	# remove junk
+	# Remove junk
 	rm $PKG/usr/lib/python*/site-packages/flit_core/vendor/README
 	rm -r $PKG/usr/lib/python*/site-packages/flit_core*/licenses/
 }

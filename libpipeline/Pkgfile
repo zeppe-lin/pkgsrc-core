@@ -9,9 +9,9 @@ source=https://download.savannah.gnu.org/releases/$name/$name-$version.tar.gz
 build() {
 	mkdir build; cd build
 
-	../$name-$version/configure  \
-		--prefix=/usr        \
-		--enable-static      \
+	../$name-$version/configure \
+		--prefix=/usr \
+		--enable-static \
 
 	make V=1
 	make DESTDIR=$PKG install

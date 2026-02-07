@@ -9,8 +9,8 @@ source=https://archive.hadrons.org/software/libmd/libmd-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	../libmd-$version/configure  \
-		--prefix=/usr        \
+	../libmd-$version/configure \
+		--prefix=/usr \
 
 	make V=1
 	make DESTDIR=$PKG install

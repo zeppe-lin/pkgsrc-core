@@ -10,7 +10,7 @@ source="https://www.sqlite.org/2026/sqlite-autoconf-$_version.tar.gz
 	manpage.patch"
 
 build() {
-	# build in separate dir is broken
+	# Build in separate dir is broken
 	cd sqlite-autoconf-$_version
 
 	# Cleanup debian-specific sqlite3-doc reference

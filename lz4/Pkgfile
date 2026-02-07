@@ -7,7 +7,7 @@ release=1
 source=https://github.com/lz4/lz4/archive/v$version/lz4-$version.tar.gz
 
 build() {
-	# remove default system optimization flag since lz4 ships with -O3
+	# Remove default system optimization flag since lz4 ships with -O3
 	export CFLAGS="$(echo $CFLAGS | sed 's/-O. //')"
 
 	cd lz4-$version

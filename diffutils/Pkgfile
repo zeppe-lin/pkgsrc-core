@@ -9,14 +9,14 @@ source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 build() {
 	mkdir build; cd build
 
-	#autoreconf -fi ../$name-$version
-	../$name-$version/configure  \
-		--prefix=/usr        \
-		--disable-nls        \
+	#autoreconf -fiv ../$name-$version
+	../$name-$version/configure \
+		--prefix=/usr \
+		--disable-nls \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/info
 }

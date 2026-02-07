@@ -9,12 +9,12 @@ source=https://ftpmirror.gnu.org/gnu/gperf/gperf-$version.tar.gz
 build() {
 	mkdir build; cd build
 
-	../gperf-$version/configure  \
-		--prefix=/usr        \
+	../gperf-$version/configure \
+		--prefix=/usr \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/doc $PKG/usr/share/info
 }

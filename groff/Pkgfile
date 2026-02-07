@@ -13,24 +13,24 @@ build() {
 
 	mkdir build; cd build
 
-	../$name-$version/configure  \
-		--prefix=/usr        \
-		--sysconfdir=/etc    \
-		--without-x          \
+	../$name-$version/configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--without-x \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	sed -e 's|^\(papersize\).*|\1 /etc/papersize|' \
-	    -i $PKG/usr/share/groff/current/font/*/DESC
+	sed -i 's|^\(papersize\).*|\1 /etc/papersize|' \
+		$PKG/usr/share/groff/current/font/*/DESC
 
-	install -d $PKG/etc
+	mkdir -p $PKG/etc
 	echo 'letter' > $PKG/etc/papersize
 
 	ln -s eqn     $PKG/usr/bin/geqn
 	ln -s tbl     $PKG/usr/bin/gtbl
 	ln -s soelim  $PKG/usr/bin/zsoelim
 
-	# remove junk
+	# Remove junk
 	rm -r $PKG/usr/share/doc $PKG/usr/share/info
 }

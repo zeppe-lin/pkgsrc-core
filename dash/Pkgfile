@@ -20,23 +20,23 @@ source="http://gondor.apana.org.au/~herbert/dash/files/dash-$version.tar.gz
 	9002-Add-privmode-Part-2.diff"
 
 build() {
-	# debian patches
+	# Debian patches
 	for p in $SRC/*.patch $SRC/*.diff; do
 		patch -d dash-$version -p1 -i $p
 	done
 
 	mkdir build; cd build
 
-	autoreconf -fi ../dash-$version
-	../dash-$version/configure       \
-		--prefix=/               \
-		--mandir=/usr/share/man  \
-		--enable-static          \
+	autoreconf -fiv ../dash-$version
+	../dash-$version/configure \
+		--prefix=/ \
+		--mandir=/usr/share/man \
+		--enable-static \
 
 	make V=1
 	make DESTDIR=$PKG install
 
-	# set as default shell
+	# Set as default shell
 	ln -s dash   $PKG/bin/sh
 	ln -s dash.1 $PKG/usr/share/man/man1/sh.1
 }
