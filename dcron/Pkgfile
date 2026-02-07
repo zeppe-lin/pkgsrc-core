@@ -7,7 +7,7 @@
 
 name=dcron
 version=4.6
-release=2
+release=3
 source="https://github.com/ptchinster/dcron/archive/refs/tags/v$version/$name-$version.tar.gz
 	crontab
 	rc.crond"

@@ -19,15 +19,10 @@ restart)
 	$0 start
 	;;
 status)
-	$SSD --status --exec $PROG
-	case $? in
-	0) echo "$PROG is running with pid $(pidof $PROG)" ;;
-	3) echo "$PROG is not running" ;;
-	4) echo "Unable to determine the program status" ;;
-	esac
+	$SSD --status --verbose --exec $PROG
 	;;
 *)
-	echo "Usage: $0 [start|stop|restart|status]"
+	echo "Usage: $0 {start|stop|restart|status}"
 	;;
 esac
 
