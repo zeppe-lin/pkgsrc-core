@@ -4,7 +4,7 @@
 
 name=eudev
 version=3.2.14
-release=5
+release=6
 source="https://github.com/eudev-project/eudev/releases/download/v$version/eudev-$version.tar.gz
 	manpages.patch
 	no-sgx.patch
@@ -12,47 +12,48 @@ source="https://github.com/eudev-project/eudev/releases/download/v$version/eudev
 	81-fuse.rules"
 
 build() {
-	# cleanup systemd references in manual pages
+	# Strip systemd references from upstream manpages
 	patch -d eudev-$version -Np1 -i $SRC/manpages.patch
 
-	# we don't ship SGX-enabled kernel
+	# Disable SGX support (kernel not shipped with SGX)
 	patch -d eudev-$version -Np1 -i $SRC/no-sgx.patch
 
-	# needed for static linking, e.g. dmsetup.static
+	# Ensure static linking works (dmsetup.static needs -lrt)
 	sed -i '/^Libs:/s/-ludev/-ludev -lrt/' \
 		eudev-$version/src/libudev/libudev.pc.in
 
 	mkdir build; cd build
 
-	../eudev-$version/configure      \
-		--prefix=/usr            \
-		--sbindir=/sbin          \
-		--bindir=/sbin           \
-		--sysconfdir=/etc        \
-		--with-rootprefix=       \
-		--with-rootlibdir=/lib   \
-		--libexecdir=/lib        \
-		--disable-manpages       \
-		--enable-split-usr       \
+	# Configure with split-usr layout
+	../eudev-$version/configure \
+		--prefix=/usr \
+		--sbindir=/sbin \
+		--bindir=/sbin \
+		--sysconfdir=/etc \
+		--with-rootprefix= \
+		--with-rootlibdir=/lib \
+		--libexecdir=/lib \
+		--disable-manpages \
+		--enable-split-usr \
 
 	make CFLAGS="$CFLAGS -D_GNU_SOURCE" V=1
 	make DESTDIR=$PKG install
 	make -C man DESTDIR=$PKG install
 
-	# create binary hwdb
+	# Generate binary hwdb inside DESTDIR
 	LD_LIBRARY_PATH=$PKG/lib \
 		$PKG/sbin/udevadm hwdb --update --root=$PKG
 
-	# devices
-	mkdir -p $PKG/lib/firmware          \
-	         $PKG/lib/udev/devices/pts  \
-	         $PKG/lib/udev/devices/shm  \
-	         $PKG/sbin                  \
-	         $PKG/run                   \
+	# Create required device directories
+	mkdir -p $PKG/lib/firmware \
+	         $PKG/lib/udev/devices/pts \
+	         $PKG/lib/udev/devices/shm \
+	         $PKG/sbin \
+	         $PKG/run \
 
-	# service
+	# Install init script for sysvinit integration
 	install -m 0755 -D $SRC/rc.udevd $PKG/etc/rc.d/udevd
 
-	# custom rules
+	# Install custom udev rule for FUSE devices
 	install -m 0644 $SRC/81-fuse.rules $PKG/lib/udev/rules.d/
 }
