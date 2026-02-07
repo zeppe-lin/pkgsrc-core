@@ -1,4 +1,4 @@
 c861538d4a4f1c66b598a19c300fef07  logrotate.boot
 dfe5ababdc1989ff0653e7d47003715a  manpages.patch
-e5f6103a6f0189fc544b7e90b55cb349  rc.bootlogd
+0d829c80017a8f9b36cc4b32d3bcce37  rc.bootlogd
 3b3c60d5909dc5f893c862999cd886da  sysvinit-3.15.tar.gz

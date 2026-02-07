@@ -4,7 +4,7 @@
 
 name=sysvinit
 version=3.15
-release=2
+release=3
 source="$name-$version.tar.gz::https://codeberg.org/thejessesmith/$name/archive/$version.tar.gz
 	manpages.patch
 	rc.bootlogd
