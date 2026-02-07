@@ -4,7 +4,7 @@
 
 name=mksslcert
 version=0.1.2
-release=2
+release=3
 source="mksslcert.sh mksslcert.1.scdoc"
 
 build() {
