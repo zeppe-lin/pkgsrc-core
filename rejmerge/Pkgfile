@@ -3,7 +3,7 @@
 # Depends on:  scdoc
 
 name=rejmerge
-version=5.47.1-eca424b
+version=5.47.1-15b7dd0
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	rejmerge.conf
