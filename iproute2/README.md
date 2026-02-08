@@ -8,8 +8,8 @@ REQUIREMENTS
 Kernel Module
 -------------
 
-Some rc.d scripts (e.g., `/etc/rc.d/bridge`) may require additional
-modules depending on your setup:
+`/etc/rc.d/bridge` may require additional modules, depending on your
+setup:
 
 ```sh
 # Universal TUN/TAP device driver
@@ -22,12 +22,12 @@ tap
 vhost
 ```
 
-To auto-load these on boot:
+To auto-load required modules on boot:
+- Add module names to `/etc/modules-load.d/*.conf` (one per line), or
+- Add `/sbin/modprobe <module>` lines to `/etc/rc.modules`.
 
-- Declarative: add needed modules to
-  `/etc/modules-load.d/network.conf`
-- Imperative: add `/sbin/modprobe <module>` to `/etc/rc.modules` for
-  each required module
+This package does not install a default config; administrators should
+add modules as needed by their hardware or usage.
 
 ---
 
