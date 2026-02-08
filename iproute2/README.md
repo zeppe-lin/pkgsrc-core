@@ -22,14 +22,12 @@ tap
 vhost
 ```
 
-To auto-load these, create a file such as:
+To auto-load these on boot:
 
-```
-/etc/modules-load.d/network.conf
-```
-
-with the needed module names.  This package does not install a default
-config, since requirements vary by machine.
+- Declarative: add needed modules to
+  `/etc/modules-load.d/network.conf`
+- Imperative: add `/sbin/modprobe <module>` to `/etc/rc.modules` for
+  each required module
 
 ---
 
