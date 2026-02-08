@@ -3,16 +3,13 @@
 # Depends on:  elfutils scdoc
 
 name=revdep
-version=4.2-1272168
+version=4.2-2bb7150
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
 	# Pick up system flags
 	sed -ri '/^(CXX|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
-
-	# It's safe to optimize
-	CXXFLAGS="`echo $CXXFLAGS | sed 's/-O. /-Ofast /'`"
 
 	make -C $name-* \
 		LDFLAGS="-static `pkg-config --static --libs libelf`" \
