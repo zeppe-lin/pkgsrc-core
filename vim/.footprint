@@ -314,7 +314,6 @@ drwxr-xr-x	root/root	usr/share/vim/doc/
 -rw-r--r--	root/root	usr/share/vim/doc/gui_x11.txt
 -rw-r--r--	root/root	usr/share/vim/doc/hangulin.txt
 -rw-r--r--	root/root	usr/share/vim/doc/hebrew.txt
--rw-r--r--	root/root	usr/share/vim/doc/help.svx
 -rw-r--r--	root/root	usr/share/vim/doc/help.txt
 -rw-r--r--	root/root	usr/share/vim/doc/helphelp.txt
 -rw-r--r--	root/root	usr/share/vim/doc/howto.txt
@@ -381,7 +380,6 @@ drwxr-xr-x	root/root	usr/share/vim/doc/
 -rw-r--r--	root/root	usr/share/vim/doc/syntax.txt
 -rw-r--r--	root/root	usr/share/vim/doc/tabpage.txt
 -rw-r--r--	root/root	usr/share/vim/doc/tags
--rw-r--r--	root/root	usr/share/vim/doc/tags-sv
 -rw-r--r--	root/root	usr/share/vim/doc/tagsrch.txt
 -rw-r--r--	root/root	usr/share/vim/doc/term.txt
 -rw-r--r--	root/root	usr/share/vim/doc/terminal.txt
