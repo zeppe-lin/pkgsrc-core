@@ -40,7 +40,7 @@
 Calls the C compiler (cc) with the given
 .Ar options ,
 using a C language environment compatible with the
-.St -p1003.1-2024
+.St -isoC-2017
 specification.
 .Pp
 The following options are available:
@@ -55,14 +55,10 @@ Tell the system header file set to use an ANSI-conformant "clean" namespace.
 .El
 .Sh SEE ALSO
 .Xr cc 1
-.Sh STANDARDS
+.Sh HISTORY
 .Nm
-conforms to
-.St -p1003.1-2024 .
-.\".Sh HISTORY
-.\".Nm
-.\"first appeared in
-.\".Nx 11.0 .
+first appeared in
+.Nx 11.0 .
 .Sh BUGS
 Since
 .Nm
