@@ -1,0 +1,12 @@
+# Description: Shell wrapper script to ISO/IEC 9899:2011 (ISO C11) C compiler
+# URL:         https://github.com/NetBSD/src/tree/trunk/usr.bin/c11
+
+name=c11
+version=0.1
+release=1
+source="c11.sh c11.1"
+
+build() {
+	install -m 0755 -D $SRC/c11.sh $PKG/usr/bin/c11
+	install -m 0644 -D $SRC/c11.1  $PKG/usr/share/man/man1/c11.1
+}
