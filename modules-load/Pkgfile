@@ -3,7 +3,7 @@
 # Depends on:  kmod
 
 name=modules-load
-version=0.3-d2cf87a
+version=0.3-a571759
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 build() {
