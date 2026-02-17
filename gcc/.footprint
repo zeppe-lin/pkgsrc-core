@@ -909,7 +909,7 @@ drwxr-xr-x	root/root	usr/include/c++/14.3.0/x86_64-pc-linux-gnu/ext/
 -rw-r--r--	root/root	usr/include/c++/14.3.0/x86_64-pc-linux-gnu/ext/opt_random.h
 drwxr-xr-x	root/root	usr/lib/
 drwxr-xr-x	root/root	usr/lib/bfd-plugins/
-lrwxrwxrwx	root/root	usr/lib/bfd-plugins/liblto_plugin.so -> ../../lib/gcc/x86_64-pc-linux-gnu/14.2.0/liblto_plugin.so
+lrwxrwxrwx	root/root	usr/lib/bfd-plugins/liblto_plugin.so -> ../../lib/gcc/x86_64-pc-linux-gnu/14.3.0/liblto_plugin.so
 drwxr-xr-x	root/root	usr/lib/gcc/
 drwxr-xr-x	root/root	usr/lib/gcc/x86_64-pc-linux-gnu/
 drwxr-xr-x	root/root	usr/lib/gcc/x86_64-pc-linux-gnu/14.3.0/
