@@ -2,6 +2,6 @@
 # /etc/pam.d/common-auth - common auth module configuration
 #
 
-auth    required    pam_unix.so nullok
+auth  required  pam_unix.so  nullok
 
 # End of file.

@@ -1,11 +1,12 @@
 # Description: Pluggable Authentication Modules (PAM) for Linux
 # URL:         https://github.com/linux-pam/linux-pam
-# Depends on:  bash libxcrypt
+# Depends on:  libnsl libxcrypt
 
 name=linux-pam
-version=1.6.1
+version=1.7.2
 release=1
-source="https://github.com/$name/$name/releases/download/v${version}/Linux-PAM-$version.tar.xz
+source="https://github.com/$name/$name/releases/download/v$version/Linux-PAM-$version.tar.xz
+	man-pages-1.7.2.tar.gz
 	pam.common-account
 	pam.common-auth
 	pam.common-password
@@ -13,31 +14,38 @@ source="https://github.com/$name/$name/releases/download/v${version}/Linux-PAM-$
 	pam.other"
 
 build() {
-	mkdir build; cd build
-
-	CONFIG_SHELL=/bin/bash \
-	../Linux-PAM-$version/configure \
+	meson setup build Linux-PAM-$version \
 		--prefix=/usr \
+		--sbindir=/sbin \
 		--libdir=/lib \
-		--disable-nis \
-		--disable-nls \
-		--disable-prelude \
-		--enable-db=no \
-		--enable-lastlog \
+		--buildtype=plain \
+		--wrap-mode=nodownload \
+		-D b_lto=true \
+		-D b_pie=true \
+		-D securedir=/lib/security \
+		-D vendordir=/etc \
+		-D pam_userdb=disabled \
+		-D docs=disabled \
+		-D i18n=disabled \
 
-	make V=1
-	make DESTDIR=$PKG install
+	ninja -C build -j ${JOBS:-1} -v
+	DESTDIR=$PKG ninja -C build install
 
+	# Install man pages
+	mkdir -p $PKG/usr/share
+	mv $SRC/man $PKG/usr/share/man
+
+	# Move pkgconfig to /usr/lib
 	mv $PKG/lib/pkgconfig $PKG/usr/lib/
 
 	# unix_chkpwd needs to be setuid root
 	chmod u+s $PKG/sbin/unix_chkpwd
 
-	# PAM
+	# Install default PAM configs
 	for f in $SRC/pam.*; do
 		install -m 0644 -D $f $PKG/etc/pam.d/${f#*.}
 	done
 
 	# Remove junk
-	rm -r $PKG/usr/lib/systemd $PKG/usr/share/doc
+	rm -r $PKG/usr/lib/systemd
 }

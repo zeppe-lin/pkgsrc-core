@@ -2,10 +2,10 @@
 # /etc/pam.d/common-session - common session module configuration
 #
 
-session required    pam_limits.so
-session required    pam_unix.so
+session  required  pam_limits.so
+session  required  pam_unix.so
 
-session optional    pam_dumb_runtime_dir.so
-session optional    pam_lastlog2.so
+session  optional  pam_dumb_runtime_dir.so
+session  optional  pam_lastlog2.so  silent_if=sudo,doas,sshd,polkit-1
 
 # End of file.
