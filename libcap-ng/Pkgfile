@@ -5,7 +5,7 @@
 #   --without-python3: disable python bindings, otherwise requires python3
 
 name=libcap-ng
-version=0.9
+version=0.9.1
 release=1
 source=$name-$version.tar.gz::https://github.com/stevegrubb/$name/archive/refs/tags/v$version.tar.gz
 
