@@ -3,15 +3,14 @@
 # Depends on:  db elfutils iptables libcap libtirpc
 
 name=iproute2
-version=6.18.0
+version=6.19.0
 release=1
 source="https://www.kernel.org/pub/linux/utils/net/$name/$name-$version.tar.xz
 	rc.lo
-	rc.net
-	rc.bridge"
+	rc.net"
 
 build() {
-	# Cannot use out-of-tree build; configure is not autotools
+	# Build in separate dir is broken (configure is not autotools)
 	cd $name-$version
 
 	# Configure script uses TMPDIR for internal tests
@@ -23,9 +22,8 @@ build() {
 	make DESTDIR=$PKG install
 
 	# Install service scripts
-	install -m 0755 -D $SRC/rc.lo     $PKG/etc/rc.d/lo
-	install -m 0755 -D $SRC/rc.net    $PKG/etc/rc.d/net
-	install -m 0755 -D $SRC/rc.bridge $PKG/etc/rc.d/bridge
+	install -m 0755 -D $SRC/rc.lo  $PKG/etc/rc.d/lo
+	install -m 0755 -D $SRC/rc.net $PKG/etc/rc.d/net
 
 	# Add ip to user path via symlink
 	mkdir -p $PKG/bin

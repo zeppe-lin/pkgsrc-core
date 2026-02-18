@@ -2,7 +2,6 @@ drwxr-xr-x	root/root	bin/
 lrwxrwxrwx	root/root	bin/ip -> ../sbin/ip
 drwxr-xr-x	root/root	etc/
 drwxr-xr-x	root/root	etc/rc.d/
--rwxr-xr-x	root/root	etc/rc.d/bridge
 -rwxr-xr-x	root/root	etc/rc.d/lo
 -rwxr-xr-x	root/root	etc/rc.d/net
 drwxr-xr-x	root/root	sbin/
@@ -11,6 +10,7 @@ drwxr-xr-x	root/root	sbin/
 lrwxrwxrwx	root/root	sbin/ctstat -> lnstat
 -rwxr-xr-x	root/root	sbin/dcb
 -rwxr-xr-x	root/root	sbin/devlink
+-rwxr-xr-x	root/root	sbin/dpll
 -rwxr-xr-x	root/root	sbin/genl
 -rwxr-xr-x	root/root	sbin/ifstat
 -rwxr-xr-x	root/root	sbin/ip
@@ -40,6 +40,7 @@ drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/bash-completion/
 drwxr-xr-x	root/root	usr/share/bash-completion/completions/
 -rw-r--r--	root/root	usr/share/bash-completion/completions/devlink
+-rw-r--r--	root/root	usr/share/bash-completion/completions/dpll
 -rw-r--r--	root/root	usr/share/bash-completion/completions/tc
 drwxr-xr-x	root/root	usr/share/iproute2/
 -rw-r--r--	root/root	usr/share/iproute2/bpf_pinning
@@ -81,6 +82,7 @@ drwxr-xr-x	root/root	usr/share/man/man8/
 -rw-r--r--	root/root	usr/share/man/man8/devlink-sb.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/devlink-trap.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/devlink.8.gz
+-rw-r--r--	root/root	usr/share/man/man8/dpll.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/genl.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/ifstat.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/ip-address.8.gz
