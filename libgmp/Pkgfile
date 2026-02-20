@@ -4,7 +4,7 @@
 name=libgmp
 version=6.3.0
 release=1
-source="https://gmplib.org/download/gmp/gmp-$version.tar.xz
+source="https://ftpmirror.gnu.org/gnu/gmp/gmp-$version.tar.xz
 	gmp.h"
 
 build() {
