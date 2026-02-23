@@ -1,0 +1,15 @@
+# Description: Core package management library
+# URL:         https://github.com/zeppe-lin/libpkgcore
+# Depends on:  libarchive
+
+name=libpkgcore
+version=6.3-e3d327d
+release=1
+source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+
+build() {
+	# Enable preserving packages' xattr(7)
+	sed -ri '/^#XATTR/s/^#//' $name-*/config.mk
+
+	make -C $name-* PREFIX=/usr DESTDIR=$PKG install
+}

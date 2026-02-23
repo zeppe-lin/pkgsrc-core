@@ -1,0 +1,11 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/include/
+-rw-r--r--	root/root	usr/include/libpkgcore.h
+drwxr-xr-x	root/root	usr/include/pkgcore/
+-rw-r--r--	root/root	usr/include/pkgcore/db_lock.h
+-rw-r--r--	root/root	usr/include/pkgcore/fs_utils.h
+-rw-r--r--	root/root	usr/include/pkgcore/pkgutil.h
+drwxr-xr-x	root/root	usr/lib/
+-rw-r--r--	root/root	usr/lib/libpkgcore.a
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/libpkgcore.pc
