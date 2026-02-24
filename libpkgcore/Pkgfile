@@ -3,13 +3,14 @@
 # Depends on:  libarchive
 
 name=libpkgcore
-version=6.3-e3d327d
+version=6.3-0047566
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
-	# Enable preserving packages' xattr(7)
-	sed -ri '/^#XATTR/s/^#//' $name-*/config.mk
+	# Pick up system flags
+	sed -ri '/^C..FLAGS/s/ = /+=/g' $name-*/config.mk
 
-	make -C $name-* PREFIX=/usr DESTDIR=$PKG install
+	# Build variant: enable xattr(7), acl(5) remains disabled
+	make -C $name-* XATTR=y PREFIX=/usr DESTDIR=$PKG install
 }
