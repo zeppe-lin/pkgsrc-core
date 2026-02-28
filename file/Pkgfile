@@ -3,7 +3,7 @@
 # Depends on:  bzip2 zstd
 
 name=file
-version=5.46
+version=5.47
 _version=$(echo $version | tr . _)
 release=1
 #source=ftp://ftp.astron.com/pub/file/file-$version.tar.gz
