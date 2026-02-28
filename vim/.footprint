@@ -544,6 +544,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/elinks.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/elixir.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/elm.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/env.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/erlang.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/eruby.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/eterm.vim
@@ -1442,6 +1443,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/elinks.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/elm.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/elmfilt.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/env.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/erlang.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/eruby.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/esmtprc.vim
@@ -2079,3 +2081,4 @@ drwxr-xr-x	root/root	usr/share/vim/tutor/sv/
 -rw-r--r--	root/root	usr/share/vim/tutor/tutor1
 -rw-r--r--	root/root	usr/share/vim/tutor/tutor2
 -rw-r--r--	root/root	usr/share/vim/vimrc
+-rw-r--r--	root/root	usr/share/vim/xdg.vim
