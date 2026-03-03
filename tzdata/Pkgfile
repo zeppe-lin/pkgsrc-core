@@ -2,19 +2,32 @@
 # URL:         https://www.iana.org/time-zones
 
 name=tzdata
-version=2025c
+version=2026a
 release=1
 source=https://data.iana.org/time-zones/releases/tzdb-$version.tar.lz
 
 build() {
+	# Enable runtime logic to process leap second records
+	# (RFC 9636).  This allows the system to use the TAI-based
+	# zones in zoneinfo/right/.
+	export CFLAGS="$CFLAGS -DTZ_RUNTIME_LEAPS=1"
+
 	cd tzdb-$version
 
+	# Build with the code logic enabled
 	make V=1 CFLAGS="$CFLAGS"
-	make DESTDIR=$PKG install
+
+	# REDO=posix_right restores the 'right/' directory removed in
+	# 2026a defaults
+	make REDO=posix_right DESTDIR=$PKG install
 
 	# Provided by man-pages package
-	rm -r $PKG/usr/share/man/man5 $PKG/usr/share/man/man8
+	rm $PKG/usr/share/man/man5/tzfile.5
+	cd $PKG/usr/share/man/man8
+	rm tzselect.8 zdump.8 zic.8
+	rmdir $PKG/usr/share/man/man5 $PKG/usr/share/man/man8
 
 	# Conflicts with glibc package
-	rm $PKG/etc/localtime && rmdir $PKG/etc
+	rm $PKG/etc/localtime
+	rmdir $PKG/etc
 }
