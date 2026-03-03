@@ -6,7 +6,7 @@
 # https://devguide.python.org/versions/
 
 name=python3
-version=3.12.12
+version=3.12.13
 release=1
 source=https://github.com/python/cpython/archive/v$version/python-$version.tar.gz
 
@@ -38,13 +38,13 @@ EOF
 	make -j1 DESTDIR=$PKG altinstall maninstall
 
 	# Create symlinks
-	ln -s 2to3-${version%.*}            $PKG/usr/bin/2to3
-	ln -s python${version%.*}           $PKG/usr/bin/python3
-	ln -s python${version%.*}-config    $PKG/usr/bin/python3-config
-	ln -s idle${version%.*}             $PKG/usr/bin/idle3
-	ln -s pydoc${version%.*}            $PKG/usr/bin/pydoc3
-	ln -s python${version%.*}           $PKG/usr/lib/$name
-	ln -s python-${version%.*}.pc       $PKG/usr/lib/pkgconfig/python3.pc
+	ln -s 2to3-${version%.*}         $PKG/usr/bin/2to3
+	ln -s python${version%.*}        $PKG/usr/bin/python3
+	ln -s python${version%.*}-config $PKG/usr/bin/python3-config
+	ln -s idle${version%.*}          $PKG/usr/bin/idle3
+	ln -s pydoc${version%.*}         $PKG/usr/bin/pydoc3
+	ln -s python${version%.*}        $PKG/usr/lib/$name
+	ln -s python-${version%.*}.pc    $PKG/usr/lib/pkgconfig/python3.pc
 	ln -s python-${version%.*}-embed.pc $PKG/usr/lib/pkgconfig/python3-embed.pc
 
 	# Clean junk
