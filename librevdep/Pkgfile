@@ -1,0 +1,15 @@
+# Description: Reverse dependency auditing library
+# URL:         https://github.com/zeppe-lin/librevdep
+# Depends on:  elfutils
+
+name=librevdep
+version=5.0-f9108bc
+release=1
+source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+
+build() {
+	# Pick up system flags
+	sed -ri '/^(C..|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
+
+	make -C $name-* PREFIX=/usr DESTDIR=$PKG install
+}
