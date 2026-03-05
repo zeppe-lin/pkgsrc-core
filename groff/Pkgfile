@@ -3,12 +3,17 @@
 
 name=groff
 version=1.24.0
-release=1
-source=https://ftpmirror.gnu.org/gnu/groff/groff-$version.tar.gz
+release=2
+source="https://ftpmirror.gnu.org/gnu/groff/groff-$version.tar.gz
+	eee74c1a8f73ff7dd68aee59711bfbeb9174c20d.patch"
 
 build() {
+	# Fixes <https://savannah.gnu.org/bugs/?68115>
+	patch -d $name-$version -p1 -i $SRC/eee74c1a8f73ff7dd68aee59711bfbeb9174c20d.patch
+
 	mkdir build; cd build
 
+	autoreconf -fiv ../$name-$version
 	../$name-$version/configure \
 		--prefix=/usr \
 		--sysconfdir=/etc \
