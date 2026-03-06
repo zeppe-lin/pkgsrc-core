@@ -696,6 +696,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/neomuttrc.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/netrc.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/nginx.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/nickel.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/nim.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/nix.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/nroff.vim
@@ -862,6 +863,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/xf86conf.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/xhtml.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/xinetd.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/xkb.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/xml.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/xmodmap.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/xs.vim
@@ -942,6 +944,7 @@ drwxr-xr-x	root/root	usr/share/vim/indent/
 -rw-r--r--	root/root	usr/share/vim/indent/gyp.vim
 -rw-r--r--	root/root	usr/share/vim/indent/haml.vim
 -rw-r--r--	root/root	usr/share/vim/indent/hamster.vim
+-rw-r--r--	root/root	usr/share/vim/indent/handlebars.vim
 -rw-r--r--	root/root	usr/share/vim/indent/hare.vim
 -rw-r--r--	root/root	usr/share/vim/indent/hcl.vim
 -rw-r--r--	root/root	usr/share/vim/indent/hog.vim
@@ -1494,6 +1497,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/gitsendemail.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/gkrellmrc.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/gleam.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/glimmer.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/glsl.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/gnash.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/gnuplot.vim
@@ -1516,6 +1520,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/gyp.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/haml.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/hamster.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/handlebars.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/hare.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/haredoc.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/haskell.vim
