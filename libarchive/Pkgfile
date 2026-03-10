@@ -3,15 +3,17 @@
 # Depends on:  acl bzip2 expat zstd
 
 name=libarchive
-version=3.8.5
+version=3.8.6
 release=1
 source=https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.xz
 
 build() {
-	# Enable multithreaded LZMA compression (used by bsdtar and others)
+	# Enable multithreaded LZMA compression
+	# (used by bsdtar and others)
 	export CFLAGS="$CFLAGS -DHAVE_LZMA_STREAM_ENCODER_MT=1"
 
-	# ENABLE_LIBXML2=OFF: disable XML support (only needed for xar format)
+	# ENABLE_LIBXML2=OFF: disable XML support
+	# (only needed for xar format)
 	cmake -S $name-$version -B build -G Ninja \
 		-D CMAKE_INSTALL_PREFIX=/usr \
 		-D CMAKE_INSTALL_LIBDIR=lib \
