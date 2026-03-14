@@ -1,0 +1,20 @@
+# Description: Library for package integrity audits
+# URL:         https://github.com/zeppe-lin/libpkgaudit
+# Depends on:  libpkgcore
+
+name=libpkgaudit
+version=1.0-4131433
+release=1
+source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+
+build() {
+	meson setup build $name-* \
+		--prefix=/usr \
+		--buildtype=plain \
+		--wrap-mode=nodownload \
+		-D b_lto=false \
+		-D b_pie=true \
+
+	ninja -C build -j ${JOBS:-1} -v
+	DESTDIR=$PKG ninja -C build install
+}

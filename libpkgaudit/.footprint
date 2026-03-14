@@ -1,0 +1,14 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/include/
+drwxr-xr-x	root/root	usr/include/libpkgaudit/
+-rw-r--r--	root/root	usr/include/libpkgaudit/auditor.h
+-rw-r--r--	root/root	usr/include/libpkgaudit/ownership_index.h
+-rw-r--r--	root/root	usr/include/libpkgaudit/probe.h
+-rw-r--r--	root/root	usr/include/libpkgaudit/types.h
+drwxr-xr-x	root/root	usr/lib/
+-rw-r--r--	root/root	usr/lib/libpkgaudit.a
+lrwxrwxrwx	root/root	usr/lib/libpkgaudit.so -> libpkgaudit.so.1
+lrwxrwxrwx	root/root	usr/lib/libpkgaudit.so.1 -> libpkgaudit.so.1.0
+-rwxr-xr-x	root/root	usr/lib/libpkgaudit.so.1.0
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/libpkgaudit.pc
