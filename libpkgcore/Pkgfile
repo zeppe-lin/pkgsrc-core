@@ -3,14 +3,20 @@
 # Depends on:  libarchive
 
 name=libpkgcore
-version=6.3-0047566
+version=6.4-4b09d7e
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
-	# Pick up system flags
-	sed -ri '/^C..FLAGS/s/ = /+=/g' $name-*/config.mk
+	meson setup build $name-* \
+		--prefix=/usr \
+		--buildtype=plain \
+		--wrap-mode=nodownload \
+		-D b_lto=false \
+		-D b_pie=true \
+		-D extract_acl=false \
+		-D extract_xattr=true \
 
-	# Build variant: enable xattr(7), acl(5) remains disabled
-	make -C $name-* XATTR=y PREFIX=/usr DESTDIR=$PKG install
+	ninja -C build -j ${JOBS:-1} -v
+	DESTDIR=$PKG ninja -C build install
 }
