@@ -1,17 +1,20 @@
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/include/
--rw-r--r--	root/root	usr/include/librevdep.h
-drwxr-xr-x	root/root	usr/include/revdep/
--rw-r--r--	root/root	usr/include/revdep/elf.h
--rw-r--r--	root/root	usr/include/revdep/elf_cache.h
--rw-r--r--	root/root	usr/include/revdep/pkg.h
--rw-r--r--	root/root	usr/include/revdep/revdep_context.h
--rw-r--r--	root/root	usr/include/revdep/revdep_engine.h
--rw-r--r--	root/root	usr/include/revdep/revdep_format.h
--rw-r--r--	root/root	usr/include/revdep/revdep_parallel.h
--rw-r--r--	root/root	usr/include/revdep/utility.h
+drwxr-xr-x	root/root	usr/include/librevdep/
+-rw-r--r--	root/root	usr/include/librevdep/elf.h
+-rw-r--r--	root/root	usr/include/librevdep/elf_cache.h
+-rw-r--r--	root/root	usr/include/librevdep/librevdep.h
+-rw-r--r--	root/root	usr/include/librevdep/pkg.h
+-rw-r--r--	root/root	usr/include/librevdep/revdep_context.h
+-rw-r--r--	root/root	usr/include/librevdep/revdep_engine.h
+-rw-r--r--	root/root	usr/include/librevdep/revdep_format.h
+-rw-r--r--	root/root	usr/include/librevdep/revdep_parallel.h
+-rw-r--r--	root/root	usr/include/librevdep/utility.h
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/librevdep.a
+lrwxrwxrwx	root/root	usr/lib/librevdep.so -> librevdep.so.5
+lrwxrwxrwx	root/root	usr/lib/librevdep.so.5 -> librevdep.so.5.1.1
+-rwxr-xr-x	root/root	usr/lib/librevdep.so.5.1.1
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/librevdep.pc
 drwxr-xr-x	root/root	usr/share/

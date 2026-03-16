@@ -1,15 +1,21 @@
 # Description: Reverse dependency auditing library
 # URL:         https://github.com/zeppe-lin/librevdep
-# Depends on:  elfutils
+# Depends on:  elfutils scdoc
 
 name=librevdep
-version=5.0-f9108bc
+version=5.1.1-d9a16c0
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
-	# Pick up system flags
-	sed -ri '/^(C..|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
+	meson setup build $name-* \
+		--prefix=/usr \
+		--buildtype=plain \
+		--wrap-mode=nodownload \
+		-D b_lto=false \
+		-D b_pie=true \
+		-D build_man=true \
 
-	make -C $name-* PREFIX=/usr DESTDIR=$PKG install
+	ninja -C build -j ${JOBS:-1} -v
+	DESTDIR=$PKG ninja -C build install
 }
