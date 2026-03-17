@@ -3,13 +3,16 @@
 # Depends on:  scdoc
 
 name=seedrng
-version=0.4.0-710b4b5
+version=0.4.0-9d4bd5c
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
-	# Pick up system flags
-	sed -ri '/^(C|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
+	cd $name-*
 
-	make -C $name-* PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG install
+	# Pick up system flags
+	sed -ri '/^(C|LD)FLAGS/s/ = /+=/g' config.mk
+
+	make PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG \
+		install
 }
