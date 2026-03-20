@@ -3,7 +3,7 @@
 # Depends on:  expat p5-file-sharedir
 
 name=p5-xml-parser
-version=2.49
+version=2.51
 release=1
 source=https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-$version.tar.gz
 
@@ -13,7 +13,7 @@ build() {
 	command -v finddepsdistmeta >/dev/null 2>&1 && finddepsdistmeta
 	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
 
-	make OPTIMIZE="$CFLAGS -Wno-implicit-function-declaration"
+	make OPTIMIZE="$CFLAGS"
 	make DESTDIR=$PKG install
 
 	# Remove junk and empty dirs
