@@ -2,8 +2,8 @@
 # URL:         http://www.gnu.org/software/autoconf
 
 name=autoconf
-version=2.72
-release=2
+version=2.73
+release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
 build() {
@@ -16,7 +16,7 @@ build() {
 	make prefix=$PKG/usr install
 
 	# Keep INSTALL file: required by autoreconf(1)
-	# rm $PKG/usr/share/$name/INSTALL
+	#rm $PKG/usr/share/$name/INSTALL
 
 	# Remove junk
 	rm -r $PKG/usr/share/info
