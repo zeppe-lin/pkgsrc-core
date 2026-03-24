@@ -3,10 +3,10 @@
 
 name=glibc
 version=2.40-1
-release=4
+release=5
 
 # Kernel version for headers
-_kernelver=6.1.159
+_kernelver=6.1.166
 
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 	https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_kernelver%.*}.tar.xz
@@ -20,20 +20,20 @@ build() {
 	# The 'make headers' followed by 'find/install' is used to avoid
 	# external dependencies like rsync.
 	cd linux-${_kernelver%.*}
-	xzcat $SRC/patch-$_kernelver.xz | patch -sNp1 -F0
+	xzcat $SRC/patch-$_kernelver.xz | patch -sp1 -F0
 	make mrproper
 	#make headers_check
 	#make INSTALL_HDR_PATH=$PKG/usr headers_install
 	#chown root:root $PKG/usr
 	make headers
-	find usr/include -name \*.h -type f | while read -r _hdr; do
-		install -g root -o root -m 0644 -D $_hdr $PKG/$_hdr
+	find usr/include -name '*.h' -type f | while read -r f; do
+		install -g root -o root -m 0644 -D $f $PKG/$f
 	done
 	cd -
 
 	# 2. Apply glibc specific patches.
 	for p in glibc-$version.patch glibc-2.4x-fhs-1.patch; do
-		patch -d glibc-${version%-*} -Np1 -i $SRC/${p}
+		patch -d glibc-${version%-*} -p1 -i $SRC/$p
 	done
 
 	# 3. Configure, build and install glibc.
@@ -41,33 +41,33 @@ build() {
 
 	export libc_cv_slibdir=/lib
 
-	../glibc-${version%-*}/configure         \
-		--prefix=/usr                    \
-		--libdir=/usr/lib                \
-		--libexecdir=/usr/lib            \
-		--with-headers=$PKG/usr/include  \
-		--disable-profile                \
-		--disable-werror                 \
-		--enable-add-ons                 \
-		--enable-bind-now                \
-		--enable-kernel=6.1              \
-		--enable-multi-arch              \
-		--enable-stack-protector=strong  \
-		--without-gd                     \
-		MAKEINFO=missing                 \
+	../glibc-${version%-*}/configure \
+		--prefix=/usr \
+		--libdir=/usr/lib \
+		--libexecdir=/usr/lib \
+		--with-headers=$PKG/usr/include \
+		--disable-profile \
+		--disable-werror \
+		--enable-add-ons \
+		--enable-bind-now \
+		--enable-kernel=6.1 \
+		--enable-multi-arch \
+		--enable-stack-protector=strong \
+		--without-gd \
+		MAKEINFO=missing \
 
 	make V=1
 	#make check
 	make install_root=$PKG install
 
 	# 4. Install configuration files.
-	install -m 0644 -Dt $PKG/etc/                    \
-		$SRC/glibc-${version%-*}/nscd/nscd.conf  \
-		$SRC/hosts                               \
-		$SRC/resolv.conf                         \
-		$SRC/nsswitch.conf                       \
-		$SRC/host.conf                           \
-		$SRC/ld.so.conf                          \
+	install -m 0644 -Dt $PKG/etc \
+		$SRC/glibc-${version%-*}/nscd/nscd.conf \
+		$SRC/hosts \
+		$SRC/resolv.conf \
+		$SRC/nsswitch.conf \
+		$SRC/host.conf \
+		$SRC/ld.so.conf \
 
 	# 5. Create directories and cache files.
 	mkdir -p $PKG/var/db/nscd $PKG/etc/ld.so.conf.d
