@@ -3,10 +3,10 @@
 
 name=glibc-32
 version=2.40-1
-release=4
+release=5
 
 # Kernel version for headers
-_kernelver=6.1.159
+_kernelver=6.1.166
 
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 	https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_kernelver%.*}.tar.xz
@@ -20,20 +20,20 @@ build() {
 	# The 'make headers' followed by 'find/install' is used to avoid
 	# external dependencies like rsync.
 	cd linux-${_kernelver%.*}
-	xzcat $SRC/patch-$_kernelver.xz | patch -sNp1 -F0
+	xzcat $SRC/patch-$_kernelver.xz | patch -sp1 -F0
 	make mrproper
 	#make headers_check
 	#make INSTALL_HDR_PATH=$PKG/usr headers_install
 	#chown root:root $PKG/usr
 	make headers
-	find usr/include -name \*.h -type f | while read -r _hdr; do
-		install -g root -o root -m 644 -D $_hdr $PKG/$_hdr
+	find usr/include -name '*.h' -type f | while read -r f; do
+		install -g root -o root -m 644 -D $f $PKG/$f
 	done
 	cd -
 
 	# 2. Apply glibc specific patches.
-	patch -d glibc-${version%-*} -Np1 -i $SRC/glibc-$version.patch
-	patch -d glibc-${version%-*} -Np1 -i $SRC/glibc-2.4x-fhs-1.patch
+	patch -d glibc-${version%-*} -p1 -i $SRC/glibc-$version.patch
+	patch -d glibc-${version%-*} -p1 -i $SRC/glibc-2.4x-fhs-1.patch
 
 	mkdir build; cd build
 
@@ -44,21 +44,21 @@ build() {
 	export libc_cv_slibdir=/lib32
 
 	# 4. Configure, build and install glibc (32-bit).
-	../glibc-${version%-*}/configure          \
-		--prefix=/usr                     \
-		--libdir=/usr/lib32               \
-		--libexecdir=/usr/lib32           \
-		--with-headers=$PKG/usr/include   \
-		--disable-profile                 \
-		--disable-werror                  \
-		--enable-add-ons                  \
-		--enable-bind-now                 \
-		--enable-kernel=6.1               \
-		--enable-multi-arch               \
-		--enable-stack-protector=strong   \
-		--without-gd                      \
-		i686-pc-linux-gnu                 \
-		MAKEINFO=missing                  \
+	../glibc-${version%-*}/configure \
+		--prefix=/usr \
+		--libdir=/usr/lib32 \
+		--libexecdir=/usr/lib32 \
+		--with-headers=$PKG/usr/include \
+		--disable-profile \
+		--disable-werror \
+		--enable-add-ons \
+		--enable-bind-now \
+		--enable-kernel=6.1 \
+		--enable-multi-arch \
+		--enable-stack-protector=strong \
+		--without-gd \
+		i686-pc-linux-gnu \
+		MAKEINFO=missing \
 
 	make V=1
 	#make check
@@ -66,8 +66,8 @@ build() {
 
 	# 5. Clean up unnecessary files (binaries, docs, etc).
 	# The 32-bit package should only contain libraries and ld.so.
-	rm -r $PKG/usr/bin/ $PKG/usr/sbin/ $PKG/usr/share/ \
-		$PKG/etc/ $PKG/sbin/ $PKG/var/
+	rm -r $PKG/usr/bin $PKG/usr/sbin $PKG/usr/share \
+		$PKG/etc $PKG/sbin $PKG/var
 
 	# 6. Correct the stubs-32.h header installation.
 	# The main glibc package needs the primary headers; this package
