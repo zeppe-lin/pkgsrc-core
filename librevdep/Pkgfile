@@ -3,7 +3,7 @@
 # Depends on:  elfutils scdoc
 
 name=librevdep
-version=5.1.1-d9a16c0
+version=5.1.2-6aeb42a
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
