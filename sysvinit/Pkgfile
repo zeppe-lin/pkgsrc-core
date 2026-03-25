@@ -3,7 +3,7 @@
 # Depends on:  libxcrypt
 
 name=sysvinit
-version=3.16
+version=3.17
 release=1
 source="$name-$version.tar.gz::https://codeberg.org/thejessesmith/$name/archive/$version.tar.gz
 	manpages.patch
