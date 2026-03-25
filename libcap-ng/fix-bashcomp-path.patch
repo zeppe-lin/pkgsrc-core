@@ -1,0 +1,17 @@
+diff --git a/utils/Makefile.am b/utils/Makefile.am
+index 8a9a766..9a3ca51 100644
+--- a/utils/Makefile.am
++++ b/utils/Makefile.am
+@@ -48,9 +48,9 @@ captest_SOURCES = captest.c
+ endif
+ 
+ install-exec-hook:
+-	mkdir -p ${DESTDIR}${sysconfdir}/bash_completion.d
++	mkdir -p ${DESTDIR}${prefix}/share/bash-completion/completions
+ 	$(INSTALL_SCRIPT) -D -m 644 ${srcdir}/libcap-ng.bash_completion \
+-		${DESTDIR}${sysconfdir}/bash_completion.d/libcap-ng.bash_completion
++		${DESTDIR}${prefix}/share/bash-completion/completions/libcap-ng
+ 
+ uninstall-hook:
+-	rm -f ${DESTDIR}${sysconfdir}/bash_completion.d/libcap-ng.bash_completion
++	rm -f ${DESTDIR}${prefix}/share/bash-completion/completions/libcap-ng

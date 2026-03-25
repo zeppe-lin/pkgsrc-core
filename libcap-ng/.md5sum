@@ -1,1 +1,2 @@
-ead8d49d5ecdb7ad96330d3fec75678e  libcap-ng-0.9.1.tar.gz
+450f4cebde2ec9bc6156f5b7a306c6b3  fix-bashcomp-path.patch
+c0603e7f6e68fa3fd4bcfc5ea93f3b93  libcap-ng-0.9.2.tar.gz
