@@ -3,7 +3,7 @@
 # Depends on:  libxcrypt
 
 name=sysvinit
-version=3.17
+version=3.18
 release=1
 source="$name-$version.tar.gz::https://codeberg.org/thejessesmith/$name/archive/$version.tar.gz
 	manpages.patch
@@ -35,8 +35,8 @@ build() {
 
 	# Remove binaries and man pages provided by util-linux
 	for f in last lastb mesg utmpdump wall; do
-		rm -v $PKG/usr/bin/$f
-		rm -v $PKG/usr/share/man/man1/$f.1
+		rm $PKG/usr/bin/$f
+		rm $PKG/usr/share/man/man1/$f.1
 	done
 
 	# Remove binaries and man pages provided by procps
