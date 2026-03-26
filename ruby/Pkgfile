@@ -5,7 +5,7 @@
 # EOL 2027-03-31: https://www.ruby-lang.org/en/downloads/branches/
 
 name=ruby
-version=3.3.10
+version=3.3.11
 release=1
 source=https://cache.ruby-lang.org/pub/ruby/${version%.*}/ruby-$version.tar.xz
 
@@ -21,7 +21,7 @@ build() {
 	make V=1
 	make DESTDIR=$PKG install
 
-	# remove junk
+	# Remove junk
 	find $PKG/usr/lib -type f \
 		   -name COPYING \
 		-o -name CHANGELOG.md \

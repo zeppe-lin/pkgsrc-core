@@ -225,9 +225,9 @@ drwxr-xr-x	root/root	usr/include/ruby-3.3/x86_64-linux/
 drwxr-xr-x	root/root	usr/include/ruby-3.3/x86_64-linux/ruby/
 -rw-r--r--	root/root	usr/include/ruby-3.3/x86_64-linux/ruby/config.h
 drwxr-xr-x	root/root	usr/lib/
-lrwxrwxrwx	root/root	usr/lib/libruby.so -> libruby.so.3.3.10
-lrwxrwxrwx	root/root	usr/lib/libruby.so.3.3 -> libruby.so.3.3.10
--rwxr-xr-x	root/root	usr/lib/libruby.so.3.3.10
+lrwxrwxrwx	root/root	usr/lib/libruby.so -> libruby.so.3.3.11
+lrwxrwxrwx	root/root	usr/lib/libruby.so.3.3 -> libruby.so.3.3.11
+-rwxr-xr-x	root/root	usr/lib/libruby.so.3.3.11
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/ruby-3.3.pc
 drwxr-xr-x	root/root	usr/lib/ruby/
@@ -1536,6 +1536,7 @@ drwxr-xr-x	root/root	usr/lib/ruby/3.3/syntax_suggest/capture/
 -rw-r--r--	root/root	usr/lib/ruby/3.3/syntax_suggest/left_right_lex_count.rb
 -rw-r--r--	root/root	usr/lib/ruby/3.3/syntax_suggest/lex_all.rb
 -rw-r--r--	root/root	usr/lib/ruby/3.3/syntax_suggest/lex_value.rb
+-rw-r--r--	root/root	usr/lib/ruby/3.3/syntax_suggest/mini_stringio.rb
 -rw-r--r--	root/root	usr/lib/ruby/3.3/syntax_suggest/parse_blocks_from_indent_line.rb
 -rw-r--r--	root/root	usr/lib/ruby/3.3/syntax_suggest/pathname_from_message.rb
 -rw-r--r--	root/root	usr/lib/ruby/3.3/syntax_suggest/priority_engulf_queue.rb
@@ -1956,7 +1957,7 @@ drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/prime-0.1.2/bin/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/prime-0.1.2/lib/
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/gems/prime-0.1.2/lib/prime.rb
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/prism-0.19.0/
-drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/pstore-0.1.3/
+drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/pstore-0.2.1/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/psych-5.1.2/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/racc-1.7.3/
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/gems/racc-1.7.3/README.ja.rdoc
@@ -2830,9 +2831,9 @@ drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/shellwords-0.2.0/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/singleton-0.2.0/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/stringio-3.1.1/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/strscan-3.0.9/
-drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/syntax_suggest-2.0.1/
-drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/syntax_suggest-2.0.1/exe/
--rwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/syntax_suggest-2.0.1/exe/syntax_suggest
+drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/syntax_suggest-2.0.3/
+drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/syntax_suggest-2.0.3/exe/
+-rwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/syntax_suggest-2.0.3/exe/syntax_suggest
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/syslog-0.1.2/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/tempfile-0.2.1/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/test-unit-3.6.1/
@@ -2949,7 +2950,7 @@ drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/un-0.3.0/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/uri-0.13.3/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/weakref-0.1.3/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/yaml-0.3.0/
-drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/zlib-3.1.1/
+drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/gems/zlib-3.1.2/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/plugins/
 drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/specifications/
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/debug-1.9.2.gemspec
@@ -2997,7 +2998,7 @@ drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/specifications/default/
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/pp-0.5.0.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/prettyprint-0.2.0.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/prism-0.19.0.gemspec
--rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/pstore-0.1.3.gemspec
+-rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/pstore-0.2.1.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/psych-5.1.2.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/rdoc-6.6.3.1.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/readline-0.0.4.gemspec
@@ -3012,7 +3013,7 @@ drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/specifications/default/
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/singleton-0.2.0.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/stringio-3.1.1.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/strscan-3.0.9.gemspec
--rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/syntax_suggest-2.0.1.gemspec
+-rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/syntax_suggest-2.0.3.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/syslog-0.1.2.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/tempfile-0.2.1.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/time-0.3.0.gemspec
@@ -3023,7 +3024,7 @@ drwxr-xr-x	root/root	usr/lib/ruby/gems/3.3/specifications/default/
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/uri-0.13.3.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/weakref-0.1.3.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/yaml-0.3.0.gemspec
--rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/zlib-3.1.1.gemspec
+-rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/default/zlib-3.1.2.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/matrix-0.4.2.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/minitest-5.20.0.gemspec
 -rw-r--r--	root/root	usr/lib/ruby/gems/3.3/specifications/net-ftp-0.3.4.gemspec
