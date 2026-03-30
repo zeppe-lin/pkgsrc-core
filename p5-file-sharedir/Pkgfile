@@ -4,13 +4,16 @@
 
 name=p5-file-sharedir
 version=1.118
-release=1
+release=2
 source=https://cpan.metacpan.org/authors/id/R/RE/REHSACK/File-ShareDir-$version.tar.gz
 
 build() {
 	cd File-ShareDir-$version
 
-	command -v finddepsdistmeta >/dev/null 2>&1 && finddepsdistmeta
+	if command -v finddepsdistmeta >/dev/null 2>&1; then
+		finddepsdistmeta
+	fi
+
 	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
 
 	make
