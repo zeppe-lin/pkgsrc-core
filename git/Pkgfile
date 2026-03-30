@@ -4,7 +4,7 @@
 
 name=git
 version=2.53.0
-release=1
+release=2
 source="https://www.kernel.org/pub/software/scm/git/git-$version.tar.xz
 	https://www.kernel.org/pub/software/scm/git/git-manpages-$version.tar.xz
 	rc.gitd"
