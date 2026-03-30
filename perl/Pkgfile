@@ -2,15 +2,13 @@
 # URL:         https://www.perl.org/
 # Depends on:  db gdbm libnsl libxcrypt
 
-# 5.38.x LTS (EOL 2026-07)
-
 name=perl
-version=5.38.5
+version=5.40.4
 release=1
-source=https://www.cpan.org/src/5.0/$name-$version.tar.xz
+source=perl-$version.tar.gz::https://github.com/Perl/perl5/archive/refs/tags/v$version.tar.gz
 
 build() {
-	cd perl-$version
+	cd perl5-$version
 
 	./Configure \
 		-des \
