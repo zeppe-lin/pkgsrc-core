@@ -4,13 +4,16 @@
 
 name=p5-class-inspector
 version=1.36
-release=1
+release=2
 source=https://cpan.metacpan.org/authors/id/P/PL/PLICEASE/Class-Inspector-$version.tar.gz
 
 build() {
 	cd Class-Inspector-$version
 
-	command -v finddepsdistmeta >/dev/null 2>&1 && finddepsdistmeta
+	if command -v finddepsdistmeta >/dev/null 2>&1; then
+		finddepsdistmeta || :
+	fi
+
 	PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
 
 	make
