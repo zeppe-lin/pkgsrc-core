@@ -3,8 +3,8 @@
 # Depends on:  expat p5-file-sharedir
 
 name=p5-xml-parser
-version=2.54
-release=2
+version=2.55
+release=1
 source=https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-$version.tar.gz
 
 build() {
