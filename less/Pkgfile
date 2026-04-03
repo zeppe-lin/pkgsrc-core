@@ -3,7 +3,7 @@
 # Depends on:  libpcre2 ncurses
 
 name=less
-version=694
+version=696
 release=1
 source="https://www.greenwoodsoftware.com/less/less-$version-beta.tar.gz
 	filter"
@@ -13,6 +13,7 @@ build() {
 
 	../less-$version/configure \
 		--prefix=/usr \
+		--libexecdir=/usr/lib/less \
 		--with-regex=pcre2 \
 
 	make V=1

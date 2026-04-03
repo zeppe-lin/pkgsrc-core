@@ -1,11 +1,11 @@
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/less
--rwxr-xr-x	root/root	usr/bin/lessecho
 -rwxr-xr-x	root/root	usr/bin/lesskey
 drwxr-xr-x	root/root	usr/lib/
 drwxr-xr-x	root/root	usr/lib/less/
 -rwxr-xr-x	root/root	usr/lib/less/filter
+-rwxr-xr-x	root/root	usr/lib/less/lessecho
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/man/
 drwxr-xr-x	root/root	usr/share/man/man1/
