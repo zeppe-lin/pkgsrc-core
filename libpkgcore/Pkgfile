@@ -3,7 +3,7 @@
 # Depends on:  libarchive
 
 name=libpkgcore
-version=6.4-4b09d7e
+version=6.4-12ce789
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
