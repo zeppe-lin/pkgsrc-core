@@ -4,7 +4,7 @@
 # See services(5) for more information.
 #
 
-# Last updated: 2026-03-18
+# Last updated: 2026-03-27
 # Source:       https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
 
 tcpmux              1/tcp
@@ -8535,6 +8535,8 @@ hacl-poll        5315/udp
 hpbladems        5316/tcp
 hpdevms          5317/tcp
 pkix-cmc         5318/tcp
+roughtime        5319/tcp
+roughtime        5319/udp
 bsfserver-zn     5320/tcp
 bsfsvr-zn-ssl    5321/tcp
 kfserver         5343/tcp
