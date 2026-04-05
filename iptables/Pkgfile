@@ -2,11 +2,11 @@
 # URL:         http://www.iptables.org/
 # Depends on:  libnfnetlink libnftnl
 
-# Notes:
+# Notes on dependencies:
 #   libntftl >= 1.2.6 is required
 
 name=iptables
-version=1.8.12
+version=1.8.13
 release=1
 source=https://www.netfilter.org/projects/$name/files/$name-$version.tar.xz
 
