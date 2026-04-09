@@ -5,15 +5,11 @@
 #   --without-python3: disable python bindings, otherwise requires python3
 
 name=libcap-ng
-version=0.9.2
+version=0.9.3
 release=1
-source="$name-$version.tar.gz::https://github.com/stevegrubb/$name/archive/refs/tags/v$version.tar.gz
-	fix-bashcomp-path.patch"
+source=$name-$version.tar.gz::https://github.com/stevegrubb/$name/archive/refs/tags/v$version.tar.gz
 
 build() {
-	# Fix hardcoded bash-completion installation path
-	patch -d $name-$version -p1 -i $SRC/fix-bashcomp-path.patch
-
 	# Fix build
 	touch $name-$version/NEWS
 
@@ -26,4 +22,7 @@ build() {
 
 	make V=1
 	make DESTDIR=$PKG install
+
+	rename '.bash_completion' '' \
+		$PKG/usr/share/bash-completion/completions/*
 }
