@@ -3,7 +3,7 @@ name: Mail Notify ([notify] commits)
 on:
   push:
     branches:
-      - '**'
+      - '1.x'
     tags-ignore:
       - '*'
 

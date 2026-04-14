@@ -3,7 +3,7 @@ name: Mail Notify (dev-list)
 on:
   push:
     branches:
-      - '**'
+      - '1.x'
     tags-ignore:
       - '*'
 

@@ -3,7 +3,7 @@ name: IRC Notify
 on:
   push:
     branches:
-      - '**'
+      - '1.x'
     tags-ignore:
       - '*'
 
