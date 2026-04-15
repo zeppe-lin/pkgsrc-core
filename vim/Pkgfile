@@ -3,7 +3,7 @@
 # Depends on:  acl ncurses
 
 name=vim
-version=9.2.0321
+version=9.2.0357
 release=1
 source="https://github.com/vim/vim/archive/v$version/vim-$version.tar.gz
 	vimrc_Pkgfile.patch"
@@ -16,7 +16,7 @@ build() {
 	sed -i '/^CFLAGS/d' Makefile
 
 	# Use sh syntax highlighting for Pkgfiles
-	patch -d .. -Np1 -i $SRC/vimrc_Pkgfile.patch
+	patch -d .. -p1 -i $SRC/vimrc_Pkgfile.patch
 
 	# Build full vim
 	./configure \
