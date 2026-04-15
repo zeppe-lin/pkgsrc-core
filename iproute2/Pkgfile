@@ -3,15 +3,15 @@
 # Depends on:  db elfutils iptables libcap libtirpc
 
 name=iproute2
-version=6.19.0
+version=7.0.0
 release=1
-source="https://www.kernel.org/pub/linux/utils/net/$name/$name-$version.tar.xz
+source="https://www.kernel.org/pub/linux/utils/net/$name/$name-v$version.tar.xz
 	rc.lo
 	rc.net"
 
 build() {
 	# Build in separate dir is broken (configure is not autotools)
-	cd $name-$version
+	cd $name-v$version
 
 	# Configure script uses TMPDIR for internal tests
 	export TMPDIR=$PKGMK_WORK_DIR
