@@ -3,23 +3,23 @@
 # Depends on:  libarchive scdoc
 
 name=pkgutils
-version=6.3-85bb8b9
+version=6.3-2608431
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
 
 build() {
-	# Pick up system flags
-	sed -ri '/^(CXX|LD)FLAGS/s/ = /+=/g' $name-*/config.mk
+	meson setup build $name-* \
+		--prefix=/usr \
+		--buildtype=plain \
+		--wrap-mode=nodownload \
+		-D b_lto=false \
+		-D b_pie=true \
+		-D link_mode=static \
+		-D build_man=true \
 
-	# Enable preserving packages' xattrs(7)
-	sed -ri '/^#XATTR/s/^#//' $name-*/config.mk
-
-	# Static build
-	LDFLAGS="$LDFLAGS -static"
-	LDFLAGS="$LDFLAGS $(pkg-config --static --libs libarchive)"
-
-	make -C $name-* LDFLAGS="$LDFLAGS" DESTDIR=$PKG install
+	ninja -C build -j ${JOBS:-1} -v
+	DESTDIR=$PKG ninja -C build install
 
 	install -m 0644 -Dt $PKG/etc $SRC/pkgadd.conf
 }
