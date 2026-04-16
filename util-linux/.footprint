@@ -68,6 +68,7 @@ drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/colcrt
 -rwxr-xr-x	root/root	usr/bin/colrm
 -rwxr-xr-x	root/root	usr/bin/column
+-rwxr-xr-x	root/root	usr/bin/copyfilerange
 -rwxr-xr-x	root/root	usr/bin/coresched
 -rwxr-xr-x	root/root	usr/bin/eject
 -rwxr-xr-x	root/root	usr/bin/enosys
@@ -76,6 +77,7 @@ drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/fallocate
 -rwxr-xr-x	root/root	usr/bin/fincore
 -rwxr-xr-x	root/root	usr/bin/flock
+-rwxr-xr-x	root/root	usr/bin/getino
 -rwxr-xr-x	root/root	usr/bin/getopt
 -rwxr-xr-x	root/root	usr/bin/hardlink
 -rwxr-xr-x	root/root	usr/bin/hexdump
@@ -199,6 +201,7 @@ drwxr-xr-x	root/root	usr/share/bash-completion/completions/
 -rw-r--r--	root/root	usr/share/bash-completion/completions/colcrt
 -rw-r--r--	root/root	usr/share/bash-completion/completions/colrm
 -rw-r--r--	root/root	usr/share/bash-completion/completions/column
+-rw-r--r--	root/root	usr/share/bash-completion/completions/copyfilerange
 -rw-r--r--	root/root	usr/share/bash-completion/completions/coresched
 -rw-r--r--	root/root	usr/share/bash-completion/completions/ctrlaltdel
 -rw-r--r--	root/root	usr/share/bash-completion/completions/delpart
@@ -217,6 +220,7 @@ drwxr-xr-x	root/root	usr/share/bash-completion/completions/
 -rw-r--r--	root/root	usr/share/bash-completion/completions/fsck.cramfs
 -rw-r--r--	root/root	usr/share/bash-completion/completions/fsfreeze
 -rw-r--r--	root/root	usr/share/bash-completion/completions/fstrim
+-rw-r--r--	root/root	usr/share/bash-completion/completions/getino
 -rw-r--r--	root/root	usr/share/bash-completion/completions/getopt
 -rw-r--r--	root/root	usr/share/bash-completion/completions/hardlink
 -rw-r--r--	root/root	usr/share/bash-completion/completions/hexdump
@@ -303,6 +307,7 @@ drwxr-xr-x	root/root	usr/share/man/man1/
 -rw-r--r--	root/root	usr/share/man/man1/colcrt.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/colrm.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/column.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/copyfilerange.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/coresched.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/dmesg.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/eject.1.gz
@@ -312,6 +317,7 @@ drwxr-xr-x	root/root	usr/share/man/man1/
 -rw-r--r--	root/root	usr/share/man/man1/fallocate.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/fincore.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/flock.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/getino.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/getopt.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/hardlink.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/hexdump.1.gz
@@ -365,10 +371,12 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -rw-r--r--	root/root	usr/share/man/man3/lastlog2.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/libblkid.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/ll2_import_lastlog.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/ll2_new_context.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/ll2_read_all.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/ll2_read_entry.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/ll2_remove_entry.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/ll2_rename_user.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/ll2_unref_context.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/ll2_update_login_time.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/ll2_write_entry.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/uuid.3.gz
