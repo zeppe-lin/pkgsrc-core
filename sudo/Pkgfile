@@ -4,7 +4,7 @@
 
 name=sudo
 version=1.9.17p2
-release=1
+release=2
 source="https://www.sudo.ws/dist/sudo-$version.tar.gz
 	pam.sudo"
 
@@ -25,6 +25,9 @@ build() {
 
 	# PAM service file
 	install -m 0644 -D $SRC/pam.sudo $PKG/etc/pam.d/sudo
+
+	# Remove sudoers.dist; not needed since rejmerge manages updates to sudoers
+	rm "$PKG/etc/sudoers.dist"
 
 	# Remove junk
 	rm -r $PKG/usr/share/doc $PKG/run
