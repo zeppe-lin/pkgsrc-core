@@ -3,17 +3,21 @@
 # Depends on:  bzip2 zstd
 
 name=elfutils
-version=0.194
+version=0.195
 release=1
 source="https://sourceware.org/$name/ftp/$version/$name-$version.tar.bz2
 	elfutils-0.192-libelf-static.patch"
 
 build() {
 	# https://sourceware.org/bugzilla/show_bug.cgi?id=32293
-	patch -d $name-$version -Np1 -i $SRC/elfutils-0.192-libelf-static.patch
+	patch -d $name-$version -p1 -i $SRC/elfutils-0.192-libelf-static.patch
 
 	# fat-lto-objects is required for non-mangled .a files in libelf
-	CFLAGS="$CFLAGS -ffat-lto-objects"
+	export CFLAGS="$CFLAGS -ffat-lto-objects"
+
+	# Disable i18n and tests
+	sed -i '/^SUBDIRS =/{n; s/\bpo doc tests\b/doc/;}' \
+		$name-$version/Makefile.am
 
 	mkdir build; cd build
 

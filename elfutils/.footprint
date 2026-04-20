@@ -33,18 +33,18 @@ drwxr-xr-x	root/root	usr/include/elfutils/
 -rw-r--r--	root/root	usr/include/libelf.h
 -rw-r--r--	root/root	usr/include/nlist.h
 drwxr-xr-x	root/root	usr/lib/
--rwxr-xr-x	root/root	usr/lib/libasm-0.194.so
+-rwxr-xr-x	root/root	usr/lib/libasm-0.195.so
 -rw-r--r--	root/root	usr/lib/libasm.a
 lrwxrwxrwx	root/root	usr/lib/libasm.so -> libasm.so.1
-lrwxrwxrwx	root/root	usr/lib/libasm.so.1 -> libasm-0.194.so
--rwxr-xr-x	root/root	usr/lib/libdw-0.194.so
+lrwxrwxrwx	root/root	usr/lib/libasm.so.1 -> libasm-0.195.so
+-rwxr-xr-x	root/root	usr/lib/libdw-0.195.so
 -rw-r--r--	root/root	usr/lib/libdw.a
 lrwxrwxrwx	root/root	usr/lib/libdw.so -> libdw.so.1
-lrwxrwxrwx	root/root	usr/lib/libdw.so.1 -> libdw-0.194.so
--rwxr-xr-x	root/root	usr/lib/libelf-0.194.so
+lrwxrwxrwx	root/root	usr/lib/libdw.so.1 -> libdw-0.195.so
+-rwxr-xr-x	root/root	usr/lib/libelf-0.195.so
 -rw-r--r--	root/root	usr/lib/libelf.a
 lrwxrwxrwx	root/root	usr/lib/libelf.so -> libelf.so.1
-lrwxrwxrwx	root/root	usr/lib/libelf.so.1 -> libelf-0.194.so
+lrwxrwxrwx	root/root	usr/lib/libelf.so.1 -> libelf-0.195.so
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libdw.pc
 -rw-r--r--	root/root	usr/lib/pkgconfig/libelf.pc
@@ -119,6 +119,49 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -rw-r--r--	root/root	usr/share/man/man3/elf_strptr.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/elf_update.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/elf_version.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_checksum.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_fsize.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getauxv.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getchdr.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/gelf_getclass.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getdyn.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/gelf_getehdr.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getlib.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getmove.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getnote.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getphdr.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getrel.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getrela.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getshdr.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getsym.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getsyminfo.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getsymshndx.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getverdaux.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getverdef.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getvernaux.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getverneed.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_getversym.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_newehdr.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_newphdr.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_offscn.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_auxv.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_dyn.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_ehdr.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_lib.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_move.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_phdr.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_rel.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_rela.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_shdr.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_sym.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_syminfo.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_symshndx.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_verdaux.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_verdef.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_vernaux.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_verneed.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_update_versym.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_xlatetof.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/gelf_xlatetom.3.gz
 -rw-r--r--	root/root	usr/share/man/man3/libelf.3.gz
