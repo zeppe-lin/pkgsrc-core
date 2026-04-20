@@ -1,0 +1,11 @@
+# Description: Operating system release information file
+# URL:         https://github.com/zeppe-lin
+
+name=os-release
+version=1.2.1
+release=1
+source='os-release'
+
+build() {
+	install -m 0644 -Dt $PKG/etc $SRC/os-release
+}
