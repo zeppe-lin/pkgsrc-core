@@ -1,11 +1,11 @@
 # Description: Root filesystem package
-# URL:         https://zeppe-lin.github.io/
+# URL:         https://github.com/zeppe-lin
 
 name=filesystem
-version=0.6
+version=0.7
 release=1
 source='fstab group issue mime.types motd passwd securetty shadow
-	shells os-release'
+	shells'
 
 build() {
 	# Directory structure
@@ -88,6 +88,5 @@ build() {
 	install -m 0644 $SRC/securetty  $PKG/etc/
 	install -m 0644 $SRC/fstab      $PKG/etc/
 	install -m 0644 $SRC/mime.types $PKG/etc/
-	install -m 0644 $SRC/os-release $PKG/etc/
 	ln -s ../proc/self/mounts $PKG/etc/mtab
 }
