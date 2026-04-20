@@ -3,7 +3,7 @@
 # Depends on:  acl libcap libgmp
 
 name=coreutils
-version=9.10
+version=9.11
 release=1
 source=https://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.xz
 
@@ -29,9 +29,10 @@ build() {
 	# Relocate essential utilities to /bin
 	mkdir -p $PKG/bin
 	cd $PKG/usr/bin
-	mv cat chgrp chmod chown cp date dd df echo false ln ls mkdir sleep \
-	   mknod mv pwd readlink rm rmdir stty sync touch true uname \
-	   $PKG/bin/
+	mv cat chgrp chmod chown cp date dd df echo false ln ls mkdir \
+		sleep mknod mv pwd readlink rm rmdir stty sync touch \
+		true uname \
+		$PKG/bin/
 
 	# Remove junk
 	rm -r $PKG/usr/share/info
