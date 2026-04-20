@@ -1,0 +1,91 @@
+OS-RELEASE(5)
+
+# NAME
+
+os-release - operating system release information file
+
+# SYNOPSIS
+
+*/etc/os-release*
+; */usr/lib/os-release*
+
+# DESCRIPTION
+
+The _/etc/os-release_
+; and _/usr/lib/os-release_ files
+provide basic release information about the operating system.
+Format is KEY="Value".
+Values may be quoted if they contain spaces or special characters.
+Entries can appear in any order.
+All entries are optional; new ones may be added in future.
+
+The common keys are as follows:
+
+*NAME*
+	Operating system name (no version).
+
+*PRETTY_NAME*
+	Operating system name with version.
+
+*ID*
+	Short identifier string.
+	For Zeppe-Lin, use "zeppe-lin".
+
+*CPE_NAME*
+	Common Platform Enumeration (CPE) name, as defined by
+	https://scap.nist.gov/specifications/cpe/.
+
+*VERSION*
+	Version string, human-readable.
+
+*VERSION_ID*
+	Version string suitable for scripts
+	(lowercase letters, digits, ".", "-", "\_").
+
+*VARIANT*
+	Human-readable release type.
+
+*VARIANT_ID*
+	Release type identifier suitable for scripts
+	(lowercase letters, digits, ".", "-", "\_").
+
+*BUILD_ID*
+	Detailed build identifier.
+
+*HOME_URL*, *SUPPORT_URL*
+	URLs for information or support.
+
+# EXAMPLES
+
+The following example shows a _/etc/os-release_ for Zeppe-Lin Linux
+1.2.1, though actual contents may vary.
+
+```
+NAME="Zeppe-Lin"
+VERSION="1.2.1 (Ghosts in the Rig)"
+ID="zeppe-lin"
+VERSION_ID="1.2.1"
+PRETTY_NAME="Zeppe-Lin 1.2.1 (Ghosts in the Rig)"
+HOME_URL="https://zeppe-lin.org/"
+SUPPORT_URL="mailto:zeppe-lin@freelists.org"
+BUG_REPORT_URL="mailto:zeppe-lin-dev@freelists.org"
+```
+
+# FILES
+
+_/etc/os-release_
+	Operating system release information.
+
+# SEE ALSO
+
+*uname*(1)
+
+https://www.freedesktop.org/software/systemd/man/os-release.html
+
+# HISTORY
+
+The _/etc/os-release_  file was added in Zeppe-Lin 2.0 to provide
+standard operating system identification data for userland tools and
+scripts.
+
+; vim: ft=scdoc cc=72 tw=70

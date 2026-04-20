@@ -1,2 +1,7 @@
 drwxr-xr-x	root/root	etc/
 -rw-r--r--	root/root	etc/os-release
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man5/
+-rw-r--r--	root/root	usr/share/man/man5/os-release.5.gz

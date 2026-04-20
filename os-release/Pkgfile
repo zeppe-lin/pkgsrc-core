@@ -1,11 +1,16 @@
 # Description: Operating system release information file
 # URL:         https://github.com/zeppe-lin
+# Depends on:  scdoc
 
 name=os-release
 version=1.2.1
-release=1
-source='os-release'
+release=2
+source='os-release os-release.5.scdoc'
 
 build() {
 	install -m 0644 -Dt $PKG/etc $SRC/os-release
+
+	mkdir -p $PKG/usr/share/man/man5
+	scdoc < $SRC/os-release.5.scdoc > \
+		$PKG/usr/share/man/man5/os-release.5
 }
