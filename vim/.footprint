@@ -568,6 +568,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gdscript.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gdshader.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gel.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/ghostty.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/git.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gitattributes.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/gitcommit.vim
