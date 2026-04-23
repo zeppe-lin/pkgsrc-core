@@ -2,15 +2,17 @@
 # URL:         https://www.kernel.org/doc/man-pages/
 
 name=man-pages
-version=6.17
+version=6.18
 release=1
 source=https://www.kernel.org/pub/linux/docs/$name/$name-$version.tar.xz
 
 build() {
+	cd $name-$version
+
 	# - make -R is required until GNU Make 4.5.x will be released
-	# - export version var to suppress multiple git commands execution
-	#   failures
-	make -R -C $name-$version VERSION=$version prefix=/usr DESTDIR=$PKG \
+	# - export version var to suppress multiple git commands
+	#   execution failures
+	make -R VERSION=$version prefix=/usr DESTDIR=$PKG \
 		install
 
 	# Provided by shadow package
