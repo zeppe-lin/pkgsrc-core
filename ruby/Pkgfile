@@ -2,10 +2,11 @@
 # URL:         https://www.ruby-lang.org/
 # Depends on:  gdbm libffi libgmp libyaml openssl zlib
 
-# EOL 2027-03-31: https://www.ruby-lang.org/en/downloads/branches/
+# Lifecycle Timelines:
+# https://www.ruby-lang.org/en/downloads/branches/
 
 name=ruby
-version=3.3.11
+version=3.4.9
 release=1
 source=https://cache.ruby-lang.org/pub/ruby/${version%.*}/ruby-$version.tar.xz
 
