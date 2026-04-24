@@ -1,30 +1,24 @@
 # Description: Berkeley DB embedded database system
-# URL:         http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/
+# URL:         https://libdb.org/
 
 name=db
-version=5.3.28
-release=3
-source="https://download.oracle.com/berkeley-db/db-$version.tar.gz
+version=5.3.29
+release=1
+source="db-$version.tar.gz::https://github.com/berkeleydb/libdb/archive/refs/tags/v$version.tar.gz
 	db-5.3.21-memp_stat-upstream-fix.patch
 	db-5.3.21-mutex_leak.patch
 	db-5.3.28_cve-2019-2708.patch
 	db-5.3.28-lemon_hash.patch
-	db-5.3.28-mmap-high-cpu-usage.patch
-	help_building_with_clang.patch"
+	db-5.3.28-mmap-high-cpu-usage.patch"
 
 build() {
-	patch -d db-$version -p1 -i $SRC/db-5.3.21-memp_stat-upstream-fix.patch
-	patch -d db-$version -p1 -i $SRC/db-5.3.21-mutex_leak.patch
-	patch -d db-$version -p1 -i $SRC/db-5.3.28_cve-2019-2708.patch
-	patch -d db-$version -p1 -i $SRC/db-5.3.28-lemon_hash.patch
-	patch -d db-$version -p1 -i $SRC/db-5.3.28-mmap-high-cpu-usage.patch
-	patch -d db-$version -p1 -i $SRC/help_building_with_clang.patch
+	for f in $SRC/*.patch; do
+		patch -d libdb-$version -p1 -i $f
+	done
 
 	mkdir build; cd build
 
-	CFLAGS="$CFLAGS -Wno-error=implicit-int"
-
-	../db-$version/dist/configure \
+	../libdb-$version/dist/configure \
 		--prefix=/usr \
 		--enable-compat185 \
 		--enable-shared \
