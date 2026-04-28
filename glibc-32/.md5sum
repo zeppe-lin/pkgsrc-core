@@ -1,6 +1,6 @@
-bd96a1e508efba2ed862bf47fd94bc1a  glibc-2.40-1.patch
+8b9aae152f690508c9f91eb47ef48e05  glibc-2.40-1.patch
 b390feef233022114950317f10c4fa97  glibc-2.40.tar.xz
 ffd59b0f7c8b5d66cdc3a5f33fa50e57  glibc-2.4x-fhs-1.patch
 a8f4549c716cd37244fbf1ed059497f8  lib32.conf
 475320de08f16c9fa486fc4edfe98b30  linux-6.1.tar.xz
-892b0e8b05e6fb34b1578e10c221aa62  patch-6.1.166.xz
+edb34db3ba9425cc3573ee3fa9358bcf  patch-6.1.169.xz
