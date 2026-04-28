@@ -15,6 +15,8 @@ drwxr-xr-x	root/root	sbin/
 -r-xr-xr-x	root/root	sbin/dmsetup.static
 lrwxrwxrwx	root/root	sbin/dmstats -> dmsetup
 lrwxrwxrwx	root/root	sbin/dmstats.static -> dmsetup.static
+lrwxrwxrwx	root/root	sbin/dmvdostats -> dmsetup
+lrwxrwxrwx	root/root	sbin/dmvdostats.static -> dmsetup.static
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/include/
 -r--r--r--	root/root	usr/include/libdevmapper.h
@@ -29,3 +31,4 @@ drwxr-xr-x	root/root	usr/share/man/man8/
 -r--r--r--	root/root	usr/share/man/man8/blkdeactivate.8.gz
 -r--r--r--	root/root	usr/share/man/man8/dmsetup.8.gz
 -r--r--r--	root/root	usr/share/man/man8/dmstats.8.gz
+-r--r--r--	root/root	usr/share/man/man8/dmvdostats.8.gz
