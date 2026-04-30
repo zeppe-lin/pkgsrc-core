@@ -1,10 +1,10 @@
 # Description: Collection of common network programs
 # URL:         https://www.gnu.org/software/inetutils/inetutils.html
-# Depends on:  readline
+# Depends on:  libxcrypt readline
 
 name=inetutils
-version=2.7
-release=2
+version=2.8
+release=1
 source="http://ftpmirror.gnu.org/gnu/$name/$name-$version.tar.gz
 	inetd.conf
 	rc.inetd"
@@ -15,7 +15,8 @@ build() {
 	# Silence implicit-function-declaration errors (gcc 14+)
 	export CFLAGS="$CFLAGS -Wno-error=implicit-function-declaration"
 
-	# --disable-traceroute: intentionally, provided by a dedicated package
+	# --disable-traceroute: intentionally, provided by a dedicated
+	# package
 	../$name-$version/configure \
 		--prefix=/usr \
 		--libexecdir=/usr/sbin \
@@ -29,6 +30,7 @@ build() {
 		--enable-inetd \
 		--enable-telnet \
 		--disable-traceroute \
+		--enable-gcc-warnings=no \
 
 	make V=1
 	make DESTDIR=$PKG install
