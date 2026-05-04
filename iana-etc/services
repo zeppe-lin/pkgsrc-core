@@ -4,7 +4,7 @@
 # See services(5) for more information.
 #
 
-# Last updated: 2026-03-27
+# Last updated: 2026-04-30
 # Source:       https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
 
 tcpmux              1/tcp
@@ -7866,6 +7866,8 @@ prRegister       4457/udp
 mcp              4458/tcp
 mcp              4458/udp
 ntske            4460/tcp
+agtp             4480/tcp
+agtp-quic        4480/udp
 hpssmgmt         4484/tcp
 hpssmgmt         4484/udp
 assyst-dr        4485/tcp
