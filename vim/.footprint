@@ -455,6 +455,7 @@ drwxr-xr-x	root/root	usr/share/vim/ftplugin/
 -rw-r--r--	root/root	usr/share/vim/ftplugin/abaqus.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/abnf.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/ada.vim
+-rw-r--r--	root/root	usr/share/vim/ftplugin/algol68.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/alsaconf.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/ant.vim
 -rw-r--r--	root/root	usr/share/vim/ftplugin/antlr4.vim
@@ -1285,6 +1286,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/
 -rw-r--r--	root/root	usr/share/vim/syntax/aflex.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/ahdl.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/aidl.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/algol68.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/alsaconf.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/amiga.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/aml.vim
