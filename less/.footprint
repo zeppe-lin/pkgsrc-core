@@ -5,8 +5,7 @@ drwxr-xr-x	root/root	usr/bin/
 drwxr-xr-x	root/root	usr/lib/
 drwxr-xr-x	root/root	usr/lib/less/
 -rwxr-xr-x	root/root	usr/lib/less/filter
--rwxr-xr-x	root/root	usr/lib/less/less-osc8-file
--rwxr-xr-x	root/root	usr/lib/less/less-osc8-man
+-rwxr-xr-x	root/root	usr/lib/less/less-osc8-open
 -rwxr-xr-x	root/root	usr/lib/less/lessecho
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/man/
