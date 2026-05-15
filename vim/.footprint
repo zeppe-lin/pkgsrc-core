@@ -281,6 +281,7 @@ drwxr-xr-x	root/root	usr/share/vim/compiler/
 -rw-r--r--	root/root	usr/share/vim/compiler/zig.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/zig_build.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/zig_build_exe.vim
+-rw-r--r--	root/root	usr/share/vim/compiler/zig_cc.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/zig_test.vim
 -rw-r--r--	root/root	usr/share/vim/compiler/zsh.vim
 -rw-r--r--	root/root	usr/share/vim/defaults.vim
