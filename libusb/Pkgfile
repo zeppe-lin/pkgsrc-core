@@ -2,11 +2,11 @@
 # URL:         https://libusb.info/
 # Depends on:  eudev
 
-# Maintainer notes on dependencies:
-#   --enable-udev: device enumeration and hotplug support, requires eudev
+# Notes on dependencies:
+#   --enable-udev: device enumeration and hotplug support, needs eudev
 
 name=libusb
-version=1.0.29
+version=1.0.30
 release=1
 source=https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.bz2
 
