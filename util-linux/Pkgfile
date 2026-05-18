@@ -3,10 +3,10 @@
 # Depends on:  eudev file libcap-ng linux-pam sqlite3
 
 # Notes on dependencies:
-#   --enable-asciidoc: Generate man pages, requires asciidoctor (enabled)
+#   --enable-asciidoc: Generate man pages, needs asciidoctor (enabled)
 
 name=util-linux
-version=2.42
+version=2.42.1
 release=1
 source="https://www.kernel.org/pub/linux/utils/$name/v$(
 		echo $version | cut -d. -f1-2
