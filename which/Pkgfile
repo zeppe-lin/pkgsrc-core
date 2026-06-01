@@ -2,7 +2,7 @@
 # URL:         https://carlowood.github.io/which/
 
 name=which
-version=2.23
+version=2.25
 release=1
 source=https://ftpmirror.gnu.org/gnu/which/which-$version.tar.gz
 
