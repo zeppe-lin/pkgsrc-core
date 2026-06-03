@@ -12,3 +12,11 @@ lrwxrwxrwx	root/root	usr/lib/libpkgaudit.so.1 -> libpkgaudit.so.1.0
 -rwxr-xr-x	root/root	usr/lib/libpkgaudit.so.1.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libpkgaudit.pc
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man3/
+-rw-r--r--	root/root	usr/share/man/man3/libpkgaudit.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgaudit_auditor.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgaudit_ownership_index.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgaudit_probe.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgaudit_types.3.gz
