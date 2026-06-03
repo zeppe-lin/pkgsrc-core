@@ -3,7 +3,7 @@
 # Depends on:  readline
 
 name=bash
-version=5.3.9
+version=5.3.12
 release=1
 source="https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}.tar.gz
 https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-001
@@ -15,6 +15,9 @@ https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-006
 https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-007
 https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-008
 https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-009
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-010
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-011
+https://ftpmirror.gnu.org/gnu/bash/bash-${version%.*}-patches/bash53-012
 	profile"
 
 build() {
