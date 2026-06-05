@@ -1857,6 +1857,7 @@ drwxr-xr-x	root/root	usr/share/vim/syntax/modula2/opt/
 -rw-r--r--	root/root	usr/share/vim/syntax/services.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/setserial.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/sexplib.vim
+-rw-r--r--	root/root	usr/share/vim/syntax/sgf.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/sgml.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/sgmldecl.vim
 -rw-r--r--	root/root	usr/share/vim/syntax/sgmllnx.vim
