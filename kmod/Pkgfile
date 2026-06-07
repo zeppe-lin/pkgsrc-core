@@ -2,8 +2,8 @@
 # URL:         https://git.kernel.org/?p=utils/kernel/kmod/kmod.git
 # Depends on:  openssl scdoc zstd
 
-# Maintainer notes on dependencies:
-#   -D manpages=true: Generate manual pages, requires scdoc
+# Notes on dependencies:
+#   -D manpages=true: Generate manual pages, needs scdoc (enabled)
 
 name=kmod
 version=34.2
@@ -13,7 +13,7 @@ source="https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-$version.tar.xz
 
 build() {
 	# Adjust configuration directory paths for depmod and modprobe
-	patch -d kmod-$version -Np1 -i $SRC/config_paths.patch
+	patch -d kmod-$version -p1 -i $SRC/config_paths.patch
 
 	# -D fishcompletiondir=no: disable fish completion
 	# -D zshcompletiondir=no:  disable zsh  completion
@@ -42,7 +42,8 @@ build() {
 	mkdir -p $PKG/bin
 	ln -s ../sbin/kmod $PKG/bin/lsmod
 
-	# Remove junk dirs, use /etc/{depmod,modprobe}.d instead
+	# Remove junk dirs: the config_paths.patch enforces /etc,
+	# /run, and /lib only.
 	cd $PKG/usr/lib
 	rmdir depmod.d modprobe.d
 }
