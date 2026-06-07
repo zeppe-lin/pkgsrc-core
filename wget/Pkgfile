@@ -2,14 +2,13 @@
 # URL:         https://www.gnu.org/software/wget/
 # Depends on:  libpcre2 libunistring openssl zlib
 
-# Maintainer notes on dependencies:
-#   --disable-iri:     disable IDN/IRIs support, requires libidn
-#   --without-cares:   disable C-Ares DNS lookup, requires c-ares
-#   --without-libpsl:  disable libpsl cookie checking, requires libpsl
-#   --without-libuuid: skip UUID generation for WARC, requires util-linux
-#
-# These optional dependencies (libidn, c-ares, libpsl) are not provided in
-# pkgsrc-core, so support is disabled.
+# Notes on dependencies:
+#   --disable-iri:     disable IDN/IRIs support, needs libidn
+#   --without-cares:   disable C-Ares DNS lookup, needs c-ares
+#   --without-libpsl:  disable libpsl cookie checking, needs libpsl
+#   --without-libuuid: skip UUID generation for WARC, needs util-linux
+# These optional dependencies (libidn, c-ares, libpsl) are not
+# provided in pkgsrc-core, so support is disabled.
 
 name=wget
 version=1.25.0
