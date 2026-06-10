@@ -650,6 +650,10 @@ lrwxrwxrwx	root/root	usr/share/man/man3/BIO_new_socket.3ssl.gz -> BIO_s_socket.3
 lrwxrwxrwx	root/root	usr/share/man/man3/BIO_new_ssl.3ssl.gz -> BIO_f_ssl.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/BIO_new_ssl_connect.3ssl.gz -> BIO_f_ssl.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/BIO_next.3ssl.gz -> BIO_find_type.3ssl.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/BIO_nread.3ssl.gz -> BIO_s_bio.3ssl.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/BIO_nread0.3ssl.gz -> BIO_s_bio.3ssl.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/BIO_nwrite.3ssl.gz -> BIO_s_bio.3ssl.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/BIO_nwrite0.3ssl.gz -> BIO_s_bio.3ssl.gz
 -rw-r--r--	root/root	usr/share/man/man3/BIO_parse_hostserv.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/BIO_pending.3ssl.gz -> BIO_ctrl.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/BIO_pop.3ssl.gz -> BIO_push.3ssl.gz
@@ -1085,10 +1089,12 @@ lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_mem_leaks.3ssl.gz -> OPENSSL_mall
 lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_mem_leaks_cb.3ssl.gz -> OPENSSL_malloc.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_mem_leaks_fp.3ssl.gz -> OPENSSL_malloc.3ssl.gz
 -rw-r--r--	root/root	usr/share/man/man3/CRYPTO_memcmp.3ssl.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_memdup.3ssl.gz -> OPENSSL_malloc.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_new_ex_data.3ssl.gz -> CRYPTO_get_ex_new_index.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_realloc.3ssl.gz -> OPENSSL_malloc.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_realloc_array.3ssl.gz -> OPENSSL_malloc.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_realloc_fn.3ssl.gz -> OPENSSL_malloc.3ssl.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_secure_actual_size.3ssl.gz -> OPENSSL_secure_malloc.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_secure_allocated.3ssl.gz -> OPENSSL_secure_malloc.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_secure_calloc.3ssl.gz -> OPENSSL_secure_malloc.3ssl.gz
 lrwxrwxrwx	root/root	usr/share/man/man3/CRYPTO_secure_clear_free.3ssl.gz -> OPENSSL_secure_malloc.3ssl.gz
