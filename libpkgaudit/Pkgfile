@@ -3,7 +3,7 @@
 # Depends on:  libpkgcore
 
 name=libpkgaudit
-version=1.0-dcc4c1f
+version=1.0-8a8af6c
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
@@ -14,7 +14,7 @@ build() {
 		--wrap-mode=nodownload \
 		-D b_lto=false \
 		-D b_pie=true \
-		-D build_man=true \
+		-D manpages=true \
 
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
