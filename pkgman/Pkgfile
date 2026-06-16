@@ -3,7 +3,7 @@
 # Depends on:  scdoc
 
 name=pkgman
-version=6.2-5f2e8fd
+version=6.2-d80b11c
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgman.conf"
@@ -16,7 +16,7 @@ build() {
 		-D b_lto=false \
 		-D b_pie=true \
 		-D link_mode=static \
-		-D build_man=true \
+		-D manpages=true \
 		-D bashcomp=true \
 		-D vimfiles=true \
 
