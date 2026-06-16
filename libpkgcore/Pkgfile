@@ -3,7 +3,7 @@
 # Depends on:  libarchive
 
 name=libpkgcore
-version=6.4-19af401
+version=6.4-6558942
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
@@ -14,9 +14,9 @@ build() {
 		--wrap-mode=nodownload \
 		-D b_lto=false \
 		-D b_pie=true \
-		-D build_man=true \
 		-D extract_acl=false \
 		-D extract_xattr=true \
+		-D manpages=true \
 
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
