@@ -4,7 +4,7 @@
 # See services(5) for more information.
 #
 
-# Last updated: 2026-04-30
+# Last updated: 2026-06-17
 # Source:       https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
 
 tcpmux              1/tcp
@@ -9278,6 +9278,8 @@ joaJewelSuite    6583/udp
 mshvlm           6600/tcp
 mstmg-sstp       6601/tcp
 wsscomfrmwk      6602/tcp
+bencher          6610/tcp
+bencher          6610/udp
 odette-ftps      6619/tcp
 odette-ftps      6619/udp
 kftp-data        6620/tcp
@@ -11259,6 +11261,8 @@ kingdomsonline  30260/tcp
 kingdomsonline  30260/udp
 gs-realtime     30400/tcp
 samsung-disc    30832/udp
+dilithium3      30939/tcp
+dilithium3      30939/udp
 ovobs           30999/tcp
 ovobs           30999/udp
 ka-sddp         31016/tcp
