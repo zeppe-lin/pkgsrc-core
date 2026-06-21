@@ -3,7 +3,7 @@
 
 name=kbd
 version=2.10.0
-release=1
+release=2
 source=https://www.kernel.org/pub/linux/utils/kbd/kbd-$version.tar.xz
 
 build() {
@@ -17,9 +17,10 @@ build() {
 	../kbd-$version/configure \
 		--prefix=/usr \
 		--datadir=/usr/share/kbd \
-		--disable-vlock \
 		--disable-nls \
 		--disable-tests \
+		--disable-vlock \
+		--disable-xkb \
 
 	make V=1
 	make DESTDIR=$PKG install
@@ -28,9 +29,12 @@ build() {
 		$PKG/usr/share/kbd/consolefonts/default.gz
 
 	# Remove junk and obsolete files
-	cd $PKG/usr/share/kbd/keymaps && rm -r ppc mac atari amiga sun pine
-	cd $PKG/usr/bin               && rm loadunimap   mapscrn   resizecons
-	cd $PKG/usr/share/man/man8    && rm loadunimap.8 mapscrn.8 resizecons.8
+	cd $PKG/usr/share/kbd/keymaps
+	rm -r ppc mac atari amiga sun pine
+	cd $PKG/usr/bin
+	rm loadunimap   mapscrn   resizecons
+	cd $PKG/usr/share/man/man8
+	rm loadunimap.8 mapscrn.8 resizecons.8
 	rm $PKG/usr/bin/psf*table $PKG/usr/share/man/man1/psf*table.1
-	find $PKG/usr/share/kbd/ -type f -name README\* -delete
+	find $PKG/usr/share/kbd -type f -name 'README*' -delete
 }
