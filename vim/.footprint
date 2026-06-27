@@ -910,6 +910,7 @@ drwxr-xr-x	root/root	usr/share/vim/indent/
 -rw-r--r--	root/root	usr/share/vim/indent/bst.vim
 -rw-r--r--	root/root	usr/share/vim/indent/bzl.vim
 -rw-r--r--	root/root	usr/share/vim/indent/c.vim
+-rw-r--r--	root/root	usr/share/vim/indent/cabal.vim
 -rw-r--r--	root/root	usr/share/vim/indent/cdl.vim
 -rw-r--r--	root/root	usr/share/vim/indent/ch.vim
 -rw-r--r--	root/root	usr/share/vim/indent/chaiscript.vim
