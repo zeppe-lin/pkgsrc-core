@@ -3,15 +3,22 @@
 # Depends on:  scdoc
 
 name=start-stop-daemon
-version=2.0.1-8a9b5bf
+version=2.0.1-9d156cc
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
-	cd $name-*
+	meson setup build $name-* \
+		--prefix=/usr \
+		--sbindir=/sbin \
+		--buildtype=plain \
+		--wrap-mode=nodownload \
+		-D b_lto=false \
+		-D b_pie=true \
+		-D link_mode=static \
+		-D libbsd=disabled \
+		-D manpages=true \
 
-	# Pick up system flags
-	sed -ri '/^(C|LD)FLAGS/s/ = /+=/g' config.mk
-
-	make PREFIX=/ MANPREFIX=/usr/share/man DESTDIR=$PKG install
+	ninja -C build -j ${JOBS:-1} -v
+	DESTDIR=$PKG ninja -C build install
 }
