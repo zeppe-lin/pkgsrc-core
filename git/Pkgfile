@@ -3,7 +3,7 @@
 # Depends on:  curl expat libpcre2 perl
 
 name=git
-version=2.54.0
+version=2.55.0
 release=1
 source="https://www.kernel.org/pub/software/scm/git/git-$version.tar.xz
 	https://www.kernel.org/pub/software/scm/git/git-manpages-$version.tar.xz
@@ -22,12 +22,13 @@ build() {
 		--wrap-mode=nodownload \
 		-D b_lto=true \
 		-D b_pie=true \
-		-D runtime_prefix=true \
-		-D gettext=disabled \
 		-D perllibdir=$_p5libdir \
+		-D runtime_prefix=true \
 		-D benchmarks=disabled \
-		-D tests=false \
 		-D fuzzers=false \
+		-D gettext=disabled \
+		-D rust=disabled \
+		-D tests=false \
 
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
