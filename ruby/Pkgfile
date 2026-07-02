@@ -3,10 +3,10 @@
 # Depends on:  gdbm libffi libgmp libyaml openssl zlib
 
 # Lifecycle Timelines:
-# https://www.ruby-lang.org/en/downloads/branches/
+#   https://www.ruby-lang.org/en/downloads/branches/
 
 name=ruby
-version=3.4.9
+version=3.4.10
 release=1
 source=https://cache.ruby-lang.org/pub/ruby/${version%.*}/ruby-$version.tar.xz
 
