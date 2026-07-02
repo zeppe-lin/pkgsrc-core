@@ -3,7 +3,7 @@
 # Depends on:  elfutils scdoc
 
 name=revdep
-version=5.0-4fcfff2
+version=5.0-8485d06
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
@@ -13,8 +13,6 @@ build() {
 		--sysconfdir=/etc \
 		--buildtype=plain \
 		--wrap-mode=nodownload \
-		-D b_lto=false \
-		-D b_pie=true \
 		-D link_mode=static \
 		-D manpages=true \
 		-D bashcomp=true \
