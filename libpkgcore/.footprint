@@ -3,12 +3,20 @@ drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/include/libpkgcore/
 -rw-r--r--	root/root	usr/include/libpkgcore/db_lock.h
 -rw-r--r--	root/root	usr/include/libpkgcore/fs_utils.h
--rw-r--r--	root/root	usr/include/libpkgcore/pkgcore.h
+-rw-r--r--	root/root	usr/include/libpkgcore/libpkgcore.h
 -rw-r--r--	root/root	usr/include/libpkgcore/pkgutil.h
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libpkgcore.a
 lrwxrwxrwx	root/root	usr/lib/libpkgcore.so -> libpkgcore.so.6
-lrwxrwxrwx	root/root	usr/lib/libpkgcore.so.6 -> libpkgcore.so.6.4
--rwxr-xr-x	root/root	usr/lib/libpkgcore.so.6.4
+lrwxrwxrwx	root/root	usr/lib/libpkgcore.so.6 -> libpkgcore.so.6.5
+-rwxr-xr-x	root/root	usr/lib/libpkgcore.so.6.5
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libpkgcore.pc
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man3/
+-rw-r--r--	root/root	usr/share/man/man3/db_lock.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/fs_utils.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgutil.3.gz
+drwxr-xr-x	root/root	usr/share/man/man7/
+-rw-r--r--	root/root	usr/share/man/man7/libpkgcore.7.gz
