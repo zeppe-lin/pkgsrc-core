@@ -1,9 +1,9 @@
 # Description: Set of utilities to manage software packages
 # URL:         https://github.com/zeppe-lin/pkgutils
-# Depends on:  libarchive scdoc
+# Depends on:  libpkgcore
 
 name=pkgutils
-version=6.3-6a656a5
+version=6.4-fdb3773
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
