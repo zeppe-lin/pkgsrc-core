@@ -1,9 +1,9 @@
 # Description: Core package management library
 # URL:         https://github.com/zeppe-lin/libpkgcore
-# Depends on:  libarchive
+# Depends on:  libarchive scdoc
 
 name=libpkgcore
-version=6.4-6558942
+version=6.5-e017cf9
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
