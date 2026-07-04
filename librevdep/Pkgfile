@@ -3,7 +3,7 @@
 # Depends on:  elfutils scdoc
 
 name=librevdep
-version=5.1.2-d37d132
+version=5.1.2-82f0d93
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
@@ -14,7 +14,7 @@ build() {
 		--wrap-mode=nodownload \
 		-D b_lto=false \
 		-D b_pie=true \
-		-D build_man=true \
+		-D manpages=true \
 
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
