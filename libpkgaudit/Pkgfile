@@ -3,7 +3,7 @@
 # Depends on:  libpkgcore
 
 name=libpkgaudit
-version=1.0-3175f16
+version=1.0-6409528
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
