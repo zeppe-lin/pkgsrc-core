@@ -3,7 +3,7 @@
 # Depends on:  libpkgcore libpkgaudit
 
 name=pkgutils
-version=6.4-fdb3773
+version=6.4-41e0d3b
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
@@ -13,6 +13,8 @@ build() {
 		--prefix=/usr \
 		--buildtype=plain \
 		--wrap-mode=nodownload \
+		-D b_lto=true \
+		-D b_pie=true \
 		-D b_ndebug=true \
 		-D link_mode=static \
 		-D manpages=true \
