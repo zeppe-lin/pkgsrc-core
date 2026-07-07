@@ -1,9 +1,9 @@
 # Description: Unified interface for package management
 # URL:         https://github.com/zeppe-lin/pkgman
-# Depends on:  scdoc
+# Depends on:  libpkgcore
 
 name=pkgman
-version=6.2-4366f24
+version=6.2-0561b2e
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgman.conf"
@@ -13,7 +13,7 @@ build() {
 		--prefix=/usr \
 		--buildtype=plain \
 		--wrap-mode=nodownload \
-		-D b_lto=false \
+		-D b_lto=true \
 		-D b_pie=true \
 		-D b_ndebug=true \
 		-D link_mode=static \
