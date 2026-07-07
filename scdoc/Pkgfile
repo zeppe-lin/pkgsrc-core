@@ -1,11 +1,13 @@
-# Description: Simple man page generator for POSIX systems written in C99
+# Description: Simple man page generator for POSIX systems
 # URL:         https://git.sr.ht/~sircmpwn/scdoc
 
 name=scdoc
-version=1.11.4
+version=1.11.5
 release=1
 source=scdoc-$version.tar.gz::https://git.sr.ht/~sircmpwn/scdoc/archive/$version.tar.gz
 
 build() {
-	make -C scdoc-$version CC=${CC:-cc} PREFIX=/usr DESTDIR=$PKG install
+	cd scdoc-$version
+
+	make CC=${CC:-cc} PREFIX=/usr DESTDIR=$PKG install
 }
