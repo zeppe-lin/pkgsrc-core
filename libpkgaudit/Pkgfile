@@ -3,18 +3,21 @@
 # Depends on:  libpkgcore
 
 name=libpkgaudit
-version=1.0-6409528
+version=1.0-293af97
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
 build() {
-	meson setup build $name-* \
-		--prefix=/usr \
-		--buildtype=plain \
-		--wrap-mode=nodownload \
-		-D b_lto=false \
-		-D b_pie=true \
+	for x in static shared; do
+		meson setup build-$x $name-* \
+			--prefix=/usr \
+			--buildtype=plain \
+			--wrap-mode=nodownload \
+			-D default_library=$x \
+			-D link_mode=$x \
+			-D manpages=true \
 
-	ninja -C build -j ${JOBS:-1} -v
-	DESTDIR=$PKG ninja -C build install
+		ninja -C build-$x -j ${JOBS:-1} -v
+		DESTDIR=$PKG ninja -C build-$x install
+	done
 }
