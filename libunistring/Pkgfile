@@ -1,8 +1,8 @@
-# Description: Functions for manipulating Unicode strings and C strings
+# Description: Unicode string library
 # URL:         https://www.gnu.org/software/libunistring/
 
 name=libunistring
-version=1.4.1
+version=1.4.2
 release=1
 source=https://ftp.gnu.org/gnu/$name/$name-$version.tar.xz
 
@@ -17,4 +17,5 @@ build() {
 
 	# Remove junk
 	rm -r $PKG/usr/share/doc $PKG/usr/share/info
+	rmdir $PKG/usr/share
 }
