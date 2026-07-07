@@ -3,7 +3,7 @@
 # Depends on:  scdoc
 
 name=start-stop-daemon
-version=2.1-9dc5006
+version=2.1-1316be7
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
@@ -15,6 +15,7 @@ build() {
 		--wrap-mode=nodownload \
 		-D b_pie=true \
 		-D b_lto=true \
+		-D b_ndebug=true \
 		-D link_mode=static \
 		-D libbsd=disabled \
 		-D manpages=true \
