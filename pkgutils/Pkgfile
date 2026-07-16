@@ -3,7 +3,7 @@
 # Depends on:  libpkgcore libpkgaudit
 
 name=pkgutils
-version=6.4-5ede669
+version=7.0.0-4c4af09
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
@@ -20,6 +20,7 @@ build() {
 		-D manpages=true \
 		-D bashcomp=true \
 		-D vimfiles=true \
+		-D tests=disabled \
 
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
