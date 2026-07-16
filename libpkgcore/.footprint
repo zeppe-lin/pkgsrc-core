@@ -8,8 +8,8 @@ drwxr-xr-x	root/root	usr/include/libpkgcore/
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libpkgcore.a
 lrwxrwxrwx	root/root	usr/lib/libpkgcore.so -> libpkgcore.so.6
-lrwxrwxrwx	root/root	usr/lib/libpkgcore.so.6 -> libpkgcore.so.6.5
--rwxr-xr-x	root/root	usr/lib/libpkgcore.so.6.5
+lrwxrwxrwx	root/root	usr/lib/libpkgcore.so.6 -> libpkgcore.so.7.0.0
+-rwxr-xr-x	root/root	usr/lib/libpkgcore.so.7.0.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libpkgcore.pc
 drwxr-xr-x	root/root	usr/share/
