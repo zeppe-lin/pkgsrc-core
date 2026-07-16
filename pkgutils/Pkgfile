@@ -3,7 +3,7 @@
 # Depends on:  libpkgcore libpkgaudit
 
 name=pkgutils
-version=7.0.0-4c4af09
+version=7.0.0-b541121
 release=1
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
