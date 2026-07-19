@@ -1,14 +1,18 @@
 # Description: Set of utilities to manage software packages
 # URL:         https://github.com/zeppe-lin/pkgutils
-# Depends on:  libpkgcore libpkgaudit
+# Depends on:  libpkgcore
 
 name=pkgutils
 version=7.0.0-b541121
-release=1
+release=2
 source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 	pkgadd.conf"
 
 build() {
+	# Conflicts with pkgchk package
+	sed "/^executable('pkgchk',/d" -i $name-*/src/meson.build
+	sed "s/'pkgchk', //" -i $name-*/man/meson.build
+
 	meson setup build $name-* \
 		--prefix=/usr \
 		--buildtype=plain \
