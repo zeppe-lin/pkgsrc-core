@@ -1,14 +1,14 @@
-# Description: Check for missing or wrong libraries of installed packages
-# URL:         https://github.com/zeppe-lin/revdep
+# Description: Report installed packages with unresolved ELF dependencies
+# URL:         https://github.com/zeppe-lin/libpkgimpact
 # Depends on:  elfutils scdoc
 
 name=revdep
-version=5.0-04f4b12
+version=0.1.0-128543d # keep in sync with libpkgimpact
 release=1
-source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+source=https://github.com/zeppe-lin/libpkgimpact/archive/${version#*-}/libpkgimpact-$version.tar.gz
 
 build() {
-	meson setup build $name-* \
+	meson setup build libpkgimpact-* \
 		--prefix=/usr \
 		--sysconfdir=/etc \
 		--buildtype=plain \
@@ -16,10 +16,17 @@ build() {
 		-D b_lto=true \
 		-D b_pie=true \
 		-D b_ndebug=true \
+		-D default_library=static \
 		-D link_mode=static \
-		-D manpages=true \
-		-D bashcomp=true \
+		-D tests=disabled \
+		-D tools=enabled \
+		-D install_tools=true \
+		-D man_pages=enabled \
 
 	ninja -C build -j ${JOBS:-1} -v
 	DESTDIR=$PKG ninja -C build install
+
+	# Conflicts with libpkgimpact
+	rm -r $PKG/usr/include $PKG/usr/lib \
+		$PKG/usr/share/man/man3 $PKG/usr/share/man/man7
 }
