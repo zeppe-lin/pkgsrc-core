@@ -1,0 +1,26 @@
+# Description: Filesystem-staged package object reconciliation library
+# URL:         https://github.com/zeppe-lin/libpkgreconcile
+# Depends on:  liblinediff
+
+name=libpkgreconcile
+version=0.2.0-2b4a8b2 # keep in sync with rejmerge
+release=1
+source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+
+build() {
+	for x in static shared; do
+		meson setup build-$x $name-* \
+			--prefix=/usr \
+			--buildtype=plain \
+			--wrap-mode=nodownload \
+			-D default_library=$x \
+			-D link_mode=$x \
+			-D tests=enabled \
+			-D install_tools=false \
+			-D man_pages=enabled \
+
+		ninja -C build-$x -j ${JOBS:-1} -v
+		meson test -C build-$x --print-errorlogs
+		DESTDIR=$PKG ninja -C build-$x install
+	done
+}
