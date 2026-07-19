@@ -1,0 +1,20 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/include/
+drwxr-xr-x	root/root	usr/include/libpkgimage/
+-rw-r--r--	root/root	usr/include/libpkgimage/archive_backend.h
+-rw-r--r--	root/root	usr/include/libpkgimage/entry_selection.h
+-rw-r--r--	root/root	usr/include/libpkgimage/error.h
+-rw-r--r--	root/root	usr/include/libpkgimage/libarchive_backend.h
+-rw-r--r--	root/root	usr/include/libpkgimage/libpkgimage.h
+-rw-r--r--	root/root	usr/include/libpkgimage/package_archive.h
+-rw-r--r--	root/root	usr/include/libpkgimage/package_entry.h
+-rw-r--r--	root/root	usr/include/libpkgimage/package_image.h
+-rw-r--r--	root/root	usr/include/libpkgimage/package_path.h
+-rw-r--r--	root/root	usr/include/libpkgimage/payload_sink.h
+drwxr-xr-x	root/root	usr/lib/
+-rw-r--r--	root/root	usr/lib/libpkgimage.a
+lrwxrwxrwx	root/root	usr/lib/libpkgimage.so -> libpkgimage.so.0
+lrwxrwxrwx	root/root	usr/lib/libpkgimage.so.0 -> libpkgimage.so.0.2.1
+-rwxr-xr-x	root/root	usr/lib/libpkgimage.so.0.2.1
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/libpkgimage.pc

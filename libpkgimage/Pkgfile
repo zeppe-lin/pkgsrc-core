@@ -1,0 +1,24 @@
+# Description: Normalized package image and payload access library
+# URL:         https://github.com/zeppe-lin/libpkgimage
+# Depends on:  libarchive
+
+name=libpkgimage
+version=0.2.1-957e85a
+release=1
+source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+
+build() {
+	for x in static shared; do
+		meson setup build-$x $name-* \
+			--prefix=/usr \
+			--buildtype=plain \
+			--wrap-mode=nodownload \
+			-D default_library=$x \
+			-D link_mode=$x \
+			-D tests=enabled \
+
+		ninja -C build-$x -j ${JOBS:-1} -v
+		meson test -C build-$x --print-errorlogs
+		DESTDIR=$PKG ninja -C build-$x install
+	done
+}
