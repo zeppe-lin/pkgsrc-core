@@ -3,7 +3,7 @@
 # Depends on:  libarchive
 
 name=libpkgimage
-version=0.2.1-957e85a
+version=0.2.1-eb1dc07
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
