@@ -18,3 +18,11 @@ lrwxrwxrwx	root/root	usr/lib/libpkgimage.so.0 -> libpkgimage.so.0.2.1
 -rwxr-xr-x	root/root	usr/lib/libpkgimage.so.0.2.1
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libpkgimage.pc
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man3/
+-rw-r--r--	root/root	usr/share/man/man3/libpkgimage.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgimage_archive.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgimage_libarchive_backend.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgimage_model.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgimage_replay.3.gz

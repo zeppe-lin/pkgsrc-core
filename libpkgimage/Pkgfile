@@ -1,9 +1,9 @@
 # Description: Normalized package image and payload access library
 # URL:         https://github.com/zeppe-lin/libpkgimage
-# Depends on:  libarchive
+# Depends on:  libarchive scdoc
 
 name=libpkgimage
-version=0.2.1-eb1dc07
+version=0.2.1-84e1c25
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
@@ -16,6 +16,7 @@ build() {
 			-D default_library=$x \
 			-D link_mode=$x \
 			-D tests=enabled \
+			-D man_pages=enabled \
 
 		ninja -C build-$x -j ${JOBS:-1} -v
 		meson test -C build-$x --print-errorlogs
