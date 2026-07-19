@@ -1,0 +1,28 @@
+# Description: Byte-preserving line document and diff library
+# URL:         https://github.com/zeppe-lin/liblinediff
+# Depends on:  scdoc python3
+
+# Notes on dependencies:
+#   -D interop_tests=true: requires python3
+
+name=liblinediff
+version=0.2.0-ce1310a
+release=1
+source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+
+build() {
+	for x in static shared; do
+		meson setup build-$x $name-* \
+			--prefix=/usr \
+			--buildtype=plain \
+			--wrap-mode=nodownload \
+			-D default_library=$x \
+			-D link_mode=$x \
+			-D tests=enabled \
+			-D interop_tests=enabled \
+			-D man_pages=enabled \
+
+		ninja -C build-$x -j ${JOBS:-1} -v
+		DESTDIR=$PKG ninja -C build-$x install
+	done
+}
