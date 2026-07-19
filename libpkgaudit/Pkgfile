@@ -1,4 +1,4 @@
-# Description: Library for package integrity audits
+# Description: Backend-neutral package integrity audit library
 # URL:         https://github.com/zeppe-lin/libpkgaudit
 # Depends on:  scdoc
 
