@@ -1,22 +1,22 @@
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/include/libpkgaudit/
--rw-r--r--	root/root	usr/include/libpkgaudit/auditor.h
--rw-r--r--	root/root	usr/include/libpkgaudit/ownership_index.h
--rw-r--r--	root/root	usr/include/libpkgaudit/probe.h
--rw-r--r--	root/root	usr/include/libpkgaudit/types.h
+-rw-r--r--	root/root	usr/include/libpkgaudit/audit.h
+-rw-r--r--	root/root	usr/include/libpkgaudit/error.h
+-rw-r--r--	root/root	usr/include/libpkgaudit/filesystem.h
+-rw-r--r--	root/root	usr/include/libpkgaudit/inventory.h
+-rw-r--r--	root/root	usr/include/libpkgaudit/libpkgaudit.h
+-rw-r--r--	root/root	usr/include/libpkgaudit/observation.h
+-rw-r--r--	root/root	usr/include/libpkgaudit/path.h
+-rw-r--r--	root/root	usr/include/libpkgaudit/report.h
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libpkgaudit.a
-lrwxrwxrwx	root/root	usr/lib/libpkgaudit.so -> libpkgaudit.so.1
-lrwxrwxrwx	root/root	usr/lib/libpkgaudit.so.1 -> libpkgaudit.so.1.0
--rwxr-xr-x	root/root	usr/lib/libpkgaudit.so.1.0
+lrwxrwxrwx	root/root	usr/lib/libpkgaudit.so -> libpkgaudit.so.0
+lrwxrwxrwx	root/root	usr/lib/libpkgaudit.so.0 -> libpkgaudit.so.0.1.0
+-rwxr-xr-x	root/root	usr/lib/libpkgaudit.so.0.1.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libpkgaudit.pc
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/man/
 drwxr-xr-x	root/root	usr/share/man/man3/
 -rw-r--r--	root/root	usr/share/man/man3/libpkgaudit.3.gz
--rw-r--r--	root/root	usr/share/man/man3/pkgaudit_auditor.3.gz
--rw-r--r--	root/root	usr/share/man/man3/pkgaudit_ownership_index.3.gz
--rw-r--r--	root/root	usr/share/man/man3/pkgaudit_probe.3.gz
--rw-r--r--	root/root	usr/share/man/man3/pkgaudit_types.3.gz
