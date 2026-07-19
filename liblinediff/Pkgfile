@@ -23,6 +23,7 @@ build() {
 			-D man_pages=enabled \
 
 		ninja -C build-$x -j ${JOBS:-1} -v
+		meson test -C build-$x --print-errorlogs
 		DESTDIR=$PKG ninja -C build-$x install
 	done
 }
