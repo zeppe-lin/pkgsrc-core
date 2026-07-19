@@ -1,0 +1,26 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/include/
+drwxr-xr-x	root/root	usr/include/libpkgimpact/
+-rw-r--r--	root/root	usr/include/libpkgimpact/analysis.h
+-rw-r--r--	root/root	usr/include/libpkgimpact/backend.h
+-rw-r--r--	root/root	usr/include/libpkgimpact/elf_metadata.h
+-rw-r--r--	root/root	usr/include/libpkgimpact/impact.h
+-rw-r--r--	root/root	usr/include/libpkgimpact/inventory.h
+-rw-r--r--	root/root	usr/include/libpkgimpact/libpkgimpact.h
+-rw-r--r--	root/root	usr/include/libpkgimpact/path.h
+-rw-r--r--	root/root	usr/include/libpkgimpact/posix_backend.h
+-rw-r--r--	root/root	usr/include/libpkgimpact/report.h
+-rw-r--r--	root/root	usr/include/libpkgimpact/resolver.h
+drwxr-xr-x	root/root	usr/lib/
+-rw-r--r--	root/root	usr/lib/libpkgimpact.a
+lrwxrwxrwx	root/root	usr/lib/libpkgimpact.so -> libpkgimpact.so.0
+lrwxrwxrwx	root/root	usr/lib/libpkgimpact.so.0 -> libpkgimpact.so.0.1.0
+-rwxr-xr-x	root/root	usr/lib/libpkgimpact.so.0.1.0
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/libpkgimpact.pc
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man3/
+-rw-r--r--	root/root	usr/share/man/man3/libpkgimpact.3.gz
+drwxr-xr-x	root/root	usr/share/man/man7/
+-rw-r--r--	root/root	usr/share/man/man7/pkgimpact.7.gz
