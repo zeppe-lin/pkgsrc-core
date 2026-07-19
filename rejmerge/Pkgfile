@@ -1,18 +1,26 @@
-# Description: Merge files rejected during package upgrades
-# URL:         https://github.com/zeppe-lin/rejmerge
-# Depends on:  scdoc
+# Description: Interactively resolve filesystem-staged package objects
+# URL:         https://github.com/zeppe-lin/libpkgreconcile
+# Depends on:  libpkgreconcile
 
 name=rejmerge
-version=5.47.1-15b7dd0
+version=0.2.0-2b4a8b2 # keep in sync with libpkgreconcile
 release=1
-source="https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
-	rejmerge.conf
-	gnufind.patch"
+source=https://github.com/zeppe-lin/libpkgreconcile/archive/${version#*-}/libpkgreconcile-$version.tar.gz
 
 build() {
-	# Optimization fix: https://github.com/zeppe-lin/rejmerge/issues/8
-	patch -d $name-* -Np1 -i $SRC/gnufind.patch
+	meson setup build libpkgreconcile-* \
+		--prefix=/usr \
+		--buildtype=plain \
+		--wrap-mode=nodownload \
+		-D default_library=static \
+		-D link_mode=static \
+		-D tests=disabled \
+		-D install_tools=true \
+		-D man_pages=enabled \
 
-	make -C $name-* DESTDIR=$PKG install
-	install -m 0644 -Dt $PKG/etc $SRC/rejmerge.conf
+	ninja -C build -j ${JOBS:-1} -v
+	DESTDIR=$PKG ninja -C build install
+
+	# Conflicts with libpkgreconcile
+	rm -r $PKG/usr/include $PKG/usr/lib $PKG/usr/share/man/man3
 }
