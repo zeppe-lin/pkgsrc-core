@@ -1,0 +1,27 @@
+# Description: Audit installed package objects
+# URL:         https://github.com/zeppe-lin/libpkgaudit
+# Depends on:  libpkgaudit libpkgstate
+
+name=pkgchk
+version=0.1.0-2738dd8 # keep in sync with libpkgaudit
+release=1
+source=https://github.com/zeppe-lin/libpkgaudit/archive/${version#*-}/libpkgaudit/libpkgaudit-$version.tar.gz
+
+build() {
+	meson setup build libpkgaudit-* \
+		--prefix=/usr \
+		--buildtype=plain \
+		--wrap-mode=nodownload \
+		-D default_library=static \
+		-D link_mode=static \
+		-D tests=disabled \
+		-D tools=enabled \
+		-D install_tools=true \
+		-D man_pages=enabled \
+
+	ninja -C build -j ${JOBS:-1} -v
+	DESTDIR=$PKG ninja -C build install
+
+	# Conflicts with libpkgaudit
+	rm -r $PKG/usr/include $PKG/usr/lib $PKG/usr/share/man/man3
+}
