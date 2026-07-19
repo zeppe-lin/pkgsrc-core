@@ -3,7 +3,7 @@
 # Depends on:  libpkgimage
 
 name=libpkgstate
-version=0.2.0-1aac43a
+version=0.2.0-2083995
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 
@@ -16,6 +16,8 @@ build() {
 			-D default_library=$x \
 			-D link_mode=$x \
 			-D tests=enabled \
+			-D install_tools=false \
+			-D man_pages=enabled \
 
 		ninja -C build-$x -j ${JOBS:-1} -v
 		meson test -C build-$x --print-errorlogs
