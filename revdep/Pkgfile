@@ -1,9 +1,9 @@
 # Description: Report installed packages with unresolved ELF dependencies
 # URL:         https://github.com/zeppe-lin/libpkgimpact
-# Depends on:  elfutils scdoc
+# Depends on:  libpkgimpact libpkgstate
 
 name=revdep
-version=0.2.0-4cee644 # keep in sync with libpkgimpact
+version=0.2.1-591d41d # keep in sync with libpkgimpact
 release=1
 source=https://github.com/zeppe-lin/libpkgimpact/archive/${version#*-}/libpkgimpact-$version.tar.gz
 
