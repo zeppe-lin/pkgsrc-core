@@ -15,8 +15,8 @@ drwxr-xr-x	root/root	usr/include/libpkgimpact/
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libpkgimpact.a
 lrwxrwxrwx	root/root	usr/lib/libpkgimpact.so -> libpkgimpact.so.0
-lrwxrwxrwx	root/root	usr/lib/libpkgimpact.so.0 -> libpkgimpact.so.0.2.0
--rwxr-xr-x	root/root	usr/lib/libpkgimpact.so.0.2.0
+lrwxrwxrwx	root/root	usr/lib/libpkgimpact.so.0 -> libpkgimpact.so.0.2.1
+-rwxr-xr-x	root/root	usr/lib/libpkgimpact.so.0.2.1
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libpkgimpact.pc
 drwxr-xr-x	root/root	usr/share/
