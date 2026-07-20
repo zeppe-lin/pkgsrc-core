@@ -3,7 +3,7 @@
 # Depends on:  elfutils scdoc
 
 name=revdep
-version=0.1.0-128543d # keep in sync with libpkgimpact
+version=0.2.0-4cee644 # keep in sync with libpkgimpact
 release=1
 source=https://github.com/zeppe-lin/libpkgimpact/archive/${version#*-}/libpkgimpact-$version.tar.gz
 
