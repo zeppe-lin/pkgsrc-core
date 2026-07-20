@@ -51,7 +51,8 @@ build() {
 
 	# PAM configs
 	for f in $SRC/pam.*; do
-		install -m 0644 $f $PKG/etc/pam.d/${f#*.}
+		pam=${f##*/}
+		install -m 0644 $f $PKG/etc/pam.d/${pam#pam.}
 	done
 
 	# Remove junk and unused stuff
