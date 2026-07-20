@@ -3,7 +3,7 @@
 # Depends on:  elfutils
 
 name=libpkgimpact
-version=0.1.0-128543d # keep in sync with revdep
+version=0.2.0-4cee644 # keep in sync with revdep
 release=1
 source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
 

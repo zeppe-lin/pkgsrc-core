@@ -7,6 +7,7 @@ drwxr-xr-x	root/root	usr/include/libpkgimpact/
 -rw-r--r--	root/root	usr/include/libpkgimpact/impact.h
 -rw-r--r--	root/root	usr/include/libpkgimpact/inventory.h
 -rw-r--r--	root/root	usr/include/libpkgimpact/libpkgimpact.h
+-rw-r--r--	root/root	usr/include/libpkgimpact/ownership.h
 -rw-r--r--	root/root	usr/include/libpkgimpact/path.h
 -rw-r--r--	root/root	usr/include/libpkgimpact/posix_backend.h
 -rw-r--r--	root/root	usr/include/libpkgimpact/report.h
@@ -14,8 +15,8 @@ drwxr-xr-x	root/root	usr/include/libpkgimpact/
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libpkgimpact.a
 lrwxrwxrwx	root/root	usr/lib/libpkgimpact.so -> libpkgimpact.so.0
-lrwxrwxrwx	root/root	usr/lib/libpkgimpact.so.0 -> libpkgimpact.so.0.1.0
--rwxr-xr-x	root/root	usr/lib/libpkgimpact.so.0.1.0
+lrwxrwxrwx	root/root	usr/lib/libpkgimpact.so.0 -> libpkgimpact.so.0.2.0
+-rwxr-xr-x	root/root	usr/lib/libpkgimpact.so.0.2.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libpkgimpact.pc
 drwxr-xr-x	root/root	usr/share/
