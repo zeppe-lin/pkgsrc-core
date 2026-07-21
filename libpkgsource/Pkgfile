@@ -1,0 +1,32 @@
+# Description: Immutable package-source inspection library
+# URL:         https://github.com/zeppe-lin/libpkgsource
+# Depends on:  openssl scdoc zlib
+
+name=libpkgsource
+version=0.1.0-21c3ce8
+release=1
+source=https://github.com/zeppe-lin/$name/archive/${version#*-}/$name-$version.tar.gz
+
+build() {
+	for x in static shared; do
+		meson setup build-$x $name-* \
+			--prefix=/usr \
+			--libexecdir=lib/$name \
+			--buildtype=plain \
+			--wrap-mode=nodownload \
+			-D default_library=$x \
+			-D link_mode=$x \
+			-D tests=enabled \
+			-D reference_tools=enabled \
+			-D man_pages=enabled \
+
+		ninja -C build-$x -j ${JOBS:-1} -v
+		meson test -C build-$x
+		DESTDIR=$PKG ninja -C build-$x install
+
+		if [ $x = "static" ]; then
+			install -m 0755 -Dt $PKG/usr/bin \
+				build-$x/tools/pkgsource-inspect
+		fi
+	done
+}

@@ -1,0 +1,28 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/pkgsource-inspect
+drwxr-xr-x	root/root	usr/include/
+drwxr-xr-x	root/root	usr/include/libpkgsource/
+-rw-r--r--	root/root	usr/include/libpkgsource/backend.h
+-rw-r--r--	root/root	usr/include/libpkgsource/error.h
+-rw-r--r--	root/root	usr/include/libpkgsource/libpkgsource.h
+-rw-r--r--	root/root	usr/include/libpkgsource/model.h
+-rw-r--r--	root/root	usr/include/libpkgsource/pkgfile_backend.h
+-rw-r--r--	root/root	usr/include/libpkgsource/snapshot.h
+drwxr-xr-x	root/root	usr/lib/
+-rw-r--r--	root/root	usr/lib/libpkgsource.a
+lrwxrwxrwx	root/root	usr/lib/libpkgsource.so -> libpkgsource.so.0
+lrwxrwxrwx	root/root	usr/lib/libpkgsource.so.0 -> libpkgsource.so.0.1.0
+-rwxr-xr-x	root/root	usr/lib/libpkgsource.so.0.1.0
+drwxr-xr-x	root/root	usr/lib/libpkgsource/
+-rwxr-xr-x	root/root	usr/lib/libpkgsource/pkgsource-pkgfile-worker
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/libpkgsource.pc
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man3/
+-rw-r--r--	root/root	usr/share/man/man3/libpkgsource.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgsource_backend.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgsource_model.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgsource_pkgfile_backend.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/pkgsource_snapshot.3.gz
