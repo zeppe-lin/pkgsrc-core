@@ -11,8 +11,8 @@ _kernelver=6.1.169
 source="https://ftp.gnu.org/gnu/glibc/glibc-${version%-*}.tar.xz
 	https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_kernelver%.*}.tar.xz
 	https://cdn.kernel.org/pub/linux/kernel/v6.x/patch-$_kernelver.xz
-	../glibc/glibc-$version.patch
-	../glibc/glibc-2.4x-fhs-1.patch
+	glibc-$version.patch
+	glibc-2.4x-fhs-1.patch
 	lib32.conf"
 
 build() {
